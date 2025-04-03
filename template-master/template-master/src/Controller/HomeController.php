@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Permis;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -15,13 +17,20 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
         ]);
     }
+
+
 #[Route('/about', name: 'app_about')]
-    public function about(): Response
-    {
-        return $this->render('about/about.html.twig', [
-            'controller_name' => 'HomeController',
-        ]);
-    }
+
+public function about(EntityManagerInterface $entityManager): Response
+{
+    $permis = $entityManager
+        ->getRepository(Permis::class)
+        ->findAll();
+
+    return $this->render('permis/index.html.twig', [
+        'permis' => $permis,
+    ]);
+}
 #[Route('/services', name: 'app_services')]
  public function services(): Response
     {

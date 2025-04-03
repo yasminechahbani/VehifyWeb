@@ -33,15 +33,22 @@ class Service
     #[ORM\Column(type: "float")]
     private float $prix;
 
-    public function getId_service()
+    public function getId(): int
     {
         return $this->id_service;
     }
 
-    public function setId_service($value)
+    public function getIdService(): int
+    {
+        return $this->id_service;
+    }
+
+    public function setIdService(int $value): self
     {
         $this->id_service = $value;
+        return $this;
     }
+
 
     public function getNom()
     {

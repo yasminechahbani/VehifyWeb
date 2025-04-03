@@ -56,9 +56,10 @@ class Permis
         return $this->id_service;
     }
 
-    public function setId_service($value)
+    public function setIdService(Service $service): self
     {
-        $this->id_service = $value;
+        $this->id_service = $service;
+        return $this;
     }
 
     public function getNumeroPermis()

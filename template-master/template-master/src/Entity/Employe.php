@@ -47,6 +47,11 @@ class Employe
     #[ORM\Column(type: "string", length: 20)]
     private string $statut;
 
+    public function getId(): int
+    {
+        return $this->id_employe;
+    }
+
     public function getId_employe()
     {
         return $this->id_employe;
