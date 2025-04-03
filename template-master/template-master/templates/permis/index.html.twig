@@ -14,7 +14,7 @@
                 <th>Date_delivrance</th>
                 <th>Date_expiration</th>
                 <th>Etat</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -25,19 +25,19 @@
                 <td>{{ permi.categorie }}</td>
                 <td>{{ permi.dateDelivrance ? permi.dateDelivrance|date('Y-m-d') : '' }}</td>
                 <td>{{ permi.dateExpiration ? permi.dateExpiration|date('Y-m-d') : '' }}</td>
-                <td>{{ permi.Etat }}</td>
+                <td>{{ permi.etat }}</td> {# Fixed case sensitivity #}
                 <td>
-                    <a href="{{ path('app_permis_show', {'id_permis': permi.idPermis}) }}">show</a>
-                    <a href="{{ path('app_permis_edit', {'id_permis': permi.idPermis}) }}">edit</a>
+                    <a href="{{ path('app_show_permisOne', {'id_permis': permi.idPermis}) }}">Show</a>
+                    <a href="{{ path('app_edit_permisOne', {'id_permis': permi.idPermis}) }}">Edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">No records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_permis_new') }}">Create new</a>
+    <a href="{{ path('app_new_permis') }}">Create new</a>
 {% endblock %}

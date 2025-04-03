@@ -3,152 +3,179 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
-use App\Entity\Employe;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use App\Entity\Reservation;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: "App\Repository\PermisRepository")]
 class Permis
 {
-
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: "integer")]
-    private int $id_permis;
+    #[ORM\Column(name: "id_permis", type: "integer")]
+    private ?int $id_permis = null;
 
-        #[ORM\ManyToOne(targetEntity: Service::class, inversedBy: "permiss")]
-    #[ORM\JoinColumn(name: 'id_service', referencedColumnName: 'id_service', onDelete: 'CASCADE')]
-    private Service $id_service;
+    #[ORM\ManyToOne(targetEntity: Service::class, inversedBy: "permis")]
+    #[ORM\JoinColumn(name: "id_service", referencedColumnName: "id_service", onDelete: "CASCADE")]
+    private ?Service $id_service = null;
 
     #[ORM\Column(type: "string", length: 50)]
+    #[Assert\NotBlank(message: "Le numéro de permis est obligatoire")]
+    #[Assert\Length(
+        max: 50,
+        min : 10,
+        maxMessage: "Le numéro ne peut pas dépasser {{ limit }} caractères",
+        minMessage: "Le numéro doit avoir au moins 10 caractères"
+
+)]
+    #[Assert\Regex(
+        pattern: "/^[0-9]+$/",
+        message: "Le numéro de permis ne doit contenir que des chiffres"
+    )]
     private string $numero_permis;
 
     #[ORM\Column(type: "string", length: 20)]
+    #[Assert\NotBlank(message: "La catégorie est obligatoire")]
+    #[Assert\Choice(
+        choices: ["A", "B", "C", "D", "E"],
+        message: "Choisissez une catégorie valide"
+    )]
     private string $categorie;
 
     #[ORM\Column(type: "date")]
-    private \DateTimeInterface $date_delivrance;
+    #[Assert\NotBlank(message: "La date de délivrance est obligatoire")]
+    #[Assert\LessThanOrEqual(
+        "today",
+        message: "La date doit être aujourd'hui ou dans le passé"
+    )]
+    private ?\DateTimeInterface $date_delivrance = null;
 
     #[ORM\Column(type: "date")]
-    private \DateTimeInterface $date_expiration;
+    private ?\DateTimeInterface $date_expiration = null;
 
     #[ORM\Column(type: "string", length: 20)]
-    private string $etat;
+    #[Assert\Choice(
+        choices: ["Active", "Suspended", "Expired"],
+        message: "Statut invalide"
+    )]
+    private string $etat = "Active";
 
-        #[ORM\ManyToOne(targetEntity: Employe::class, inversedBy: "permiss")]
-    #[ORM\JoinColumn(name: 'id_employe', referencedColumnName: 'id_employe', onDelete: 'CASCADE')]
-    private Employe $id_employe;
-
-    public function getIdPermis(): int
-    {
-        return $this->id_permis;
-    }
-
-    public function setIdPermis(int $id_permis): self
-    {
-        $this->id_permis = $id_permis;
-        return $this;
-    }
-
-    public function getIdService()
-    {
-        return $this->id_service;
-    }
-
-    public function setIdService(Service $service): self
-    {
-        $this->id_service = $service;
-        return $this;
-    }
-
-    public function getNumeroPermis()
-    {
-        return $this->numero_permis;
-    }
-
-    public function setNumeroPermis($value)
-    {
-        $this->numero_permis = $value;
-    }
-
-    public function getCategorie()
-    {
-        return $this->categorie;
-    }
-
-    public function setCategorie($value)
-    {
-        $this->categorie = $value;
-    }
-
-    public function getDateDelivrance()
-    {
-        return $this->date_delivrance;
-    }
-
-    public function setDateDelivrance($value)
-    {
-        $this->date_delivrance = $value;
-    }
-
-    public function getDateExpiration()
-    {
-        return $this->date_expiration;
-    }
-
-    public function setDateExpiration($value)
-    {
-        $this->date_expiration = $value;
-    }
-
-    public function getEtat()
-    {
-        return $this->etat;
-    }
-
-    public function setEtat($value)
-    {
-        $this->etat = $value;
-    }
-
-    public function getIdEmploye()
-    {
-        return $this->id_employe;
-    }
-
-    public function setIdEmploye($value)
-    {
-        $this->id_employe = $value;
-    }
+    #[ORM\ManyToOne(targetEntity: Employe::class, inversedBy: "permis")]
+    #[ORM\JoinColumn(name: "id_employe", referencedColumnName: "id_employe", onDelete: "CASCADE")]
+    private ?Employe $id_employe = null;
 
     #[ORM\OneToMany(mappedBy: "id_permis", targetEntity: Reservation::class)]
     private Collection $reservations;
 
-        public function getReservations(): Collection
-        {
-            return $this->reservations;
-        }
+    public function __construct()
+    {
+        $this->reservations = new ArrayCollection();
+    }
 
-        public function addReservation(Reservation $reservation): self
-        {
-            if (!$this->reservations->contains($reservation)) {
-                $this->reservations[] = $reservation;
-                $reservation->setId_permis($this);
+    // Getters and Setters
+
+    public function getIdPermis(): ?int
+    {
+        return $this->id_permis;
+    }
+
+    public function getNumeroPermis(): ?string
+    {
+        return $this->numero_permis;
+    }
+
+    public function setNumeroPermis(string $numero_permis): self
+    {
+        $this->numero_permis = $numero_permis;
+        return $this;
+    }
+
+    public function getCategorie(): ?string
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(string $categorie): self
+    {
+        $this->categorie = $categorie;
+        return $this;
+    }
+
+    public function getDateDelivrance(): ?\DateTimeInterface
+    {
+        return $this->date_delivrance;
+    }
+
+    public function setDateDelivrance(\DateTimeInterface $date_delivrance): self
+    {
+        $this->date_delivrance = $date_delivrance;
+        // Auto-set expiration date (+10 years)
+        $this->date_expiration = (clone $date_delivrance)->modify('+10 years');
+        return $this;
+    }
+
+    public function getDateExpiration(): ?\DateTimeInterface
+    {
+        return $this->date_expiration;
+    }
+
+    public function getEtat(): ?string
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(string $etat): self
+    {
+        $this->etat = $etat;
+        return $this;
+    }
+
+    public function getIdService(): ?Service
+    {
+        return $this->id_service;
+    }
+
+    public function setIdService(?Service $id_service): self
+    {
+        $this->id_service = $id_service;
+        return $this;
+    }
+
+    public function getIdEmploye(): ?Employe
+    {
+        return $this->id_employe;
+    }
+
+    public function setIdEmploye(?Employe $id_employe): self
+    {
+        $this->id_employe = $id_employe;
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reservation>
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): self
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations->add($reservation);
+            $reservation->setIdPermis($this);
+        }
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): self
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            if ($reservation->getIdPermis() === $this) {
+                $reservation->setIdPermis(null);
             }
-
-            return $this;
         }
-
-        public function removeReservation(Reservation $reservation): self
-        {
-            if ($this->reservations->removeElement($reservation)) {
-                // set the owning side to null (unless already changed)
-                if ($reservation->getId_permis() === $this) {
-                    $reservation->setId_permis(null);
-                }
-            }
-
-            return $this;
-        }
+        return $this;
+    }
 }

@@ -34,9 +34,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_permis_index') }}">back to list</a>
+    <a href="{{ path('app_about_permisAll') }}">back to list</a>
 
-    <a href="{{ path('app_permis_edit', {'id_permis': permi.idPermis}) }}">edit</a>
+    <a href="{{ path('app_edit_permisOne', {'id_permis': permi.idPermis}) }}">edit</a>
 
     {{ include('permis/_delete_form.html.twig') }}
 {% endblock %}

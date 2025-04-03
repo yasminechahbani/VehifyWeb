@@ -3,9 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Permis;
-use App\Entity\Service;   // ✅ Add this
+use App\Entity\Service;
 use App\Entity\Employe;
 use App\Form\PermisType;
+use App\Repository\PermisRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,9 +14,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/permis')]
-final class PermisController extends AbstractController
+
+class PermisController extends AbstractController
 {
-    #[Route(name: 'app_permis_index', methods: ['GET'])]
+
+    #[Route('/', name: 'app_permis_index', methods: ['GET'])]
     public function index(EntityManagerInterface $entityManager): Response
     {
         $permis = $entityManager
@@ -27,130 +30,84 @@ final class PermisController extends AbstractController
         ]);
     }
 
-   /* #[Route('/new', name: 'app_permis_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $permi = new Permis();
-        $form = $this->createForm(PermisType::class, $permi);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($permi);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_permis_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('permis/new.html.twig', [
-            'permi' => $permi,
-            'form' => $form,
-        ]);
-    }*/
     #[Route('/new', name: 'app_permis_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $permi = new Permis();
+        $permis = new Permis();
 
-        // Fetch an existing Service and Employe (ensure they exist)
+        // Set default state
+        $permis->setEtat('Active');
+
+        // Set relationships - you may want to modify this based on your business logic
         $service = $entityManager->getRepository(Service::class)->find(1);
         $employe = $entityManager->getRepository(Employe::class)->find(1);
 
-        if (!$service) {
-            throw $this->createNotFoundException('Service with ID 1 not found.');
+        if ($service) {
+            $permis->setIdService($service);
         }
-        if (!$employe) {
-            throw $this->createNotFoundException('Employe with ID 1 not found.');
+        if ($employe) {
+            $permis->setIdEmploye($employe);
         }
 
-        // Set the relationships properly
-        $permi->setIdService($service);
-        $permi->setIdEmploye($employe);
-
-        $form = $this->createForm(PermisType::class, $permi);
+        $form = $this->createForm(PermisType::class, $permis);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($permi);
+            $entityManager->persist($permis);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_permis_index', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash('success', 'Permis créé avec succès');
+            return $this->redirectToRoute('app_permis_index');
         }
 
         return $this->render('permis/new.html.twig', [
-            'permi' => $permi,
-            'form' => $form,
+            'permis' => $permis,
+            'form' => $form->createView(),
         ]);
     }
-
-
-
 
     #[Route('/{id_permis}', name: 'app_permis_show', methods: ['GET'])]
-    public function show(Permis $permi): Response
+    public function show(Permis $permis): Response
     {
         return $this->render('permis/show.html.twig', [
-            'permi' => $permi,
+            'permi' => $permis,
         ]);
     }
 
-    /*#[Route('/{id_permis}/edit', name: 'app_permis_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Permis $permi, EntityManagerInterface $entityManager): Response
+    #[Route('/{id_permis}/edit', name: 'app_permis_edit2', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Permis $permis, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(PermisType::class, $permi);
+        $form = $this->createForm(PermisType::class, $permis);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Automatically update expiration date if delivery date changed
+            if ($form->get('date_delivrance')->isSubmitted()) {
+                $permis->setDateDelivrance($permis->getDateDelivrance());
+            }
+
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_permis_index', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash('success', 'Permis mis à jour avec succès');
+            return $this->redirectToRoute('app_about_permisAll');
         }
 
         return $this->render('permis/edit.html.twig', [
-            'permi' => $permi,
-            'form' => $form,
-        ]);
-    }
-*/
-    #[Route('/{id_permis}/edit', name: 'app_permis_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Permis $permi, EntityManagerInterface $entityManager): Response
-    {
-        // You no longer need to fetch the Service and Employe entities manually
-        $service = $permi->getIdService();
-        $employe = $permi->getIdEmploye();
-
-        // Check if the associated Service or Employe is null
-        if (!$service || !$employe) {
-            throw $this->createNotFoundException('Service or Employe not found.');
-        }
-
-        // Create and handle the form
-        $form = $this->createForm(PermisType::class, $permi);
-        $form->handleRequest($request);
-
-        // Check if the form is submitted and valid
-        if ($form->isSubmitted() && $form->isValid()) {
-            // Persist changes in the entity
-            $entityManager->flush();
-
-            // Redirect to the permis index page after successful update
-            return $this->redirectToRoute('app_permis_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        // Render the edit template with form and Permis data
-        return $this->render('permis/edit.html.twig', [
-            'permi' => $permi,
+            'permi' => $permis,
             'form' => $form->createView(),
         ]);
     }
 
     #[Route('/{id_permis}', name: 'app_permis_delete', methods: ['POST'])]
-    public function delete(Request $request, Permis $permi, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, Permis $permis, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$permi->getIdPermis(), $request->getPayload()->getString('_token'))) {
-            $entityManager->remove($permi);
+        if ($this->isCsrfTokenValid('delete'.$permis->getIdPermis(), $request->request->get('_token'))) {
+            $entityManager->remove($permis);
             $entityManager->flush();
+            $this->addFlash('success', 'Permis supprimé avec succès');
         }
 
-        return $this->redirectToRoute('app_permis_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_about_permisAll');
     }
+
 }

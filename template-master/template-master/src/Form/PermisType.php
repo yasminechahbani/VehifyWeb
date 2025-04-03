@@ -2,11 +2,11 @@
 
 namespace App\Form;
 
-use App\Entity\Employe;
 use App\Entity\Permis;
-use App\Entity\Service;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,25 +15,44 @@ class PermisType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('id_permis')
-            ->add('numero_permis')
-            ->add('categorie')
-            ->add('date_delivrance', null, [
+            ->add('numero_permis', TextType::class, [
+                'label' => 'Numéro de permis',
+                'attr' => [
+                    'placeholder' => 'Entrez le numéro du permis',
+                    'class' => 'form-control'
+                ]
+            ])
+            ->add('categorie', ChoiceType::class, [
+                'label' => 'Catégorie',
+                'choices' => [
+                    'Catégorie A' => 'A',
+                    'Catégorie B' => 'B',
+                    'Catégorie C' => 'C',
+                    'Catégorie D' => 'D',
+                    'Catégorie E' => 'E',
+                ],
+                'placeholder' => 'Sélectionnez une catégorie',
+                'attr' => ['class' => 'form-select']
+            ])
+            ->add('etat', ChoiceType::class, [
+                'label' => 'Status',
+                'choices' => [
+                    'Active' => 'Active',
+                    'Suspended' => 'Suspended',
+                    'Expired' => 'Expired',
+                    'Revoked' => 'Revoked'
+                ],
+                'attr' => ['class' => 'form-select']
+            ])
+            ->add('date_delivrance', DateType::class, [
+                'label' => 'Date de délivrance',
                 'widget' => 'single_text',
-            ])
-            ->add('date_expiration', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('etat')
-            ->add('id_service', EntityType::class, [
-                'class' => Service::class,
-                'choice_label' => 'id',
-            ])
-            ->add('id_employe', EntityType::class, [
-                'class' => Employe::class,
-                'choice_label' => 'id',
-            ])
-        ;
+                'html5' => true,
+                'attr' => [
+                    'class' => 'form-control',
+                    'max' => (new \DateTime())->format('Y-m-d')
+                ]
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
