@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Permis{% endblock %}
+
+{% block body %}
+    <h1>Permis</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id_permis</th>
+                <td>{{ permi.idPermis }}</td>
+            </tr>
+            <tr>
+                <th>Numero_permis</th>
+                <td>{{ permi.numeroPermis }}</td>
+            </tr>
+            <tr>
+                <th>Categorie</th>
+                <td>{{ permi.categorie }}</td>
+            </tr>
+            <tr>
+                <th>Date_delivrance</th>
+                <td>{{ permi.dateDelivrance ? permi.dateDelivrance|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date_expiration</th>
+                <td>{{ permi.dateExpiration ? permi.dateExpiration|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ permi.etat }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_permis_index') }}">back to list</a>
+
+    <a href="{{ path('app_permis_edit', {'id_permis': permi.idPermis}) }}">edit</a>
+
+    {{ include('permis/_delete_form.html.twig') }}
+{% endblock %}
