@@ -11,11 +11,11 @@
         <tbody>
             <tr>
                 <th>Id_reservation</th>
-                <td>{{ reservation.id_reservation }}</td>
+                <td>{{ reservation.id }}</td>
             </tr>
             <tr>
                 <th>Date_reservation</th>
-                <td>{{ reservation.date_reservation ? reservation.date_reservation|date('Y-m-d') : '' }}</td>
+                <td>{{ reservation.dateReservation ? reservation.dateReservation|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
                 <th>HeureReservation</th>
@@ -26,7 +26,7 @@
 
     <a href="{{ path('app_reservation_index') }}">back to list</a>
 
-    <a href="{{ path('app_reservation_edit', {'id_reservation': reservation.id_reservation}) }}">edit</a>
+    <a href="{{ path('app_reservation_edit', {'id_reservation': reservation.id}) }}">edit</a>
 
     {{ include('reservation/_delete_form.html.twig') }}
 {% endblock %}
