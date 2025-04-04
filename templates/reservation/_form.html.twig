@@ -1,5 +1,34 @@
 {% set active_page = 'home' %}
-{{ form_start(form, {'attr':{'novalidate':'novalidate'}}) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<h1>Ajouter une réservation</h1>
+
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+<table>
+    <tr>
+        <td>{{ form_label(form.dateReservation, "Date de réservation") }}</td>
+        <td>{{ form_widget(form.dateReservation) }}</td>
+        <td>{{ form_errors(form.dateReservation) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.heureReservation, "Heure de réservation") }}</td>
+        <td>{{ form_widget(form.heureReservation) }}</td>
+        <td>{{ form_errors(form.heureReservation) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.userId, "Utilisateur") }}</td>
+        <td>{{ form_widget(form.userId) }}</td>
+        <td>{{ form_errors(form.userId) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.serviceId, "Service") }}</td>
+        <td>{{ form_widget(form.serviceId) }}</td>
+        <td>{{ form_errors(form.serviceId) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.vehiculeId, "Véhicule") }}</td>
+        <td>{{ form_widget(form.vehiculeId) }}</td>
+        <td>{{ form_errors(form.vehiculeId) }}</td>
+    </tr>
+</table>
+
+<button class="btn">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ReservationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
 class Reservation
@@ -15,20 +16,31 @@ class Reservation
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\NotBlank(message: "La date de réservation est obligatoire.")]
+    #[Assert\Type(\DateTimeInterface::class, message: "La date de réservation doit être une date valide.")]
+    #[Assert\GreaterThan("today", message: "La date de réservation doit une date future.")]
     private ?\DateTimeInterface $dateReservation = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "L'heure de réservation est obligatoire.")]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: "L'heure de réservation ne peut pas dépasser {{ limit }} caractères."
+    )]
     private ?string $heureReservation = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
+    #[Assert\NotNull(message: "L'utilisateur est obligatoire.")]
     private ?User $userId = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
     #[ORM\JoinColumn(name: 'service_id', referencedColumnName: 'id_service', nullable: false)]
+    #[Assert\NotNull(message: "Le service est obligatoire.")]
     private ?Service $serviceId = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
     #[ORM\JoinColumn(name: 'vehicule_id', referencedColumnName: 'id_vehicule', nullable: false)]
+    #[Assert\NotNull(message: "Le véhicule est obligatoire.")]
     private ?Vehicule $vehiculeId = null;
 
     public function getId(): ?int

@@ -17,20 +17,29 @@ class ReservationType extends AbstractType
     {
         $builder
             ->add('dateReservation', null, [
-                'widget' => 'single_text'
+                'widget' => 'single_text',
+                'empty_data' => false,
             ])
-            ->add('heureReservation')
+            ->add('heureReservation', null, [
+                'empty_data' => '',
+            ])
             ->add('userId', EntityType::class, [
                 'class' => User::class,
                 'choice_label' => 'id',
+                'placeholder' => 'Sélectionner un utilisateur',
+                'empty_data' => '',
             ])
             ->add('serviceId', EntityType::class, [
                 'class' => Service::class,
                 'choice_label' => 'nom',
+                'placeholder' => 'Sélectionner un service',
+                'empty_data' => '',
             ])
             ->add('vehiculeId', EntityType::class, [
                 'class' => Vehicule::class,
                 'choice_label' => 'immatriculation',
+                'placeholder' => 'Sélectionner un véhicule',
+                'empty_data' => '',
             ])
         ;
     }
