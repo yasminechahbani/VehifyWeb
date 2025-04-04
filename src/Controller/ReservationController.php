@@ -68,8 +68,14 @@ class ReservationController extends AbstractController{
     }
 
     #[Route('/{id_reservation}/edit', name: 'app_reservation_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Reservation $reservation, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, int $id_reservation, EntityManagerInterface $entityManager): Response
     {
+        $reservation = $entityManager->getRepository(Reservation::class)->find($id_reservation);
+
+        if (!$reservation) {
+            throw $this->createNotFoundException('Reservation not found.');
+        }
+
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
 
@@ -88,8 +94,14 @@ class ReservationController extends AbstractController{
     }
 
     #[Route('/{id_reservation}', name: 'app_reservation_delete', methods: ['POST'])]
-    public function delete(Request $request, Reservation $reservation, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, int $id_reservation, EntityManagerInterface $entityManager): Response
     {
+        $reservation = $entityManager->getRepository(Reservation::class)->find($id_reservation);
+
+        if (!$reservation) {
+            throw $this->createNotFoundException('Reservation not found.');
+        }
+
         if ($this->isCsrfTokenValid('delete'.$reservation->getId(), $request->request->get('_token'))) {
             try {
                 $entityManager->remove($reservation);
