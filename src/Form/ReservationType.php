@@ -16,22 +16,21 @@ class ReservationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('idReservation')
             ->add('dateReservation', null, [
                 'widget' => 'single_text'
             ])
             ->add('heureReservation')
-            ->add('user_id', EntityType::class, [
+            ->add('userId', EntityType::class, [
                 'class' => User::class,
-'choice_label' => 'id',
+                'choice_label' => 'id',
             ])
-            ->add('service_id', EntityType::class, [
+            ->add('serviceId', EntityType::class, [
                 'class' => Service::class,
-'choice_label' => 'id',
+                'choice_label' => 'nom',
             ])
-            ->add('idVehicule', EntityType::class, [
+            ->add('vehiculeId', EntityType::class, [
                 'class' => Vehicule::class,
-'choice_label' => 'id',
+                'choice_label' => 'immatriculation',
             ])
         ;
     }

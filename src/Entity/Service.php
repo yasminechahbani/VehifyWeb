@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 use Doctrine\Common\Collections\Collection;
@@ -12,7 +13,8 @@ class Service
 {
 
     #[ORM\Id]
-    #[ORM\Column(type: "integer")]
+    #[ORM\Column(name: "id_service", type: "integer")]
+    #[ORM\GeneratedValue]
     private int $id_service;
 
     #[ORM\Column(type: "string", length: 100)]
@@ -201,33 +203,74 @@ class Service
     #[ORM\OneToMany(mappedBy: "id_service", targetEntity: Resultat::class)]
     private Collection $resultats;
 
-    #[ORM\OneToMany(mappedBy: "service_id", targetEntity: Reservation::class)]
+    /**
+     * @var Collection<int, Reservation>
+     */
+    #[ORM\OneToMany(targetEntity: Reservation::class, mappedBy: 'serviceId')]
     private Collection $reservations;
 
-        public function getReservations(): Collection
-        {
-            return $this->reservations;
+    public function __construct()
+    {
+        $this->reservations = new ArrayCollection();
+    }
+
+//     #[ORM\OneToMany(mappedBy: "service_id", targetEntity: Reservation::class)]
+//     private Collection $reservations;
+
+//         public function getReservations(): Collection
+//         {
+//             return $this->reservations;
+//         }
+    
+//         public function addReservation(Reservation $reservation): self
+//         {
+//             if (!$this->reservations->contains($reservation)) {
+//                 $this->reservations[] = $reservation;
+//                 $reservation->setService_id($this);
+//             }
+    
+//             return $this;
+//         }
+    
+//         public function removeReservation(Reservation $reservation): self
+//         {
+//             if ($this->reservations->removeElement($reservation)) {
+//                 // set the owning side to null (unless already changed)
+//                 if ($reservation->getService_id() === $this) {
+//                     $reservation->setService_id(null);
+//                 }
+//             }
+    
+//             return $this;
+//         }
+
+/**
+ * @return Collection<int, Reservation>
+ */
+public function getReservations(): Collection
+{
+    return $this->reservations;
+}
+
+public function addReservation(Reservation $reservation): static
+{
+    if (!$this->reservations->contains($reservation)) {
+        $this->reservations->add($reservation);
+        $reservation->setServiceId($this);
+    }
+
+    return $this;
+}
+
+public function removeReservation(Reservation $reservation): static
+{
+    if ($this->reservations->removeElement($reservation)) {
+        // set the owning side to null (unless already changed)
+        if ($reservation->getServiceId() === $this) {
+            $reservation->setServiceId(null);
         }
-    
-        public function addReservation(Reservation $reservation): self
-        {
-            if (!$this->reservations->contains($reservation)) {
-                $this->reservations[] = $reservation;
-                $reservation->setService_id($this);
-            }
-    
-            return $this;
-        }
-    
-        public function removeReservation(Reservation $reservation): self
-        {
-            if ($this->reservations->removeElement($reservation)) {
-                // set the owning side to null (unless already changed)
-                if ($reservation->getService_id() === $this) {
-                    $reservation->setService_id(null);
-                }
-            }
-    
-            return $this;
-        }
+    }
+
+    return $this;
+}
 }

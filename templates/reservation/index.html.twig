@@ -2,38 +2,62 @@
 
 {% set active_page = 'home' %}
 
-{% block title %}Reservation index{% endblock %}
+{% block title %}Reservations Management{% endblock %}
 
 {% block content %}
-    <h1>Reservation index</h1>
+    <div class="container-fluid py-5">
+        <div class="container">
+            <h1 class="display-4 mb-4">Reservations Management</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id_reservation</th>
-                <th>Date_reservation</th>
-                <th>HeureReservation</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for reservation in reservations %}
-            <tr>
-                <td>{{ reservation.id_reservation }}</td>
-                <td>{{ reservation.date_reservation ? reservation.date_reservation|date('Y-m-d') : '' }}</td>
-                <td>{{ reservation.heureReservation }}</td>
-                <td>
-                    <a href="{{ path('app_reservation_show', {'id_reservation': reservation.id_reservation}) }}">show</a>
-                    <a href="{{ path('app_reservation_edit', {'id_reservation': reservation.id_reservation}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
 
-    <a href="{{ path('app_reservation_new') }}">Create new</a>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Service</th>
+                            <th>Vehicle</th>
+                            <th>Client</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for reservation in reservations %}
+                        <tr>
+                            <td>{{ reservation.id }}</td>
+                            <td>{{ reservation.dateReservation ? reservation.dateReservation|date('Y-m-d') : '' }}</td>
+                            <td>{{ reservation.heureReservation }}</td>
+                            <td>{{ reservation.serviceId.nom ?? '' }}</td>
+                            <td>{{ reservation.vehiculeId.immatriculation ?? '' }}</td>
+                            <td>{{ reservation.userId.email ?? '' }}</td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a href="{{ path('app_reservation_show', {'id_reservation': reservation.id}) }}" class="btn btn-info btn-sm">Show</a>
+                                    <a href="{{ path('app_reservation_edit', {'id_reservation': reservation.id}) }}" class="btn btn-primary btn-sm">Edit</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="7" class="text-center">No reservations found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-4">
+                <a href="{{ path('app_reservation_new') }}" class="btn btn-success">Create New Reservation</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

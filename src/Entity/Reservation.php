@@ -2,98 +2,97 @@
 
 namespace App\Entity;
 
+use App\Repository\ReservationRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-use App\Entity\Vehicule;
-use Doctrine\Common\Collections\Collection;
-use App\Entity\Paiement;
-
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: ReservationRepository::class)]
 class Reservation
 {
-
     #[ORM\Id]
-    #[ORM\Column(type: "integer")]
-    private int $id_reservation;
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
 
-        #[ORM\ManyToOne(targetEntity: User::class, inversedBy: "reservations")]
-    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
-    private User $user_id;
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $dateReservation = null;
 
-        #[ORM\ManyToOne(targetEntity: Service::class, inversedBy: "reservations")]
-    #[ORM\JoinColumn(name: 'service_id', referencedColumnName: 'id_service', onDelete: 'CASCADE')]
-    private Service $service_id;
+    #[ORM\Column(length: 255)]
+    private ?string $heureReservation = null;
 
-    #[ORM\Column(type: "date")]
-    private \DateTimeInterface $date_reservation;
+    #[ORM\ManyToOne(inversedBy: 'reservations')]
+    private ?User $userId = null;
 
-    #[ORM\Column(type: "string", length: 255)]
-    private string $heureReservation;
+    #[ORM\ManyToOne(inversedBy: 'reservations')]
+    #[ORM\JoinColumn(name: 'service_id', referencedColumnName: 'id_service', nullable: false)]
+    private ?Service $serviceId = null;
 
-        #[ORM\ManyToOne(targetEntity: Vehicule::class, inversedBy: "reservations")]
-    #[ORM\JoinColumn(name: 'idVehicule', referencedColumnName: 'id_vehicule', onDelete: 'CASCADE')]
-    private Vehicule $idVehicule;
+    #[ORM\ManyToOne(inversedBy: 'reservations')]
+    #[ORM\JoinColumn(name: 'vehicule_id', referencedColumnName: 'id_vehicule', nullable: false)]
+    private ?Vehicule $vehiculeId = null;
 
-    public function getId_reservation()
+    public function getId(): ?int
     {
-        return $this->id_reservation;
+        return $this->id;
     }
 
-    public function setId_reservation($value)
+    public function getDateReservation(): ?\DateTimeInterface
     {
-        $this->id_reservation = $value;
+        return $this->dateReservation;
     }
 
-    public function getUser_id()
+    public function setDateReservation(\DateTimeInterface $dateReservation): static
     {
-        return $this->user_id;
+        $this->dateReservation = $dateReservation;
+
+        return $this;
     }
 
-    public function setUser_id($value)
-    {
-        $this->user_id = $value;
-    }
-
-    public function getService_id()
-    {
-        return $this->service_id;
-    }
-
-    public function setService_id($value)
-    {
-        $this->service_id = $value;
-    }
-
-    public function getDate_reservation()
-    {
-        return $this->date_reservation;
-    }
-
-    public function setDate_reservation($value)
-    {
-        $this->date_reservation = $value;
-    }
-
-    public function getHeureReservation()
+    public function getHeureReservation(): ?string
     {
         return $this->heureReservation;
     }
 
-    public function setHeureReservation($value)
+    public function setHeureReservation(string $heureReservation): static
     {
-        $this->heureReservation = $value;
+        $this->heureReservation = $heureReservation;
+
+        return $this;
     }
 
-    public function getIdVehicule()
+    public function getUserId(): ?User
     {
-        return $this->idVehicule;
+        return $this->userId;
     }
 
-    public function setIdVehicule($value)
+    public function setUserId(?User $userId): static
     {
-        $this->idVehicule = $value;
+        $this->userId = $userId;
+
+        return $this;
     }
 
-    #[ORM\OneToMany(mappedBy: "id_reservation", targetEntity: Paiement::class)]
-    private Collection $paiements;
+    public function getServiceId(): ?Service
+    {
+        return $this->serviceId;
+    }
+
+    public function setServiceId(?Service $serviceId): static
+    {
+        $this->serviceId = $serviceId;
+
+        return $this;
+    }
+
+    public function getVehiculeId(): ?Vehicule
+    {
+        return $this->vehiculeId;
+    }
+
+    public function setVehiculeId(?Vehicule $vehiculeId): static
+    {
+        $this->vehiculeId = $vehiculeId;
+
+        return $this;
+    }
 }

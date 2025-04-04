@@ -20,9 +20,9 @@ class Resultat
     #[ORM\JoinColumn(name: 'id_service', referencedColumnName: 'id_service', onDelete: 'CASCADE')]
     private Service $id_service;
 
-        #[ORM\ManyToOne(targetEntity: Paiement::class, inversedBy: "resultats")]
-    #[ORM\JoinColumn(name: 'id_paiement', referencedColumnName: 'id_paiement', onDelete: 'CASCADE')]
-    private Paiement $id_paiement;
+    //     #[ORM\ManyToOne(targetEntity: Paiement::class, inversedBy: "resultats")]
+    // #[ORM\JoinColumn(name: 'id_paiement', referencedColumnName: 'id_paiement', onDelete: 'CASCADE')]
+    // private Paiement $id_paiement;
 
     #[ORM\Column(type: "boolean")]
     private bool $direction;
@@ -74,15 +74,15 @@ class Resultat
         $this->id_service = $value;
     }
 
-    public function getId_paiement()
-    {
-        return $this->id_paiement;
-    }
+    // public function getId_paiement()
+    // {
+    //     return $this->id_paiement;
+    // }
 
-    public function setId_paiement($value)
-    {
-        $this->id_paiement = $value;
-    }
+    // public function setId_paiement($value)
+    // {
+    //     $this->id_paiement = $value;
+    // }
 
     public function getDirection()
     {

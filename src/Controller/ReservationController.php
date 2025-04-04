@@ -9,15 +9,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/reservation')]
-final class ReservationController extends AbstractController{
+class ReservationController extends AbstractController{
     #[Route(name: 'app_reservation_index', methods: ['GET'])]
     public function index(EntityManagerInterface $entityManager): Response
     {
         $reservations = $entityManager
             ->getRepository(Reservation::class)
-            ->findAll();
+            ->createQueryBuilder('r')
+            ->leftJoin('r.serviceId', 's')
+            ->leftJoin('r.vehiculeId', 'v')
+            ->leftJoin('r.userId', 'u')
+            ->addSelect('s', 'v', 'u')
+            ->getQuery()
+            ->getResult();
 
         return $this->render('reservation/index.html.twig', [
             'reservations' => $reservations,
@@ -34,6 +41,8 @@ final class ReservationController extends AbstractController{
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($reservation);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Reservation created successfully!');
 
             return $this->redirectToRoute('app_reservation_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -61,6 +70,8 @@ final class ReservationController extends AbstractController{
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
+            $this->addFlash('success', 'Reservation updated successfully!');
+
             return $this->redirectToRoute('app_reservation_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -73,9 +84,14 @@ final class ReservationController extends AbstractController{
     #[Route('/{id_reservation}', name: 'app_reservation_delete', methods: ['POST'])]
     public function delete(Request $request, Reservation $reservation, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$reservation->getId_reservation(), $request->getPayload()->getString('_token'))) {
-            $entityManager->remove($reservation);
-            $entityManager->flush();
+        if ($this->isCsrfTokenValid('delete'.$reservation->getId(), $request->request->get('_token'))) {
+            try {
+                $entityManager->remove($reservation);
+                $entityManager->flush();
+                $this->addFlash('success', 'Reservation deleted successfully.');
+            } catch (\Exception $e) {
+                $this->addFlash('error', 'Unable to delete reservation. Please try again.');
+            }
         }
 
         return $this->redirectToRoute('app_reservation_index', [], Response::HTTP_SEE_OTHER);
