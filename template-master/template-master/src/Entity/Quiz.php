@@ -2,91 +2,95 @@
 
 namespace App\Entity;
 
+use App\Repository\QuizRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-use App\Entity\User;
-
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: QuizRepository::class)]
 class Quiz
 {
-
     #[ORM\Id]
-    #[ORM\Column(type: "integer")]
-    private int $id;
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
 
-        #[ORM\ManyToOne(targetEntity: User::class, inversedBy: "quizs")]
-    #[ORM\JoinColumn(name: 'id_user', referencedColumnName: 'id', onDelete: 'CASCADE')]
-    private User $id_user;
+    #[ORM\Column]
+    private ?int $score = null;
 
-    #[ORM\Column(type: "integer")]
-    private int $score;
+    #[ORM\Column(length: 255)]
+    private ?string $statut = null;
 
-    #[ORM\Column(type: "string", length: 20)]
-    private string $statut;
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $dateTest = null;
 
-    #[ORM\Column(type: "date")]
-    private \DateTimeInterface $date_test;
+    #[ORM\Column]
+    private ?int $idUser = null;
 
-    #[ORM\Column(type: "integer")]
-    private int $rating;
+    #[ORM\Column(nullable: true)]
+    private ?int $rating = null;
 
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function setId($value)
-    {
-        $this->id = $value;
-    }
-
-    public function getId_user()
-    {
-        return $this->id_user;
-    }
-
-    public function setId_user($value)
-    {
-        $this->id_user = $value;
-    }
-
-    public function getScore()
+    public function getScore(): ?int
     {
         return $this->score;
     }
 
-    public function setScore($value)
+    public function setScore(int $score): static
     {
-        $this->score = $value;
+        $this->score = $score;
+
+        return $this;
     }
 
-    public function getStatut()
+    public function getStatut(): ?string
     {
         return $this->statut;
     }
 
-    public function setStatut($value)
+    public function setStatut(string $statut): static
     {
-        $this->statut = $value;
+        $this->statut = $statut;
+
+        return $this;
     }
 
-    public function getDate_test()
+    public function getDateTest(): ?\DateTimeInterface
     {
-        return $this->date_test;
+        return $this->dateTest;
     }
 
-    public function setDate_test($value)
+    public function setDateTest(\DateTimeInterface $dateTest): static
     {
-        $this->date_test = $value;
+        $this->dateTest = $dateTest;
+
+        return $this;
     }
 
-    public function getRating()
+    public function getIdUser(): ?int
+    {
+        return $this->idUser;
+    }
+
+    public function setIdUser(int $idUser): static
+    {
+        $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    public function getRating(): ?int
     {
         return $this->rating;
     }
 
-    public function setRating($value)
+    public function setRating(?int $rating): static
     {
-        $this->rating = $value;
+        $this->rating = $rating;
+
+        return $this;
     }
 }

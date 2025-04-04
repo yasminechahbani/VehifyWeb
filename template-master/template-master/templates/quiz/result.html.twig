@@ -1,0 +1,127 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Quiz Results{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .result-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .rating-stars {
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .rating-stars i {
+            color: #ddd;
+            transition: color 0.2s;
+        }
+        .rating-stars i.active {
+            color: #FFD700;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container py-5 result-container">
+        <div class="card shadow">
+            <div class="card-body text-center">
+                <h1 class="mb-4">Quiz Results</h1>
+
+                <div class="result-box p-4 mb-4">
+                    <h2 class="mb-3">Your Score</h2>
+                    <h3 class="display-4">{{ score }}/{{ total }}</h3>
+
+                    {% if quiz.statut == 'Passed' %}
+                        <div class="alert alert-success mt-3">
+                            <strong>Congratulations!</strong> You passed the quiz.
+                        </div>
+                    {% else %}
+                        <div class="alert alert-danger mt-3">
+                            <strong>Sorry!</strong> You failed the quiz. Please try again.
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="rating-section mt-4">
+                    <h4>Rate This Quiz</h4>
+                    <p>Your feedback helps us improve!</p>
+
+                    <form id="ratingForm" method="post" action="{{ path('app_quiz_rate', {'id': quiz.id}) }}">
+                        <div class="rating-stars mb-3">
+                            {% for i in 1..5 %}
+                                <i class="fa fa-star" data-rating="{{ i }}"></i>
+                            {% endfor %}
+                        </div>
+                        <input type="hidden" name="rating" id="rating" value="">
+                        <button type="submit" class="btn btn-primary" id="submitRating" disabled>Submit Rating</button>
+                    </form>
+                </div>
+
+                <div class="mt-5">
+                    <a href="{{ path('app_quiz_generate') }}" class="btn btn-success me-2">
+                        <i class="fa fa-refresh"></i> Take Another Quiz
+                    </a>
+                    <a href="{{ path('app_quiz_index') }}" class="btn btn-outline-secondary">
+                        <i class="fa fa-list"></i> View All Quizzes
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const stars = document.querySelectorAll('.rating-stars i');
+            const ratingInput = document.getElementById('rating');
+            const submitButton = document.getElementById('submitRating');
+
+            stars.forEach(star => {
+                star.addEventListener('mouseover', function() {
+                    const rating = this.getAttribute('data-rating');
+
+                    // Highlight stars on hover
+                    stars.forEach(s => {
+                        if (s.getAttribute('data-rating') <= rating) {
+                            s.classList.add('active');
+                        } else {
+                            s.classList.remove('active');
+                        }
+                    });
+                });
+
+                star.addEventListener('click', function() {
+                    const rating = this.getAttribute('data-rating');
+                    ratingInput.value = rating;
+                    submitButton.disabled = false;
+
+                    // Set active stars permanently
+                    stars.forEach(s => {
+                        if (s.getAttribute('data-rating') <= rating) {
+                            s.classList.add('active');
+                        } else {
+                            s.classList.remove('active');
+                        }
+                    });
+                });
+            });
+
+            // Reset stars when mouse leaves the rating area
+            document.querySelector('.rating-stars').addEventListener('mouseleave', function() {
+                const currentRating = ratingInput.value || 0;
+
+                stars.forEach(s => {
+                    if (s.getAttribute('data-rating') <= currentRating) {
+                        s.classList.add('active');
+                    } else {
+                        s.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}
