@@ -60,6 +60,19 @@ class UserRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
         return $result > 0;
     }
+    public function ChercherUserSelonEmailAndPassword(string $email, string $mot_de_passe): ?User
+    {
+        $user = $this->createQueryBuilder('u')
+            ->where('u.email = :email')
+            ->setParameter('email', $email)
+            ->getQuery()
+            ->getOneOrNullResult();
 
+        if ($user && password_verify($mot_de_passe, $user->getMotDePasse())) {
+            return $user;
+        }
+        
+        return null;
+    }
 
 }

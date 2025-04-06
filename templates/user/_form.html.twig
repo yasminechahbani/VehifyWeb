@@ -396,9 +396,7 @@
             {% endfor %}
 
             <div class="social-container">
-                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                <a href="{{ path('hwi_oauth_service_redirect', {'service': 'google' }) }}" class="social"><i class="fab fa-google-plus-g"></i></a>
             </div>
             {# Champ Nom #}
             <div class="form-group">
@@ -491,15 +489,19 @@
                 </div>
             </div>
 
+
             <button class="btn">{{ button_label|default('Save') }}</button>
             {{ form_end(form) }}
         </div>
 
         <div class="form-container sign-in-container">
-            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-            {{ form_start(loginForm, {'attr': {'class': 'login-form'}}) }}
-
+            {{ form_start(loginForm, {'attr': {'class': 'login-form', 'novalidate': 'novalidate'}}) }}
             <h1>Sign in</h1>
+
+            {% for message in app.flashes('error') %}
+                <div class="flash-message">{{ message }}</div>
+            {% endfor %}
+
             <div class="social-container">
                 <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
@@ -507,24 +509,40 @@
             </div>
             <span>or use your account</span>
 
-            {{ form_row(loginForm.email, {
-                'attr': {
-                    'class': 'form-control',
-                    'placeholder': 'Email'
-                },
-                'row_attr': {'class': 'form-group'}
-            }) }}
+            {# Champ Email #}
+            <div class="form-group">
+                {{ form_widget(loginForm.email, {
+                    'attr': {
+                        'class': 'form-control',
+                        'placeholder': 'Email',
+                        'required': 'required'
+                    }
+                }) }}
+                <div class="invalid-feedback email-error">
+                    Please enter your email
+                </div>
+            </div>
 
-            {{ form_row(loginForm.mot_de_passe, {
-                'attr': {
-                    'class': 'form-control',
-                    'placeholder': 'Password'
-                },
-                'row_attr': {'class': 'form-group'}
-            }) }}
+            {# Champ Mot de passe #}
+            <div class="form-group">
+                {{ form_widget(loginForm.mot_de_passe, {
+                    'attr': {
+                        'class': 'form-control',
+                        'placeholder': 'Password',
+                        'required': 'required'
+                    }
+                }) }}
+                <div class="invalid-feedback password-error">
+                    Please enter your password
+                </div>
+            </div>
+                <div>
+                    {{ form_widget(loginForm.recaptcha) }}
+                </div>
 
-            <a href="#">Forgot your password?</a>
-            <button class="btn">{{ button_label|default('Save') }}</button>
+
+            <a href="{{ path('app_user_verifier') }}">Forgot your password?</a>
+            <button type="submit" class="btn">Sign In</button>
             {{ form_end(loginForm) }}
         </div>
 
@@ -557,6 +575,15 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            grecaptcha.ready(function() {
+                grecaptcha.render('recaptcha-container', {
+                    sitekey: '{{ recaptcha_site_key }}',
+                    theme: 'light',  // ou 'dark'
+                    size: 'normal'   // ou 'compact'
+                });
+            });
+        });
         document.addEventListener('DOMContentLoaded', function() {
             // Références aux éléments DOM
             const signUpButton = document.getElementById('signUp');
@@ -740,8 +767,71 @@
                     field.addEventListener('blur', () => field.classList.remove('invalid-highlight'));
                 });
             }
+            // Validation pour le formulaire de connexion
+            const signInForm = document.querySelector('.sign-in-container form');
+            if (signInForm) {
+                signInForm.addEventListener('submit', function (e) {
+                    let isValid = true;
 
-        });
+                    // Vérification de l'email
+                    const emailInput = signInForm.querySelector('[name="email"]');
+                    const emailError = signInForm.querySelector('.email-error');
+                    if (!emailInput.value.trim()) {
+                        emailInput.classList.add('is-invalid');
+                        emailError.style.display = 'block';
+                        isValid = false;
+                    } else {
+                        emailInput.classList.remove('is-invalid');
+                        emailError.style.display = 'none';
+                    }
+
+                    // Vérification du mot de passe
+                    const passwordInput = signInForm.querySelector('[name="mot_de_passe"]');
+                    const passwordError = signInForm.querySelector('.password-error');
+                    if (!passwordInput.value.trim()) {
+                        passwordInput.classList.add('is-invalid');
+                        passwordError.style.display = 'block';
+                        isValid = false;
+                    } else {
+                        passwordInput.classList.remove('is-invalid');
+                        passwordError.style.display = 'none';
+                    }
+
+                    if (!isValid) {
+                        e.preventDefault();
+                        // Scroll vers le premier champ invalide
+                        const firstInvalid = signInForm.querySelector('.is-invalid');
+                        if (firstInvalid) {
+                            firstInvalid.scrollIntoView({behavior: 'smooth', block: 'center'});
+                        }
+                    }
+                });
+
+                // Optionnel: Validation en temps réel
+                const emailInput = signInForm.querySelector('[name="email"]');
+                const passwordInput = signInForm.querySelector('[name="mot_de_passe"]');
+
+                if (emailInput) {
+                    emailInput.addEventListener('input', function () {
+                        if (this.value.trim()) {
+                            this.classList.remove('is-invalid');
+                            signInForm.querySelector('.email-error').style.display = 'none';
+                        }
+                    });
+                }
+
+                if (passwordInput) {
+                    passwordInput.addEventListener('input', function () {
+                        if (this.value.trim()) {
+                            this.classList.remove('is-invalid');
+                            signInForm.querySelector('.password-error').style.display = 'none';
+                        }
+                    });
+                }
+            }});
+
+
+
     </script>
 
     <style>
