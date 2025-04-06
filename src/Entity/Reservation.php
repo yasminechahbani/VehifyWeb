@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ReservationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -14,6 +16,14 @@ class Reservation
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+    
+    #[ORM\OneToMany(mappedBy: 'reservation', targetEntity: Paiement::class, orphanRemoval: true)]
+    private Collection $paiements;
+    
+    public function __construct()
+    {
+        $this->paiements = new ArrayCollection();
+    }
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     #[Assert\NotBlank(message: "La date de réservation est obligatoire.")]
@@ -104,6 +114,36 @@ class Reservation
     public function setVehiculeId(?Vehicule $vehiculeId): static
     {
         $this->vehiculeId = $vehiculeId;
+
+        return $this;
+    }
+    
+    /**
+     * @return Collection<int, Paiement>
+     */
+    public function getPaiements(): Collection
+    {
+        return $this->paiements;
+    }
+
+    public function addPaiement(Paiement $paiement): self
+    {
+        if (!$this->paiements->contains($paiement)) {
+            $this->paiements->add($paiement);
+            $paiement->setReservation($this);
+        }
+
+        return $this;
+    }
+
+    public function removePaiement(Paiement $paiement): self
+    {
+        if ($this->paiements->removeElement($paiement)) {
+            // set the owning side to null (unless already changed)
+            if ($paiement->getReservation() === $this) {
+                $paiement->setReservation(null);
+            }
+        }
 
         return $this;
     }
