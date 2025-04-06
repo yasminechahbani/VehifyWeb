@@ -3,174 +3,184 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
-use App\Entity\Reservation;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use App\Entity\Resultat;
 
-#[ORM\Entity]
+use App\Repository\PaiementRepository;
+
+#[ORM\Entity(repositoryClass: PaiementRepository::class)]
+#[ORM\Table(name: 'paiement')]
 class Paiement
 {
-
     #[ORM\Id]
-    #[ORM\Column(type: "integer")]
-    private int $id_paiement;
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private ?int $id_paiement = null;
 
-        #[ORM\ManyToOne(targetEntity: Reservation::class, inversedBy: "paiements")]
-    #[ORM\JoinColumn(name: 'id_reservation', referencedColumnName: 'id_reservation', onDelete: 'CASCADE')]
-    private Reservation $id_reservation;
-
-    #[ORM\Column(type: "string", length: 255)]
-    private string $numeroCarte;
-
-    #[ORM\Column(type: "datetime")]
-    private \DateTimeInterface $date_paiement;
-
-    #[ORM\Column(type: "float")]
-    private float $prix;
-
-    #[ORM\Column(type: "string", length: 20)]
-    private string $statut;
-
-    #[ORM\Column(type: "string", length: 20)]
-    private string $telephone;
-
-    #[ORM\Column(type: "string", length: 10)]
-    private string $date_expiration;
-
-    #[ORM\Column(type: "string", length: 5)]
-    private string $cvc;
-
-    #[ORM\Column(type: "string", length: 100)]
-    private string $nom_titulaire_carte;
-
-    public function getId_paiement()
+    public function getId_paiement(): ?int
     {
         return $this->id_paiement;
     }
 
-    public function setId_paiement($value)
+    public function setId_paiement(int $id_paiement): self
     {
-        $this->id_paiement = $value;
+        $this->id_paiement = $id_paiement;
+        return $this;
     }
 
-    public function getId_reservation()
+    #[ORM\ManyToOne(targetEntity: Reservation::class, inversedBy: 'paiements')]
+    #[ORM\JoinColumn(name: 'id_reservation', referencedColumnName: 'id_reservation')]
+    private ?Reservation $reservation = null;
+
+    public function getReservation(): ?Reservation
     {
-        return $this->id_reservation;
+        return $this->reservation;
     }
 
-    public function setId_reservation($value)
+    public function setReservation(?Reservation $reservation): self
     {
-        $this->id_reservation = $value;
+        $this->reservation = $reservation;
+        return $this;
     }
 
-    public function getNumeroCarte()
+    #[ORM\Column(type: 'string', nullable: false)]
+    private ?string $numeroCarte = null;
+
+    public function getNumeroCarte(): ?string
     {
         return $this->numeroCarte;
     }
 
-    public function setNumeroCarte($value)
+    public function setNumeroCarte(string $numeroCarte): self
     {
-        $this->numeroCarte = $value;
+        $this->numeroCarte = $numeroCarte;
+        return $this;
     }
 
-    public function getDate_paiement()
+    #[ORM\Column(type: 'datetime', nullable: false)]
+    private ?\DateTimeInterface $date_paiement = null;
+
+    public function getDate_paiement(): ?\DateTimeInterface
     {
         return $this->date_paiement;
     }
 
-    public function setDate_paiement($value)
+    public function setDate_paiement(\DateTimeInterface $date_paiement): self
     {
-        $this->date_paiement = $value;
+        $this->date_paiement = $date_paiement;
+        return $this;
     }
 
-    public function getPrix()
+    #[ORM\Column(type: 'decimal', nullable: false)]
+    private ?float $prix = null;
+
+    public function getPrix(): ?float
     {
         return $this->prix;
     }
 
-    public function setPrix($value)
+    public function setPrix(float $prix): self
     {
-        $this->prix = $value;
+        $this->prix = $prix;
+        return $this;
     }
 
-    public function getStatut()
+    #[ORM\Column(type: 'string', nullable: false)]
+    private ?string $statut = null;
+
+    public function getStatut(): ?string
     {
         return $this->statut;
     }
 
-    public function setStatut($value)
+    public function setStatut(string $statut): self
     {
-        $this->statut = $value;
+        $this->statut = $statut;
+        return $this;
     }
 
-    public function getTelephone()
+    #[ORM\Column(type: 'string', nullable: false)]
+    private ?string $telephone = null;
+
+    public function getTelephone(): ?string
     {
         return $this->telephone;
     }
 
-    public function setTelephone($value)
+    public function setTelephone(string $telephone): self
     {
-        $this->telephone = $value;
+        $this->telephone = $telephone;
+        return $this;
     }
 
-    public function getDate_expiration()
+    #[ORM\Column(type: 'string', nullable: false)]
+    private ?string $date_expiration = null;
+
+    public function getDate_expiration(): ?string
     {
         return $this->date_expiration;
     }
 
-    public function setDate_expiration($value)
+    public function setDate_expiration(string $date_expiration): self
     {
-        $this->date_expiration = $value;
+        $this->date_expiration = $date_expiration;
+        return $this;
     }
 
-    public function getCvc()
+    #[ORM\Column(type: 'string', nullable: false)]
+    private ?string $cvc = null;
+
+    public function getCvc(): ?string
     {
         return $this->cvc;
     }
 
-    public function setCvc($value)
+    public function setCvc(string $cvc): self
     {
-        $this->cvc = $value;
+        $this->cvc = $cvc;
+        return $this;
     }
 
-    public function getNom_titulaire_carte()
+    #[ORM\Column(type: 'string', nullable: false)]
+    private ?string $nom_titulaire_carte = null;
+
+    public function getNom_titulaire_carte(): ?string
     {
         return $this->nom_titulaire_carte;
     }
 
-    public function setNom_titulaire_carte($value)
+    public function setNom_titulaire_carte(string $nom_titulaire_carte): self
     {
-        $this->nom_titulaire_carte = $value;
+        $this->nom_titulaire_carte = $nom_titulaire_carte;
+        return $this;
     }
 
-    #[ORM\OneToMany(mappedBy: "id_paiement", targetEntity: Resultat::class)]
+    #[ORM\OneToMany(targetEntity: Resultat::class, mappedBy: 'paiement')]
     private Collection $resultats;
 
-        public function getResultats(): Collection
-        {
-            return $this->resultats;
+    /**
+     * @return Collection<int, Resultat>
+     */
+    public function getResultats(): Collection
+    {
+        if (!$this->resultats instanceof Collection) {
+            $this->resultats = new ArrayCollection();
         }
-    
-        public function addResultat(Resultat $resultat): self
-        {
-            if (!$this->resultats->contains($resultat)) {
-                $this->resultats[] = $resultat;
-                $resultat->setId_paiement($this);
-            }
-    
-            return $this;
+        return $this->resultats;
+    }
+
+    public function addResultat(Resultat $resultat): self
+    {
+        if (!$this->getResultats()->contains($resultat)) {
+            $this->getResultats()->add($resultat);
         }
-    
-        public function removeResultat(Resultat $resultat): self
-        {
-            if ($this->resultats->removeElement($resultat)) {
-                // set the owning side to null (unless already changed)
-                if ($resultat->getId_paiement() === $this) {
-                    $resultat->setId_paiement(null);
-                }
-            }
-    
-            return $this;
-        }
+        return $this;
+    }
+
+    public function removeResultat(Resultat $resultat): self
+    {
+        $this->getResultats()->removeElement($resultat);
+        return $this;
+    }
+
 }

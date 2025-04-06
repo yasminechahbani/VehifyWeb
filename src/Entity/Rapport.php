@@ -3,155 +3,170 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
-use App\Entity\Resultat;
+use App\Repository\RapportRepository;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: RapportRepository::class)]
+#[ORM\Table(name: 'rapport')]
 class Rapport
 {
-
     #[ORM\Id]
-    #[ORM\Column(type: "integer")]
-    private int $id_rapport;
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private ?int $id_rapport = null;
 
-        #[ORM\ManyToOne(targetEntity: Resultat::class, inversedBy: "rapports")]
-    #[ORM\JoinColumn(name: 'id_resultat', referencedColumnName: 'id_resultat', onDelete: 'CASCADE')]
-    private Resultat $id_resultat;
-
-    #[ORM\Column(type: "string", length: 150)]
-    private string $direction;
-
-    #[ORM\Column(type: "string", length: 150)]
-    private string $visibilite;
-
-    #[ORM\Column(type: "string", length: 150)]
-    private string $huileDefault;
-
-    #[ORM\Column(type: "string", length: 150)]
-    private string $pneaumatique;
-
-    #[ORM\Column(type: "string", length: 150)]
-    private string $echappement;
-
-    #[ORM\Column(type: "string", length: 150)]
-    private string $carrosorie;
-
-    #[ORM\Column(type: "string", length: 150)]
-    private string $eclairage;
-
-    #[ORM\Column(type: "string", length: 150)]
-    private string $freinage;
-
-    #[ORM\Column(type: "date")]
-    private \DateTimeInterface $date;
-
-    public function getId_rapport()
+    public function getId_rapport(): ?int
     {
         return $this->id_rapport;
     }
 
-    public function setId_rapport($value)
+    public function setId_rapport(int $id_rapport): self
     {
-        $this->id_rapport = $value;
+        $this->id_rapport = $id_rapport;
+        return $this;
     }
 
-    public function getId_resultat()
+    #[ORM\ManyToOne(targetEntity: Resultat::class, inversedBy: 'rapports')]
+    #[ORM\JoinColumn(name: 'id_resultat', referencedColumnName: 'id_resultat')]
+    private ?Resultat $resultat = null;
+
+    public function getResultat(): ?Resultat
     {
-        return $this->id_resultat;
+        return $this->resultat;
     }
 
-    public function setId_resultat($value)
+    public function setResultat(?Resultat $resultat): self
     {
-        $this->id_resultat = $value;
+        $this->resultat = $resultat;
+        return $this;
     }
 
-    public function getDirection()
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $direction = null;
+
+    public function getDirection(): ?string
     {
         return $this->direction;
     }
 
-    public function setDirection($value)
+    public function setDirection(?string $direction): self
     {
-        $this->direction = $value;
+        $this->direction = $direction;
+        return $this;
     }
 
-    public function getVisibilite()
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $visibilite = null;
+
+    public function getVisibilite(): ?string
     {
         return $this->visibilite;
     }
 
-    public function setVisibilite($value)
+    public function setVisibilite(?string $visibilite): self
     {
-        $this->visibilite = $value;
+        $this->visibilite = $visibilite;
+        return $this;
     }
 
-    public function getHuileDefault()
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $huileDefault = null;
+
+    public function getHuileDefault(): ?string
     {
         return $this->huileDefault;
     }
 
-    public function setHuileDefault($value)
+    public function setHuileDefault(?string $huileDefault): self
     {
-        $this->huileDefault = $value;
+        $this->huileDefault = $huileDefault;
+        return $this;
     }
 
-    public function getPneaumatique()
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $pneaumatique = null;
+
+    public function getPneaumatique(): ?string
     {
         return $this->pneaumatique;
     }
 
-    public function setPneaumatique($value)
+    public function setPneaumatique(?string $pneaumatique): self
     {
-        $this->pneaumatique = $value;
+        $this->pneaumatique = $pneaumatique;
+        return $this;
     }
 
-    public function getEchappement()
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $echappement = null;
+
+    public function getEchappement(): ?string
     {
         return $this->echappement;
     }
 
-    public function setEchappement($value)
+    public function setEchappement(?string $echappement): self
     {
-        $this->echappement = $value;
+        $this->echappement = $echappement;
+        return $this;
     }
 
-    public function getCarrosorie()
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $carrosorie = null;
+
+    public function getCarrosorie(): ?string
     {
         return $this->carrosorie;
     }
 
-    public function setCarrosorie($value)
+    public function setCarrosorie(?string $carrosorie): self
     {
-        $this->carrosorie = $value;
+        $this->carrosorie = $carrosorie;
+        return $this;
     }
 
-    public function getEclairage()
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $eclairage = null;
+
+    public function getEclairage(): ?string
     {
         return $this->eclairage;
     }
 
-    public function setEclairage($value)
+    public function setEclairage(?string $eclairage): self
     {
-        $this->eclairage = $value;
+        $this->eclairage = $eclairage;
+        return $this;
     }
 
-    public function getFreinage()
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $freinage = null;
+
+    public function getFreinage(): ?string
     {
         return $this->freinage;
     }
 
-    public function setFreinage($value)
+    public function setFreinage(?string $freinage): self
     {
-        $this->freinage = $value;
+        $this->freinage = $freinage;
+        return $this;
     }
 
-    public function getDate()
+    #[ORM\Column(type: 'date', nullable: true)]
+    private ?\DateTimeInterface $date = null;
+
+    public function getDate(): ?\DateTimeInterface
     {
         return $this->date;
     }
 
-    public function setDate($value)
+    public function setDate(?\DateTimeInterface $date): self
     {
-        $this->date = $value;
+        $this->date = $date;
+        return $this;
     }
+
 }

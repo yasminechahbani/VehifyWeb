@@ -3,90 +3,100 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
-use App\Entity\Employe;
+use App\Repository\EquipementRepository;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: EquipementRepository::class)]
+#[ORM\Table(name: 'equipement')]
 class Equipement
 {
-
     #[ORM\Id]
-    #[ORM\Column(type: "integer")]
-    private int $id_equipement;
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private ?int $id_equipement = null;
 
-        #[ORM\ManyToOne(targetEntity: Employe::class, inversedBy: "equipements")]
-    #[ORM\JoinColumn(name: 'id_employe', referencedColumnName: 'id_employe', onDelete: 'CASCADE')]
-    private Employe $id_employe;
-
-    #[ORM\Column(type: "string", length: 100)]
-    private string $nom;
-
-    #[ORM\Column(type: "text")]
-    private string $description;
-
-    #[ORM\Column(type: "string", length: 50)]
-    private string $categorie;
-
-    #[ORM\Column(type: "string", length: 20)]
-    private string $etat;
-
-    public function getId_equipement()
+    public function getId_equipement(): ?int
     {
         return $this->id_equipement;
     }
 
-    public function setId_equipement($value)
+    public function setId_equipement(int $id_equipement): self
     {
-        $this->id_equipement = $value;
+        $this->id_equipement = $id_equipement;
+        return $this;
     }
 
-    public function getId_employe()
-    {
-        return $this->id_employe;
-    }
+    #[ORM\Column(type: 'string', nullable: false)]
+    private ?string $nom = null;
 
-    public function setId_employe($value)
-    {
-        $this->id_employe = $value;
-    }
-
-    public function getNom()
+    public function getNom(): ?string
     {
         return $this->nom;
     }
 
-    public function setNom($value)
+    public function setNom(string $nom): self
     {
-        $this->nom = $value;
+        $this->nom = $nom;
+        return $this;
     }
 
-    public function getDescription()
+    #[ORM\Column(type: 'text', nullable: true)]
+    private ?string $description = null;
+
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    public function setDescription($value)
+    public function setDescription(?string $description): self
     {
-        $this->description = $value;
+        $this->description = $description;
+        return $this;
     }
 
-    public function getCategorie()
+    #[ORM\Column(type: 'string', nullable: false)]
+    private ?string $categorie = null;
+
+    public function getCategorie(): ?string
     {
         return $this->categorie;
     }
 
-    public function setCategorie($value)
+    public function setCategorie(string $categorie): self
     {
-        $this->categorie = $value;
+        $this->categorie = $categorie;
+        return $this;
     }
 
-    public function getEtat()
+    #[ORM\Column(type: 'string', nullable: false)]
+    private ?string $etat = null;
+
+    public function getEtat(): ?string
     {
         return $this->etat;
     }
 
-    public function setEtat($value)
+    public function setEtat(string $etat): self
     {
-        $this->etat = $value;
+        $this->etat = $etat;
+        return $this;
     }
+
+    #[ORM\ManyToOne(targetEntity: Employe::class, inversedBy: 'equipements')]
+    #[ORM\JoinColumn(name: 'id_employe', referencedColumnName: 'id_employe')]
+    private ?Employe $employe = null;
+
+    public function getEmploye(): ?Employe
+    {
+        return $this->employe;
+    }
+
+    public function setEmploye(?Employe $employe): self
+    {
+        $this->employe = $employe;
+        return $this;
+    }
+
 }

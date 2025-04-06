@@ -3,88 +3,99 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
+use App\Repository\QuizRepository;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: QuizRepository::class)]
+#[ORM\Table(name: 'quiz')]
 class Quiz
 {
-
     #[ORM\Id]
-    #[ORM\Column(type: "integer")]
-    private int $id;
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private ?int $id = null;
 
-    #[ORM\Column(type: "integer")]
-    private int $score;
-
-    #[ORM\Column(type: "string", length: 20)]
-    private string $statut;
-
-    #[ORM\Column(type: "date")]
-    private \DateTimeInterface $date_test;
-
-    #[ORM\Column(type: "integer")]
-    private int $id_user;
-
-    #[ORM\Column(type: "integer")]
-    private int $rating;
-
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function setId($value)
+    public function setId(int $id): self
     {
-        $this->id = $value;
+        $this->id = $id;
+        return $this;
     }
 
-    public function getScore()
+    #[ORM\Column(type: 'integer', nullable: false)]
+    private ?int $score = null;
+
+    public function getScore(): ?int
     {
         return $this->score;
     }
 
-    public function setScore($value)
+    public function setScore(int $score): self
     {
-        $this->score = $value;
+        $this->score = $score;
+        return $this;
     }
 
-    public function getStatut()
+    #[ORM\Column(type: 'string', nullable: false)]
+    private ?string $statut = null;
+
+    public function getStatut(): ?string
     {
         return $this->statut;
     }
 
-    public function setStatut($value)
+    public function setStatut(string $statut): self
     {
-        $this->statut = $value;
+        $this->statut = $statut;
+        return $this;
     }
 
-    public function getDate_test()
+    #[ORM\Column(type: 'date', nullable: false)]
+    private ?\DateTimeInterface $date_test = null;
+
+    public function getDate_test(): ?\DateTimeInterface
     {
         return $this->date_test;
     }
 
-    public function setDate_test($value)
+    public function setDate_test(\DateTimeInterface $date_test): self
     {
-        $this->date_test = $value;
+        $this->date_test = $date_test;
+        return $this;
     }
 
-    public function getId_user()
+    #[ORM\Column(type: 'integer', nullable: false)]
+    private ?int $id_user = null;
+
+    public function getId_user(): ?int
     {
         return $this->id_user;
     }
 
-    public function setId_user($value)
+    public function setId_user(int $id_user): self
     {
-        $this->id_user = $value;
+        $this->id_user = $id_user;
+        return $this;
     }
 
-    public function getRating()
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private ?int $rating = null;
+
+    public function getRating(): ?int
     {
         return $this->rating;
     }
 
-    public function setRating($value)
+    public function setRating(?int $rating): self
     {
-        $this->rating = $value;
+        $this->rating = $rating;
+        return $this;
     }
+
 }

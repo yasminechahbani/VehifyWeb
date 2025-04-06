@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\LoginType;
 use App\Form\UserType;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,35 +30,39 @@ final class UserController extends AbstractController
     }
 
     #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, UserRepository $userRepository): Response
     {
         $user = new User();
         $user->setStatus("invalide");
         $user->setRole("USER");
-        $validation=false;
+
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
+            $email = $form->get('email')->getData();
+            $hash = password_hash($form->get('mot_de_passe')->getData(), PASSWORD_DEFAULT);
+            $user->setMotDePasse($hash);
             if (!$form->isValid()) {
+
+            } elseif ($userRepository->chercherEmail($email)) {
+                $this->addFlash('error', 'Cet email est déjà utilisé.');
+                return $this->redirectToRoute('app_user_new');
 
             } else {
                 $entityManager->persist($user);
                 $entityManager->flush();
-                $this->addFlash('success', '✅ Compte créé avec succès !');
-                $validation=true;
+                $this->addFlash('success', 'Inscription réussie!');
                 return $this->redirectToRoute('app_user_new');
-
             }
         }
 
         $loginForm = $this->createForm(LoginType::class);
 
-
         return $this->render('user/new.html.twig', [
             'form' => $form->createView(),
             'loginForm' => $loginForm->createView(),
-            'validation'=>$validation,
+            'validation' => $form->isSubmitted() && $form->isValid(),
         ]);
     }
 
@@ -79,7 +84,6 @@ final class UserController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->render('user/edit.html.twig', [
             'user' => $user,
             'form' => $form,

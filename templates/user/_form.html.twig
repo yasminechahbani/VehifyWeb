@@ -383,6 +383,17 @@
 
             {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
             <h1>Create Account</h1>
+            {% for message in app.flashes('error') %}
+                <script>
+                    alert('{{ message }}');
+                </script>
+            {% endfor %}
+
+            {% for message in app.flashes('success') %}
+                <script>
+                    alert('{{ message }}');
+                </script>
+            {% endfor %}
 
             <div class="social-container">
                 <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -391,6 +402,7 @@
             </div>
             {# Champ Nom #}
             <div class="form-group">
+
                 {{ form_widget(form.nom, {
                     'attr': {
                         'class': 'form-control',
@@ -488,7 +500,6 @@
             {{ form_start(loginForm, {'attr': {'class': 'login-form'}}) }}
 
             <h1>Sign in</h1>
-            
             <div class="social-container">
                 <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>

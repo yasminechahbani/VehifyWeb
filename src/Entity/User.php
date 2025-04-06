@@ -201,60 +201,60 @@ class User
     #[ORM\OneToMany(mappedBy: "id_user", targetEntity: Compte::class)]
     private Collection $comptes;
 
-        public function getComptes(): Collection
-        {
-            return $this->comptes;
+    public function getComptes(): Collection
+    {
+        return $this->comptes;
+    }
+
+    public function addCompte(Compte $compte): self
+    {
+        if (!$this->comptes->contains($compte)) {
+            $this->comptes[] = $compte;
+            $compte->setId_user($this);
         }
 
-        public function addCompte(Compte $compte): self
-        {
-            if (!$this->comptes->contains($compte)) {
-                $this->comptes[] = $compte;
-                $compte->setId_user($this);
+        return $this;
+    }
+
+    public function removeCompte(Compte $compte): self
+    {
+        if ($this->comptes->removeElement($compte)) {
+            // set the owning side to null (unless already changed)
+            if ($compte->getId_user() === $this) {
+                $compte->setId_user(null);
             }
-
-            return $this;
         }
 
-        public function removeCompte(Compte $compte): self
-        {
-            if ($this->comptes->removeElement($compte)) {
-                // set the owning side to null (unless already changed)
-                if ($compte->getId_user() === $this) {
-                    $compte->setId_user(null);
-                }
-            }
-
-            return $this;
-        }
+        return $this;
+    }
 
     #[ORM\OneToMany(mappedBy: "user_id", targetEntity: Reservation::class)]
     private Collection $reservations;
 
-        public function getReservations(): Collection
-        {
-            return $this->reservations;
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): self
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations[] = $reservation;
+            $reservation->setUser_id($this);
         }
 
-        public function addReservation(Reservation $reservation): self
-        {
-            if (!$this->reservations->contains($reservation)) {
-                $this->reservations[] = $reservation;
-                $reservation->setUser_id($this);
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): self
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getUser_id() === $this) {
+                $reservation->setUser_id(null);
             }
-
-            return $this;
         }
 
-        public function removeReservation(Reservation $reservation): self
-        {
-            if ($this->reservations->removeElement($reservation)) {
-                // set the owning side to null (unless already changed)
-                if ($reservation->getUser_id() === $this) {
-                    $reservation->setUser_id(null);
-                }
-            }
-
-            return $this;
-        }
+        return $this;
+    }
 }
