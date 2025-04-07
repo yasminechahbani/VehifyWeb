@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Reservation;
 use App\Form\ReservationType;
+use App\Form\ReservationSearchType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,20 +15,48 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[Route('/reservation')]
 class ReservationController extends AbstractController{
     #[Route(name: 'app_reservation_index', methods: ['GET'])]
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $reservations = $entityManager
+        $searchForm = $this->createForm(ReservationSearchType::class);
+        $searchForm->handleRequest($request);
+
+        $queryBuilder = $entityManager
             ->getRepository(Reservation::class)
             ->createQueryBuilder('r')
             ->leftJoin('r.serviceId', 's')
             ->leftJoin('r.vehiculeId', 'v')
             ->leftJoin('r.userId', 'u')
-            ->addSelect('s', 'v', 'u')
-            ->getQuery()
-            ->getResult();
+            ->addSelect('s', 'v', 'u');
+
+        if ($searchForm->isSubmitted() && $searchForm->isValid()) {
+            $criteria = $searchForm->getData();
+
+            if (!empty($criteria['dateReservation'])) {
+                $queryBuilder->andWhere('r.dateReservation = :date')
+                    ->setParameter('date', $criteria['dateReservation']);
+            }
+
+            if (!empty($criteria['serviceId'])) {
+                $queryBuilder->andWhere('r.serviceId = :service')
+                    ->setParameter('service', $criteria['serviceId']);
+            }
+
+            if (!empty($criteria['vehiculeId'])) {
+                $queryBuilder->andWhere('r.vehiculeId = :vehicule')
+                    ->setParameter('vehicule', $criteria['vehiculeId']);
+            }
+
+            if (!empty($criteria['userId'])) {
+                $queryBuilder->andWhere('r.userId = :user')
+                    ->setParameter('user', $criteria['userId']);
+            }
+        }
+
+        $reservations = $queryBuilder->getQuery()->getResult();
 
         return $this->render('reservation/index.html.twig', [
             'reservations' => $reservations,
+            'search_form' => $searchForm->createView(),
         ]);
     }
 
