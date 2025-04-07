@@ -10,8 +10,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
+use App\Repository\EmployeRepository;
+
 #[Route('/employe')]
-final class EmployeController extends AbstractController{
+final class EmployeController extends AbstractController
+{
     #[Route(name: 'app_employe_index', methods: ['GET'])]
     public function index(EntityManagerInterface $entityManager): Response
     {
@@ -30,25 +34,25 @@ final class EmployeController extends AbstractController{
         $employe = new Employe();
         $form = $this->createForm(EmployeType::class, $employe);
         $form->handleRequest($request);
-    
+
         if ($form->isSubmitted() && !$form->isValid()) {
             $this->addFlash('error', '❗Veuillez remplir tous les champs obligatoires correctement.');
         }
-    
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($employe);
             $entityManager->flush();
-    
+
             $this->addFlash('success', '✅ Employé ajouté avec succès !');
             return $this->redirectToRoute('app_employe_index', [], Response::HTTP_SEE_OTHER);
         }
-    
+
         return $this->render('employe/new.html.twig', [
             'employe' => $employe,
             'form' => $form,
         ]);
     }
-    
+
 
     #[Route('/{idEmploye}', name: 'app_employe_show', methods: ['GET'])]
     public function show(Employe $employe): Response
@@ -85,5 +89,22 @@ final class EmployeController extends AbstractController{
         }
 
         return $this->redirectToRoute('app_employe_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/employe/search', name: 'employe_search_nom', methods: ['GET'])]
+    public function search(Request $request, EmployeRepository $employeRepository): Response
+    {
+        $searchValue = $request->query->get('searchValue');
+
+        if (!$searchValue) {
+            // Si la recherche est vide, ne rien renvoyer ou renvoyer la liste complète si nécessaire
+            return new Response(''); // Ou $this->render('employe/_search_results.html.twig', ['employes' => []]);
+        }
+
+        $employes = $employeRepository->findByName($searchValue);
+
+        return $this->render('employe/_search_results.html.twig', [
+            'employes' => $employes,
+        ]);
     }
 }

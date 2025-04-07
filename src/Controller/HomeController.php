@@ -91,4 +91,10 @@ class HomeController extends AbstractController
     {
         return $this->render('tables/datatables.html.twig');
     }
+
+    #[Route('/new', name: 'app_employe_new')]
+    public function new(): Response
+    {
+        return $this->render('employe/new.html.twig');
+    }
 }

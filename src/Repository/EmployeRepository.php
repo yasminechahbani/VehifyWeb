@@ -45,4 +45,13 @@ class EmployeRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
+
+    public function findByName(string $name): array
+    {
+        return $this->createQueryBuilder('e')
+            ->where('LOWER(e.nom) LIKE LOWER(:name) OR LOWER(e.prenom) LIKE LOWER(:name)')
+            ->setParameter('name', '%' . strtolower($name) . '%')
+            ->getQuery()
+            ->getResult();
+    }
 }
