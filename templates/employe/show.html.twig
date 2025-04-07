@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Employee Details{% endblock %}
+
+{% block body %}
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">Employee Details</h5>
+        <div>
+            <a href="{{ path('app_employe_index') }}" class="btn btn-sm btn-outline-secondary">
+                <i class="fas fa-arrow-left"></i> Back to list
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-sm">
+            <tbody>
+                <tr>
+                    <th width="30%"><strong>Last Name</strong></th>
+                    <td>{{ employe.nom }}</td>
+                </tr>
+                <tr>
+                    <th><strong>First Name</strong></th>
+                    <td>{{ employe.prenom }}</td>
+                </tr>
+                <tr>
+                    <th><strong>Email</strong></th>
+                    <td>{{ employe.email }}</td>
+                </tr>
+                <tr>
+                    <th><strong>Age</strong></th>
+                    <td>{{ employe.age }}</td>
+                </tr>
+                <tr>
+                    <th><strong>Position</strong></th>
+                    <td>{{ employe.poste }}</td>
+                </tr>
+                <tr>
+                    <th><strong>Phone</strong></th>
+                    <td>{{ employe.tel }}</td>
+                </tr>
+                <tr>
+                    <th><strong>Salary</strong></th>
+                    <td>{{ employe.salaire }}</td>
+                </tr>
+                <tr>
+                    <th><strong>Status</strong></th>
+                    <td>
+                        <span class="badge {% if employe.statut == 'Active' %}badge-success{% else %}badge-danger{% endif %}">
+                            {{ employe.statut }}
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="mt-4">
+            <a href="{{ path('app_employe_edit', {'id_employe': employe.id_employe}) }}" class="btn btn-primary mr-2">
+                <i class="fas fa-edit"></i> Edit
+            </a>
+            
+            {{ include('employe/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Employé index{% endblock %}
+
+{% block body %}
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="mb-0">Liste des Employés</h1>
+    <a href="{{ path('app_employe_new') }}" class="btn btn-primary btn-round">
+      <i class="fa fa-plus"></i> Ajouter un employé
+    </a>
+  </div>
+
+  {# Formulaire de recherche instantanée #}
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="searchInput" class="form-label">Rechercher par nom/prénom</label>
+          <input type="text" class="form-control" id="searchInput" placeholder="Tapez pour rechercher...">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" id="employeesContainer">
+    {% for employe in employes %}
+      <div class="col-md-6 col-lg-4 mb-4 employee-card" 
+           data-nom="{{ employe.nom|lower }}" 
+           data-prenom="{{ employe.prenom|lower }}">
+        <div class="card shadow-sm border-0 h-100">
+          <div class="card-body">
+            <h5 class="card-title text-primary">{{ employe.nom }} {{ employe.prenom }}</h5>
+            <p class="card-text mb-1"><strong>Email :</strong> {{ employe.email }}</p>
+            <p class="card-text mb-1"><strong>Âge :</strong> {{ employe.age }}</p>
+            <p class="card-text mb-1"><strong>Date d'embauche :</strong> {{ employe.dateEmbauche ? employe.dateEmbauche|date('Y-m-d') : 'N/A' }}</p>
+            <p class="card-text mb-1"><strong>Poste :</strong> {{ employe.poste }}</p>
+            <p class="card-text mb-1"><strong>Téléphone :</strong> {{ employe.tel }}</p>
+            <p class="card-text mb-1"><strong>Salaire :</strong> {{ employe.salaire }} TND</p>
+            <p class="card-text"><strong>Statut :</strong> 
+              <span class="badge {% if employe.statut == 'Actif' %}bg-success{% else %}bg-secondary{% endif %}">
+                {{ employe.statut }}
+              </span>
+            </p>
+          </div>
+          <div class="card-footer bg-white d-flex justify-content-between">
+            <a href="{{ path('app_employe_edit', {'idEmploye': employe.idEmploye}) }}" class="btn btn-sm btn-warning">
+              <i class="fa fa-edit"></i> Modifier
+            </a>
+            <form method="post" action="{{ path('app_employe_delete', {'idEmploye': employe.idEmploye}) }}" onsubmit="return confirm('Êtes-vous sûr ?');">
+              <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ employe.idEmploye) }}">
+              <button class="btn btn-sm btn-danger">
+                <i class="fa fa-trash"></i> Supprimer
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    {% else %}
+      <div class="col-12">
+        <div class="alert alert-info text-center">Aucun employé trouvé</div>
+      </div>
+    {% endfor %}
+  </div>
+
+  {% block javascripts %}
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('searchInput');
+        const employeeCards = document.querySelectorAll('.employee-card');
+        
+        searchInput.addEventListener('input', function() {
+          const searchTerm = this.value.toLowerCase();
+          
+          employeeCards.forEach(card => {
+            const nom = card.dataset.nom;
+            const prenom = card.dataset.prenom;
+            
+            if (nom.includes(searchTerm) || prenom.includes(searchTerm)) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+          
+          // Gestion du message "Aucun résultat"
+          const visibleCards = document.querySelectorAll('.employee-card[style="display: block;"]');
+          const noResultAlert = document.querySelector('.alert-info');
+          
+          if (visibleCards.length === 0 && employeeCards.length > 0) {
+            if (!noResultAlert) {
+              const container = document.getElementById('employeesContainer');
+              container.innerHTML = `
+                <div class="col-12">
+                  <div class="alert alert-warning text-center">Aucun résultat trouvé</div>
+                </div>
+              `;
+            }
+          } else if (noResultAlert && visibleCards.length > 0) {
+            noResultAlert.remove();
+          }
+        });
+      });
+    </script>
+  {% endblock %}
+{% endblock %}
