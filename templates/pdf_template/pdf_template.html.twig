@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Résultat Contrôle Technique</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .header { text-align: center; margin-bottom: 30px; }
+        .result-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .result-table th, .result-table td { 
+            border: 1px solid #ddd; 
+            padding: 8px; 
+            text-align: left; 
+        }
+        .result-table th { background-color: #f5f5f5; }
+        .status { margin-top: 20px; }
+        .check-result { 
+            padding: 5px;
+            margin: 5px 0;
+        }
+        .passed { color: green; }
+        .failed { color: red; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Rapport de Contrôle Technique</h1>
+        <p>Date: {{ date|date('d/m/Y H:i') }}</p>
+        <p>N° VIN: {{ resultat.vinSaisie }}</p>
+    </div>
+
+    <table class="result-table">
+        <tr>
+            <th>Point de contrôle</th>
+            <th>État</th>
+        </tr>
+        <tr>
+            <td>Direction et Tableau de bord</td>
+            <td>{% if resultat.direction %}✓{% else %}✗{% endif %}</td>
+        </tr>
+        <tr>
+            <td>Visibilité</td>
+            <td>{% if resultat.visibilite %}✓{% else %}✗{% endif %}</td>
+        </tr>
+        <tr>
+            <td>Carrosserie</td>
+            <td>{% if resultat.carrosorie %}✓{% else %}✗{% endif %}</td>
+        </tr>
+        <tr>
+            <td>Éclairage</td>
+            <td>{% if resultat.eclairage %}✓{% else %}✗{% endif %}</td>
+        </tr>
+        <tr>
+            <td>Huile</td>
+            <td>{% if resultat.huileDefault %}✓{% else %}✗{% endif %}</td>
+        </tr>
+        <tr>
+            <td>Échappement</td>
+            <td>{% if resultat.echappement %}✓{% else %}✗{% endif %}</td>
+        </tr>
+        <tr>
+            <td>Freinage</td>
+            <td>{% if resultat.freinage %}✓{% else %}✗{% endif %}</td>
+        </tr>
+        <tr>
+            <td>Pneumatique</td>
+            <td>{% if resultat.pneaumatique %}✓{% else %}✗{% endif %}</td>
+        </tr>
+    </table>
+
+    <div class="status">
+        <h3>Statut final: {{ resultat.status ? 'VALIDÉ' : 'NON VALIDÉ' }}</h3>
+    </div>
+</body>
+</html>

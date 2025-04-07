@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contrôle Technique{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .check-item {
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .check-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+        }
+        .verification-image {
+            max-width: 100%;
+            margin: 20px 0;
+        }
+        .check-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .alert {
+            margin-bottom: 20px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Contrôle technique : vérifiez pour rouler en toute sécurité</h1>
+    
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <img src="{{ asset('/img/verif.jpg') }}" alt="Points de vérification" class="verification-image" style="width:100%;box-shadow:0 0 5px rgb(0,0,0,0.3);border-radius:12px;padding:4px;margin:0 0 20px 0">
+            
+            <div class="check-section">
+                <form method="post" action="{{ path('app_verif_submit') }}" id="checkForm">
+                    <div class="check-item">
+                        <input type="checkbox" id="direction" name="checks[]" value="direction">
+                        <label for="direction">Direction, Tableau de bord</label>
+                    </div>
+
+                    <div class="check-item">
+                        <input type="checkbox" id="visibilite" name="checks[]" value="visibilite">
+                        <label for="visibilite">Visibilité</label>
+                    </div>
+
+                    <div class="check-item">
+                        <input type="checkbox" id="carrosserie" name="checks[]" value="carrosserie">
+                        <label for="carrosserie">Carroserie</label>
+                    </div>
+
+                    <div class="check-item">
+                        <input type="checkbox" id="eclairage" name="checks[]" value="eclairage">
+                        <label for="eclairage">Éclairage</label>
+                    </div>
+
+                    <div class="check-item">
+                        <input type="checkbox" id="huile" name="checks[]" value="huile">
+                        <label for="huile">Huile</label>
+                    </div>
+
+                    <div class="check-item">
+                        <input type="checkbox" id="echappement" name="checks[]" value="echappement">
+                        <label for="echappement">Échappement</label>
+                    </div>
+
+                    <div class="check-item">
+                        <input type="checkbox" id="freins" name="checks[]" value="freins">
+                        <label for="freins">Freins</label>
+                    </div>
+
+                    <div class="check-item">
+                        <input type="checkbox" id="pneaumatique" name="checks[]" value="pneaumatique">
+                        <label for="pneaumatique">Pneaumatique</label>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary">Valider la vérification</button>
+                        <a href="{{ path('app_resultat_index') }}" class="btn btn-secondary">Voir les résultats</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block javascripts %}
+<script>
+document.getElementById('checkForm').addEventListener('submit', function(e) {
+    const checkboxes = this.querySelectorAll('input[type="checkbox"]:checked');
+    if (checkboxes.length === 0) {
+        e.preventDefault();
+        alert('Veuillez sélectionner au moins un élément à vérifier.');
+    }
+});
+</script>
+{% endblock %}
+{% endblock %}
