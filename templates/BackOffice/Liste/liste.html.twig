@@ -1,0 +1,104 @@
+{% extends 'BackOffice/base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <div class="container my-4">
+        <h1 class="mb-4">Dashboard</h1>
+
+        <!-- Section véhicules -->
+        <h2 class="mb-4">Liste des Véhicules</h2>
+        <div class="mb-3">
+            <a href="{{ path('app_vehicule_add') }}" class="btn btn-success btn-sm">
+                <i class="fas fa-plus me-2"></i> Ajouter un Véhicule
+            </a>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Marque</th>
+                    <th>Modèle</th>
+                    <th>Immatriculation</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vehicule in vehicules %}
+                    <tr>
+                        <td>{{ vehicule.idVehicule }}</td>
+                        <td>{{ vehicule.marque }}</td>
+                        <td>{{ vehicule.modele }}</td>
+                        <td>{{ vehicule.immatriculation }}</td>
+                        <td>
+                            <a href="{{ path('app_vehiculeB_show', {'idVehicule': vehicule.idVehicule}) }}" class="btn btn-info btn-sm">Voir</a>
+                            <a href="{{ path('app_vehiculeB_edit', {'idVehicule': vehicule.idVehicule}) }}" class="btn btn-warning btn-sm">
+                                                    <i class="fas fa-edit me-2"></i> Modifier
+                                                </a>
+
+                            <!-- Formulaire pour supprimer le véhicule -->
+                            <form action="{{ path('app_vehiculeB_delete', {'idVehicule': vehicule.idVehicule}) }}" method="POST" style="display:inline;">
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash me-2"></i> Supprimer
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center">Aucun véhicule trouvé.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Section cartes grises -->
+        <h2 class="mb-4">Liste des Cartes Grises</h2>
+        <div class="mb-3">
+            <a href="{{ path('app_carte_grise_add') }}" class="btn btn-success btn-sm">
+                <i class="fas fa-plus me-2"></i> Ajouter une Carte Grise
+            </a>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Numéro de carte grise</th>
+                    <th>Propriétaire</th>
+                    <th>Adresse</th>
+                    <th>Date Emission</th>
+                    <th>Date expiration</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for carte_grise in cartesGrises %}
+                    <tr>
+                        <td>{{ carte_grise.idCarteGrise }}</td>
+                        <td>{{ carte_grise.numeroCarteGrise }}</td>
+                        <td>{{ carte_grise.proprietaire }}</td>
+                        <td>{{ carte_grise.adresseProprietaire }}</td>
+                        <td>{{ carte_grise.DateEmission|date('d/m/Y') }}</td>
+                        <td>{{ carte_grise.DateExpiration|date('d/m/Y') }}</td>
+                        <td>
+                            <a href="{{ path('app_carte_grise_show', {'idCarteGrise': carte_grise.idCarteGrise}) }}" class="btn btn-info btn-sm">Voir</a>
+                             <a href="{{ path('app_carte_grise_edit', {'idCarteGrise': carte_grise.idCarteGrise}) }}" class="btn btn-warning btn-sm">
+                                                    <i class="fas fa-edit me-2"></i> Modifier
+                                                </a>
+                            <!-- Formulaire pour supprimer la carte grise -->
+                            <form action="{{ path('app_carte_grise_delete', {'idCarteGrise': carte_grise.idCarteGrise}) }}" method="POST" style="display:inline;">
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash me-2"></i> Supprimer
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7" class="text-center">Aucune carte grise trouvée.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

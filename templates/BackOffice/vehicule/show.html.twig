@@ -1,0 +1,70 @@
+{% extends 'BackOffice/base.html.twig' %}
+
+{% block title %}Détail Véhicule{% endblock %}
+
+{% block content %}
+
+
+<!-- Détails Véhicule -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow rounded-4 p-4">
+                <h2 class="mb-4 text-center text-primary">Informations du Véhicule</h2>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Marque</label>
+                        <div class="form-control bg-light">{{ vehicule.marque }}</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Modèle</label>
+                        <div class="form-control bg-light">{{ vehicule.modele }}</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Immatriculation</label>
+                        <div class="form-control bg-light">{{ vehicule.immatriculation }}</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Type</label>
+                        <div class="form-control bg-light">{{ vehicule.type }}</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Couleur</label>
+                        <div class="form-control bg-light">{{ vehicule.couleur }}</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Kilométrage</label>
+                        <div class="form-control bg-light">{{ vehicule.kilometrage }} km</div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label class="form-label fw-bold">Statut</label>
+                        <div class="form-control bg-light">{{ vehicule.statut }}</div>
+                    </div>
+                </div>
+
+                <div class="mt-5 text-center">
+                    <a href="{{ path('app_liste') }}" class="btn btn-info btn-sm">
+                        <i class="fas fa-arrow-left me-2"></i> Retour à la liste
+                    </a>
+                </div>
+
+                <div class="mt-3 text-center">
+                    <a href="{{ path('app_vehicule_edit', {'idVehicule': vehicule.idVehicule}) }}" class="btn btn-info btn-sm">
+                        <i class="fas fa-edit me-2"></i> Modifier
+                    </a>
+
+                    {{ include('FrontOffice/vehicule/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

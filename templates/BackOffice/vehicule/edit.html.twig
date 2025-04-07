@@ -1,0 +1,60 @@
+{# templates/BackOffice/vehicule/edit.html.twig #}
+
+{% extends 'BackOffice/base.html.twig' %}
+
+{% block title %}Modifier le Véhicule{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <h1 class="mb-4">Modifier le Véhicule</h1>
+
+    {{ form_start(form) }}
+        <div class="mb-3">
+            {{ form_label(form.marque) }}
+            {{ form_widget(form.marque, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.modele) }}
+            {{ form_widget(form.modele, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.immatriculation) }}
+            {{ form_widget(form.immatriculation, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                {{ form_label(form.kilometrage) }}
+                {{ form_widget(form.kilometrage, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+            <div class="col-md-6 mb-3">
+                {{ form_label(form.type) }}
+                {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        <div class="col-md-6 mb-3">
+                        {{ form_label(form.couleur) }}
+                        {{ form_widget(form.couleur, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+
+         <div class="col-md-6 mb-3">
+                         {{ form_label(form.statut) }}
+                         {{ form_widget(form.statut, {'attr': {'class': 'form-control'}}) }}
+                     </div>
+
+         <div class="col-md-6 mb-3">
+                         {{ form_label(form.carteGrise) }}
+                         {{ form_widget(form.carteGrise, {'attr': {'class': 'form-control'}}) }}
+                     </div>
+        </div>
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-warning">Modifier le Véhicule</button>
+        </div>
+    {{ form_end(form) }}
+
+    <a href="{{ path('app_liste') }}" class="btn btn-secondary">Retour à la liste</a>
+</div>
+{% endblock %}
