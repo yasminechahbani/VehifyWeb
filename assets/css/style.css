@@ -381,3 +381,76 @@
     padding-right: 0;
     border-right: none;
 }
+
+
+/* Style inspiré de Uiverse.io */
+/*
+.custom-btn {
+    --hover-shadows: 16px 16px 33px #121212, -16px -16px 33px #303030;
+    --accent: #ffffff;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    border: none;
+    border-radius: 1.1em;
+    background-color: #212121;
+    cursor: pointer;
+    color: white;
+    padding: 1em 2em;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    transition: box-shadow ease-in-out 0.3s, background-color ease-in-out 0.1s,
+    letter-spacing ease-in-out 0.1s, transform ease-in-out 0.1s;
+    box-shadow: 13px 13px 10px #1c1c1c, -13px -13px 10px #262626;
+}
+
+.custom-btn:hover {
+    box-shadow: var(--hover-shadows);
+}
+
+.custom-btn:active {
+    box-shadow: var(--hover-shadows), var(--accent) 0px 0px 30px 5px;
+    background-color: var(--accent);
+    transform: scale(0.95);
+}
+
+*/
+/* Styles pour les cartes des véhicules */
+/*
+.card {
+    width: 190px;
+    height: 300px;
+    background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+    border-radius: 20px;
+    transition: all 0.3s;
+    margin: auto;
+}
+
+.card2 {
+    width: 190px;
+    height: 300px;
+    background-color: #1a1a1a;
+    border-radius: 20px;
+    transition: all 0.2s;
+    padding: 15px;
+    text-align: center;
+    color: white;
+}
+
+.card2:hover {
+    transform: scale(0.98);
+    border-radius: 20px;
+}
+
+.card:hover {
+    box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
+}
+
+.card img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+*/
+

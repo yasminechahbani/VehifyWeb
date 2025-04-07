@@ -1,0 +1,83 @@
+{% extends 'FrontOffice/base.html.twig' %}
+{% set active_page = 'Carte Grise' %}
+
+{% block title %}Nouvelle Carte Grise{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        .flatpickr-input {
+            background-color: white;
+            cursor: pointer;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="h3 mb-0">Créer une nouvelle Carte Grise</h1>
+                    </div>
+                    <div class="card-body">
+                        {{ include('FrontOffice/carte_grise/_form.html.twig') }}
+                    </div>
+                    <div class="card-footer text-end">
+                        <a href="{{ path('app_carte_grise_index') }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-2"></i>Retour à la liste
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configuration de base
+            const baseConfig = {
+                locale: "fr",
+                dateFormat: "d/m/Y",
+                allowInput: true,
+                altInput: true,
+                altFormat: "j F Y",
+                static: true
+            };
+
+            // Initialisation du datepicker pour l'émission
+            const dateEmission = flatpickr("#carte_grise1_dateEmission", {
+                ...baseConfig,
+                minDate: "today",
+                onChange: function(selectedDates) {
+                    if (selectedDates.length > 0) {
+                        dateExpiration.set('minDate', selectedDates[0]);
+                    }
+                }
+            });
+
+            // Initialisation du datepicker pour l'expiration
+            const dateExpiration = flatpickr("#carte_grise1_dateExpiration", {
+                ...baseConfig,
+                minDate: "today"
+            });
+
+            // Réinitialisation si besoin
+            document.querySelector('.btn-reset').addEventListener('click', function() {
+                dateEmission.clear();
+                dateExpiration.clear();
+            });
+        });
+    </script>
+{% endblock %}

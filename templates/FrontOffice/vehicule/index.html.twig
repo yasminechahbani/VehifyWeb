@@ -1,0 +1,60 @@
+{% extends 'FrontOffice/base.html.twig' %}
+{% set active_page = 'vehicules' %}
+
+
+{% block title %}Véhicules{% endblock %}
+
+{% block content %}
+
+<!-- Page Header Start -->
+   <div class="container-fluid page-header mb-5 p-0" style="background-image: url({{ asset('img/carousel-bg-1.jpg') }});">
+        <div class="container-fluid page-header-inner py-5">
+            <div class="container text-center">
+                <h1 class="display-3 text-white mb-3 animated slideInDown">Vehicules</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center text-uppercase">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">Vehicules</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Liste des Véhicules</h1>
+
+    <div class="row">
+        {% for vehicule in vehicules %}
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+<img src="{{ asset('img/about.jpg') }}" alt="Image du véhicule">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ vehicule.marque }} - {{ vehicule.modele }}</h5>
+                        <p class="card-text">
+                            <strong>Immatriculation :</strong> {{ vehicule.immatriculation }} <br>
+                            <strong>Type :</strong> {{ vehicule.type }} <br>
+                            <strong>Couleur :</strong> {{ vehicule.couleur }} <br>
+                            <strong>Kilométrage :</strong> {{ vehicule.kilometrage }} km <br>
+                            <strong>Statut :</strong> {{ vehicule.statut }}
+                        </p>
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ path('app_vehicule_show', {'idVehicule': vehicule.getIdVehicule()}) }}" class="btn btn-primary">Voir détails</a>
+                            <a href="{{ path('app_vehicule_edit', {'idVehicule': vehicule.getIdVehicule()}) }}" class="btn btn-warning">Modifier</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="col-12">
+                <p class="text-center">Aucun véhicule trouvé.</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="{{ path('app_vehicule_new') }}" class="btn btn-success">Créer un véhicule</a>
+    </div>
+</div>
+{% endblock %}
