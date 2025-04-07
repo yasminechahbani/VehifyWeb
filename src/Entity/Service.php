@@ -7,167 +7,260 @@ use Doctrine\ORM\Mapping as ORM;
 
 use Doctrine\Common\Collections\Collection;
 use App\Entity\Reservation;
+use App\Repository\ServiceRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: ServiceRepository::class)]
 class Service
 {
 
     #[ORM\Id]
     #[ORM\Column(name: "id_service", type: "integer")]
     #[ORM\GeneratedValue]
-    private int $id_service;
+    private ?int $idService = null;
 
     #[ORM\Column(type: "string", length: 100)]
-    private string $nom;
+    #[Assert\NotBlank(message: "Le nom du service est obligatoire.")]
+    #[Assert\Length(
+        min: 3,
+        max: 100,
+        minMessage: "Le nom doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "Le nom ne peut pas dépasser {{ limit }} caractères."
+    )]
+    private ?string $nom = null;
 
     #[ORM\Column(type: "string", length: 50)]
-    private string $type;
+    #[Assert\NotBlank(message: "Le type de service est obligatoire.")]
+    #[Assert\Length(
+        max: 50,
+        maxMessage: "Le type ne peut pas dépasser {{ limit }} caractères."
+    )]
+    private ?string $type = null;
 
-    #[ORM\Column(type: "string", length: 255)]
-    private string $heure_ouverture;
+    #[ORM\Column(type: "string", length: 255, name: "heure_ouverture")]
+    #[Assert\NotBlank(message: "L'heure d'ouverture est obligatoire.")]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: "L'heure d'ouverture ne peut pas dépasser {{ limit }} caractères."
+    )]
+    private ?string $heureOuverture = null;
 
-    #[ORM\Column(type: "string", length: 255)]
-    private string $heure_fermeture;
+    #[ORM\Column(type: "string", length: 255, name: "heure_fermeture")]
+    #[Assert\NotBlank(message: "L'heure de fermeture est obligatoire.")]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: "L'heure de fermeture ne peut pas dépasser {{ limit }} caractères."
+    )]
+    private ?string $heureFermeture = null;
 
     #[ORM\Column(type: "float")]
-    private float $prix;
+    #[Assert\NotBlank(message: "Le prix est obligatoire.")]
+    #[Assert\Positive(message: "Le prix doit être positif.")]
+    private ?float $prix = null;
 
     #[ORM\Column(type: "string", length: 20)]
-    private string $gouvernerat;
+    #[Assert\NotBlank(message: "Le gouvernorat est obligatoire.")]
+    #[Assert\Length(
+        max: 20,
+        maxMessage: "Le gouvernorat ne peut pas dépasser {{ limit }} caractères."
+    )]
+    private ?string $gouvernerat = null;
 
     #[ORM\Column(type: "integer")]
-    private int $numero;
+    #[Assert\NotBlank(message: "Le numéro de téléphone est obligatoire.")]
+    #[Assert\Positive(message: "Le numéro doit être positif.")]
+    private ?int $numero = null;
 
     #[ORM\Column(type: "string", length: 255)]
-    private string $description;
+    #[Assert\NotBlank(message: "La description est obligatoire.")]
+    #[Assert\Length(
+        min: 10,
+        max: 255,
+        minMessage: "La description doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "La description ne peut pas dépasser {{ limit }} caractères."
+    )]
+    private ?string $description = null;
 
     #[ORM\Column(type: "string", length: 255)]
-    private string $email;
+    #[Assert\NotBlank(message: "L'email est obligatoire.")]
+    #[Assert\Email(message: "L'email '{{ value }}' n'est pas valide.")]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: "L'email ne peut pas dépasser {{ limit }} caractères."
+    )]
+    private ?string $email = null;
 
     #[ORM\Column(type: "float")]
-    private float $latitude;
+    #[Assert\NotBlank(message: "La latitude est obligatoire.")]
+    private ?float $latitude = null;
 
     #[ORM\Column(type: "float")]
-    private float $longitude;
+    #[Assert\NotBlank(message: "La longitude est obligatoire.")]
+    private ?float $longitude = null;
 
-    public function getId_service()
+    public function getId_service(): ?int
     {
-        return $this->id_service;
+        return $this->idService;
+    }
+    
+    public function getIdService(): ?int
+    {
+        return $this->idService;
     }
 
-    public function setId_service($value)
+    public function setId_service(?int $value): self
     {
-        $this->id_service = $value;
+        $this->idService = $value;
+        return $this;
+    }
+    
+    public function setIdService(?int $value): self
+    {
+        $this->idService = $value;
+        return $this;
     }
 
-    public function getNom()
+    public function getNom(): ?string
     {
         return $this->nom;
     }
 
-    public function setNom($value)
+    public function setNom(?string $value): self
     {
         $this->nom = $value;
+        return $this;
     }
 
-    public function getType()
+    public function getType(): ?string
     {
         return $this->type;
     }
 
-    public function setType($value)
+    public function setType(?string $value): self
     {
         $this->type = $value;
+        return $this;
     }
 
-    public function getHeure_ouverture()
+    public function getHeure_ouverture(): ?string
     {
-        return $this->heure_ouverture;
+        return $this->heureOuverture;
     }
-
-    public function setHeure_ouverture($value)
+    
+    public function getHeureOuverture(): ?string
     {
-        $this->heure_ouverture = $value;
+        return $this->heureOuverture;
     }
 
-    public function getHeure_fermeture()
+    public function setHeure_ouverture(?string $value): self
     {
-        return $this->heure_fermeture;
+        $this->heureOuverture = $value;
+        return $this;
     }
-
-    public function setHeure_fermeture($value)
+    
+    public function setHeureOuverture(?string $value): self
     {
-        $this->heure_fermeture = $value;
+        $this->heureOuverture = $value;
+        return $this;
     }
 
-    public function getPrix()
+    public function getHeure_fermeture(): ?string
+    {
+        return $this->heureFermeture;
+    }
+    
+    public function getHeureFermeture(): ?string
+    {
+        return $this->heureFermeture;
+    }
+
+    public function setHeure_fermeture(?string $value): self
+    {
+        $this->heureFermeture = $value;
+        return $this;
+    }
+    
+    public function setHeureFermeture(?string $value): self
+    {
+        $this->heureFermeture = $value;
+        return $this;
+    }
+
+    public function getPrix(): ?float
     {
         return $this->prix;
     }
 
-    public function setPrix($value)
+    public function setPrix(?float $value): self
     {
         $this->prix = $value;
+        return $this;
     }
 
-    public function getGouvernerat()
+    public function getGouvernerat(): ?string
     {
         return $this->gouvernerat;
     }
 
-    public function setGouvernerat($value)
+    public function setGouvernerat(?string $value): self
     {
         $this->gouvernerat = $value;
+        return $this;
     }
 
-    public function getNumero()
+    public function getNumero(): ?int
     {
         return $this->numero;
     }
 
-    public function setNumero($value)
+    public function setNumero(?int $value): self
     {
         $this->numero = $value;
+        return $this;
     }
 
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    public function setDescription($value)
+    public function setDescription(?string $value): self
     {
         $this->description = $value;
+        return $this;
     }
 
-    public function getEmail()
+    public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    public function setEmail($value)
+    public function setEmail(?string $value): self
     {
         $this->email = $value;
+        return $this;
     }
 
-    public function getLatitude()
+    public function getLatitude(): ?float
     {
         return $this->latitude;
     }
 
-    public function setLatitude($value)
+    public function setLatitude(?float $value): self
     {
         $this->latitude = $value;
+        return $this;
     }
 
-    public function getLongitude()
+    public function getLongitude(): ?float
     {
         return $this->longitude;
     }
 
-    public function setLongitude($value)
+    public function setLongitude(?float $value): self
     {
         $this->longitude = $value;
+        return $this;
     }
 
     #[ORM\OneToMany(mappedBy: "id_service", targetEntity: Employe::class)]
@@ -211,6 +304,8 @@ class Service
 
     public function __construct()
     {
+        $this->employes = new ArrayCollection();
+        $this->resultats = new ArrayCollection();
         $this->reservations = new ArrayCollection();
     }
 
