@@ -32,12 +32,31 @@ class DashboardController extends AbstractController
         ]);
     }
     #[Route('/dashboard', name: 'app_dashboard')]
-    public function home(): Response
+    public function home(VehiculeRepository $vehiculeRepo, CarteGriseRepository $carteGriseRepo): Response
     {
+        // Récupérer le nombre de véhicules
+        $nombreVehicules = $vehiculeRepo->countVehicules([]);  // Utilise le repository pour compter les véhicules
+        $nombreCartesGrises = $carteGriseRepo->countCartesGrises([]);
+        $nombreVehiculesNonApprouves = $vehiculeRepo->countVehiculesNonApprouves([
+            'statut' => 'Visite non faite',  // Statut des véhicules non approuvés
+        ]);
+        $nombreVehiculesApprouves = $vehiculeRepo->countVehiculesApprouves([
+            'statut' => 'Visite faite',  // Filtrer par statut
+        ]);
+
+
+
+
+        // Passer les données à la vue
         return $this->render('BackOffice/home/home.html.twig', [
             'controller_name' => 'HomeController',
+            'nombreVehiculesApprouves' => $nombreVehiculesApprouves,
+            'nombreVehiculesNonApprouves' => $nombreVehiculesNonApprouves,
+            'nombreVehicules' => $nombreVehicules,
+            'nombreCartesGrises' => $nombreCartesGrises,
         ]);
     }
+
     #[Route('/dashboard/widget', name: 'app_widget')]
     public function widget(): Response
     {
@@ -55,7 +74,7 @@ class DashboardController extends AbstractController
     }
 
 // Dans le contrôleur CarteGriseController
-    #[Route('/dashboard/liste/carte-grise/{idCarteGrise}', name: 'app_carte_grise_show')]
+    #[Route('/dashboard/liste/carte-grise/{idCarteGrise}', name: 'app_carte_griseB_show')]
     public function show1(CarteGrise $carteGrise): Response
     {
         return $this->render('BackOffice/carte_grise/show.html.twig', [
@@ -105,7 +124,7 @@ class DashboardController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-    #[Route('/dashboard/liste/carte-grise/delete/{idCarteGrise}', name: 'app_carte_grise_delete', methods: ['POST'])]
+    #[Route('/dashboard/liste/carte-grise/delete/{idCarteGrise}', name: 'app_carte_griseB_delete', methods: ['POST'])]
     public function deleteCarteGrise(int $idCarteGrise, EntityManagerInterface $entityManager): RedirectResponse
     {
         // Trouver la carte grise par son ID
@@ -151,7 +170,7 @@ class DashboardController extends AbstractController
         return $this->redirectToRoute('app_liste');
     }
     // Méthode de modification pour Carte Grise
-    #[Route('/dashboard/liste/carte-grise/edit/{idCarteGrise}', name: 'app_carte_grise_edit', methods: ['GET', 'POST'])]
+    #[Route('/dashboard/liste/carte-grise/edit/{idCarteGrise}', name: 'app_carte_griseB_edit', methods: ['GET', 'POST'])]
     public function editCarteGrise(CarteGrise $carteGrise, Request $request, EntityManagerInterface $entityManager): Response
     {
         // Création du formulaire de modification pour la carte grise
@@ -196,5 +215,6 @@ class DashboardController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
 
 }

@@ -81,12 +81,12 @@
                         <td>{{ carte_grise.DateEmission|date('d/m/Y') }}</td>
                         <td>{{ carte_grise.DateExpiration|date('d/m/Y') }}</td>
                         <td>
-                            <a href="{{ path('app_carte_grise_show', {'idCarteGrise': carte_grise.idCarteGrise}) }}" class="btn btn-info btn-sm">Voir</a>
-                             <a href="{{ path('app_carte_grise_edit', {'idCarteGrise': carte_grise.idCarteGrise}) }}" class="btn btn-warning btn-sm">
+                            <a href="{{ path('app_carte_griseB_show', {'idCarteGrise': carte_grise.idCarteGrise}) }}" class="btn btn-info btn-sm">Voir</a>
+                             <a href="{{ path('app_carte_griseB_edit', {'idCarteGrise': carte_grise.idCarteGrise}) }}" class="btn btn-warning btn-sm">
                                                     <i class="fas fa-edit me-2"></i> Modifier
                                                 </a>
                             <!-- Formulaire pour supprimer la carte grise -->
-                            <form action="{{ path('app_carte_grise_delete', {'idCarteGrise': carte_grise.idCarteGrise}) }}" method="POST" style="display:inline;">
+                            <form action="{{ path('app_carte_griseB_delete', {'idCarteGrise': carte_grise.idCarteGrise}) }}" method="POST" style="display:inline;">
                                 <button type="submit" class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash me-2"></i> Supprimer
                                 </button>

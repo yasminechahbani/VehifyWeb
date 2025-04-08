@@ -23,14 +23,15 @@
                         <div
                           class="icon-big text-center icon-primary bubble-shadow-small"
                         >
-                          <i class="fas fa-users"></i>
+                          <i class="fas fa-car"></i>
                         </div>
                       </div>
                       <div class="col col-stats ms-3 ms-sm-0">
                         <div class="numbers">
-                          <p class="card-category">Visitors</p>
-                          <h4 class="card-title">1,294</h4>
-                        </div>
+                          <p class="card-category">Vehicules</p>
+                          <h4 class="card-title">{{ nombreVehicules | number_format(0, ',', ' ') }}</h4>
+
+                       </div>
                       </div>
                     </div>
                   </div>
@@ -44,15 +45,16 @@
                         <div
                           class="icon-big text-center icon-info bubble-shadow-small"
                         >
-                          <i class="fas fa-user-check"></i>
+                          <i class="fas fa-file-signature"></i>
                         </div>
                       </div>
                       <div class="col col-stats ms-3 ms-sm-0">
-                        <div class="numbers">
-                          <p class="card-category">Subscribers</p>
-                          <h4 class="card-title">1303</h4>
-                        </div>
+                          <div class="numbers">
+                              <p class="card-category">Cartes Grises</p>
+                              <h4 class="card-title">{{ nombreCartesGrises | number_format(0, ',', ' ') }}</h4>
+                          </div>
                       </div>
+
                     </div>
                   </div>
                 </div>
@@ -65,14 +67,19 @@
                         <div
                           class="icon-big text-center icon-success bubble-shadow-small"
                         >
-                          <i class="fas fa-luggage-cart"></i>
+                         <i class="fas fa-car"></i>
+
                         </div>
                       </div>
                       <div class="col col-stats ms-3 ms-sm-0">
-                        <div class="numbers">
-                          <p class="card-category">Sales</p>
-                          <h4 class="card-title">$ 1,345</h4>
-                        </div>
+                          <div class="numbers">
+                              <p class="card-category">Véhicules approvés</p>
+                              <h4 class="card-title">
+                                  {{ nombreVehiculesApprouves | number_format(0, ',', ' ') }}
+                              </h4>
+                          </div>
+
+
                       </div>
                     </div>
                   </div>
@@ -86,14 +93,19 @@
                         <div
                           class="icon-big text-center icon-secondary bubble-shadow-small"
                         >
-                          <i class="far fa-check-circle"></i>
+                          <i class="far fa-times-circle"></i>
                         </div>
                       </div>
                       <div class="col col-stats ms-3 ms-sm-0">
-                        <div class="numbers">
-                          <p class="card-category">Order</p>
-                          <h4 class="card-title">576</h4>
-                        </div>
+                          <div class="numbers">
+                              <p class="card-category">Véhicules refusés</p>
+                              <h4 class="card-title">
+
+                                  {{ nombreVehiculesNonApprouves | number_format(0, ',', ' ') }}
+                              </h4>
+                          </div>
+                      </div>
+
                       </div>
                     </div>
                   </div>

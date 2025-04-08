@@ -17,17 +17,17 @@ class CarteGrise
     private ?int $idCarteGrise = null;
 
     #[ORM\Column(type: "string", length: 50)]
-    #[Assert\NotBlank(message: "Le numéro de la carte grise est obligatoire")]
+    //#[Assert\NotBlank(message: "Le numéro de la carte grise est obligatoire")]
     #[Assert\Length(max: 50, maxMessage: "Ne doit pas dépasser {{ limit }} caractères")]
     private ?string $numeroCarteGrise = null;
 
     #[ORM\Column(type: "string", length: 100)]
-    #[Assert\NotBlank(message: "Le nom du propriétaire est obligatoire")]
+   // #[Assert\NotBlank(message: "Le nom du propriétaire est obligatoire")]
     #[Assert\Length(max: 100, maxMessage: "Ne doit pas dépasser {{ limit }} caractères")]
     private ?string $proprietaire = null;
 
     #[ORM\Column(type: "string", length: 255)]
-    #[Assert\NotBlank(message: "L'adresse du propriétaire est obligatoire")]
+    //#[Assert\NotBlank(message: "L'adresse du propriétaire est obligatoire")]
     #[Assert\Length(max: 255, maxMessage: "Ne doit pas dépasser {{ limit }} caractères")]
     private ?string $adresseProprietaire = null;
 
@@ -114,11 +114,12 @@ class CarteGrise
         return $this->dateExpiration;
     }
 
-    public function setDateExpiration(\DateTimeInterface $dateExpiration): static
+    public function setDateExpiration(?\DateTimeInterface $dateExpiration): static
     {
         $this->dateExpiration = $dateExpiration;
         return $this;
     }
+
 
     public function getUser(): ?User
     {

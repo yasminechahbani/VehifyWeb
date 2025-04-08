@@ -7,6 +7,7 @@
     <h1 class="mb-4 text-center">Ajouter un Véhicule</h1>
 
     {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+    {{ form_errors(form) }}
 
     <div class="card shadow rounded-4 p-4">
         <h2 class="text-primary mb-4">Informations du Véhicule</h2>
@@ -16,6 +17,7 @@
                 <div class="mb-3">
                     {{ form_label(form.marque, null, {'label_attr': {'class': 'form-label fw-bold'}}) }}
                     {{ form_widget(form.marque, {'attr': {'class': 'form-control'}}) }}
+                    <div class="text-danger">{{ form_errors(form.marque) }}</div>
                 </div>
             </div>
 
@@ -23,6 +25,7 @@
                 <div class="mb-3">
                     {{ form_label(form.modele, null, {'label_attr': {'class': 'form-label fw-bold'}}) }}
                     {{ form_widget(form.modele, {'attr': {'class': 'form-control'}}) }}
+                    <div class="text-danger">{{ form_errors(form.modele) }}</div>
                 </div>
             </div>
 
@@ -30,6 +33,7 @@
                 <div class="mb-3">
                     {{ form_label(form.immatriculation, null, {'label_attr': {'class': 'form-label fw-bold'}}) }}
                     {{ form_widget(form.immatriculation, {'attr': {'class': 'form-control'}}) }}
+                    <div class="text-danger">{{ form_errors(form.immatriculation) }}</div>
                 </div>
             </div>
 
@@ -37,6 +41,7 @@
                 <div class="mb-3">
                     {{ form_label(form.type, null, {'label_attr': {'class': 'form-label fw-bold'}}) }}
                     {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
+                    <div class="text-danger">{{ form_errors(form.type) }}</div>
                 </div>
             </div>
 
@@ -44,6 +49,7 @@
                 <div class="mb-3">
                     {{ form_label(form.couleur, null, {'label_attr': {'class': 'form-label fw-bold'}}) }}
                     {{ form_widget(form.couleur, {'attr': {'class': 'form-control'}}) }}
+                    <div class="text-danger">{{ form_errors(form.couleur) }}</div>
                 </div>
             </div>
 
@@ -51,6 +57,7 @@
                 <div class="mb-3">
                     {{ form_label(form.kilometrage, null, {'label_attr': {'class': 'form-label fw-bold'}}) }}
                     {{ form_widget(form.kilometrage, {'attr': {'class': 'form-control'}}) }}
+                    <div class="text-danger">{{ form_errors(form.kilometrage) }}</div>
                 </div>
             </div>
 
@@ -58,14 +65,15 @@
                 <div class="mb-3">
                     {{ form_label(form.statut, null, {'label_attr': {'class': 'form-label fw-bold'}}) }}
                     {{ form_widget(form.statut, {'attr': {'class': 'form-control'}}) }}
+                    <div class="text-danger">{{ form_errors(form.statut) }}</div>
                 </div>
             </div>
 
-            <!-- Ajout du champ Carte Grise -->
             <div class="col-md-6">
                 <div class="mb-3">
                     {{ form_label(form.carteGrise, null, {'label_attr': {'class': 'form-label fw-bold'}}) }}
                     {{ form_widget(form.carteGrise, {'attr': {'class': 'form-control'}}) }}
+                    <div class="text-danger">{{ form_errors(form.carteGrise) }}</div>
                 </div>
             </div>
         </div>

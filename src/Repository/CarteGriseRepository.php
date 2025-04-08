@@ -14,23 +14,30 @@ class CarteGriseRepository extends ServiceEntityRepository
         parent::__construct($registry, CarteGrise::class);
     }
 
-    public function countExpired(): int
+    public function getStats(): array
+    {
+        return [
+            'total' => $this->count([]),
+            'valides' => $this->countValides(),
+            'expirees' => $this->countExpirees(),
+            'monthly' => $this->getMonthlyRegistrations()
+        ];
+    }
+
+    public function countValides(): int
     {
         return $this->createQueryBuilder('c')
             ->select('COUNT(c.id)')
-            ->where('c.dateExpiration < CURRENT_DATE()')
+            ->where('c.dateExpiration > CURRENT_DATE()')
             ->getQuery()
             ->getSingleScalarResult();
     }
 
-    public function countExpiringSoon(): int
+    public function countExpirees(): int
     {
-        $date = new \DateTime('+30 days');
-
         return $this->createQueryBuilder('c')
             ->select('COUNT(c.id)')
-            ->where('c.dateExpiration BETWEEN CURRENT_DATE() AND :date')
-            ->setParameter('date', $date)
+            ->where('c.dateExpiration <= CURRENT_DATE()')
             ->getQuery()
             ->getSingleScalarResult();
     }
@@ -44,17 +51,18 @@ class CarteGriseRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
 
-        $months = [];
-        $counts = array_fill(0, 12, 0);
-
+        $monthlyData = array_fill(0, 12, 0);
         foreach ($results as $result) {
-            $monthIndex = $result['month'] - 1;
-            $counts[$monthIndex] = $result['count'];
+            $monthlyData[$result['month'] - 1] = $result['count'];
         }
 
-        return [
-            'months' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-            'counts' => $counts
-        ];
+        return $monthlyData;
+    }
+    public function countCartesGrises(): int
+    {
+        return $this->createQueryBuilder('c')
+            ->select('COUNT(c.idCarteGrise)')
+            ->getQuery()
+            ->getSingleScalarResult();
     }
 }

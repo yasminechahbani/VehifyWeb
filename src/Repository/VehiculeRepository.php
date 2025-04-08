@@ -13,26 +13,97 @@ class VehiculeRepository extends ServiceEntityRepository
         parent::__construct($registry, Vehicule::class);
     }
 
-    /**
-     * Compte le nombre de véhicules dans la base de données.
-     *
-     * @param array $criteria Critères optionnels pour filtrer les résultats.
-     * @return int Le nombre de véhicules.
-     */
-    // Dans le VehiculeRepository
+    public function getStats(): array
+    {
+        return [
+            'total' => $this->count([]),
+            'types' => $this->countByType(),
+            'status_values' => $this->countByStatus()
+        ];
+    }
+
     public function count(array $criteria = []): int
     {
-        $qb = $this->createQueryBuilder('v');
+        $qb = $this->createQueryBuilder('v')
+            ->select('COUNT(v.idVehicule)');
 
-        // Ajoutez des critères de filtrage si nécessaire
         foreach ($criteria as $field => $value) {
             $qb->andWhere("v.$field = :$field")
                 ->setParameter($field, $value);
         }
 
-        return (int) $qb->select('COUNT(v.idVehicule)')
+        return (int) $qb->getQuery()->getSingleScalarResult();
+    }
+
+    public function countByType(): array
+    {
+        $results = $this->createQueryBuilder('v')
+            ->select('v.type, COUNT(v.idVehicule) as count')
+            ->groupBy('v.type')
+            ->getQuery()
+            ->getResult();
+
+        $types = [];
+        foreach ($results as $result) {
+            $types[$result['type']] = $result['count'];
+        }
+
+        return $types;
+    }
+
+    public function countByStatus(): array
+    {
+        // Supposons que 'statut' est le nom du champ dans votre entité Vehicule
+        $results = $this->createQueryBuilder('v')
+            ->select('v.statut, COUNT(v.idVehicule) as count')
+            ->groupBy('v.statut')
+            ->getQuery()
+            ->getResult();
+
+        // Adaptez selon vos statuts réels
+        $statusCounts = [
+            'Disponible' => 0,
+            'En service' => 0,
+            'En panne' => 0
+        ];
+
+        foreach ($results as $result) {
+            if (isset($statusCounts[$result['statut']])) {
+                $statusCounts[$result['statut']] = $result['count'];
+            }
+        }
+
+        return array_values($statusCounts);
+    }
+// src/Repository/VehiculeRepository.php
+
+    public function countVehicules(): int
+    {
+        // Utilise la méthode `count` de Doctrine pour compter les enregistrements
+        return $this->createQueryBuilder('v')
+            ->select('COUNT(v.idVehicule)')
             ->getQuery()
             ->getSingleScalarResult();
     }
+    public function countVehiculesApprouves(): int
+    {
+        return $this->createQueryBuilder('v')
+            ->select('COUNT(v.idVehicule)')
+            ->where('v.statut = :statut')
+            ->setParameter('statut', 'Visite faite')  // Filtrer par le statut "disponible"
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+    public function countVehiculesNonApprouves(): int
+    {
+        return $this->createQueryBuilder('v')
+            ->select('COUNT(v.idVehicule)')
+            ->where('v.statut = :statut')
+            ->setParameter('statut', 'Visite non faite')  // Filtrer par le statut "disponible"
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+
 
 }

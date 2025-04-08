@@ -96,7 +96,7 @@ class VehiculeType extends AbstractType
                         'message' => 'Le statut est obligatoire'
                     ]),
                     new Assert\Choice([
-                        'choices' => ['Disponible', 'En location', 'En maintenance', 'Hors service'],
+                        'choices' => ['Visite faite', 'Visite non faite'],
                         'message' => 'Statut invalide'
                     ])
                 ]
