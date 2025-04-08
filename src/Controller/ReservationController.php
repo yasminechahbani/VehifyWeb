@@ -71,9 +71,13 @@ class ReservationController extends AbstractController{
             $entityManager->persist($reservation);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Reservation created successfully!');
-
-            return $this->redirectToRoute('app_reservation_index', [], Response::HTTP_SEE_OTHER);
+            // Stocker l'ID de réservation en session pour le paiement
+            $request->getSession()->set('reservation_id', $reservation->getId());
+            
+            // Rediriger vers la page de paiement Stripe
+            return $this->redirectToRoute('app_stripe_payment', [
+                'reservation_id' => $reservation->getId()
+            ]);
         }
 
         return $this->render('reservation/new.html.twig', [
