@@ -127,4 +127,53 @@ class FactureController extends AbstractController
             'reservation' => $reservation,
         ]);
     }
+    
+    #[Route('/{id}/pdf', name: 'app_facture_pdf', methods: ['GET'])]
+    public function generatePdf(int $id, EntityManagerInterface $entityManager): Response
+    {
+        $facture = $entityManager->getRepository(Facture::class)->find($id);
+
+        if (!$facture) {
+            throw $this->createNotFoundException('Facture non trouvée.');
+        }
+        
+        // Récupérer les informations de la réservation associée
+        $reservation = $facture->getReservation();
+        $client = $reservation->getUserId();
+        $vehicule = $reservation->getVehiculeId();
+        $service = $reservation->getServiceId();
+        
+        // Configurer Dompdf
+        $options = new \Dompdf\Options();
+        $options->set('defaultFont', 'Arial');
+        $options->setIsRemoteEnabled(true);
+        
+        $dompdf = new \Dompdf\Dompdf($options);
+        
+        // Générer le HTML pour le PDF
+        $html = $this->renderView('facture/pdf.html.twig', [
+            'facture' => $facture,
+            'reservation' => $reservation,
+            'client' => $client,
+            'vehicule' => $vehicule,
+            'service' => $service
+        ]);
+        
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        
+        // Générer un nom de fichier pour le PDF
+        $fileName = 'facture-' . $facture->getNumeroFacture() . '.pdf';
+        
+        // Retourner le PDF comme réponse HTTP
+        return new Response(
+            $dompdf->output(),
+            Response::HTTP_OK,
+            [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'inline; filename="' . $fileName . '"'
+            ]
+        );
+    }
 }
