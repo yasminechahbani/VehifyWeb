@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Reservation;
+use App\Entity\Facture;
 use App\Repository\PaiementRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -79,6 +80,30 @@ class Paiement
         maxMessage: "Le nom du titulaire de la carte ne peut pas dépasser {{ limit }} caractères."
     )]
     private ?string $nomTitulaireCarte = null;
+    
+    #[ORM\OneToOne(mappedBy: "paiement", targetEntity: Facture::class, cascade: ["persist", "remove"])]
+    private ?Facture $facture = null;
+
+    public function getFacture(): ?Facture
+    {
+        return $this->facture;
+    }
+
+    public function setFacture(?Facture $facture): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($facture === null && $this->facture !== null) {
+            $this->facture->setPaiement(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($facture !== null && $facture->getPaiement() !== $this) {
+            $facture->setPaiement($this);
+        }
+
+        $this->facture = $facture;
+        return $this;
+    }
 
     public function getId(): ?int
     {

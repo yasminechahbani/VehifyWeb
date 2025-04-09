@@ -2,6 +2,7 @@
  
 namespace App\Controller;
  
+use App\Entity\Facture;
 use App\Entity\Paiement;
 use App\Entity\Reservation;
 use Doctrine\ORM\EntityManagerInterface;
@@ -65,7 +66,7 @@ class StripeController extends AbstractController
         $montant = (int)($prix * 100);
         
         Stripe\Stripe::setApiKey($_ENV["STRIPE_SECRET"]);
-        Stripe\Charge::create ([
+        $charge = Stripe\Charge::create ([
                 "amount" => $montant,
                 "currency" => "eur",
                 "source" => $request->request->get('stripeToken'),
@@ -88,6 +89,19 @@ class StripeController extends AbstractController
         $paiement->setNomTitulaireCarte('Paiement Stripe');
         
         $entityManager->persist($paiement);
+        
+        // Créer une facture associée au paiement
+        $facture = new Facture();
+        $facture->setNumeroFacture('FACT-' . date('YmdHis') . '-' . rand(1000, 9999));
+        $facture->setDateFacturation(new \DateTime());
+        $facture->setMontant($prix);
+        $facture->setDescription('Facture pour la réservation #' . $reservation_id);
+        $facture->setStatut('Payée');
+        $facture->setPaiement($paiement);
+        $facture->setReservation($reservation);
+        $facture->setStripeChargeId($charge->id);
+        
+        $entityManager->persist($facture);
         $entityManager->flush();
         
         $this->addFlash(

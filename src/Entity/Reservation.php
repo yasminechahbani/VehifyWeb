@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Entity\Facture;
 
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
 class Reservation
@@ -20,9 +21,13 @@ class Reservation
     #[ORM\OneToMany(mappedBy: 'reservation', targetEntity: Paiement::class, orphanRemoval: true)]
     private Collection $paiements;
     
+    #[ORM\OneToMany(mappedBy: 'reservation', targetEntity: Facture::class, orphanRemoval: true)]
+    private Collection $factures;
+    
     public function __construct()
     {
         $this->paiements = new ArrayCollection();
+        $this->factures = new ArrayCollection();
     }
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
@@ -109,6 +114,36 @@ class Reservation
     public function getVehiculeId(): ?Vehicule
     {
         return $this->vehiculeId;
+    }
+    
+    /**
+     * @return Collection<int, Facture>
+     */
+    public function getFactures(): Collection
+    {
+        return $this->factures;
+    }
+
+    public function addFacture(Facture $facture): self
+    {
+        if (!$this->factures->contains($facture)) {
+            $this->factures->add($facture);
+            $facture->setReservation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFacture(Facture $facture): self
+    {
+        if ($this->factures->removeElement($facture)) {
+            // set the owning side to null (unless already changed)
+            if ($facture->getReservation() === $this) {
+                $facture->setReservation(null);
+            }
+        }
+
+        return $this;
     }
 
     public function setVehiculeId(?Vehicule $vehiculeId): static
