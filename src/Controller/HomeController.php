@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Repository\EmployeRepository; // Ajout de l'import manquant
-use App\Repository\EquipementRepository; // Si vous avez un repository pour Equipement
+use App\Repository\EmployeRepository; 
+use App\Repository\EquipementRepository; 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -15,10 +15,10 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(EmployeRepository $employeRepository,EquipementRepository $equipementRepository): Response
     {
-        // Récupérer tous les employés
+        
         $employes = $employeRepository->findAll();
         
-        // Initialiser les tranches d'âge
+        
         $ageDistribution = [
             '18-25' => 0,
             '26-35' => 0,
@@ -27,7 +27,7 @@ class HomeController extends AbstractController
             '56+' => 0
         ];
         
-        // Calculer la répartition des âges
+        
         foreach ($employes as $employe) {
             $age = $employe->getAge();
             
@@ -44,17 +44,17 @@ class HomeController extends AbstractController
             }
         }
 
-        // Récupérer le total des employés
-        $totalEmployees = $employeRepository->getTotalEmployes();  // Ajout des parenthèses pour appeler la méthode
+        
+        $totalEmployees = $employeRepository->getTotalEmployes();  
 
-        // Récupérer le total des équipements
-        $totalEquipements = $equipementRepository->getTotalEquipements(); // Ajouter la méthode dans EquipementRepository
+        
+        $totalEquipements = $equipementRepository->getTotalEquipements(); 
 
-        // Passer les données à la vue
+        
         return $this->render('home/index.html.twig', [
             'totalEmployees' => $totalEmployees,
-            'totalEquipements' => $totalEquipements, // Passer aussi les équipements à la vue
-            'ageDistribution' => $ageDistribution // Passer la répartition des âges à la vue
+            'totalEquipements' => $totalEquipements, 
+            'ageDistribution' => $ageDistribution 
         ]);
     }
 
@@ -92,9 +92,5 @@ class HomeController extends AbstractController
         return $this->render('tables/datatables.html.twig');
     }
 
-    #[Route('/new', name: 'app_employe_new')]
-    public function new(): Response
-    {
-        return $this->render('employe/new.html.twig');
-    }
+    
 }

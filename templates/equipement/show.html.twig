@@ -12,6 +12,14 @@
             <p><strong>Description :</strong> {{ equipement.description }}</p>
             <p><strong>Catégorie :</strong> {{ equipement.categorie }}</p>
             <p><strong>État :</strong> {{ equipement.etat }}</p>
+<p class="card-text">
+    <strong>Employee :</strong>
+    {% if equipement.employe %}
+        {{ equipement.employe.prenom }} {{ equipement.employe.nom }}
+    {% else %}
+        Aucun employé associé
+    {% endif %}
+</p>
 
             <div class="card-footer">
                 <a href="{{ path('app_equipement_index') }}">⬅️ Retour à la liste</a>

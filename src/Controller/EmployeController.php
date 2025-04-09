@@ -98,7 +98,7 @@ final class EmployeController extends AbstractController
 
         if (!$searchValue) {
             // Si la recherche est vide, ne rien renvoyer ou renvoyer la liste complète si nécessaire
-            return new Response(''); // Ou $this->render('employe/_search_results.html.twig', ['employes' => []]);
+            return new Response(''); 
         }
 
         $employes = $employeRepository->findByName($searchValue);

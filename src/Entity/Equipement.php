@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Employe;
-use Symfony\Component\Validator\Constraints as Assert;  // Ajout du namespace pour les contraintes
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity]
 class Equipement
@@ -14,10 +14,14 @@ class Equipement
     #[ORM\Column(type: 'integer')]
     private ?int $idEquipement = null;
 
-   /* #[ORM\ManyToOne(targetEntity: Employe::class, inversedBy: "equipements")]
-    #[ORM\JoinColumn(name: 'employe_id', referencedColumnName: 'idEmploye', onDelete: 'CASCADE')]
-    private Employe $employe; // Nom de la propriété*/
+   #[ORM\ManyToOne(targetEntity: Employe::class, inversedBy: "equipements")]
+#[ORM\JoinColumn(name: "id_employe", referencedColumnName: "id_employe", onDelete: "CASCADE")]
+private ?Employe $employe = null;
 
+
+    
+
+    
     #[ORM\Column(type: "string", length: 100)]
     #[Assert\NotBlank(message: "Le nom de l'équipement est obligatoire.")]
     private string $nom;
@@ -33,8 +37,8 @@ class Equipement
     #[ORM\Column(type: "string", length: 20)]
     #[Assert\NotBlank(message: "L'état est obligatoire.")]
     private string $etat;
-    // Getter and Setter for idEquipement
-    public function getIdEquipement(): int
+
+    public function getIdEquipement(): ?int
     {
         return $this->idEquipement;
     }
@@ -45,8 +49,7 @@ class Equipement
         return $this;
     }
 
-    // Getter and Setter for Employe (corrigé)
-    public function getEmploye(): Employe
+    public function getEmploye(): ?Employe
     {
         return $this->employe;
     }
@@ -57,7 +60,6 @@ class Equipement
         return $this;
     }
 
-    // Getter and Setter for nom
     public function getNom(): string
     {
         return $this->nom;
@@ -69,7 +71,6 @@ class Equipement
         return $this;
     }
 
-    // Getter and Setter for description
     public function getDescription(): string
     {
         return $this->description;
@@ -81,7 +82,6 @@ class Equipement
         return $this;
     }
 
-    // Getter and Setter for categorie
     public function getCategorie(): string
     {
         return $this->categorie;
@@ -93,7 +93,6 @@ class Equipement
         return $this;
     }
 
-    // Getter and Setter for etat
     public function getEtat(): string
     {
         return $this->etat;

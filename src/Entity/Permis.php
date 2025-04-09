@@ -15,10 +15,12 @@ class Permis
     #[ORM\Id]
     #[ORM\Column(type: "integer")]
     private int $id_permis;
+    #[ORM\ManyToOne(targetEntity: Employe::class, inversedBy: "permiss")]
+#[ORM\JoinColumn(name: "id_employe", referencedColumnName: "id_employe", onDelete: "CASCADE")]
+private Employe $idEmploye;
 
-        #[ORM\ManyToOne(targetEntity: Employe::class, inversedBy: "permiss")]
-    #[ORM\JoinColumn(name: 'id_employe', referencedColumnName: 'id_employe', onDelete: 'CASCADE')]
-    private Employe $id_employe;
+    
+
 
     #[ORM\Column(type: "string", length: 50)]
     private string $numero_permis;
@@ -45,14 +47,14 @@ class Permis
         $this->id_permis = $value;
     }
 
-    public function getId_employe()
+    public function getIdEmploye()
     {
-        return $this->id_employe;
+        return $this->idEmploye;
     }
 
-    public function setId_employe($value)
+    public function setIdEmploye($value)
     {
-        $this->id_employe = $value;
+        $this->idEmploye = $value;
     }
 
     public function getNumero_permis()

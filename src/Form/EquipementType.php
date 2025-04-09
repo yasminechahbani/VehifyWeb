@@ -36,14 +36,14 @@ class EquipementType extends AbstractType
                 'placeholder' => 'Choisir un état',
                 'label' => 'État',
                 'required' => true,
-            ]);
-           /* ->add('employe', EntityType::class, [
+            ])
+           ->add('employe', EntityType::class, [
                 'class' => Employe::class,
                 'choice_label' => 'nom', // Display the employee's name
                 'placeholder' => 'Sélectionner un employé',
                 'label' => 'Employé',
                 'required' => true,
-            ])*/
+           ]);
         
     }
 

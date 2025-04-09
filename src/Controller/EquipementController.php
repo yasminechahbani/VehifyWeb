@@ -30,14 +30,14 @@ final class EquipementController extends AbstractController{
         $equipement = new Equipement();
         $form = $this->createForm(EquipementType::class, $equipement);
         $form->handleRequest($request);
-
+    
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($equipement);
             $entityManager->flush();
-
+    
             return $this->redirectToRoute('app_equipement_index', [], Response::HTTP_SEE_OTHER);
         }
-
+    
         return $this->render('equipement/new.html.twig', [
             'equipement' => $equipement,
             'form' => $form,

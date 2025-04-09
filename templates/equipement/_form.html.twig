@@ -31,7 +31,17 @@
                 {{ form_label(form.etat) }}
                 {{ form_errors(form.etat) }}
             </div>
+            <div class="form-floating mt-3">
+                {{ form_widget(form.employe, {'attr': {'class': 'form-select', 'placeholder': 'Employé'}}) }}
+                {{ form_label(form.employe) }}
+                {{ form_errors(form.employe) }}
+            </div>
         </div>
+        
+
+        <div>
+   
+
     </div>
 
     <div class="mt-4 text-end">
