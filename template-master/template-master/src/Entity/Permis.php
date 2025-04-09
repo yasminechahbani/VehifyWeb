@@ -23,11 +23,10 @@ class Permis
     #[Assert\NotBlank(message: "Le numéro de permis est obligatoire")]
     #[Assert\Length(
         max: 50,
-        min : 10,
+        min: 10,
         maxMessage: "Le numéro ne peut pas dépasser {{ limit }} caractères",
         minMessage: "Le numéro doit avoir au moins 10 caractères"
-
-)]
+    )]
     #[Assert\Regex(
         pattern: "/^[0-9]+$/",
         message: "Le numéro de permis ne doit contenir que des chiffres"
@@ -176,6 +175,19 @@ class Permis
                 $reservation->setIdPermis(null);
             }
         }
+        return $this;
+    }
+
+    private ?Quiz $qualifyingQuiz = null;
+
+    public function getQualifyingQuiz(): ?Quiz
+    {
+        return $this->qualifyingQuiz;
+    }
+
+    public function setQualifyingQuiz(?Quiz $quiz): self
+    {
+        $this->qualifyingQuiz = $quiz;
         return $this;
     }
 }

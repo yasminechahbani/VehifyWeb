@@ -93,4 +93,17 @@ class Quiz
 
         return $this;
     }
+    //added logic for jointure permis quiz//
+   /* private ?Permis $generatedPermis = null;
+
+    public function getGeneratedPermis(): ?Permis
+    {
+        return $this->generatedPermis;
+    }
+
+    public function setGeneratedPermis(?Permis $permis): self
+    {
+        $this->generatedPermis = $permis;
+        return $this;
+    }*/
 }

@@ -2,27 +2,6 @@
 
 {% block title %}Quiz Results{% endblock %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    <style>
-        .result-container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .rating-stars {
-            font-size: 24px;
-            cursor: pointer;
-        }
-        .rating-stars i {
-            color: #ddd;
-            transition: color 0.2s;
-        }
-        .rating-stars i.active {
-            color: #FFD700;
-        }
-    </style>
-{% endblock %}
-
 {% block body %}
     <div class="container py-5 result-container">
         <div class="card shadow">
@@ -37,6 +16,36 @@
                         <div class="alert alert-success mt-3">
                             <strong>Congratulations!</strong> You passed the quiz.
                         </div>
+
+                        {# Add permis generation section for successful quizzes #}
+                        {% if score >= 7 %}
+                            <div class="permis-generation mt-4">
+                                <h4 class="mb-3">Driver's License Eligibility</h4>
+                                <p>You've qualified for a driver's license!</p>
+
+                                <form method="post" action="{{ path('app_quiz_generate_permis', {'id': quiz.id}) }}" class="mt-3">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="category" class="form-label">License Category</label>
+                                                <select name="category" id="category" class="form-select" required>
+                                                    <option value="">Select a category</option>
+                                                    <option value="A">A - Motorcycle</option>
+                                                    <option value="B" selected>B - Car</option>
+                                                    <option value="C">C - Truck</option>
+                                                    <option value="D">D - Bus</option>
+                                                    <option value="E">E - Trailer</option>
+                                                </select>
+                                            </div>
+                                            <button type="submit" class="btn btn-success btn-lg">
+                                                <i class="fas fa-id-card me-2"></i> Generate Driver's License
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        {% endif %}
+
                     {% else %}
                         <div class="alert alert-danger mt-3">
                             <strong>Sorry!</strong> You failed the quiz. Please try again.
@@ -44,6 +53,7 @@
                     {% endif %}
                 </div>
 
+                {# Keep the existing rating section #}
                 <div class="rating-section mt-4">
                     <h4>Rate This Quiz</h4>
                     <p>Your feedback helps us improve!</p>
@@ -60,11 +70,11 @@
                 </div>
 
                 <div class="mt-5">
-                    <a href="{{ path('app_quiz_generate') }}" class="btn btn-success me-2">
-                        <i class="fa fa-refresh"></i> Take Another Quiz
+                    <a href="{{ path('app_quiz_generate') }}" class="btn btn-outline-primary me-2">
+                        <i class="fa fa-refresh me-2"></i> Take Another Quiz
                     </a>
-                    <a href="{{ path('app_quiz_index') }}" class="btn btn-outline-secondary">
-                        <i class="fa fa-list"></i> View All Quizzes
+                    <a href="{{ path('app_home') }}" class="btn btn-outline-secondary">
+                        <i class="fa fa-home me-2"></i> Return Home
                     </a>
                 </div>
             </div>
@@ -76,52 +86,53 @@
     {{ parent() }}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const stars = document.querySelectorAll('.rating-stars i');
+            // Existing star rating script
+            const stars = document.querySelectorAll('.rating-stars .fa-star');
             const ratingInput = document.getElementById('rating');
             const submitButton = document.getElementById('submitRating');
+
+            if (ratingInput.value) {
+                highlightStars(ratingInput.value);
+            }
 
             stars.forEach(star => {
                 star.addEventListener('mouseover', function() {
                     const rating = this.getAttribute('data-rating');
-
-                    // Highlight stars on hover
-                    stars.forEach(s => {
-                        if (s.getAttribute('data-rating') <= rating) {
-                            s.classList.add('active');
-                        } else {
-                            s.classList.remove('active');
-                        }
-                    });
+                    highlightStars(rating);
                 });
 
                 star.addEventListener('click', function() {
                     const rating = this.getAttribute('data-rating');
                     ratingInput.value = rating;
                     submitButton.disabled = false;
-
-                    // Set active stars permanently
-                    stars.forEach(s => {
-                        if (s.getAttribute('data-rating') <= rating) {
-                            s.classList.add('active');
-                        } else {
-                            s.classList.remove('active');
-                        }
-                    });
+                    highlightStars(rating);
                 });
             });
 
-            // Reset stars when mouse leaves the rating area
             document.querySelector('.rating-stars').addEventListener('mouseleave', function() {
-                const currentRating = ratingInput.value || 0;
+                highlightStars(ratingInput.value || 0);
+            });
 
-                stars.forEach(s => {
-                    if (s.getAttribute('data-rating') <= currentRating) {
-                        s.classList.add('active');
-                    } else {
-                        s.classList.remove('active');
+            function highlightStars(rating) {
+                stars.forEach(star => {
+                    const starRating = star.getAttribute('data-rating');
+                    star.classList.toggle('text-warning', starRating <= rating);
+                });
+            }
+
+            // Add confirmation for permis generation
+            const permisForm = document.querySelector('.permis-generation form');
+            if (permisForm) {
+                 permisForm.addEventListener('submit', function(e) {
+                    const category = document.getElementById('category').value;
+                    if (!category) {
+                        e.preventDefault();
+                        alert('Please select a license category');
+                    } else if (!confirm('Are you sure you want to generate your driver\'s license?')) {
+                        e.preventDefault();
                     }
                 });
-            });
+            }
         });
     </script>
 {% endblock %}

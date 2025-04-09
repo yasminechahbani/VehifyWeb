@@ -21,7 +21,6 @@ class QuizController extends AbstractController
             'quizzes' => $quizRepository->findAll(),
         ]);
     }
-
     #[Route('/generate', name: 'app_quiz_generate', methods: ['GET'])]
     public function generate(QuizApiClient $quizApiClient): Response
     {

@@ -26,4 +26,14 @@ class PermisRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+    //added logic for jointure permis quiz//
+
+    /*public function findPermisByQuiz(int $quizId): ?Permis
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.qualifying_quiz_id = :quizId') // This is a virtual reference
+            ->setParameter('quizId', $quizId)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }*/
 }
