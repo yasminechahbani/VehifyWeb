@@ -135,4 +135,9 @@ class User
 
     #[ORM\OneToMany(mappedBy: "id_user", targetEntity: Compte::class)]
     private Collection $comptes;
+
+    public function __toString(): string
+    {
+        return $this->nom.' '.$this->prenom;
+    }
 }

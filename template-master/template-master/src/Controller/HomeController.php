@@ -10,6 +10,7 @@ use App\Service\QuizApiClient;
 use App\Entity\Service;
 use App\Form\PermisType;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\QuizRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -112,7 +113,7 @@ class HomeController extends AbstractController
         return $this->redirectToRoute('app_about_permisAll');
     }
 //quiz//
-  /* #[Route('/quiz/generate', name: 'app_quiz_generate', methods: ['GET'])]
+   #[Route('/quiz/generate', name: 'app_quiz_generate', methods: ['GET'])]
     public function generate(QuizApiClient $quizApiClient): Response
     {
         try {
@@ -128,7 +129,7 @@ class HomeController extends AbstractController
         }
     }
 
-   #[Route('/quiz/submit', name: 'app_quiz_submit', methods: ['POST'])]
+   #[Route('/quiz/submit', name: 'app_quiz_submit')]
     public function submit(Request $request, EntityManagerInterface $entityManager): Response
     {
         $userAnswers = $request->request->all('answers');
@@ -187,7 +188,16 @@ class HomeController extends AbstractController
         }
 
         return $this->redirectToRoute('app_quiz_index');
-    }*/
+    }
+    #[Route('/check-user-quiz/{userId}', name: 'app_quiz_check_status', methods: ['GET'])]
+    public function checkQuizStatus(int $userId, QuizRepository $quizRepository): Response
+    {
+        $hasPassed = $quizRepository->hasPassedQuiz($userId);
+        
+        return $this->json([
+            'hasPassed' => $hasPassed
+        ]);
+    }
 //    //added logic for jointure permis quiz//
 
 

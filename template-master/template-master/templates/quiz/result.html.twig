@@ -23,26 +23,7 @@
                                 <h4 class="mb-3">Driver's License Eligibility</h4>
                                 <p>You've qualified for a driver's license!</p>
 
-                                <form method="post" action="{{ path('app_quiz_generate_permis', {'id': quiz.id}) }}" class="mt-3">
-                                    <div class="row justify-content-center">
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="category" class="form-label">License Category</label>
-                                                <select name="category" id="category" class="form-select" required>
-                                                    <option value="">Select a category</option>
-                                                    <option value="A">A - Motorcycle</option>
-                                                    <option value="B" selected>B - Car</option>
-                                                    <option value="C">C - Truck</option>
-                                                    <option value="D">D - Bus</option>
-                                                    <option value="E">E - Trailer</option>
-                                                </select>
-                                            </div>
-                                            <button type="submit" class="btn btn-success btn-lg">
-                                                <i class="fas fa-id-card me-2"></i> Generate Driver's License
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
+                               ///////////////////////////////////////:
                             </div>
                         {% endif %}
 

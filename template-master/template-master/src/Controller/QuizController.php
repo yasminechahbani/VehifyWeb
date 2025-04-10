@@ -10,10 +10,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+/*
 #[Route('/quiz')]
 class QuizController extends AbstractController
-{
+{/*
     #[Route('/', name: 'app_quiz_index', methods: ['GET'])]
     public function index(QuizRepository $quizRepository): Response
     {
@@ -98,4 +98,6 @@ class QuizController extends AbstractController
 
         return $this->redirectToRoute('app_quiz_index');
     }
-}
+
+    
+}*/

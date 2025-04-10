@@ -99,6 +99,11 @@
                 <div class="col-lg-8 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="card shadow">
                         <div class="card-body p-5">
+                            {% if app.user %}
+                                <div class="alert alert-warning mb-4">
+                                    <strong>Debug Info:</strong> User ID: {{ app.user.id }}
+                                </div>
+                            {% endif %}
                             <form method="post" action="{{ path('app_quiz_submit') }}">
                                 {% for question in questions %}
                                     <div class="question mb-4 pb-3 border-bottom">

@@ -22,15 +22,15 @@ class Permis
     #[ORM\Column(type: "string", length: 50)]
     #[Assert\NotBlank(message: "Le numéro de permis est obligatoire")]
     #[Assert\Length(
-        max: 50,
+        max: 10,
         min: 10,
         maxMessage: "Le numéro ne peut pas dépasser {{ limit }} caractères",
-        minMessage: "Le numéro doit avoir au moins 10 caractères"
+        minMessage: "Le numéro ne peut pas dépasser {{ limit }} caractères"
     )]
-    #[Assert\Regex(
-        pattern: "/^[0-9]+$/",
-        message: "Le numéro de permis ne doit contenir que des chiffres"
-    )]
+   /* #[Assert\Regex(
+        pattern: "/^[A-Z]{2}[0-9]{8}$/",
+        message: "Le numéro de permis doit contenir 2 lettres majuscules suivies de 8 chiffres"
+    )]*/
     private string $numero_permis;
 
     #[ORM\Column(type: "string", length: 20)]
@@ -65,6 +65,13 @@ class Permis
 
     #[ORM\OneToMany(mappedBy: "id_permis", targetEntity: Reservation::class)]
     private Collection $reservations;
+
+  /*  #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Quiz $idQuiz = null;*/
+
+    #[ORM\OneToOne(targetEntity: Quiz::class, inversedBy: "permis", cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(name: "idQuiz", referencedColumnName: "id")]
+    private ?Quiz $idQuiz = null;
 
     public function __construct()
     {
@@ -178,16 +185,17 @@ class Permis
         return $this;
     }
 
-    private ?Quiz $qualifyingQuiz = null;
-
-    public function getQualifyingQuiz(): ?Quiz
+    public function getIdQuiz(): ?Quiz
     {
-        return $this->qualifyingQuiz;
+        return $this->idQuiz;
     }
 
-    public function setQualifyingQuiz(?Quiz $quiz): self
+    public function setIdQuiz(?Quiz $idQuiz): static
     {
-        $this->qualifyingQuiz = $quiz;
+        $this->idQuiz = $idQuiz;
+
         return $this;
     }
+
+
 }

@@ -40,4 +40,18 @@ class QuizRepository extends ServiceEntityRepository
             $this->save($quiz);
         }
     }
+
+    public function hasPassedQuiz(int $userId): bool
+    {
+        $result = $this->createQueryBuilder('q')
+            ->select('COUNT(q.id)')
+            ->where('q.idUser = :userId')
+            ->andWhere('UPPER(q.statut) = UPPER(:status)')
+            ->setParameter('userId', $userId)
+            ->setParameter('status', 'Passed')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        return $result > 0;
+    }
 }

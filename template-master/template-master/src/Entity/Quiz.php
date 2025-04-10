@@ -22,9 +22,12 @@ class Quiz
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateTest = null;
-
-    #[ORM\Column]
+     #[ORM\Column]
     private ?int $idUser = null;
+
+    /*#[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?int $idUser = null;*/
 
     #[ORM\Column(nullable: true)]
     private ?int $rating = null;
@@ -93,17 +96,27 @@ class Quiz
 
         return $this;
     }
-    //added logic for jointure permis quiz//
-   /* private ?Permis $generatedPermis = null;
+    /*#[ORM\OneToOne(targetEntity: Permis::class, mappedBy: "quiz")]
+    private ?Permis $permis = null;
+   */
+    // In Quiz.php
+    #[ORM\OneToOne(targetEntity: Permis::class, mappedBy: "idQuiz")]
+    private ?Permis $permis = null;
 
-    public function getGeneratedPermis(): ?Permis
+    public function getPermis(): ?Permis
     {
-        return $this->generatedPermis;
+        return $this->permis;
     }
 
-    public function setGeneratedPermis(?Permis $permis): self
+    public function setPermis(?Permis $permis): self
     {
-        $this->generatedPermis = $permis;
+        $this->permis = $permis;
+
+        // Set the owning side of the relation if necessary
+        if ($permis !== null && $permis->getQuiz() !== $this) {
+            $permis->setQuiz($this);
+        }
+
         return $this;
-    }*/
+    }
 }
