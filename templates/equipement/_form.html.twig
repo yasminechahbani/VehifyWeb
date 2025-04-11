@@ -1,0 +1,38 @@
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ form_label(form.nom, 'Nom') }}
+                {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.nom) }} {# Ajoutez l'affichage des erreurs #}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.description, 'Description') }}
+                {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.description) }} {# Ajoutez l'affichage des erreurs #}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.categorie, 'Catégorie') }}
+                {{ form_widget(form.categorie, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.categorie) }} {# Ajoutez l'affichage des erreurs #}
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ form_label(form.etat, 'État') }}
+                {{ form_widget(form.etat, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.etat) }} {# Ajoutez l'affichage des erreurs #}
+            </div>
+             
+
+        </div>
+    </div>
+
+    <div class="card-action">
+        <button type="submit" class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
+        <a href="{{ path('app_employe_index') }}" class="btn btn-danger">Annuler</a>
+    </div>
+{{ form_end(form) }}

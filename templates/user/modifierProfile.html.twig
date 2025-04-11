@@ -1,0 +1,263 @@
+{% extends 'baseFhomePage.html.twig' %}
+{% set active_page = 'Edit' %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+<div class="">
+    <div class="">
+        <div class="">
+            <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card-header bg-primary text-white">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h3 class="h4 mb-0"><i class="fas fa-user-edit me-2"></i>Edit Profile</h3>
+                        <a href="{{ path('app_home') }}" class="btn btn-sm btn-outline-light">
+                            <i class="fas fa-home me-1"></i> Back to Home
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="card-body p-4">
+                    {{ form_start(form, {'attr': {'id': 'user-edit-form', 'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+
+        
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="user_nom" class="form-label">Last Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-transparent"><i class="fas fa-user"></i></span>
+                                    {{ form_widget(form.nom, {
+                                        'attr': {
+                                            'class': 'form-control',
+                                            'required': 'required',
+                                            'placeholder': 'Enter your last name'
+                                        }
+                                    }) }}
+                                </div>
+                                <div class="invalid-feedback">{{ form_errors(form.nom) }}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="user_prenom" class="form-label">First Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-transparent"><i class="fas fa-user"></i></span>
+                                    {{ form_widget(form.prenom, {
+                                        'attr': {
+                                            'class': 'form-control',
+                                            'required': 'required',
+                                            'placeholder': 'Enter your first name'
+                                        }
+                                    }) }}
+                                </div>
+                                <div class="invalid-feedback">{{ form_errors(form.prenom) }}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="user_email" class="form-label">Email Address</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-transparent"><i class="fas fa-envelope"></i></span>
+                            {{ form_widget(form.email, {
+                                'attr': {
+                                    'class': 'form-control',
+                                    'required': 'required',
+                                    'placeholder': 'Enter your email address'
+                                }
+                            }) }}
+                        </div>
+                        <div class="invalid-feedback">{{ form_errors(form.email) }}</div>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="user_mot_de_passe" class="form-label">Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-transparent"><i class="fas fa-lock"></i></span>
+                            {{ form_widget(form.mot_de_passe, {
+                                'attr': {
+                                    'class': 'form-control',
+                                    'placeholder': 'Enter new password (leave blank to keep current)'
+                                }
+                            }) }}
+                        </div>
+                        <div class="invalid-feedback">{{ form_errors(form.mot_de_passe) }}</div>
+                        <small class="text-muted mt-1"><i class="fas fa-info-circle me-1"></i>Leave blank to keep your current password</small>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="user_tel" class="form-label">Phone Number</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-transparent"><i class="fas fa-phone"></i></span>
+                            {{ form_widget(form.tel, {
+                                'attr': {
+                                    'class': 'form-control',
+                                    'required': 'required',
+                                    'placeholder': 'Enter your phone number'
+                                }
+                            }) }}
+                        </div>
+                        <div class="invalid-feedback">{{ form_errors(form.tel) }}</div>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="user_localisation" class="form-label">Location</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-transparent"><i class="fas fa-map-marker-alt"></i></span>
+                            {{ form_widget(form.localisation, {
+                                'attr': {
+                                    'class': 'form-control',
+                                    'required': 'required',
+                                    'placeholder': 'Enter your location'
+                                }
+                            }) }}
+                        </div>
+                        <div class="invalid-feedback">{{ form_errors(form.localisation) }}</div>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label class="form-label"><i class="fas fa-camera me-2"></i>Profile Picture</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-transparent"><i class="fas fa-image"></i></span>
+                            {{ form_widget(form.image, {
+                                'attr': {
+                                    'class': 'form-control',
+                                    'accept': 'image/*'
+                                }
+                            }) }}
+                        </div>
+                        <div class="invalid-feedback">{{ form_errors(form.image) }}</div>
+                        <small class="text-muted mt-1"><i class="fas fa-info-circle me-1"></i>Accepted formats: JPG, PNG, GIF (max. 5MB)</small>
+                    </div>
+
+                    <div class="d-grid gap-3 mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-save me-2"></i>Save Changes
+                        </button>
+                    </div>
+
+                    {{ form_end(form) }}
+                </div>
+                
+
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .input-group-text {
+            border-right: none;
+            transition: all 0.3s;
+        }
+        .form-control {
+            border-left: none;
+            padding-left: 5px;
+        }
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #ced4da;
+        }
+        .form-control:focus + .input-group-text {
+            border-color: #86b7fe;
+            color: #86b7fe;
+        }
+        .card {
+            border: none;
+            overflow: hidden;
+        }
+        .card-header {
+            padding: 1.5rem;
+        }
+        .card-footer {
+            border-top: 1px solid rgba(0,0,0,.05);
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#user-edit-form').validate({
+                rules: {
+                    'user[nom]': {
+                        required: true,
+                        minlength: 2
+                    },
+                    'user[prenom]': {
+                        required: true,
+                        minlength: 2
+                    },
+                    'user[email]': {
+                        required: true,
+                        email: true
+                    },
+                    'user[tel]': {
+                        required: true,
+                        pattern: /^[0-9+()\s\-]{8,20}$/
+                    },
+                    'user[localisation]': {
+                        required: true
+                    },
+                    'user[mot_de_passe]': {
+                        minlength: 8
+                    }
+                },
+                messages: {
+                    'user[nom]': {
+                        required: 'Please enter your last name',
+                        minlength: 'Last name must be at least 2 characters'
+                    },
+                    'user[prenom]': {
+                        required: 'Please enter your first name',
+                        minlength: 'First name must be at least 2 characters'
+                    },
+                    'user[email]': {
+                        required: 'Please enter your email address',
+                        email: 'Please enter a valid email address'
+                    },
+                    'user[tel]': {
+                        required: 'Please enter your phone number',
+                        pattern: 'Please enter a valid phone number'
+                    },
+                    'user[localisation]': {
+                        required: 'Please enter your location'
+                    },
+                    'user[mot_de_passe]': {
+                        minlength: 'Password must be at least 8 characters'
+                    }
+                },
+                errorElement: 'div',
+                errorClass: 'invalid-feedback',
+                highlight: function(element) {
+                    $(element).addClass('is-invalid').removeClass('is-valid');
+                    $(element).closest('.form-group').find('.input-group-text').css({
+                        'border-color': '#dc3545',
+                        'color': '#dc3545'
+                    });
+                },
+                unhighlight: function(element) {
+                    $(element).addClass('is-valid').removeClass('is-invalid');
+                    $(element).closest('.form-group').find('.input-group-text').css({
+                        'border-color': '#ced4da',
+                        'color': '#6c757d'
+                    });
+                },
+                errorPlacement: function(error, element) {
+                    error.insertAfter(element.closest('.form-group').find('.input-group'));
+                }
+            });
+        });
+    </script>
+{% endblock %}
