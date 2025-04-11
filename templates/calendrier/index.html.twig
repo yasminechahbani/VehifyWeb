@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% set active_page = 'calendrier' %}
+
+{% block title %}Calendrier{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css">
+    <style>
+        #calendar {
+            max-width: 1100px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .fc-toolbar-title {
+            color: #5a5c69;
+            font-size: 1.5rem !important;
+        }
+        .fc-button-primary {
+            background-color: #4e73df !important;
+            border-color: #4e73df !important;
+        }
+        .fc-button-primary:hover {
+            background-color: #2e59d9 !important;
+            border-color: #2653d4 !important;
+        }
+        .fc-button-primary:disabled {
+            background-color: #6c87e0 !important;
+            border-color: #6c87e0 !important;
+        }
+        .fc-daygrid-day.fc-day-today {
+            background-color: rgba(78, 115, 223, 0.1) !important;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h1 class="display-4">Calendrier</h1>
+                <p class="lead">Visualisez votre planning</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="calendar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales/fr.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                locale: 'fr',
+                timeZone: 'local',
+                editable: false,
+                selectable: true,
+                selectMirror: true,
+                dayMaxEvents: true,
+                weekNumbers: true,
+                navLinks: true,
+                businessHours: {
+                    daysOfWeek: [1, 2, 3, 4, 5, 6], // Lundi - Samedi
+                    startTime: '08:00',
+                    endTime: '18:00',
+                }
+                // Aucun événement n'est chargé pour le moment
+            });
+            
+            calendar.render();
+        });
+    </script>
+{% endblock %}
