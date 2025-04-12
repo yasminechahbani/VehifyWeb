@@ -24,11 +24,35 @@ class PermisType extends AbstractType
 {
     private QuizRepository $quizRepository;
     private EntityManagerInterface $entityManager;
+    private \App\Repository\PermisRepository $permisRepository;
 
-    public function __construct(QuizRepository $quizRepository, EntityManagerInterface $entityManager)
-    {
+    public function __construct(
+        QuizRepository $quizRepository, 
+        EntityManagerInterface $entityManager,
+        \App\Repository\PermisRepository $permisRepository
+    ) {
         $this->quizRepository = $quizRepository;
         $this->entityManager = $entityManager;
+        $this->permisRepository = $permisRepository;
+    }
+    
+    /**
+     * Get user IDs who already have a permis
+     * @return array Array of user IDs who already have a permis
+     */
+    private function getUsersWithPermis(): array
+    {
+        $qb = $this->entityManager->createQueryBuilder();
+        $qb->select('DISTINCT q.idUser')
+           ->from(Quiz::class, 'q')
+           ->join(Permis::class, 'p', 'WITH', 'p.idQuiz = q.id');
+        
+        $result = $qb->getQuery()->getResult();
+        
+        // Extract user IDs from the result
+        return array_map(function($item) {
+            return $item['idUser'];
+        }, $result);
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -36,7 +60,7 @@ class PermisType extends AbstractType
         // First, only add the user selection field
         $builder
             ->add('user_id', EntityType::class, [
-                'class' => User::class, // Adjust this to your actual User entity
+                'class' => User::class,
                 'mapped' => false,
                 'label' => 'Sélectionner un utilisateur',
                 'placeholder' => 'Choisissez un utilisateur',
@@ -45,7 +69,24 @@ class PermisType extends AbstractType
                 ],
                 'attr' => [
                     'class' => 'form-control user-selector',
-                ]
+                ],
+                'query_builder' => function() {
+                    // Get all users who already have a permis through their quiz
+                    $usersWithPermis = $this->getUsersWithPermis();
+                    
+                    // Create a query builder for User entity
+                    $qb = $this->entityManager->createQueryBuilder();
+                    $qb->select('u')
+                       ->from(User::class, 'u');
+                    
+                    // If there are users with permis, exclude them
+                    if (!empty($usersWithPermis)) {
+                        $qb->where($qb->expr()->notIn('u.id', ':userIds'))
+                           ->setParameter('userIds', $usersWithPermis);
+                    }
+                    
+                    return $qb;
+                }
             ]);
 
         // Add a hidden field to track if the user has a passed quiz
@@ -83,10 +124,10 @@ class PermisType extends AbstractType
 
             // User has passed quiz, continue with form submission
             $data['has_passed_quiz'] = 'true';
+            
+            // Set the quiz ID in the form data
+            $data['idQuiz'] = $quiz->getId();
             $event->setData($data);
-
-            // Set the quiz for the permis
-            $form->get('idQuiz')->setData($quiz);
         }
     }
 
@@ -122,7 +163,8 @@ class PermisType extends AbstractType
                 'label' => 'Numéro de permis',
                 'attr' => [
                     'placeholder' => 'Entrez le numéro du permis',
-                    'class' => 'form-control permis-field'
+                    'class' => 'form-control permis-field',
+                    'readonly' => $builder->getData() && $builder->getData()->getIdPermis() ? true : false
                 ]
             ])
             ->add('categorie', ChoiceType::class, [

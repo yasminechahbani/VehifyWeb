@@ -190,7 +190,7 @@ class Permis
         return $this->idQuiz;
     }
 
-    public function setIdQuiz(?Quiz $idQuiz): static
+    public function setIdQuiz(?Quiz $idQuiz): self
     {
         $this->idQuiz = $idQuiz;
 
