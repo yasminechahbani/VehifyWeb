@@ -1,0 +1,119 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Quiz Results{% endblock %}
+
+{% block body %}
+    <div class="container py-5 result-container">
+        <div class="card shadow">
+            <div class="card-body text-center">
+                <h1 class="mb-4">Quiz Results</h1>
+
+                <div class="result-box p-4 mb-4">
+                    <h2 class="mb-3">Your Score</h2>
+                    <h3 class="display-4">{{ score }}/{{ total }}</h3>
+
+                    {% if quiz.statut == 'Passed' %}
+                        <div class="alert alert-success mt-3">
+                            <strong>Congratulations!</strong> You passed the quiz.
+                        </div>
+
+                        {# Add permis generation section for successful quizzes #}
+                        {% if score >= 7 %}
+                            <div class="permis-generation mt-4">
+                                <h4 class="mb-3">Driver's License Eligibility</h4>
+                                <p>You've qualified for a driver's license!</p>
+
+                               ///////////////////////////////////////:
+                            </div>
+                        {% endif %}
+
+                    {% else %}
+                        <div class="alert alert-danger mt-3">
+                            <strong>Sorry!</strong> You failed the quiz. Please try again.
+                        </div>
+                    {% endif %}
+                </div>
+
+                {# Keep the existing rating section #}
+                <div class="rating-section mt-4">
+                    <h4>Rate This Quiz</h4>
+                    <p>Your feedback helps us improve!</p>
+
+                    <form id="ratingForm" method="post" action="{{ path('app_quiz_rate', {'id': quiz.id}) }}">
+                        <div class="rating-stars mb-3">
+                            {% for i in 1..5 %}
+                                <i class="fa fa-star" data-rating="{{ i }}"></i>
+                            {% endfor %}
+                        </div>
+                        <input type="hidden" name="rating" id="rating" value="">
+                        <button type="submit" class="btn btn-primary" id="submitRating" disabled>Submit Rating</button>
+                    </form>
+                </div>
+
+                <div class="mt-5">
+                    <a href="{{ path('app_quiz_generate') }}" class="btn btn-outline-primary me-2">
+                        <i class="fa fa-refresh me-2"></i> Take Another Quiz
+                    </a>
+                    <a href="{{ path('app_home') }}" class="btn btn-outline-secondary">
+                        <i class="fa fa-home me-2"></i> Return Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Existing star rating script
+            const stars = document.querySelectorAll('.rating-stars .fa-star');
+            const ratingInput = document.getElementById('rating');
+            const submitButton = document.getElementById('submitRating');
+
+            if (ratingInput.value) {
+                highlightStars(ratingInput.value);
+            }
+
+            stars.forEach(star => {
+                star.addEventListener('mouseover', function() {
+                    const rating = this.getAttribute('data-rating');
+                    highlightStars(rating);
+                });
+
+                star.addEventListener('click', function() {
+                    const rating = this.getAttribute('data-rating');
+                    ratingInput.value = rating;
+                    submitButton.disabled = false;
+                    highlightStars(rating);
+                });
+            });
+
+            document.querySelector('.rating-stars').addEventListener('mouseleave', function() {
+                highlightStars(ratingInput.value || 0);
+            });
+
+            function highlightStars(rating) {
+                stars.forEach(star => {
+                    const starRating = star.getAttribute('data-rating');
+                    star.classList.toggle('text-warning', starRating <= rating);
+                });
+            }
+
+            // Add confirmation for permis generation
+            const permisForm = document.querySelector('.permis-generation form');
+            if (permisForm) {
+                 permisForm.addEventListener('submit', function(e) {
+                    const category = document.getElementById('category').value;
+                    if (!category) {
+                        e.preventDefault();
+                        alert('Please select a license category');
+                    } else if (!confirm('Are you sure you want to generate your driver\'s license?')) {
+                        e.preventDefault();
+                    }
+                });
+            }
+        });
+    </script>
+{% endblock %}
