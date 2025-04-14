@@ -1,0 +1,56 @@
+<div class="card shadow-sm border-0 p-4">
+    <h4 class="mb-4 text-primary">
+        <i class="fa fa-edit"></i> Ajouter / Modifier un élément
+    </h4>
+
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="form-floating">
+                {{ form_widget(form.nom, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+                {{ form_label(form.nom) }}
+                {{ form_errors(form.nom) }}
+            </div>
+
+            <div class="form-floating mt-3">
+                {{ form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Description'}}) }}
+                {{ form_label(form.description) }}
+                {{ form_errors(form.description) }}
+            </div>
+
+            <div class="form-floating mt-3">
+                {{ form_widget(form.categorie, {'attr': {'class': 'form-control', 'placeholder': 'Catégorie'}}) }}
+                {{ form_label(form.categorie) }}
+                {{ form_errors(form.categorie) }}
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-floating">
+                {{ form_widget(form.etat, {'attr': {'class': 'form-control', 'placeholder': 'État'}}) }}
+                {{ form_label(form.etat) }}
+                {{ form_errors(form.etat) }}
+            </div>
+            <div class="form-floating mt-3">
+                {{ form_widget(form.employe, {'attr': {'class': 'form-select', 'placeholder': 'Employé'}}) }}
+                {{ form_label(form.employe) }}
+                {{ form_errors(form.employe) }}
+            </div>
+        </div>
+        
+
+        <div>
+   
+
+    </div>
+
+    <div class="mt-4 text-end">
+        <button type="submit" class="btn btn-success me-2">
+            <i class="fa fa-check"></i> {{ button_label|default('Enregistrer') }}
+        </button>
+        <a href="{{ path('app_employe_index') }}" class="btn btn-secondary">
+            <i class="fa fa-times"></i> Annuler
+        </a>
+    </div>
+    {{ form_end(form) }}
+</div>
