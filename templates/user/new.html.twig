@@ -1,0 +1,9 @@
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+    {{ include('user/_form.html.twig') }}
+
+    <a href="{{ path('app_user_index') }}">back to list</a>
+{% endblock %}
