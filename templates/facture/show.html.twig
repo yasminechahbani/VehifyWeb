@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% set active_page = 'home' %}
+
+{% block title %}Facture{% endblock %}
+
+{% block content %}
+    <div class="container-fluid py-5">
+        <div class="container pt-5 pb-3">
+            <h1 class="display-4 text-uppercase text-center mb-5">Détails de la Facture</h1>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h4>Informations de la facture</h4>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <th>Id</th>
+                                        <td>{{ facture.id }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Numéro de Facture</th>
+                                        <td>{{ facture.numeroFacture }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Date de Facturation</th>
+                                        <td>{{ facture.dateFacturation ? facture.dateFacturation|date('Y-m-d') : '' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Montant</th>
+                                        <td>{{ facture.montant }} €</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Description</th>
+                                        <td>{{ facture.description }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Statut</th>
+                                        <td>
+                                            {% if facture.statut == 'Payée' %}
+                                                <span class="badge bg-success">{{ facture.statut }}</span>
+                                            {% elseif facture.statut == 'En attente' %}
+                                                <span class="badge bg-warning">{{ facture.statut }}</span>
+                                            {% else %}
+                                                <span class="badge bg-secondary">{{ facture.statut }}</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{{ path('app_facture_index') }}" class="btn btn-secondary">Retour à la liste</a>
+                            <a href="{{ path('app_facture_edit', {'id': facture.id}) }}" class="btn btn-primary">Modifier</a>
+                            <a href="{{ path('app_facture_pdf', {'id': facture.id}) }}" class="btn btn-danger"><i class="fas fa-file-pdf"></i> Générer PDF</a>
+                            {# {{ include('facture/_delete_form.html.twig') }} #}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
