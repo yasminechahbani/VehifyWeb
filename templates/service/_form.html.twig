@@ -1,0 +1,91 @@
+{% set active_page = 'home' %}
+<div class="card">
+    <div class="card-header bg-primary text-white">
+        <h3>{{ form.vars.data.id_service ? 'Edit Service' : 'New Service' }}</h3>
+    </div>
+    <div class="card-body">
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'needs-validation'}}) }}
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="form-group mb-3">
+                    {{ form_label(form.nom, "Service Name", {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.nom, {'attr': {'class': 'invalid-feedback'}}) }}
+                </div>
+
+                <div class="form-group mb-3">
+                    {{ form_label(form.type, "Service Type", {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.type, {'attr': {'class': 'invalid-feedback'}}) }}
+                </div>
+
+                <div class="form-group mb-3">
+                    {{ form_label(form.prix, "Price (TND)", {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.prix, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.prix, {'attr': {'class': 'invalid-feedback'}}) }}
+                </div>
+
+                <div class="form-group mb-3">
+                    {{ form_label(form.gouvernerat, "Region", {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.gouvernerat, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.gouvernerat, {'attr': {'class': 'invalid-feedback'}}) }}
+                </div>
+
+                <div class="form-group mb-3">
+                    {{ form_label(form.numero, "Phone Number", {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.numero, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.numero, {'attr': {'class': 'invalid-feedback'}}) }}
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group mb-3">
+                    {{ form_label(form.heureOuverture, "Heure d'ouverture", {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.heureOuverture, {'attr': {'class': 'form-control' ~ (form_errors(form.heureOuverture) ? ' is-invalid' : '')}}) }}
+                    <div class="invalid-feedback">{{ form_errors(form.heureOuverture) }}</div>
+                </div>
+
+                <div class="form-group mb-3">
+                    {{ form_label(form.heureFermeture, "Heure de fermeture", {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.heureFermeture, {'attr': {'class': 'form-control' ~ (form_errors(form.heureFermeture) ? ' is-invalid' : '')}}) }}
+                    <div class="invalid-feedback">{{ form_errors(form.heureFermeture) }}</div>
+                </div>
+
+                <div class="form-group mb-3">
+                    {{ form_label(form.email, "Email", {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.email, {'attr': {'class': 'invalid-feedback'}}) }}
+                </div>
+
+                <div class="form-group mb-3">
+                    {{ form_label(form.description, "Description", {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.description, {'attr': {'class': 'invalid-feedback'}}) }}
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            {{ form_label(form.latitude, "Latitude", {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.latitude, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.latitude, {'attr': {'class': 'invalid-feedback'}}) }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            {{ form_label(form.longitude, "Longitude", {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.longitude, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.longitude, {'attr': {'class': 'invalid-feedback'}}) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+            <a href="{{ path('app_serve_index') }}" class="btn btn-secondary me-2">Back to list</a>
+            <button type="submit" class="btn btn-primary">{{ button_label|default('Save') }}</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+</div>

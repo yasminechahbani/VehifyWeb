@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% set active_page = 'home' %}
+
+{% block title %}Nouveau Service{% endblock %}
+
+{% block content %}
+    <div class="container-fluid py-5">
+        <div class="container">
+            <h1 class="display-4 mb-4">Créer un nouveau service</h1>
+            
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            
+            {{ include('service/_form.html.twig') }}
+        </div>
+    </div>
+{% endblock %}
