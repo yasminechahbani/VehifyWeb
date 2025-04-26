@@ -2,171 +2,197 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping as ORM;
+
+use App\Entity\CarteGrise;
 use Doctrine\Common\Collections\Collection;
+use App\Entity\Reservation;
 
-use App\Repository\VehiculeRepository;
-
-#[ORM\Entity(repositoryClass: VehiculeRepository::class)]
-#[ORM\Table(name: 'vehicule')]
+#[ORM\Entity]
 class Vehicule
 {
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private ?int $id_vehicule = null;
+    #[ORM\Column(type: "integer")]
+    private ?int $idVehicule=null;
 
-    public function getId_vehicule(): ?int
-    {
-        return $this->id_vehicule;
-    }
+    #[ORM\ManyToOne(targetEntity: CarteGrise::class, inversedBy: "vehicules")]
+    #[ORM\JoinColumn(name: "id_carte_grise", referencedColumnName: "id_carte_grise", onDelete: "CASCADE")]
+    private ?CarteGrise $carteGrise = null;
 
-    public function setId_vehicule(int $id_vehicule): self
+    #[ORM\Column(type: "string", length: 50)]
+    private ?string $marque=null;
+
+    #[ORM\Column(type: "string", length: 50)]
+    private ?string $modele=null;
+
+    #[ORM\Column(type: "string", length: 20)]
+    private ?string $immatriculation=null;
+
+    #[ORM\Column(type: "string", length: 50)]
+    private ?string $type=null;
+
+    #[ORM\Column(type: "string", length: 30)]
+    private ?string $couleur=null;
+
+    #[ORM\Column(type: "integer")]
+    private ?int $kilometrage=null;
+
+    #[ORM\Column(type: "string", length: 100)]
+    private ?string $statut=null;
+
+    // Getter de id_vehicule
+    public function setIdVehicule(int $idVehicule): static
     {
-        $this->id_vehicule = $id_vehicule;
+        $this->idVehicule = $idVehicule;
         return $this;
     }
 
-    #[ORM\Column(type: 'string', nullable: false)]
-    private ?string $marque = null;
 
-    public function getMarque(): ?string
+    public function getId_carte_grise()
+    {
+        return $this->id_carte_grise;
+    }
+
+    public function setId_carte_grise($value)
+    {
+        $this->id_carte_grise = $value;
+    }
+
+    public function getMarque()
     {
         return $this->marque;
     }
 
-    public function setMarque(string $marque): self
+    public function setMarque($value)
     {
-        $this->marque = $marque;
-        return $this;
+        $this->marque = $value;
     }
 
-    #[ORM\Column(type: 'string', nullable: false)]
-    private ?string $modele = null;
-
-    public function getModele(): ?string
+    public function getModele()
     {
         return $this->modele;
     }
 
-    public function setModele(string $modele): self
+    public function setModele($value)
     {
-        $this->modele = $modele;
-        return $this;
+        $this->modele = $value;
     }
 
-    #[ORM\Column(type: 'string', nullable: false)]
-    private ?string $immatriculation = null;
-
-    public function getImmatriculation(): ?string
+    public function getImmatriculation()
     {
         return $this->immatriculation;
     }
 
-    public function setImmatriculation(string $immatriculation): self
+    public function setImmatriculation($value)
     {
-        $this->immatriculation = $immatriculation;
-        return $this;
+        $this->immatriculation = $value;
     }
 
-    #[ORM\Column(type: 'string', nullable: false)]
-    private ?string $type = null;
-
-    public function getType(): ?string
+    public function getType()
     {
         return $this->type;
     }
 
-    public function setType(string $type): self
+    public function setType($value)
     {
-        $this->type = $type;
-        return $this;
+        $this->type = $value;
     }
 
-    #[ORM\Column(type: 'string', nullable: false)]
-    private ?string $couleur = null;
-
-    public function getCouleur(): ?string
+    public function getCouleur()
     {
         return $this->couleur;
     }
 
-    public function setCouleur(string $couleur): self
+    public function setCouleur($value)
     {
-        $this->couleur = $couleur;
-        return $this;
+        $this->couleur = $value;
     }
 
-    #[ORM\Column(type: 'integer', nullable: false)]
-    private ?int $kilometrage = null;
-
-    public function getKilometrage(): ?int
+    public function getKilometrage()
     {
         return $this->kilometrage;
     }
 
-    public function setKilometrage(int $kilometrage): self
+    public function setKilometrage($value)
     {
-        $this->kilometrage = $kilometrage;
-        return $this;
+        $this->kilometrage = $value;
     }
 
-    #[ORM\ManyToOne(targetEntity: CarteGrise::class, inversedBy: 'vehicules')]
-    #[ORM\JoinColumn(name: 'id_carte_grise', referencedColumnName: 'id_carte_grise')]
-    private ?CarteGrise $carteGrise = null;
+    public function getStatut()
+    {
+        return $this->statut;
+    }
+
+    public function setStatut($value)
+    {
+        $this->statut = $value;
+    }
+
+    #[ORM\OneToMany(mappedBy: "id_vehicule", targetEntity: Reservation::class)]
+    private Collection $reservations;
+
+    public function __construct()
+    {
+        $this->reservations = new ArrayCollection();
+    }
+
+        public function getReservations(): Collection
+        {
+            return $this->reservations;
+        }
+
+        public function addReservation(Reservation $reservation): self
+        {
+            if (!$this->reservations->contains($reservation)) {
+                $this->reservations[] = $reservation;
+                $reservation->setId_vehicule($this);
+            }
+
+            return $this;
+        }
+
+        public function removeReservation(Reservation $reservation): self
+        {
+            if ($this->reservations->removeElement($reservation)) {
+                // set the owning side to null (unless already changed)
+                if ($reservation->getId_vehicule() === $this) {
+                    $reservation->setId_vehicule(null);
+                }
+            }
+
+            return $this;
+        }
+
+        public function getIdVehicule(): ?int
+        {
+            return $this->idVehicule;
+        }
+
+
 
     public function getCarteGrise(): ?CarteGrise
     {
         return $this->carteGrise;
     }
 
-    public function setCarteGrise(?CarteGrise $carteGrise): self
+    public function setCarteGrise(?CarteGrise $carteGrise): static
     {
         $this->carteGrise = $carteGrise;
         return $this;
     }
 
-    #[ORM\Column(type: 'string', nullable: true)]
-    private ?string $statut = null;
-
-    public function getStatut(): ?string
+    // Méthode pour vérifier si un véhicule existe déjà pour cette carte grise
+    public function isCarteGriseDejaAssociee(EntityManagerInterface $entityManager): bool
     {
-        return $this->statut;
-    }
+        // Recherche un véhicule existant avec cette carte grise
+        $existingVehicule = $entityManager->getRepository(Vehicule::class)->findOneBy(['carteGrise' => $this->carteGrise]);
 
-    public function setStatut(?string $statut): self
-    {
-        $this->statut = $statut;
-        return $this;
-    }
-
-    #[ORM\OneToMany(targetEntity: Reservation::class, mappedBy: 'vehicule')]
-    private Collection $reservations;
-
-    /**
-     * @return Collection<int, Reservation>
-     */
-    public function getReservations(): Collection
-    {
-        if (!$this->reservations instanceof Collection) {
-            $this->reservations = new ArrayCollection();
-        }
-        return $this->reservations;
-    }
-
-    public function addReservation(Reservation $reservation): self
-    {
-        if (!$this->getReservations()->contains($reservation)) {
-            $this->getReservations()->add($reservation);
-        }
-        return $this;
-    }
-
-    public function removeReservation(Reservation $reservation): self
-    {
-        $this->getReservations()->removeElement($reservation);
-        return $this;
+        // Retourne true si un véhicule est trouvé, sinon false
+        return $existingVehicule !== null;
     }
 
 }

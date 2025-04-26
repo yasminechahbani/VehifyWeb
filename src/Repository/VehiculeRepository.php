@@ -13,14 +13,7 @@ class VehiculeRepository extends ServiceEntityRepository
         parent::__construct($registry, Vehicule::class);
     }
 
-    public function getStats(): array
-    {
-        return [
-            'total' => $this->count([]),
-            'types' => $this->countByType(),
-            'status_values' => $this->countByStatus()
-        ];
-    }
+
 
     public function count(array $criteria = []): int
     {
@@ -35,46 +28,7 @@ class VehiculeRepository extends ServiceEntityRepository
         return (int) $qb->getQuery()->getSingleScalarResult();
     }
 
-    public function countByType(): array
-    {
-        $results = $this->createQueryBuilder('v')
-            ->select('v.type, COUNT(v.idVehicule) as count')
-            ->groupBy('v.type')
-            ->getQuery()
-            ->getResult();
 
-        $types = [];
-        foreach ($results as $result) {
-            $types[$result['type']] = $result['count'];
-        }
-
-        return $types;
-    }
-
-    public function countByStatus(): array
-    {
-        // Supposons que 'statut' est le nom du champ dans votre entité Vehicule
-        $results = $this->createQueryBuilder('v')
-            ->select('v.statut, COUNT(v.idVehicule) as count')
-            ->groupBy('v.statut')
-            ->getQuery()
-            ->getResult();
-
-        // Adaptez selon vos statuts réels
-        $statusCounts = [
-            'Disponible' => 0,
-            'En service' => 0,
-            'En panne' => 0
-        ];
-
-        foreach ($results as $result) {
-            if (isset($statusCounts[$result['statut']])) {
-                $statusCounts[$result['statut']] = $result['count'];
-            }
-        }
-
-        return array_values($statusCounts);
-    }
 // src/Repository/VehiculeRepository.php
 
     public function countVehicules(): int
@@ -103,6 +57,16 @@ class VehiculeRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
+    public function findByCarteGriseId(int $carteGriseId): array
+    {
+        return $this->createQueryBuilder('v')
+            ->andWhere('v.id_carte_grise = :carteGriseId')
+            ->setParameter('carteGriseId', $carteGriseId)
+            ->orderBy('v.idVehicule', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
 
 
 

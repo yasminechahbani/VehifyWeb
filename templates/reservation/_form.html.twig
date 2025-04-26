@@ -1,34 +1,36 @@
-{% set active_page = 'home' %}
-<h1>Ajouter une réservation</h1>
+<div class="container">
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'needs-validation'}}) }}
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <div class="form-group">
+                {{ form_label(form.dateReservation, "Date de réservation", {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.dateReservation, {'attr': {'class': 'form-control datepicker'}}) }}
+                {{ form_errors(form.dateReservation, {'attr': {'class': 'invalid-feedback'}}) }}
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="form-group">
+                {{ form_label(form.heureReservation, "Heure de réservation", {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.heureReservation, {'attr': {'class': 'form-control timepicker'}}) }}
+                {{ form_errors(form.heureReservation, {'attr': {'class': 'invalid-feedback'}}) }}
+            </div>
+        </div>
+    </div>
 
-{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-<table>
-    <tr>
-        <td>{{ form_label(form.dateReservation, "Date de réservation") }}</td>
-        <td>{{ form_widget(form.dateReservation) }}</td>
-        <td>{{ form_errors(form.dateReservation) }}</td>
-    </tr>
-    <tr>
-        <td>{{ form_label(form.heureReservation, "Heure de réservation") }}</td>
-        <td>{{ form_widget(form.heureReservation) }}</td>
-        <td>{{ form_errors(form.heureReservation) }}</td>
-    </tr>
-    <tr>
-        <td>{{ form_label(form.userId, "Utilisateur") }}</td>
-        <td>{{ form_widget(form.userId) }}</td>
-        <td>{{ form_errors(form.userId) }}</td>
-    </tr>
-    <tr>
-        <td>{{ form_label(form.serviceId, "Service") }}</td>
-        <td>{{ form_widget(form.serviceId) }}</td>
-        <td>{{ form_errors(form.serviceId) }}</td>
-    </tr>
-    <tr>
-        <td>{{ form_label(form.vehiculeId, "Véhicule") }}</td>
-        <td>{{ form_widget(form.vehiculeId) }}</td>
-        <td>{{ form_errors(form.vehiculeId) }}</td>
-    </tr>
-</table>
+   
+        <div class="col-md-6 mb-3">
+            <div class="form-group">
+                {{ form_label(form.vehiculeId, "Véhicule", {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.vehiculeId, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.vehiculeId, {'attr': {'class': 'invalid-feedback'}}) }}
+            </div>
+        </div>
+    </div>
 
-<button class="btn">{{ button_label|default('Enregistrer') }}</button>
-{{ form_end(form) }}
+    <div class="text-center mt-4">
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-save"></i> {{ button_label|default('Enregistrer') }}
+        </button>
+    </div>
+    {{ form_end(form) }}
+</div>

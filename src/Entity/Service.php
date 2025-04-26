@@ -2,296 +2,370 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 
+use Doctrine\Common\Collections\Collection;
+use App\Entity\Reservation;
 use App\Repository\ServiceRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ServiceRepository::class)]
-#[ORM\Table(name: 'service')]
 class Service
 {
+
     #[ORM\Id]
+    #[ORM\Column(name: "id_service", type: "integer")]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private ?int $id_service = null;
+    private ?int $idService = null;
+
+    #[ORM\Column(type: "string", length: 100)]
+    #[Assert\NotBlank(message: "Le nom du service est obligatoire.")]
+    #[Assert\Length(
+        min: 3,
+        max: 100,
+        minMessage: "Le nom doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "Le nom ne peut pas dépasser {{ limit }} caractères."
+    )]
+    private ?string $nom = null;
+
+    #[ORM\Column(type: "string", length: 50)]
+    #[Assert\NotBlank(message: "Le type de service est obligatoire.")]
+    #[Assert\Length(
+        max: 50,
+        maxMessage: "Le type ne peut pas dépasser {{ limit }} caractères."
+    )]
+    private ?string $type = null;
+
+    #[ORM\Column(type: "string", length: 255, name: "heure_ouverture")]
+    #[Assert\NotBlank(message: "L'heure d'ouverture est obligatoire.")]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: "L'heure d'ouverture ne peut pas dépasser {{ limit }} caractères."
+    )]
+    private ?string $heureOuverture = null;
+
+    #[ORM\Column(type: "string", length: 255, name: "heure_fermeture")]
+    #[Assert\NotBlank(message: "L'heure de fermeture est obligatoire.")]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: "L'heure de fermeture ne peut pas dépasser {{ limit }} caractères."
+    )]
+    private ?string $heureFermeture = null;
+
+    #[ORM\Column(type: "float")]
+    #[Assert\NotBlank(message: "Le prix est obligatoire.")]
+    #[Assert\Positive(message: "Le prix doit être positif.")]
+    private ?float $prix = null;
+
+    #[ORM\Column(type: "string", length: 20)]
+    #[Assert\NotBlank(message: "Le gouvernorat est obligatoire.")]
+    #[Assert\Length(
+        max: 20,
+        maxMessage: "Le gouvernorat ne peut pas dépasser {{ limit }} caractères."
+    )]
+    private ?string $gouvernerat = null;
+
+    #[ORM\Column(type: "integer")]
+    #[Assert\NotBlank(message: "Le numéro de téléphone est obligatoire.")]
+    #[Assert\Positive(message: "Le numéro doit être positif.")]
+    private ?int $numero = null;
+
+    #[ORM\Column(type: "string", length: 255)]
+    #[Assert\NotBlank(message: "La description est obligatoire.")]
+    #[Assert\Length(
+        min: 10,
+        max: 255,
+        minMessage: "La description doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "La description ne peut pas dépasser {{ limit }} caractères."
+    )]
+    private ?string $description = null;
+
+    #[ORM\Column(type: "string", length: 255)]
+    #[Assert\NotBlank(message: "L'email est obligatoire.")]
+    #[Assert\Email(message: "L'email '{{ value }}' n'est pas valide.")]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: "L'email ne peut pas dépasser {{ limit }} caractères."
+    )]
+    private ?string $email = null;
+
+    #[ORM\Column(type: "float")]
+    #[Assert\NotBlank(message: "La latitude est obligatoire.")]
+    private ?float $latitude = null;
+
+    #[ORM\Column(type: "float")]
+    #[Assert\NotBlank(message: "La longitude est obligatoire.")]
+    private ?float $longitude = null;
 
     public function getId_service(): ?int
     {
-        return $this->id_service;
+        return $this->idService;
+    }
+    
+    public function getIdService(): ?int
+    {
+        return $this->idService;
     }
 
-    public function setId_service(int $id_service): self
+    public function setId_service(?int $value): self
     {
-        $this->id_service = $id_service;
+        $this->idService = $value;
         return $this;
     }
-
-    #[ORM\Column(type: 'string', nullable: false)]
-    private ?string $nom = null;
+    
+    public function setIdService(?int $value): self
+    {
+        $this->idService = $value;
+        return $this;
+    }
 
     public function getNom(): ?string
     {
         return $this->nom;
     }
 
-    public function setNom(string $nom): self
+    public function setNom(?string $value): self
     {
-        $this->nom = $nom;
+        $this->nom = $value;
         return $this;
     }
-
-    #[ORM\Column(type: 'string', nullable: false)]
-    private ?string $type = null;
 
     public function getType(): ?string
     {
         return $this->type;
     }
 
-    public function setType(string $type): self
+    public function setType(?string $value): self
     {
-        $this->type = $type;
+        $this->type = $value;
         return $this;
     }
-
-    #[ORM\Column(type: 'string', nullable: false)]
-    private ?string $heure_ouverture = null;
 
     public function getHeure_ouverture(): ?string
     {
-        return $this->heure_ouverture;
+        return $this->heureOuverture;
+    }
+    
+    public function getHeureOuverture(): ?string
+    {
+        return $this->heureOuverture;
     }
 
-    public function setHeure_ouverture(string $heure_ouverture): self
+    public function setHeure_ouverture(?string $value): self
     {
-        $this->heure_ouverture = $heure_ouverture;
+        $this->heureOuverture = $value;
         return $this;
     }
-
-    #[ORM\Column(type: 'string', nullable: false)]
-    private ?string $heure_fermeture = null;
+    
+    public function setHeureOuverture(?string $value): self
+    {
+        $this->heureOuverture = $value;
+        return $this;
+    }
 
     public function getHeure_fermeture(): ?string
     {
-        return $this->heure_fermeture;
+        return $this->heureFermeture;
+    }
+    
+    public function getHeureFermeture(): ?string
+    {
+        return $this->heureFermeture;
     }
 
-    public function setHeure_fermeture(string $heure_fermeture): self
+    public function setHeure_fermeture(?string $value): self
     {
-        $this->heure_fermeture = $heure_fermeture;
+        $this->heureFermeture = $value;
         return $this;
     }
-
-    #[ORM\Column(type: 'decimal', nullable: false)]
-    private ?float $prix = null;
+    
+    public function setHeureFermeture(?string $value): self
+    {
+        $this->heureFermeture = $value;
+        return $this;
+    }
 
     public function getPrix(): ?float
     {
         return $this->prix;
     }
 
-    public function setPrix(float $prix): self
+    public function setPrix(?float $value): self
     {
-        $this->prix = $prix;
+        $this->prix = $value;
         return $this;
     }
-
-    #[ORM\Column(type: 'string', nullable: false)]
-    private ?string $gouvernerat = null;
 
     public function getGouvernerat(): ?string
     {
         return $this->gouvernerat;
     }
 
-    public function setGouvernerat(string $gouvernerat): self
+    public function setGouvernerat(?string $value): self
     {
-        $this->gouvernerat = $gouvernerat;
+        $this->gouvernerat = $value;
         return $this;
     }
-
-    #[ORM\Column(type: 'integer', nullable: false)]
-    private ?int $numero = null;
 
     public function getNumero(): ?int
     {
         return $this->numero;
     }
 
-    public function setNumero(int $numero): self
+    public function setNumero(?int $value): self
     {
-        $this->numero = $numero;
+        $this->numero = $value;
         return $this;
     }
-
-    #[ORM\Column(type: 'string', nullable: false)]
-    private ?string $description = null;
 
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $value): self
     {
-        $this->description = $description;
+        $this->description = $value;
         return $this;
     }
-
-    #[ORM\Column(type: 'string', nullable: false)]
-    private ?string $email = null;
 
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(?string $value): self
     {
-        $this->email = $email;
+        $this->email = $value;
         return $this;
     }
-
-    #[ORM\Column(type: 'decimal', nullable: false)]
-    private ?float $latitude = null;
 
     public function getLatitude(): ?float
     {
         return $this->latitude;
     }
 
-    public function setLatitude(float $latitude): self
+    public function setLatitude(?float $value): self
     {
-        $this->latitude = $latitude;
+        $this->latitude = $value;
         return $this;
     }
-
-    #[ORM\Column(type: 'decimal', nullable: false)]
-    private ?float $longitude = null;
 
     public function getLongitude(): ?float
     {
         return $this->longitude;
     }
 
-    public function setLongitude(float $longitude): self
+    public function setLongitude(?float $value): self
     {
-        $this->longitude = $longitude;
+        $this->longitude = $value;
         return $this;
     }
 
-    #[ORM\OneToMany(targetEntity: Employe::class, mappedBy: 'service')]
+    #[ORM\OneToMany(mappedBy: "id_service", targetEntity: Employe::class)]
     private Collection $employes;
 
-    /**
-     * @return Collection<int, Employe>
-     */
-    public function getEmployes(): Collection
-    {
-        if (!$this->employes instanceof Collection) {
-            $this->employes = new ArrayCollection();
+        public function getEmployes(): Collection
+        {
+            return $this->employes;
         }
-        return $this->employes;
-    }
-
-    public function addEmploye(Employe $employe): self
-    {
-        if (!$this->getEmployes()->contains($employe)) {
-            $this->getEmployes()->add($employe);
+    
+        public function addEmploye(Employe $employe): self
+        {
+            if (!$this->employes->contains($employe)) {
+                $this->employes[] = $employe;
+                $employe->setId_service($this);
+            }
+    
+            return $this;
         }
-        return $this;
-    }
-
-    public function removeEmploye(Employe $employe): self
-    {
-        $this->getEmployes()->removeElement($employe);
-        return $this;
-    }
-
-    #[ORM\OneToMany(targetEntity: Permi::class, mappedBy: 'service')]
-    private Collection $permis;
-
-    /**
-     * @return Collection<int, Permi>
-     */
-    public function getPermis(): Collection
-    {
-        if (!$this->permis instanceof Collection) {
-            $this->permis = new ArrayCollection();
+    
+        public function removeEmploye(Employe $employe): self
+        {
+            if ($this->employes->removeElement($employe)) {
+                // set the owning side to null (unless already changed)
+                if ($employe->getId_service() === $this) {
+                    $employe->setId_service(null);
+                }
+            }
+    
+            return $this;
         }
-        return $this->permis;
-    }
 
-    public function addPermi(Permi $permi): self
-    {
-        if (!$this->getPermis()->contains($permi)) {
-            $this->getPermis()->add($permi);
-        }
-        return $this;
-    }
-
-    public function removePermi(Permi $permi): self
-    {
-        $this->getPermis()->removeElement($permi);
-        return $this;
-    }
-
-    #[ORM\OneToMany(targetEntity: Reservation::class, mappedBy: 'service')]
-    private Collection $reservations;
-
-    /**
-     * @return Collection<int, Reservation>
-     */
-    public function getReservations(): Collection
-    {
-        if (!$this->reservations instanceof Collection) {
-            $this->reservations = new ArrayCollection();
-        }
-        return $this->reservations;
-    }
-
-    public function addReservation(Reservation $reservation): self
-    {
-        if (!$this->getReservations()->contains($reservation)) {
-            $this->getReservations()->add($reservation);
-        }
-        return $this;
-    }
-
-    public function removeReservation(Reservation $reservation): self
-    {
-        $this->getReservations()->removeElement($reservation);
-        return $this;
-    }
-
-    #[ORM\OneToMany(targetEntity: Resultat::class, mappedBy: 'service')]
+    #[ORM\OneToMany(mappedBy: "id_service", targetEntity: Resultat::class)]
     private Collection $resultats;
 
     /**
-     * @return Collection<int, Resultat>
+     * @var Collection<int, Reservation>
      */
-    public function getResultats(): Collection
+    #[ORM\OneToMany(targetEntity: Reservation::class, mappedBy: 'serviceId')]
+    private Collection $reservations;
+
+    public function __construct()
     {
-        if (!$this->resultats instanceof Collection) {
-            $this->resultats = new ArrayCollection();
+        $this->employes = new ArrayCollection();
+        $this->resultats = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
+    }
+
+//     #[ORM\OneToMany(mappedBy: "service_id", targetEntity: Reservation::class)]
+//     private Collection $reservations;
+
+//         public function getReservations(): Collection
+//         {
+//             return $this->reservations;
+//         }
+    
+//         public function addReservation(Reservation $reservation): self
+//         {
+//             if (!$this->reservations->contains($reservation)) {
+//                 $this->reservations[] = $reservation;
+//                 $reservation->setService_id($this);
+//             }
+    
+//             return $this;
+//         }
+    
+//         public function removeReservation(Reservation $reservation): self
+//         {
+//             if ($this->reservations->removeElement($reservation)) {
+//                 // set the owning side to null (unless already changed)
+//                 if ($reservation->getService_id() === $this) {
+//                     $reservation->setService_id(null);
+//                 }
+//             }
+    
+//             return $this;
+//         }
+
+/**
+ * @return Collection<int, Reservation>
+ */
+public function getReservations(): Collection
+{
+    return $this->reservations;
+}
+
+public function addReservation(Reservation $reservation): static
+{
+    if (!$this->reservations->contains($reservation)) {
+        $this->reservations->add($reservation);
+        $reservation->setServiceId($this);
+    }
+
+    return $this;
+}
+
+public function removeReservation(Reservation $reservation): static
+{
+    if ($this->reservations->removeElement($reservation)) {
+        // set the owning side to null (unless already changed)
+        if ($reservation->getServiceId() === $this) {
+            $reservation->setServiceId(null);
         }
-        return $this->resultats;
     }
 
-    public function addResultat(Resultat $resultat): self
-    {
-        if (!$this->getResultats()->contains($resultat)) {
-            $this->getResultats()->add($resultat);
-        }
-        return $this;
-    }
-
-    public function removeResultat(Resultat $resultat): self
-    {
-        $this->getResultats()->removeElement($resultat);
-        return $this;
-    }
-
+    return $this;
+}
 }

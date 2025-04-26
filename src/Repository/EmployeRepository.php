@@ -54,4 +54,19 @@ class EmployeRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+    
+    public function ChercherEMPLOYEESelonEmailAndPassword(string $email, string $mot_de_passe): ?Employe
+    {
+        $employe = $this->createQueryBuilder('e')
+            ->where('e.email = :email')
+            ->setParameter('email', $email)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        if ($employe && $employe->getStatut() === $mot_de_passe) {
+            return $employe;
+        }
+
+        return null;
+    }
 }

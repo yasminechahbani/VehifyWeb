@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Equipement;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Proxies\__CG__\App\Entity\Employe;
 
 /**
  * @extends ServiceEntityRepository<Equipement>
@@ -29,4 +30,5 @@ class EquipementRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
+
 }

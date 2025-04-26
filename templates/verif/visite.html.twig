@@ -1,90 +1,271 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseEmployeFront.html.twig' %}
 
 {% block title %}Contrôle Technique{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
-        .check-item {
-            margin: 15px 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .container {
+            max-width: 1200px;
+            padding: 2rem;
         }
-        .check-item input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
+
+        h1 {
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 15px;
         }
-        .verification-image {
-            max-width: 100%;
-            margin: 20px 0;
+
+        h1:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, #3498db, #2ecc71);
         }
+
         .check-section {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
+            background: white;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            transition: transform 0.3s ease;
         }
+
+        .check-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .check-item {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .check-item:hover {
+            background: #ffffff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .check-item label {
+            font-weight: 500;
+            color: #34495e;
+            margin-left: 10px;
+            font-size: 1.1rem;
+        }
+
+        .form-select {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 10px;
+            transition: all 0.3s ease;
+            box-shadow: none;
+        }
+
+        .form-select:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 0.2rem rgba(52,152,219,0.25);
+        }
+
+        .form-select:disabled {
+            background-color: #f8f9fa;
+            opacity: 0.7;
+        }
+
+        input[type="checkbox"] {
+            width: 22px;
+            height: 22px;
+            border-radius: 5px;
+            cursor: pointer;
+            accent-color: #3498db;
+        }
+
+        .verification-image {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+            animation: zoomIn 1s ease-out;
+        }
+
+        .verification-image:hover {
+            transform: scale(1.02);
+        }
+
+
         .alert {
-            margin-bottom: 20px;
+            border-radius: 10px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            animation: slideInDown 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .is-invalid {
+            border-color: #dc3545;
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
         }
     </style>
 {% endblock %}
 
-{% block content %}
-<div class="container mt-5">
-    <h1 class="text-center mb-4">Contrôle technique : vérifiez pour rouler en toute sécurité</h1>
+{% block body %}
+<div class="container animate__animated animate__fadeIn">
+    <h1 class="text-center mb-4 animate__animated animate__slideInDown">Contrôle technique : vérifiez pour rouler en toute sécurité</h1>
     
     {% for message in app.flashes('success') %}
-        <div class="alert alert-success">
+        <div class="alert alert-success animate__animated animate__fadeInDown">
             {{ message }}
         </div>
     {% endfor %}
+
+    {% if error is defined and error %}
+        <div class="alert alert-danger animate__animated animate__fadeInDown">
+            {{ error }}
+        </div>
+    {% endif %}
     
     <div class="row">
         <div class="col-md-8 mx-auto">
-            <img src="{{ asset('/img/verif.jpg') }}" alt="Points de vérification" class="verification-image" style="width:100%;box-shadow:0 0 5px rgb(0,0,0,0.3);border-radius:12px;padding:4px;margin:0 0 20px 0">
+            <img src="{{ asset('/img/verif.jpg') }}" alt="Points de vérification" class="verification-image animate__animated animate__zoomIn" style="width:100%">
             
-            <div class="check-section">
+            <div class="check-section animate__animated animate__fadeInUp">
                 <form method="post" action="{{ path('app_verif_submit') }}" id="checkForm">
                     <div class="check-item">
                         <input type="checkbox" id="direction" name="checks[]" value="direction">
                         <label for="direction">Direction, Tableau de bord</label>
+                        <select class="form-select" name="direction_details">
+                            <option value="">Sélectionner un problème</option>
+                            <option value="bruit_anormal">Bruit anormal en tournant</option>
+                            <option value="volant_vibration">Volant qui vibre</option>
+                            <option value="temoins_lumineux">Témoins lumineux allumés</option>
+                            <option value="direction_assistee">Direction assistée défaillante</option>
+                            <option value="jeu_direction">Jeu dans la direction</option>
+                            <option value="volant_decentre">Volant décentré</option>
+                            <option value="compteur_defectueux">Compteur défectueux</option>
+                        </select>
                     </div>
 
                     <div class="check-item">
                         <input type="checkbox" id="visibilite" name="checks[]" value="visibilite">
                         <label for="visibilite">Visibilité</label>
+                        <select class="form-select" name="visibilite_details">
+                            <option value="">Sélectionner un problème</option>
+                            <option value="essuie_glaces">Essuie-glaces défectueux</option>
+                            <option value="lave_glace">Lave-glace ne fonctionne pas</option>
+                            <option value="pare_brise">Pare-brise fissuré</option>
+                            <option value="retroviseur">Rétroviseur endommagé</option>
+                            <option value="vitres_embuees">Vitres embuées</option>
+                            <option value="retroviseurs">Rétroviseurs endommagés</option>
+                        </select>
                     </div>
 
                     <div class="check-item">
                         <input type="checkbox" id="carrosserie" name="checks[]" value="carrosserie">
                         <label for="carrosserie">Carroserie</label>
+                        <select class="form-select" name="carrosserie_details">
+                            <option value="">Sélectionner un problème</option>
+                            <option value="rayures_bosses">Rayures / bosses</option>
+                            <option value="portieres">Portières mal alignées</option>
+                            <option value="rouille">Rouille visible</option>
+                            <option value="pare_chocs">Pare-chocs abîmé</option>
+                            <option value="capot_coffre">Capot/coffre difficile à fermer</option>
+                            <option value="deformation">Déformation structure</option>
+                            <option value="pieces_manquantes">Pièces manquantes</option>
+                        </select>
                     </div>
 
                     <div class="check-item">
                         <input type="checkbox" id="eclairage" name="checks[]" value="eclairage">
                         <label for="eclairage">Éclairage</label>
+                        <select class="form-select" name="eclairage_details">
+                            <option value="">Sélectionner un problème</option>
+                            <option value="feu_croisement">Feu de croisement HS</option>
+                            <option value="feu_stop">Feu de stop défectueux</option>
+                            <option value="clignotant">Clignotant ne fonctionne pas</option>
+                            <option value="phares">Phares mal réglés</option>
+                            <option value="eclairage_interieur">Éclairage intérieur HS</option>
+                            <option value="phares">Phares défectueux</option>
+                            <option value="feux_arriere">Feux arrière cassés</option>
+                            <option value="clignotants">Clignotants non fonctionnels</option>
+                        </select>
                     </div>
 
                     <div class="check-item">
-                        <input type="checkbox" id="huile" name="checks[]" value="huile">
+                        <input type="checkbox" id="huile" name="checks[]" value="huileDefault">
                         <label for="huile">Huile</label>
+                        <select class="form-select" name="huile_details">
+                            <option value="">Sélectionner un problème</option>
+                            <option value="niveau_bas">Niveau d'huile bas</option>
+                            <option value="fuite">Fuite d'huile</option>
+                            <option value="contamination">Huile contaminée</option>
+                        </select>
                     </div>
 
                     <div class="check-item">
                         <input type="checkbox" id="echappement" name="checks[]" value="echappement">
                         <label for="echappement">Échappement</label>
+                        <select class="form-select" name="echappement_details">
+                            <option value="">Sélectionner un problème</option>
+                            <option value="fumee">Fumée excessive</option>
+                            <option value="bruit">Bruit anormal (pot percé)</option>
+                            <option value="odeur">Mauvaise odeur</option>
+                            <option value="puissance">Perte de puissance</option>
+                            <option value="fuite">Fuite visible</option>
+                            <option value="catalyseur">Catalyseur défectueux</option>
+                            <option value="bruit">Niveau sonore élevé</option>
+                        </select>
                     </div>
 
                     <div class="check-item">
                         <input type="checkbox" id="freins" name="checks[]" value="freins">
                         <label for="freins">Freins</label>
+                        <select class="form-select" name="freins_details">
+                            <option value="">Sélectionner un problème</option>
+                            <option value="pedale">Pédale molle</option>
+                            <option value="grincement">Bruit de grincement</option>
+                            <option value="inefficace">Freinage inefficace</option>
+                            <option value="abs">Voyant ABS allumé</option>
+                            <option value="deviation">Voiture tire d'un côté</option>
+                        </select>
                     </div>
 
                     <div class="check-item">
                         <input type="checkbox" id="pneaumatique" name="checks[]" value="pneaumatique">
                         <label for="pneaumatique">Pneaumatique</label>
+                        <select class="form-select" name="pneaumatique_details" >
+                            <option value="">Sélectionner un problème</option>
+                            <option value="pression">Pression incorrecte</option>
+                            <option value="usure">Usure irrégulière</option>
+                            <option value="craquelures">Craquelures visibles</option>
+                            <option value="vibration">Vibration à haute vitesse</option>
+                            <option value="fuite">Fuite lente</option>
+                            <option value="lisses">Pneus lisses</option>
+                        </select>
                     </div>
 
                     <div class="text-center mt-4">
@@ -96,16 +277,135 @@
         </div>
     </div>
 </div>
+{% endblock %}
 
 {% block javascripts %}
+{{ parent() }}
 <script>
-document.getElementById('checkForm').addEventListener('submit', function(e) {
-    const checkboxes = this.querySelectorAll('input[type="checkbox"]:checked');
-    if (checkboxes.length === 0) {
-        e.preventDefault();
-        alert('Veuillez sélectionner au moins un élément à vérifier.');
-    }
-});
+    document.addEventListener('DOMContentLoaded', function() {
+        // Animate check items on scroll
+        const checkItems = document.querySelectorAll('.check-item');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        checkItems.forEach(item => {
+            observer.observe(item);
+        });
+
+        // Smooth checkbox animation
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const select = this.parentElement.querySelector('select');
+                if (this.checked) {
+                    select.style.display = 'block';
+                    select.classList.add('animate__animated', 'animate__fadeIn');
+                } else {
+                    select.classList.add('animate__animated', 'animate__fadeOut');
+                    setTimeout(() => {
+                        select.style.display = 'none';
+                        select.value = '';
+                        select.classList.remove('animate__animated', 'animate__fadeOut');
+                    }, 500);
+                }
+            });
+        });
+
+        // Initialize dropdowns on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.form-select').forEach(select => {
+                select.style.display = select.parentElement.querySelector('input[type="checkbox"]').checked ? 'block' : 'none';
+            });
+        });
+
+        // Form validation
+        document.getElementById('checkForm').addEventListener('submit', function(e) {
+            const checkboxes = this.querySelectorAll('input[type="checkbox"]:checked');
+            
+            // Collecter tous les détails
+            const details = {
+                direction: document.querySelector('[name="direction_details"]').value,
+                visibilite: document.querySelector('[name="visibilite_details"]').value,
+                carrosserie: document.querySelector('[name="carrosserie_details"]').value,
+                eclairage: document.querySelector('[name="eclairage_details"]').value,
+                huile: document.querySelector('[name="huile_details"]').value,
+                echappement: document.querySelector('[name="echappement_details"]').value,
+                freins: document.querySelector('[name="freins_details"]').value,
+                pneaumatique: document.querySelector('[name="pneaumatique_details"]').value
+            };
+        
+            // Ajouter des champs cachés pour chaque détail
+            Object.entries(details).forEach(([key, value]) => {
+                if (value) {
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = key;
+                    input.value = value;
+                    this.appendChild(input);
+                }
+            });
+        });
+
+            if (checkboxes.length === 0) {
+                e.preventDefault();
+                alert('Veuillez sélectionner au moins un élément à vérifier.');
+                return;
+            }
+
+            // Validate that selected checkboxes have a dropdown value
+            let valid = true;
+            checkboxes.forEach(checkbox => {
+                const select = checkbox.parentElement.querySelector('select');
+                if (!select.value) {
+                    valid = false;
+                    select.classList.add('is-invalid');
+                }
+            });
+
+            if (!valid) {
+                e.preventDefault();
+                alert('Veuillez sélectionner un problème pour chaque élément coché.');
+            }
+        });
+
+        // Position tracking functionality
+        let watchId;
+
+        function startTracking() {
+            if (navigator.geolocation) {
+                watchId = navigator.geolocation.watchPosition(function(position) {
+                    updatePosition(position.coords.latitude, position.coords.longitude);
+                }, function(error) {
+                    console.error("Error getting location: ", error);
+                }, {
+                    enableHighAccuracy: true,
+                    maximumAge: 30000,
+                    timeout: 27000
+                });
+            }
+        }
+
+        function updatePosition(lat, lng) {
+            fetch(`${window.location.pathname}?updatePosition=true&lat=${lat}&lng=${lng}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', startTracking);
+
+        window.addEventListener('beforeunload', function() {
+            if (watchId) {
+                navigator.geolocation.clearWatch(watchId);
+            }
+        });
 </script>
-{% endblock %}
 {% endblock %}

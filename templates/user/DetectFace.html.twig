@@ -1,0 +1,84 @@
+{% extends 'baseFlogin.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .face-container {
+            position: relative;
+            width: 640px;
+            margin: 0 auto;
+        }
+        #video, #canvas {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .controls {
+            margin-top: 520px;
+            text-align: center;
+        }
+        .face-box {
+            border: 2px solid #00ff00;
+            position: absolute;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12 text-center mb-4">
+                <h2>Face Recognition Login</h2>
+            </div>
+        </div>
+
+        <div class="face-container">
+            <video id="video" width="640" height="480" autoplay muted></video>
+            <canvas id="canvas" width="640" height="480"></canvas>
+            
+            <div class="controls">
+                <button id="captureButton" class="btn btn-primary me-2">Capture Face</button>
+                <button id="loginButton" class="btn btn-success">Login</button>
+                <button id="registerButton" class="btn btn-info ms-2">Register Face</button>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div id="status" class="alert" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="registerModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Register Your Face</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="registerForm">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveRegister">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdn.jsdelivr.net/npm/opencv.js"></script>
+    <script src="{{ asset('js/face-login.js') }}"></script>
+{% endblock %}

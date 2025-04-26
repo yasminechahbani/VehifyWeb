@@ -1,0 +1,3 @@
+<?php //c45fd184e19d0815b12f307d34cb4fd4
+
+return [PHP_INT_MAX, 'img/flags/us.png'];

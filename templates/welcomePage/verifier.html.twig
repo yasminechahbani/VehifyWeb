@@ -1,120 +1,136 @@
 
-{% extends 'base.html.twig' %}
+{% extends 'baseFlogin.html.twig' %}
+
 {% block stylesheets %}
     {{ parent() }}
     <style>
-        #wrapper {
-            font-family: Lato;
-            font-size: 1.5rem;
+        .verification-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .verification-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
             text-align: center;
-            box-sizing: border-box;
-            color: #333;
+        }
 
-            #dialog {
-                border: solid 1px #ccc;
-                margin: 10px auto;
-                padding: 20px 30px;
-                display: inline-block;
-                box-shadow: 0 0 4px #ccc;
-                background-color: #FAF8F8;
-                overflow: hidden;
-                position: relative;
-                max-width: 450px;
+        .verification-icon {
+            font-size: 48px;
+            color: #6e00ff;
+            margin-bottom: 20px;
+        }
 
-                h3 {
-                    margin: 0 0 10px;
-                    padding: 0;
-                    line-height: 1.25;
-                }
+        .verification-title {
+            color: #2d3748;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
 
-                span {
-                    font-size: 90%;
-                }
+        .verification-subtitle {
+            color: #718096;
+            margin-bottom: 30px;
+        }
 
-                #form {
-                    max-width: 240px;
-                    margin: 25px auto 0;
+        .otp-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
 
-                    input {
-                        margin: 0 5px;
-                        text-align: center;
-                        line-height: 80px;
-                        font-size: 50px;
-                        border: solid 1px #ccc;
-                        box-shadow: 0 0 5px #ccc inset;
-                        outline: none;
-                        width: 20%;
-                        transition: all .2s ease-in-out;
-                        border-radius: 3px;
+        .otp-input {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 24px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s;
+        }
 
-                        &:focus {
-                            border-color: purple;
-                            box-shadow: 0 0 5px purple inset;
-                        }
+        .otp-input:focus {
+            border-color: #6e00ff;
+            box-shadow: 0 0 0 3px rgba(110, 0, 255, 0.1);
+            outline: none;
+        }
 
-                        &::selection {
-                            background: transparent;
-                        }
-                    }
+        .verify-button {
+            background: #6e00ff;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+        }
 
-                    button {
-                        margin:  30px 0 50px;
-                        width: 100%;
-                        padding: 6px;
-                        background-color: #B85FC6;
-                        border: none;
-                        text-transform: uppercase;
-                    }
-                }
+        .verify-button:hover {
+            background: #5a00d0;
+            transform: translateY(-1px);
+        }
 
-                button {
-                    &.close {
-                        border: solid 2px;
-                        border-radius: 30px;
-                        line-height: 19px;
-                        font-size: 120%;
-                        width: 22px;
-                        position: absolute;
-                        right: 5px;
-                        top: 5px;
-                    }
-                }
+        .resend-link {
+            color: #6e00ff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
 
-                div {
-                    position: relative;
-                    z-index: 1;
-                }
+        .resend-link:hover {
+            color: #5a00d0;
+            text-decoration: underline;
+        }
 
-                img {
-                    position: absolute;
-                    bottom: -70px;
-                    right: -63px;
-                }
-            }
+        .timer {
+            color: #718096;
+            font-size: 14px;
+            margin-top: 10px;
         }
     </style>
 {% endblock %}
 
 {% block body %}
-    <div id="wrapper">
-        <div id="dialog">
-            <button class="close">×</button>
-            <h3>Please enter the 4-digit verification code we sent via SMS:</h3>
-            <span>(we want to make sure it's you before we contact our movers)</span>
+    <div class="verification-container">
+        <div class="verification-card">
+            <div class="verification-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h2 class="verification-title">Verify Your Account</h2>
+            <p class="verification-subtitle">We sent a verification code to your email. Please enter the code below.</p>
 
             <form id="formVerifier" action="{{ path('app_user_verifier') }}" method="post">
-                <input type="text" name="otp1" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" required />
-                <input type="text" name="otp2" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" required />
-                <input type="text" name="otp3" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" required />
-                <input type="text" name="otp4" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" required />
-                <button type="submit" class="btn btn-primary btn-embossed">Verify</button>
+                <div class="otp-container">
+                    <input type="text" name="otp1" class="otp-input" maxLength="1" pattern="[0-9]"  />
+                    <input type="text" name="otp2" class="otp-input" maxLength="1" pattern="[0-9]"  />
+                    <input type="text" name="otp3" class="otp-input" maxLength="1" pattern="[0-9]"  />
+                    <input type="text" name="otp4" class="otp-input" maxLength="1" pattern="[0-9]"  />
+                </div>
+
+                <button type="submit" class="verify-button">
+                    <i class="fas fa-check-circle me-2"></i>Verify Code
+                </button>
             </form>
 
             <div>
-                Didn't receive the code?<br />
-                <a href="">Send code again</a><br />
+                <p>Didn't receive the code?</p>
+                <a href="#" class="resend-link" id="resendCode">
+                    <i class="fas fa-redo-alt me-1"></i>Resend Code
+                </a>
+                <div class="timer" id="timer">Resend available in: <span>60</span>s</div>
             </div>
-            <img src="" alt="Verification" />
         </div>
     </div>
 {% endblock %}
@@ -123,49 +139,57 @@
     {{ parent() }}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            'use strict';
+            const inputs = document.querySelectorAll('.otp-input');
+            const form = document.getElementById('formVerifier');
+            const timer = document.querySelector('#timer span');
+            const resendButton = document.getElementById('resendCode');
+            let timeLeft = 60;
 
-            function goToNextInput(e) {
-                var key = e.which,
-                    t = e.target,
-                    sib = t.nextElementSibling;
+            // OTP Input Handling
+            inputs.forEach((input, index) => {
+                input.addEventListener('keyup', (e) => {
+                    if (e.key >= 0 && e.key <= 9) {
+                        if (index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    } else if (e.key === 'Backspace') {
+                        if (index > 0) {
+                            inputs[index - 1].focus();
+                        }
+                    }
+                });
 
-                if (key != 9 && (key < 48 || key > 57)) {
-                    e.preventDefault();
-                    return false;
+                input.addEventListener('focus', () => input.select());
+            });
+
+            // Timer for resend code
+            function updateTimer() {
+                if (timeLeft > 0) {
+                    timeLeft--;
+                    timer.textContent = timeLeft;
+                    setTimeout(updateTimer, 1000);
+                } else {
+                    resendButton.style.opacity = '1';
+                    resendButton.style.pointerEvents = 'auto';
+                    timer.parentElement.style.display = 'none';
                 }
-
-                if (key === 9) {
-                    return true;
-                }
-
-                if (!sib || sib.tagName !== 'INPUT') {
-                    sib = document.querySelector('input');
-                }
-                sib.select();
-                sib.focus();
             }
 
-            function onKeyDown(e) {
-                var key = e.which;
+            // Initialize timer
+            updateTimer();
 
-                if (key === 9 || (key >= 48 && key <= 57)) {
-                    return true;
-                }
-
+            // Resend code handling
+            resendButton.addEventListener('click', (e) => {
                 e.preventDefault();
-                return false;
-            }
-
-            function onFocus(e) {
-                e.target.select();
-            }
-
-            var inputs = document.querySelectorAll('input[type="text"]');
-            inputs.forEach(function(input) {
-                input.addEventListener('keyup', goToNextInput);
-                input.addEventListener('keydown', onKeyDown);
-                input.addEventListener('click', onFocus);
+                if (timeLeft === 0) {
+                    timeLeft = 60;
+                    timer.textContent = timeLeft;
+                    timer.parentElement.style.display = 'block';
+                    resendButton.style.opacity = '0.5';
+                    resendButton.style.pointerEvents = 'none';
+                    updateTimer();
+                    // Add your resend code logic here
+                }
             });
         });
     </script>

@@ -23,18 +23,6 @@ class ReservationType extends AbstractType
             ->add('heureReservation', null, [
                 'empty_data' => '',
             ])
-            ->add('userId', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'id',
-                'placeholder' => 'Sélectionner un utilisateur',
-                'empty_data' => '',
-            ])
-            ->add('serviceId', EntityType::class, [
-                'class' => Service::class,
-                'choice_label' => 'nom',
-                'placeholder' => 'Sélectionner un service',
-                'empty_data' => '',
-            ])
             ->add('vehiculeId', EntityType::class, [
                 'class' => Vehicule::class,
                 'choice_label' => 'immatriculation',

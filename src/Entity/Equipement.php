@@ -3,90 +3,51 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Employe;
+use Symfony\Component\Validator\Constraints as Assert;
 
-use App\Repository\EquipementRepository;
-
-#[ORM\Entity(repositoryClass: EquipementRepository::class)]
-#[ORM\Table(name: 'equipement')]
+#[ORM\Entity]
 class Equipement
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private ?int $id_equipement = null;
+    private ?int $idEquipement = null;
 
-    public function getId_equipement(): ?int
+   #[ORM\ManyToOne(targetEntity: Employe::class, inversedBy: "equipements")]
+#[ORM\JoinColumn(name: "id_employe", referencedColumnName: "id_employe", onDelete: "CASCADE")]
+private ?Employe $employe = null;
+
+
+    
+
+    
+    #[ORM\Column(type: "string", length: 100)]
+    #[Assert\NotBlank(message: "Le nom de l'équipement est obligatoire.")]
+    private string $nom;
+
+    #[ORM\Column(type: "text")]
+    #[Assert\NotBlank(message: "La description est obligatoire.")]
+    private string $description;
+
+    #[ORM\Column(type: "string", length: 50)]
+    #[Assert\NotBlank(message: "La catégorie est obligatoire.")]
+    private string $categorie;
+
+    #[ORM\Column(type: "string", length: 20)]
+    #[Assert\NotBlank(message: "L'état est obligatoire.")]
+    private string $etat;
+
+    public function getIdEquipement(): ?int
     {
-        return $this->id_equipement;
+        return $this->idEquipement;
     }
 
-    public function setId_equipement(int $id_equipement): self
+    public function setIdEquipement(int $value): self
     {
-        $this->id_equipement = $id_equipement;
+        $this->idEquipement = $value;
         return $this;
     }
-
-    #[ORM\Column(type: 'string', nullable: false)]
-    private ?string $nom = null;
-
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
-
-    public function setNom(string $nom): self
-    {
-        $this->nom = $nom;
-        return $this;
-    }
-
-    #[ORM\Column(type: 'text', nullable: true)]
-    private ?string $description = null;
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(?string $description): self
-    {
-        $this->description = $description;
-        return $this;
-    }
-
-    #[ORM\Column(type: 'string', nullable: false)]
-    private ?string $categorie = null;
-
-    public function getCategorie(): ?string
-    {
-        return $this->categorie;
-    }
-
-    public function setCategorie(string $categorie): self
-    {
-        $this->categorie = $categorie;
-        return $this;
-    }
-
-    #[ORM\Column(type: 'string', nullable: false)]
-    private ?string $etat = null;
-
-    public function getEtat(): ?string
-    {
-        return $this->etat;
-    }
-
-    public function setEtat(string $etat): self
-    {
-        $this->etat = $etat;
-        return $this;
-    }
-
-    #[ORM\ManyToOne(targetEntity: Employe::class, inversedBy: 'equipements')]
-    #[ORM\JoinColumn(name: 'id_employe', referencedColumnName: 'id_employe')]
-    private ?Employe $employe = null;
 
     public function getEmploye(): ?Employe
     {
@@ -99,4 +60,47 @@ class Equipement
         return $this;
     }
 
+    public function getNom(): string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $value): self
+    {
+        $this->nom = $value;
+        return $this;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $value): self
+    {
+        $this->description = $value;
+        return $this;
+    }
+
+    public function getCategorie(): string
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(string $value): self
+    {
+        $this->categorie = $value;
+        return $this;
+    }
+
+    public function getEtat(): string
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(string $value): self
+    {
+        $this->etat = $value;
+        return $this;
+    }
 }

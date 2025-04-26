@@ -8,6 +8,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -103,13 +104,11 @@ class VehiculeType extends AbstractType
             ])
             ->add('carteGrise', EntityType::class, [
                 'class' => CarteGrise::class,
+                'choices' => $options['carte_grise_choices'],
                 'choice_label' => 'numeroCarteGrise',
                 'label' => 'Carte Grise',
-                'constraints' => [
-                    new Assert\NotNull([
-                        'message' => 'La carte grise est obligatoire'
-                    ])
-                ]
+                'required' => true,
+                'placeholder' => 'Sélectionner une carte grise'
             ])
         ;
     }
@@ -118,7 +117,9 @@ class VehiculeType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Vehicule::class,
-            'attr' => ['novalidate' => 'novalidate'] // Désactive la validation HTML5
+            'attr' => ['novalidate' => 'novalidate'] ,
+            'carte_grise_choices' => []
+            // Désactive la validation HTML5
         ]);
     }
 }

@@ -91,10 +91,8 @@ class User
     #[ORM\Column(type: "string", length: 50)]
     private string $role;
 
-    #[ORM\Column(type: "string", length: 150)]
-
-    private string $image;
-
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
 
     public function getId()
     {
@@ -188,14 +186,15 @@ class User
         $this->role = $value;
     }
 
-    public function getImage()
+    public function getImage(): ?string
     {
         return $this->image;
     }
 
-    public function setImage($value)
+    public function setImage(?string $image): static
     {
-        $this->image = $value;
+        $this->image = $image;
+        return $this;
     }
 
     #[ORM\OneToMany(mappedBy: "id_user", targetEntity: Compte::class)]

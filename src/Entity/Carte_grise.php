@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use App\Entity\User;
 use Doctrine\Common\Collections\Collection;
 use App\Entity\Vehicule;
 
@@ -14,6 +15,10 @@ class Carte_grise
     #[ORM\Id]
     #[ORM\Column(type: "integer")]
     private int $id_carte_grise;
+
+        #[ORM\ManyToOne(targetEntity: User::class, inversedBy: "carte_grises")]
+    #[ORM\JoinColumn(name: 'id_user', referencedColumnName: 'id', onDelete: 'CASCADE')]
+    private User $id_user;
 
     #[ORM\Column(type: "string", length: 50)]
     private string $numero_carte_grise;
@@ -30,9 +35,6 @@ class Carte_grise
     #[ORM\Column(type: "date")]
     private \DateTimeInterface $date_expiration;
 
-    #[ORM\Column(type: "integer")]
-    private int $id_user;
-
     public function getId_carte_grise()
     {
         return $this->id_carte_grise;
@@ -41,6 +43,16 @@ class Carte_grise
     public function setId_carte_grise($value)
     {
         $this->id_carte_grise = $value;
+    }
+
+    public function getId_user()
+    {
+        return $this->id_user;
+    }
+
+    public function setId_user($value)
+    {
+        $this->id_user = $value;
     }
 
     public function getNumero_carte_grise()
@@ -91,16 +103,6 @@ class Carte_grise
     public function setDate_expiration($value)
     {
         $this->date_expiration = $value;
-    }
-
-    public function getId_user()
-    {
-        return $this->id_user;
-    }
-
-    public function setId_user($value)
-    {
-        $this->id_user = $value;
     }
 
     #[ORM\OneToMany(mappedBy: "id_carte_grise", targetEntity: Vehicule::class)]

@@ -33,8 +33,13 @@ class EmployeType extends AbstractType
             ->add('tel')
             ->add('salaire')
             ->add('statut')
-        
-            
+            ->add('idService', EntityType::class, [
+                'class' => Service::class,
+                'choice_label' => 'nom', // Display the employee's name
+                'placeholder' => 'Sélectionner un service',
+                'label' => 'service',
+                'required' => true,
+           ])  
         ;
     }
 

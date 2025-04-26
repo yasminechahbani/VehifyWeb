@@ -5,31 +5,93 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 
-use App\Repository\EmployeRepository;
-
-#[ORM\Entity(repositoryClass: EmployeRepository::class)]
-#[ORM\Table(name: 'employe')]
+#[ORM\Entity]
 class Employe
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private ?int $id_employe = null;
+    #[ORM\Column(name: "id_employe", type: "integer")]
+    private ?int $idEmploye = null;
 
-    public function getId_employe(): ?int
+    #[ORM\ManyToOne(targetEntity: Service::class, inversedBy: "employes")]
+    #[ORM\JoinColumn(name: 'id_service', referencedColumnName: 'id_service', onDelete: 'CASCADE')] // Corrected referencedColumnName
+    private ?Service $idService = null; // Corrected property name
+
+    #[ORM\Column(length: 50)]
+    #[Assert\NotBlank(message: "Le nom est obligatoire.")]
+    #[Assert\Regex(pattern: "/^[^\d]*$/", message: "Le nom ne doit pas contenir de chiffres.")]
+    private ?string $nom = null;
+
+    #[ORM\Column(length: 50)]
+    #[Assert\NotBlank(message: "Le prénom est obligatoire.")]
+    #[Assert\Regex(pattern: "/^[^\d]*$/", message: "Le prénom ne doit pas contenir de chiffres.")]
+    private ?string $prenom = null;
+
+    #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message: "L'email est obligatoire.")]
+    #[Assert\Email(message: "L'adresse email '{{ value }}' n'est pas valide.")]
+    private ?string $email = null;
+
+    #[ORM\Column(type: "integer")]
+    #[Assert\NotBlank(message: "L'âge est obligatoire.")]
+    #[Assert\Range(min: 18, max: 60, notInRangeMessage: "L'âge doit être entre {{ min }} et {{ max }} ans.")]
+    private ?int $age = null;
+
+    #[ORM\Column(type: "date")]
+    #[Assert\NotNull(message: "La date d'embauche est obligatoire.")]
+    #[Assert\Type(type: \DateTimeInterface::class, message: "La date doit être valide.")]
+    private ?\DateTimeInterface $dateEmbauche = null;
+
+    #[ORM\Column(length: 50)]
+    #[Assert\NotBlank(message: "Le poste est obligatoire.")]
+    #[Assert\Regex(pattern: "/^[^\d]*$/", message: "Le poste ne doit pas contenir de chiffres.")]
+    private ?string $poste = null;
+
+    #[ORM\Column(length: 20)]
+    #[Assert\NotBlank(message: "Le numéro de téléphone est obligatoire.")]
+    #[Assert\Regex(pattern: "/^\+?[0-9]{8,15}$/", message: "Le numéro de téléphone est invalide.")]
+    private ?string $tel = null;
+
+    #[ORM\Column(type: "float")]
+    #[Assert\NotBlank(message: "Le salaire est obligatoire.")]
+    #[Assert\Positive(message: "Le salaire doit être un nombre positif.")]
+    private ?float $salaire = null;
+
+    #[ORM\Column(length: 20)]
+    #[Assert\NotBlank(message: "Le Mot de passe est obligatoire.")]
+    private ?string $statut = null;
+
+    #[ORM\OneToMany(mappedBy: "employe", targetEntity: Equipement::class)]
+    private Collection $equipements;
+
+    public function __construct()
     {
-        return $this->id_employe;
+        $this->equipements = new ArrayCollection();
     }
 
-    public function setId_employe(int $id_employe): self
+    public function getIdEmploye(): ?int
     {
-        $this->id_employe = $id_employe;
+        return $this->idEmploye;
+    }
+
+    public function setIdEmploye(?int $idEmploye): self
+    {
+        $this->idEmploye = $idEmploye;
         return $this;
     }
 
-    #[ORM\Column(type: 'string', nullable: false)]
-    private ?string $nom = null;
+    public function getIdService(): ?Service
+    {
+        return $this->idService; // Corrected getter name
+    }
+
+    public function setIdService(?Service $idService): self // Corrected setter name
+    {
+        $this->idService = $idService; // Corrected property name
+        return $this;
+    }
 
     public function getNom(): ?string
     {
@@ -42,9 +104,6 @@ class Employe
         return $this;
     }
 
-    #[ORM\Column(type: 'string', nullable: false)]
-    private ?string $prenom = null;
-
     public function getPrenom(): ?string
     {
         return $this->prenom;
@@ -55,9 +114,6 @@ class Employe
         $this->prenom = $prenom;
         return $this;
     }
-
-    #[ORM\Column(type: 'string', nullable: false)]
-    private ?string $email = null;
 
     public function getEmail(): ?string
     {
@@ -70,9 +126,6 @@ class Employe
         return $this;
     }
 
-    #[ORM\Column(type: 'integer', nullable: false)]
-    private ?int $age = null;
-
     public function getAge(): ?int
     {
         return $this->age;
@@ -84,22 +137,16 @@ class Employe
         return $this;
     }
 
-    #[ORM\Column(type: 'date', nullable: false)]
-    private ?\DateTimeInterface $date_embauche = null;
-
-    public function getDate_embauche(): ?\DateTimeInterface
+    public function getDateEmbauche(): ?\DateTimeInterface
     {
-        return $this->date_embauche;
+        return $this->dateEmbauche;
     }
 
-    public function setDate_embauche(\DateTimeInterface $date_embauche): self
+    public function setDateEmbauche(?\DateTimeInterface $dateEmbauche): self
     {
-        $this->date_embauche = $date_embauche;
+        $this->dateEmbauche = $dateEmbauche;
         return $this;
     }
-
-    #[ORM\Column(type: 'string', nullable: false)]
-    private ?string $poste = null;
 
     public function getPoste(): ?string
     {
@@ -112,9 +159,6 @@ class Employe
         return $this;
     }
 
-    #[ORM\Column(type: 'string', nullable: false)]
-    private ?string $tel = null;
-
     public function getTel(): ?string
     {
         return $this->tel;
@@ -125,9 +169,6 @@ class Employe
         $this->tel = $tel;
         return $this;
     }
-
-    #[ORM\Column(type: 'decimal', nullable: false)]
-    private ?float $salaire = null;
 
     public function getSalaire(): ?float
     {
@@ -140,9 +181,6 @@ class Employe
         return $this;
     }
 
-    #[ORM\Column(type: 'string', nullable: false)]
-    private ?string $statut = null;
-
     public function getStatut(): ?string
     {
         return $this->statut;
@@ -154,89 +192,30 @@ class Employe
         return $this;
     }
 
-    #[ORM\ManyToOne(targetEntity: Service::class, inversedBy: 'employes')]
-    #[ORM\JoinColumn(name: 'id_service', referencedColumnName: 'id_service')]
-    private ?Service $service = null;
-
-    public function getService(): ?Service
-    {
-        return $this->service;
-    }
-
-    public function setService(?Service $service): self
-    {
-        $this->service = $service;
-        return $this;
-    }
-
-    #[ORM\Column(type: 'string', nullable: false)]
-    private ?string $role = null;
-
-    public function getRole(): ?string
-    {
-        return $this->role;
-    }
-
-    public function setRole(string $role): self
-    {
-        $this->role = $role;
-        return $this;
-    }
-
-    #[ORM\OneToMany(targetEntity: Equipement::class, mappedBy: 'employe')]
-    private Collection $equipements;
-
     /**
      * @return Collection<int, Equipement>
      */
     public function getEquipements(): Collection
     {
-        if (!$this->equipements instanceof Collection) {
-            $this->equipements = new ArrayCollection();
-        }
         return $this->equipements;
     }
 
     public function addEquipement(Equipement $equipement): self
     {
-        if (!$this->getEquipements()->contains($equipement)) {
-            $this->getEquipements()->add($equipement);
+        if (!$this->equipements->contains($equipement)) {
+            $this->equipements[] = $equipement;
+            $equipement->setEmploye($this);
         }
         return $this;
     }
 
     public function removeEquipement(Equipement $equipement): self
     {
-        $this->getEquipements()->removeElement($equipement);
-        return $this;
-    }
-
-    #[ORM\OneToMany(targetEntity: Permi::class, mappedBy: 'employe')]
-    private Collection $permis;
-
-    /**
-     * @return Collection<int, Permi>
-     */
-    public function getPermis(): Collection
-    {
-        if (!$this->permis instanceof Collection) {
-            $this->permis = new ArrayCollection();
-        }
-        return $this->permis;
-    }
-
-    public function addPermi(Permi $permi): self
-    {
-        if (!$this->getPermis()->contains($permi)) {
-            $this->getPermis()->add($permi);
+        if ($this->equipements->removeElement($equipement)) {
+            if ($equipement->getEmploye() === $this) {
+                $equipement->setEmploye(null);
+            }
         }
         return $this;
     }
-
-    public function removePermi(Permi $permi): self
-    {
-        $this->getPermis()->removeElement($permi);
-        return $this;
-    }
-
 }

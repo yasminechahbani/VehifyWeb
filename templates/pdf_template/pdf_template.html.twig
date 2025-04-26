@@ -36,40 +36,66 @@
         </tr>
         <tr>
             <td>Direction et Tableau de bord</td>
-            <td>{% if resultat.direction %}✓{% else %}✗{% endif %}</td>
+            <td>{% if resultat.direction %}VALIDÉ{% else %}NON VALIDÉ{% endif %}</td>
         </tr>
         <tr>
             <td>Visibilité</td>
-            <td>{% if resultat.visibilite %}✓{% else %}✗{% endif %}</td>
+            <td>{% if resultat.visibilite %}VALIDÉ{% else %}NON VALIDÉ{% endif %}</td>
         </tr>
         <tr>
             <td>Carrosserie</td>
-            <td>{% if resultat.carrosorie %}✓{% else %}✗{% endif %}</td>
+            <td>{% if resultat.carrosorie %}VALIDÉ{% else %}NON VALIDÉ{% endif %}</td>
         </tr>
         <tr>
             <td>Éclairage</td>
-            <td>{% if resultat.eclairage %}✓{% else %}✗{% endif %}</td>
+            <td>{% if resultat.eclairage %}VALIDÉ{% else %}NON VALIDÉ{% endif %}</td>
         </tr>
         <tr>
             <td>Huile</td>
-            <td>{% if resultat.huileDefault %}✓{% else %}✗{% endif %}</td>
+            <td>{% if resultat.huileDefault %}VALIDÉ{% else %}NON VALIDÉ{% endif %}</td>
         </tr>
         <tr>
             <td>Échappement</td>
-            <td>{% if resultat.echappement %}✓{% else %}✗{% endif %}</td>
+            <td>{% if resultat.echappement %}VALIDÉ{% else %}NON VALIDÉ{% endif %}</td>
         </tr>
         <tr>
             <td>Freinage</td>
-            <td>{% if resultat.freinage %}✓{% else %}✗{% endif %}</td>
+            <td>{% if resultat.freinage %}VALIDÉ{% else %}NON VALIDÉ{% endif %}</td>
         </tr>
         <tr>
             <td>Pneumatique</td>
-            <td>{% if resultat.pneaumatique %}✓{% else %}✗{% endif %}</td>
+            <td>{% if resultat.pneaumatique %}VALIDÉ{% else %}NON VALIDÉ{% endif %}</td>
         </tr>
     </table>
 
     <div class="status">
         <h3>Statut final: {{ resultat.status ? 'VALIDÉ' : 'NON VALIDÉ' }}</h3>
     </div>
+    <div class="details-section">
+    {% if rapport.direction %}
+        <p><strong>Direction :</strong> {{ rapport.direction }}</p>
+    {% endif %}
+    {% if rapport.visibilite %}
+        <p><strong>Visibilité :</strong> {{ rapport.visibilite }}</p>
+    {% endif %}
+    {% if rapport.carrosorie %}
+        <p><strong>Carrosserie :</strong> {{ rapport.carrosorie }}</p>
+    {% endif %}
+    {% if rapport.eclairage %}
+        <p><strong>Éclairage :</strong> {{ rapport.eclairage }}</p>
+    {% endif %}
+    {% if rapport.huileDefault %}
+        <p><strong>Huile :</strong> {{ rapport.huileDefault }}</p>
+    {% endif %}
+    {% if rapport.echappement %}
+        <p><strong>Échappement :</strong> {{ rapport.echappement }}</p>
+    {% endif %}
+    {% if rapport.freinage %}
+        <p><strong>Freins :</strong> {{ rapport.freinage }}</p>
+    {% endif %}
+    {% if rapport.pneaumatique %}
+        <p><strong>Pneumatiques :</strong> {{ rapport.pneaumatique }}</p>
+    {% endif %}
+</div>
 </body>
 </html>

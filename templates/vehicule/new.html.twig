@@ -1,0 +1,81 @@
+{% extends 'baseFhomePage.html.twig' %}
+{% set active_page = 'vehicules' %}
+
+{% block title %}Nouveau Véhicule{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        .flatpickr-input {
+            background-color: white;
+            cursor: pointer;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <!-- Affichage des messages flash -->
+    {% for message in app.flashes('vehicule_ajoute') %}
+        <div class="text-center mb-5">
+            <h4 class="text-success">Véhicule ajouté avec succès !</h4>
+
+            <!-- Affichage du loader -->
+
+        </div>
+    {% endfor %}
+
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header mb-5 p-0" style="background-image: url({{ asset('img/carousel-bg-1.jpg') }});">
+        <div class="container-fluid page-header-inner py-5">
+            <div class="container text-center">
+                <h1 class="display-3 text-white mb-3 animated slideInDown">Nouveau Véhicule</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center text-uppercase">
+                        <li class="breadcrumb-item"><a href="{{ path('app_home') }}">Accueil</a></li>
+                        <li class="breadcrumb-item"><a href="{{ path('app_vehicule_index') }}">Véhicules</a></li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">Nouveau</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+<div class="car-road-container">
+    <div class="car-road">
+        <div class="car">
+            <div class="car-top"><div class="window"></div></div>
+            <div class="car-base"></div>
+            <div class="wheel-left wheel"><div class="wheel-spike"></div><div class="wheel-center"></div></div>
+            <div class="wheel-right wheel"><div class="wheel-spike"></div><div class="wheel-center"></div></div>
+            <div class="head-light"></div>
+        </div>
+        <div class="road"></div>
+    </div>
+</div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="h3 mb-0">Enregistrer un nouveau véhicule</h1>
+                    </div>
+                    <div class="card-body">
+                        {{ include('vehicule/_form.html.twig') }}
+                    </div>
+                    <div class="card-footer text-end">
+                        <a href="{{ path('app_vehicule_index') }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-2"></i>Retour à la liste
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

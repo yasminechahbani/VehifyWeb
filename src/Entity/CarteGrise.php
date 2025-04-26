@@ -2,142 +2,159 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
-use App\Repository\CarteGriseRepository;
-
-#[ORM\Entity(repositoryClass: CarteGriseRepository::class)]
-#[ORM\Table(name: 'carte_grise')]
+#[ORM\Entity]
 class CarteGrise
 {
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private ?int $id_carte_grise = null;
+    #[ORM\Column(type: "integer")]
+    private ?int $idCarteGrise = null;
 
-    public function getId_carte_grise(): ?int
-    {
-        return $this->id_carte_grise;
-    }
+    #[ORM\Column(type: "string", length: 50)]
+    //#[Assert\NotBlank(message: "Le numéro de la carte grise est obligatoire")]
+    #[Assert\Length(max: 50, maxMessage: "Ne doit pas dépasser {{ limit }} caractères")]
+    private ?string $numeroCarteGrise = null;
 
-    public function setId_carte_grise(int $id_carte_grise): self
-    {
-        $this->id_carte_grise = $id_carte_grise;
-        return $this;
-    }
-
-    #[ORM\Column(type: 'string', nullable: false)]
-    private ?string $numero_carte_grise = null;
-
-    public function getNumero_carte_grise(): ?string
-    {
-        return $this->numero_carte_grise;
-    }
-
-    public function setNumero_carte_grise(string $numero_carte_grise): self
-    {
-        $this->numero_carte_grise = $numero_carte_grise;
-        return $this;
-    }
-
-    #[ORM\Column(type: 'string', nullable: false)]
+    #[ORM\Column(type: "string", length: 100)]
+   // #[Assert\NotBlank(message: "Le nom du propriétaire est obligatoire")]
+    #[Assert\Length(max: 100, maxMessage: "Ne doit pas dépasser {{ limit }} caractères")]
     private ?string $proprietaire = null;
+
+    #[ORM\Column(type: "string", length: 255)]
+    //#[Assert\NotBlank(message: "L'adresse du propriétaire est obligatoire")]
+    #[Assert\Length(max: 255, maxMessage: "Ne doit pas dépasser {{ limit }} caractères")]
+    private ?string $adresseProprietaire = null;
+
+    #[ORM\Column(type: "date")]
+    #[Assert\NotNull(message: "La date d'émission est obligatoire")]
+    private ?\DateTimeInterface $dateEmission = null;
+
+    #[ORM\Column(type: "date")]
+    #[Assert\NotNull(message: "La date d'expiration est obligatoire")]
+    #[Assert\GreaterThan(
+        propertyPath: "dateEmission",
+        message: "Doit être postérieure à la date d'émission"
+    )]
+    private ?\DateTimeInterface $dateExpiration = null;
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: "cartesGrises")]
+    #[ORM\JoinColumn(name: "id_user", referencedColumnName: "id", onDelete: "CASCADE")]
+    private ?User $user = null;
+
+    #[ORM\OneToMany(mappedBy: "carteGrise", targetEntity: Vehicule::class, cascade: ["persist", "remove"])]
+    private Collection $vehicules;
+    public function __construct()
+    {
+        $this->vehicules = new ArrayCollection();
+    }
+
+    // ---- Getters et Setters ----
+    public function setIdCarteGrise(int $idCarteGrise): static
+    {
+        $this->idCarteGrise = $idCarteGrise;
+        return $this;
+    }
+    public function getIdCarteGrise(): ?int
+    {
+        return $this->idCarteGrise;
+    }
+
+    public function getNumeroCarteGrise(): ?string
+    {
+        return $this->numeroCarteGrise;
+    }
+
+    public function setNumeroCarteGrise(string $numeroCarteGrise): static
+    {
+        $this->numeroCarteGrise = $numeroCarteGrise;
+        return $this;
+    }
 
     public function getProprietaire(): ?string
     {
         return $this->proprietaire;
     }
 
-    public function setProprietaire(string $proprietaire): self
+    public function setProprietaire(string $proprietaire): static
     {
         $this->proprietaire = $proprietaire;
         return $this;
     }
 
-    #[ORM\Column(type: 'string', nullable: false)]
-    private ?string $adresse_proprietaire = null;
-
-    public function getAdresse_proprietaire(): ?string
+    public function getAdresseProprietaire(): ?string
     {
-        return $this->adresse_proprietaire;
+        return $this->adresseProprietaire;
     }
 
-    public function setAdresse_proprietaire(string $adresse_proprietaire): self
+    public function setAdresseProprietaire(string $adresseProprietaire): static
     {
-        $this->adresse_proprietaire = $adresse_proprietaire;
+        $this->adresseProprietaire = $adresseProprietaire;
         return $this;
     }
 
-    #[ORM\Column(type: 'date', nullable: false)]
-    private ?\DateTimeInterface $date_emission = null;
-
-    public function getDate_emission(): ?\DateTimeInterface
+    public function getDateEmission(): ?\DateTimeInterface
     {
-        return $this->date_emission;
+        return $this->dateEmission;
     }
 
-    public function setDate_emission(\DateTimeInterface $date_emission): self
+    public function setDateEmission(?\DateTimeInterface $dateEmission): self
     {
-        $this->date_emission = $date_emission;
+        $this->dateEmission = $dateEmission;
         return $this;
     }
 
-    #[ORM\Column(type: 'date', nullable: false)]
-    private ?\DateTimeInterface $date_expiration = null;
-
-    public function getDate_expiration(): ?\DateTimeInterface
+    public function getDateExpiration(): ?\DateTimeInterface
     {
-        return $this->date_expiration;
+        return $this->dateExpiration;
     }
 
-    public function setDate_expiration(\DateTimeInterface $date_expiration): self
+    public function setDateExpiration(?\DateTimeInterface $dateExpiration): static
     {
-        $this->date_expiration = $date_expiration;
+        $this->dateExpiration = $dateExpiration;
         return $this;
     }
 
-    #[ORM\Column(type: 'integer', nullable: false)]
-    private ?int $id_user = null;
 
-    public function getId_user(): ?int
+    public function getUser(): ?User
     {
-        return $this->id_user;
+        return $this->user;
     }
 
-    public function setId_user(int $id_user): self
+    public function setUser(?User $user): static
     {
-        $this->id_user = $id_user;
+        $this->user = $user;
         return $this;
     }
 
-    #[ORM\OneToMany(targetEntity: Vehicule::class, mappedBy: 'carteGrise')]
-    private Collection $vehicules;
+    // ---- Gestion des véhicules ----
 
-    /**
-     * @return Collection<int, Vehicule>
-     */
     public function getVehicules(): Collection
     {
-        if (!$this->vehicules instanceof Collection) {
-            $this->vehicules = new ArrayCollection();
-        }
         return $this->vehicules;
     }
 
-    public function addVehicule(Vehicule $vehicule): self
+    public function addVehicule(Vehicule $vehicule): static
     {
-        if (!$this->getVehicules()->contains($vehicule)) {
-            $this->getVehicules()->add($vehicule);
+        if (!$this->vehicules->contains($vehicule)) {
+            $this->vehicules->add($vehicule);
+            $vehicule->setCarteGrise($this);
         }
         return $this;
     }
 
-    public function removeVehicule(Vehicule $vehicule): self
+    public function removeVehicule(Vehicule $vehicule): static
     {
-        $this->getVehicules()->removeElement($vehicule);
+        if ($this->vehicules->removeElement($vehicule)) {
+            if ($vehicule->getCarteGrise() === $this) {
+                $vehicule->setCarteGrise(null);
+            }
+        }
         return $this;
     }
-
 }

@@ -60,15 +60,8 @@ class CarteGrise1Type extends AbstractType
                 // Pas de contraintes NotBlank ici
                 'required' => false // Permet une valeur null
             ])
-            ->add('user', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'id',
-                'constraints' => [
-                    new Assert\NotNull(['message' => 'L\'utilisateur est obligatoire'])
-                ]
-            ]);
+          ;
     }
-
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

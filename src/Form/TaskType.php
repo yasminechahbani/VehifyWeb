@@ -14,4 +14,5 @@ class TaskType extends AbstractType
     {
         $builder->add("recaptcha", ReCaptchaType::class);
     }
+
 }

@@ -3,227 +3,188 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
+
+use App\Entity\Paiement;
 use Doctrine\Common\Collections\Collection;
+use App\Entity\Rapport;
 
-use App\Repository\ResultatRepository;
-
-#[ORM\Entity(repositoryClass: ResultatRepository::class)]
-#[ORM\Table(name: 'resultat')]
+#[ORM\Entity]
 class Resultat
 {
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private ?int $id_resultat = null;
+    #[ORM\Column(name: "id_resultat", type: "integer")]
+    private int $id_resultat;
 
-    public function getId_resultat(): ?int
+        #[ORM\ManyToOne(targetEntity: Service::class, inversedBy: "resultats")]
+    #[ORM\JoinColumn(name: 'id_service', referencedColumnName: 'id_service', onDelete: 'CASCADE')]
+    private Service $id_service;
+
+        #[ORM\ManyToOne(targetEntity: Paiement::class, inversedBy: "resultats")]
+    #[ORM\JoinColumn(name: 'id_paiement', referencedColumnName: 'id_paiement', onDelete: 'CASCADE')]
+    private Paiement $id_paiement;
+
+    #[ORM\Column(name: "direction", type: "boolean")]
+    private bool $direction;
+
+    #[ORM\Column(name: "visibilite", type: "boolean")]
+    private bool $visibilite;
+
+    #[ORM\Column(name: "huileDefault", type: "boolean")]
+    private bool $huileDefault;
+
+    #[ORM\Column(name: "pneaumatique", type: "boolean")]
+    private bool $pneaumatique;
+
+    #[ORM\Column(name: "echappement", type: "boolean")]
+    private bool $echappement;
+
+    #[ORM\Column(name: "carrosorie", type: "boolean")]
+    private bool $carrosorie;
+
+    #[ORM\Column(name: "eclairage", type: "boolean")]
+    private bool $eclairage;
+
+    #[ORM\Column(name: "freinage", type: "boolean")]
+    private bool $freinage;
+
+    #[ORM\Column(name: "vinSaisie", type: "string", length: 255)]
+    private string $vinSaisie;
+
+    #[ORM\Column(name: "status", type: "boolean")]
+    private bool $status;
+
+    public function getId_resultat()
     {
         return $this->id_resultat;
     }
 
-    public function setId_resultat(int $id_resultat): self
+    public function setId_resultat($value)
     {
-        $this->id_resultat = $id_resultat;
-        return $this;
+        $this->id_resultat = $value;
     }
 
-    #[ORM\ManyToOne(targetEntity: Service::class, inversedBy: 'resultats')]
-    #[ORM\JoinColumn(name: 'id_service', referencedColumnName: 'id_service')]
-    private ?Service $service = null;
-
-    public function getService(): ?Service
+    public function getId_service()
     {
-        return $this->service;
+        return $this->id_service;
     }
 
-    public function setService(?Service $service): self
+    public function setId_service($value)
     {
-        $this->service = $service;
-        return $this;
+        $this->id_service = $value;
     }
 
-    #[ORM\ManyToOne(targetEntity: Paiement::class, inversedBy: 'resultats')]
-    #[ORM\JoinColumn(name: 'id_paiement', referencedColumnName: 'id_paiement')]
-    private ?Paiement $paiement = null;
-
-    public function getPaiement(): ?Paiement
+    public function getId_paiement()
     {
-        return $this->paiement;
+        return $this->id_paiement;
     }
 
-    public function setPaiement(?Paiement $paiement): self
+    public function setId_paiement($value)
     {
-        $this->paiement = $paiement;
-        return $this;
+        $this->id_paiement = $value;
     }
 
-    #[ORM\Column(type: 'boolean', nullable: false)]
-    private ?bool $direction = null;
-
-    public function isDirection(): ?bool
+    public function getDirection()
     {
         return $this->direction;
     }
 
-    public function setDirection(bool $direction): self
+    public function setDirection($value)
     {
-        $this->direction = $direction;
-        return $this;
+        $this->direction = $value;
     }
 
-    #[ORM\Column(type: 'boolean', nullable: false)]
-    private ?bool $visibilite = null;
-
-    public function isVisibilite(): ?bool
+    public function getVisibilite()
     {
         return $this->visibilite;
     }
 
-    public function setVisibilite(bool $visibilite): self
+    public function setVisibilite($value)
     {
-        $this->visibilite = $visibilite;
-        return $this;
+        $this->visibilite = $value;
     }
 
-    #[ORM\Column(type: 'boolean', nullable: false)]
-    private ?bool $huileDefault = null;
-
-    public function isHuileDefault(): ?bool
+    public function getHuileDefault()
     {
         return $this->huileDefault;
     }
 
-    public function setHuileDefault(bool $huileDefault): self
+    public function setHuileDefault($value)
     {
-        $this->huileDefault = $huileDefault;
-        return $this;
+        $this->huileDefault = $value;
     }
 
-    #[ORM\Column(type: 'boolean', nullable: false)]
-    private ?bool $pneaumatique = null;
-
-    public function isPneaumatique(): ?bool
+    public function getPneaumatique()
     {
         return $this->pneaumatique;
     }
 
-    public function setPneaumatique(bool $pneaumatique): self
+    public function setPneaumatique($value)
     {
-        $this->pneaumatique = $pneaumatique;
-        return $this;
+        $this->pneaumatique = $value;
     }
 
-    #[ORM\Column(type: 'boolean', nullable: false)]
-    private ?bool $echappement = null;
-
-    public function isEchappement(): ?bool
+    public function getEchappement()
     {
         return $this->echappement;
     }
 
-    public function setEchappement(bool $echappement): self
+    public function setEchappement($value)
     {
-        $this->echappement = $echappement;
-        return $this;
+        $this->echappement = $value;
     }
 
-    #[ORM\Column(type: 'boolean', nullable: false)]
-    private ?bool $carrosorie = null;
-
-    public function isCarrosorie(): ?bool
+    public function getCarrosorie()
     {
         return $this->carrosorie;
     }
 
-    public function setCarrosorie(bool $carrosorie): self
+    public function setCarrosorie($value)
     {
-        $this->carrosorie = $carrosorie;
-        return $this;
+        $this->carrosorie = $value;
     }
 
-    #[ORM\Column(type: 'boolean', nullable: false)]
-    private ?bool $eclairage = null;
-
-    public function isEclairage(): ?bool
+    public function getEclairage()
     {
         return $this->eclairage;
     }
 
-    public function setEclairage(bool $eclairage): self
+    public function setEclairage($value)
     {
-        $this->eclairage = $eclairage;
-        return $this;
+        $this->eclairage = $value;
     }
 
-    #[ORM\Column(type: 'boolean', nullable: false)]
-    private ?bool $freinage = null;
-
-    public function isFreinage(): ?bool
+    public function getFreinage()
     {
         return $this->freinage;
     }
 
-    public function setFreinage(bool $freinage): self
+    public function setFreinage($value)
     {
-        $this->freinage = $freinage;
-        return $this;
+        $this->freinage = $value;
     }
 
-    #[ORM\Column(type: 'string', nullable: false)]
-    private ?string $vinSaisie = null;
-
-    public function getVinSaisie(): ?string
+    public function getVinSaisie()
     {
         return $this->vinSaisie;
     }
 
-    public function setVinSaisie(string $vinSaisie): self
+    public function setVinSaisie($value)
     {
-        $this->vinSaisie = $vinSaisie;
-        return $this;
+        $this->vinSaisie = $value;
     }
 
-    #[ORM\Column(type: 'boolean', nullable: true)]
-    private ?bool $status = null;
-
-    public function isStatus(): ?bool
+    public function getStatus()
     {
         return $this->status;
     }
 
-    public function setStatus(?bool $status): self
+    public function setStatus($value)
     {
-        $this->status = $status;
-        return $this;
+        $this->status = $value;
     }
 
-    #[ORM\OneToMany(targetEntity: Rapport::class, mappedBy: 'resultat')]
+    #[ORM\OneToMany(mappedBy: "id_resultat", targetEntity: Rapport::class)]
     private Collection $rapports;
-
-    /**
-     * @return Collection<int, Rapport>
-     */
-    public function getRapports(): Collection
-    {
-        if (!$this->rapports instanceof Collection) {
-            $this->rapports = new ArrayCollection();
-        }
-        return $this->rapports;
-    }
-
-    public function addRapport(Rapport $rapport): self
-    {
-        if (!$this->getRapports()->contains($rapport)) {
-            $this->getRapports()->add($rapport);
-        }
-        return $this;
-    }
-
-    public function removeRapport(Rapport $rapport): self
-    {
-        $this->getRapports()->removeElement($rapport);
-        return $this;
-    }
-
 }

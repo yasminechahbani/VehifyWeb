@@ -3,86 +3,77 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 
-use App\Repository\CompteRepository;
+use App\Entity\User;
 
-#[ORM\Entity(repositoryClass: CompteRepository::class)]
-#[ORM\Table(name: 'compte')]
+#[ORM\Entity]
 class Compte
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private ?int $id = null;
 
-    public function getId(): ?int
+    #[ORM\Id]
+    #[ORM\Column(type: "integer")]
+    private int $id;
+
+        #[ORM\ManyToOne(targetEntity: User::class, inversedBy: "comptes")]
+    #[ORM\JoinColumn(name: 'id_user', referencedColumnName: 'id', onDelete: 'CASCADE')]
+    private User $id_user;
+
+    #[ORM\Column(type: "string", length: 255)]
+    private string $mot_de_passe;
+
+    #[ORM\Column(type: "string", length: 255)]
+    private string $image;
+
+    #[ORM\Column(type: "string", length: 255)]
+    private string $email;
+
+    public function getId()
     {
         return $this->id;
     }
 
-    public function setId(int $id): self
+    public function setId($value)
     {
-        $this->id = $id;
-        return $this;
+        $this->id = $value;
     }
 
-    #[ORM\Column(type: 'string', nullable: false)]
-    private ?string $mot_de_passe = null;
+    public function getId_user()
+    {
+        return $this->id_user;
+    }
 
-    public function getMot_de_passe(): ?string
+    public function setId_user($value)
+    {
+        $this->id_user = $value;
+    }
+
+    public function getMot_de_passe()
     {
         return $this->mot_de_passe;
     }
 
-    public function setMot_de_passe(string $mot_de_passe): self
+    public function setMot_de_passe($value)
     {
-        $this->mot_de_passe = $mot_de_passe;
-        return $this;
+        $this->mot_de_passe = $value;
     }
 
-    #[ORM\Column(type: 'string', nullable: true)]
-    private ?string $image = null;
-
-    public function getImage(): ?string
+    public function getImage()
     {
         return $this->image;
     }
 
-    public function setImage(?string $image): self
+    public function setImage($value)
     {
-        $this->image = $image;
-        return $this;
+        $this->image = $value;
     }
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'comptes')]
-    #[ORM\JoinColumn(name: 'id_user', referencedColumnName: 'id')]
-    private ?User $user = null;
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-        return $this;
-    }
-
-    #[ORM\Column(type: 'string', nullable: false)]
-    private ?string $email = null;
-
-    public function getEmail(): ?string
+    public function getEmail()
     {
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail($value)
     {
-        $this->email = $email;
-        return $this;
+        $this->email = $value;
     }
-
 }

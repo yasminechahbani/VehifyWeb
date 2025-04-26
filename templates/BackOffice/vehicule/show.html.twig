@@ -1,70 +1,101 @@
-{% extends 'BackOffice/base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Détail Véhicule{% endblock %}
 
 {% block content %}
-
-
-<!-- Détails Véhicule -->
-<div class="container">
+<div class="container-fluid py-4">
     <div class="row justify-content-center">
         <div class="col-lg-8">
-            <div class="card shadow rounded-4 p-4">
-                <h2 class="mb-4 text-center text-primary">Informations du Véhicule</h2>
-
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <label class="form-label fw-bold">Marque</label>
-                        <div class="form-control bg-light">{{ vehicule.marque }}</div>
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center py-3">
+                    <div>
+                        <h4 class="mb-1">Détails du Véhicule</h4>
+                        <p class="text-muted small mb-0">Informations complètes du véhicule</p>
                     </div>
-
-                    <div class="col-md-6">
-                        <label class="form-label fw-bold">Modèle</label>
-                        <div class="form-control bg-light">{{ vehicule.modele }}</div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <label class="form-label fw-bold">Immatriculation</label>
-                        <div class="form-control bg-light">{{ vehicule.immatriculation }}</div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <label class="form-label fw-bold">Type</label>
-                        <div class="form-control bg-light">{{ vehicule.type }}</div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <label class="form-label fw-bold">Couleur</label>
-                        <div class="form-control bg-light">{{ vehicule.couleur }}</div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <label class="form-label fw-bold">Kilométrage</label>
-                        <div class="form-control bg-light">{{ vehicule.kilometrage }} km</div>
-                    </div>
-
-                    <div class="col-md-12">
-                        <label class="form-label fw-bold">Statut</label>
-                        <div class="form-control bg-light">{{ vehicule.statut }}</div>
-                    </div>
-                </div>
-
-                <div class="mt-5 text-center">
-                    <a href="{{ path('app_liste') }}" class="btn btn-info btn-sm">
-                        <i class="fas fa-arrow-left me-2"></i> Retour à la liste
+                    <a href="{{ path('app_liste') }}" class="btn btn-light">
+                        Retour à la liste
                     </a>
                 </div>
 
-                <div class="mt-3 text-center">
-                    <a href="{{ path('app_vehicule_edit', {'idVehicule': vehicule.idVehicule}) }}" class="btn btn-info btn-sm">
-                        <i class="fas fa-edit me-2"></i> Modifier
-                    </a>
+                <div class="card-body">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="bg-light p-3 rounded h-100">
+                                <label class="form-label text-muted mb-1">Marque</label>
+                                <div class="h5 mb-0">{{ vehicule.marque }}</div>
+                            </div>
+                        </div>
 
-                    {{ include('FrontOffice/vehicule/_delete_form.html.twig') }}
+                        <div class="col-md-6">
+                            <div class="bg-light p-3 rounded h-100">
+                                <label class="form-label text-muted mb-1">Modèle</label>
+                                <div class="h5 mb-0">{{ vehicule.modele }}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="bg-light p-3 rounded h-100">
+                                <label class="form-label text-muted mb-1">Immatriculation</label>
+                                <div class="h5 mb-0">{{ vehicule.immatriculation }}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="bg-light p-3 rounded h-100">
+                                <label class="form-label text-muted mb-1">Type</label>
+                                <div class="h5 mb-0">{{ vehicule.type }}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="bg-light p-3 rounded h-100">
+                                <label class="form-label text-muted mb-1">Couleur</label>
+                                <div class="h5 mb-0">{{ vehicule.couleur }}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="bg-light p-3 rounded h-100">
+                                <label class="form-label text-muted mb-1">Kilométrage</label>
+                                <div class="h5 mb-0">{{ vehicule.kilometrage }} km</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="bg-light p-3 rounded h-100">
+                                <label class="form-label text-muted mb-1">Statut</label>
+                                <div class="badge bg-{{ vehicule.statut == 'Visite faite' ? 'success' : 'warning' }} rounded-pill">
+                                    {{ vehicule.statut }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="bg-light p-3 rounded h-100">
+                                <label class="form-label text-muted mb-1">Numéro Carte Grise</label>
+                                <div class="h5 mb-0">{{ vehicule.carteGrise.numeroCarteGrise }}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-top mt-4 pt-4">
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="{{ path('app_vehiculeB_edit', {'idVehicule': vehicule.idVehicule}) }}" 
+                               class="btn btn-warning">
+                                Modifier
+                            </a>
+                            <form action="{{ path('app_vehiculeB_delete', {'idVehicule': vehicule.idVehicule}) }}" 
+                                  method="POST" 
+                                  onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce véhicule ?');">
+                                <button type="submit" class="btn btn-danger">
+                                    Supprimer
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 {% endblock %}
