@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Equipment Details{% endblock %}
+
+{% block body %}
+<div class="container-fluid py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center py-3">
+                    <div>
+                        <h4 class="mb-1"><i class="fas fa-tools me-2"></i>Equipment Details</h4>
+                        <p class="text-muted small mb-0"><i class="fas fa-info-circle me-2"></i>View equipment information</p>
+                    </div>
+                    <a href="{{ path('app_equipement_index') }}" class="btn btn-light">
+                        <i class="fas fa-arrow-left me-2"></i>Back to list
+                    </a>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 text-center mb-4">
+                            <div class="bg-light p-4 rounded-circle mx-auto" style="width: 150px; height: 150px;">
+                                <i class="fas fa-box fa-4x text-secondary"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <h2 class="h4 mb-3">{{ equipement.nom }}</h2>
+                            <span class="badge bg-{{ equipement.etat == 'Bon état' ? 'success' : 'warning' }} mb-3">
+                                {{ equipement.etat }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="bg-light p-3 rounded h-100">
+                                <h5 class="mb-3"><i class="fas fa-info-circle me-2"></i>Basic Information</h5>
+                                <dl class="row mb-0">
+                                    <dt class="col-sm-4 text-muted"><i class="fas fa-hashtag me-2"></i>ID</dt>
+                                    <dd class="col-sm-8">{{ equipement.idEquipement }}</dd>
+
+                                    <dt class="col-sm-4 text-muted"><i class="fas fa-tag me-2"></i>Category</dt>
+                                    <dd class="col-sm-8">{{ equipement.categorie }}</dd>
+
+                                    <dt class="col-sm-4 text-muted"><i class="fas fa-align-left me-2"></i>Description</dt>
+                                    <dd class="col-sm-8">{{ equipement.description }}</dd>
+                                </dl>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="bg-light p-3 rounded h-100">
+                                <h5 class="mb-3"><i class="fas fa-user me-2"></i>Assignment Information</h5>
+                                <dl class="row mb-0">
+                                    <dt class="col-sm-4 text-muted">Employee</dt>
+                                    <dd class="col-sm-8">
+                                        {% if equipement.employe %}
+                                            {{ equipement.employe.prenom }} {{ equipement.employe.nom }}
+                                        {% else %}
+                                            <span class="text-muted">No assigned employee</span>
+                                        {% endif %}
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-top mt-4 pt-3 text-center">
+                        <a href="{{ path('app_equipement_edit', {'idEquipement': equipement.idEquipement}) }}" class="btn btn-warning me-2">
+                            <i class="fas fa-edit me-2"></i>Edit
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
