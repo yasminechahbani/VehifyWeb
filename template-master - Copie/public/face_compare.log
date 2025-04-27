@@ -1,0 +1,818 @@
+2025-04-17 18:51:40,781 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_971a551630341b65.jpg
+2025-04-17 18:51:40,798 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.jpg
+2025-04-17 18:51:54,850 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_4fda5506ee0ec0b5.jpg
+2025-04-17 18:51:54,850 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.jpg
+2025-04-17 18:52:00,352 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_66085b8ca3e57123.jpg
+2025-04-17 18:52:00,358 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.jpg
+2025-04-17 18:52:04,368 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_3fc311afd1dafdb8.jpg
+2025-04-17 18:52:04,370 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.jpg
+2025-04-17 18:54:14,450 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_2d88204df3699af3.jpg
+2025-04-17 18:54:14,463 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-17 18:54:32,899 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_bca6ccdbfacc42f4.jpg
+2025-04-17 18:54:32,910 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-17 18:54:51,336 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_44f795f98aba66d7.jpg
+2025-04-17 18:54:51,336 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-17 18:55:08,855 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_3f38c78d61777cc1.jpg
+2025-04-17 18:55:08,855 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-17 18:55:52,101 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_b00d07fbf31b7a4b.jpg
+2025-04-17 18:55:52,108 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-17 18:55:57,266 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_86c68939dd882958.jpg
+2025-04-17 18:55:57,266 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-17 18:56:03,601 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_cd8dadc7f8c6f771.jpg
+2025-04-17 18:56:03,601 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-17 18:56:20,137 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_21901de9a3bdfce7.jpg
+2025-04-17 18:56:20,146 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-18 10:39:44,110 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_dd7019b978b53bb0.jpg
+2025-04-18 10:39:44,127 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-21 09:55:36,868 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_7835a578b30b3f1f.jpg
+2025-04-21 09:55:36,877 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-21 09:55:45,854 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_403a4ab374e7cc68.jpg
+2025-04-21 09:55:45,866 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-21 09:55:59,263 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_70dcabd70aaf3d1e.jpg
+2025-04-21 09:55:59,263 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-21 10:00:42,467 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_b192d6ad11d4fc20.jpg
+2025-04-21 10:00:42,472 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-21 10:03:25,510 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_6acd71358ad3cb6c.jpg
+2025-04-21 10:03:25,510 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-25 09:27:11,736 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_62f926477f581ee1.jpg
+2025-04-25 09:27:11,740 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-25 09:47:44,521 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_48071d8ba1c19f82.jpg
+2025-04-25 09:47:44,538 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-25 09:51:28,273 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_a185216732e6a4e7.jpg
+2025-04-25 09:51:28,280 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-25 09:51:34,054 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_a75a3eb61e744d6d.jpg
+2025-04-25 09:51:34,057 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-25 09:51:37,337 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_7e73a8aaac5fbea7.jpg
+2025-04-25 09:51:37,337 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-25 09:54:58,651 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_f0a5a3add93e55c7.jpg
+2025-04-25 09:54:58,658 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-25 10:00:23,344 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_0d7f2f59086ac3bc.jpg
+2025-04-25 10:00:23,349 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-25 10:01:20,159 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_917e9d5dedbbd011.jpg
+2025-04-25 10:01:20,166 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-25 10:01:24,495 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_0151d352853530f9.jpg
+2025-04-25 10:01:24,495 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-25 10:01:38,764 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_902668d351088e4d.jpg
+2025-04-25 10:01:38,767 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-25 10:02:42,260 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_96881b280b66972b.jpg
+2025-04-25 10:02:42,263 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-25 10:03:05,291 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_7d95657bb2829e5d.jpg
+2025-04-25 10:03:05,298 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-25 10:05:56,835 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_6a689101adbb8441.jpg
+2025-04-25 10:05:56,840 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-25 10:06:01,685 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_b3e45cc6e1a4505d.jpg
+2025-04-25 10:06:01,699 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-25 10:06:15,590 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_852c2dd11aab350d.jpg
+2025-04-25 10:06:15,594 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-25 10:11:19,762 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_d3a6ac0638627e29.jpg
+2025-04-25 10:11:19,768 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-25 10:12:00,561 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_3bd3bd2041b1cb64.jpg
+2025-04-25 10:12:00,574 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-25 10:12:09,293 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_9c19eca8c80021a3.jpg
+2025-04-25 10:12:09,299 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-25 10:13:27,872 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_f6ed753d46d6fe4a.jpg
+2025-04-25 10:13:27,874 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-25 10:13:35,610 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_b998ef8b1f2aa4ee.jpg
+2025-04-25 10:13:35,610 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-25 10:13:38,848 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_46aa573beee001cd.jpg
+2025-04-25 10:13:38,851 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-25 10:13:42,979 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_0c6f11e88fd22997.jpg
+2025-04-25 10:13:42,995 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-25 10:14:27,343 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_fd4caae49fa9de70.jpg
+2025-04-25 10:14:27,347 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-25 10:14:37,873 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_f06c041a73b28824.jpg
+2025-04-25 10:14:37,873 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-25 10:15:43,637 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_db3dc92424927c4a.jpg
+2025-04-25 10:15:43,642 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-25 10:22:07,533 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_88191e4f79da5a72.jpg
+2025-04-25 10:22:07,542 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-25 10:27:47,716 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\face_compare_0d90ecc57a6d1b48.jpg
+2025-04-25 10:27:47,723 - INFO - Loading image from: C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\public\img\reference.png
+2025-04-25 10:29:05,909 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b55df8fb0d.jpg
+2025-04-25 10:29:05,909 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b55df8fb10.jpg
+2025-04-25 10:32:17,842 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b56a0c6e72.jpg
+2025-04-25 10:32:17,847 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b56a0c6e73.jpg
+2025-04-25 10:32:23,771 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b56a6a13d5.jpg
+2025-04-25 10:32:23,771 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b56a6a13d6.jpg
+2025-04-25 10:32:27,889 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b56ab4adee.jpg
+2025-04-25 10:32:27,889 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b56ab4adfd.jpg
+2025-04-25 10:32:31,657 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b56ae626c0.jpg
+2025-04-25 10:32:31,657 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b56ae626c1.jpg
+2025-04-25 10:32:37,127 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b56b3df032.jpg
+2025-04-25 10:32:37,133 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b56b3df033.jpg
+2025-04-25 10:32:40,796 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b56b772342.jpg
+2025-04-25 10:32:40,796 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b56b772343.jpg
+2025-04-25 10:33:16,314 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b56d777e7b.jpg
+2025-04-25 10:33:16,331 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b56d777e7d.jpg
+2025-04-25 10:34:07,353 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b570b8a74b.jpg
+2025-04-25 10:34:07,361 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b570b8a74c.jpg
+2025-04-25 10:34:21,061 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b571c069dc.jpg
+2025-04-25 10:34:21,062 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b571c069dd.jpg
+2025-04-25 10:34:40,358 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b572e1afd8.jpg
+2025-04-25 10:34:40,360 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b572e1afd9.jpg
+2025-04-25 10:35:02,639 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5741944d5.jpg
+2025-04-25 10:35:02,639 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5741944d8.jpg
+2025-04-25 10:36:12,403 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b578abe513.jpg
+2025-04-25 10:36:12,404 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b578abe514.jpg
+2025-04-25 10:37:38,851 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b57e129e25.jpg
+2025-04-25 10:37:38,858 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b57e129e26.jpg
+2025-04-25 10:37:43,924 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b57e5f2d2a.jpg
+2025-04-25 10:37:43,926 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b57e5f2d2b.jpg
+2025-04-25 10:37:49,228 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b57ea753fe.jpg
+2025-04-25 10:37:49,233 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b57ea753ff.jpg
+2025-04-25 10:38:07,298 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b57fea6dc3.jpg
+2025-04-25 10:38:07,316 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b57fea6dc4.jpg
+2025-04-25 10:45:13,423 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b59a80312a.jpg
+2025-04-25 10:45:13,427 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b59a80312e.jpg
+2025-04-25 10:45:35,627 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b59bede554.jpg
+2025-04-25 10:45:35,637 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b59bede556.jpg
+2025-04-25 10:45:48,630 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b59cbd9bbc.jpg
+2025-04-25 10:45:48,640 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b59cbd9bbd.jpg
+2025-04-25 10:46:36,750 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b59fc0d3ea.jpg
+2025-04-25 10:46:36,750 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b59fc0d3eb.jpg
+2025-04-25 10:47:56,030 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5a4b43b62.jpg
+2025-04-25 10:47:56,036 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5a4b43b64.jpg
+2025-04-25 10:48:55,756 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5a8699ce2.jpg
+2025-04-25 10:48:55,766 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5a8699ce3.jpg
+2025-04-25 10:51:44,222 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5b2f8a15f.jpg
+2025-04-25 10:51:44,240 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5b2f8a161.jpg
+2025-04-25 10:52:24,121 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5b576ea7a.jpg
+2025-04-25 10:52:24,126 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5b576ea7b.jpg
+2025-04-25 10:52:54,871 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5b7627610.jpg
+2025-04-25 10:52:54,875 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5b7627611.jpg
+2025-04-25 10:52:59,830 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5b7b34d91.jpg
+2025-04-25 10:52:59,833 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5b7b34d93.jpg
+2025-04-25 10:53:21,068 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5b906ed2e.jpg
+2025-04-25 10:53:21,068 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5b906ed30.jpg
+2025-04-25 10:53:41,283 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5ba4a5547.jpg
+2025-04-25 10:53:41,283 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5ba4a5548.jpg
+2025-04-25 10:53:58,695 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5bb5f24e4.jpg
+2025-04-25 10:53:58,699 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5bb5f24e5.jpg
+2025-04-25 10:54:07,007 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5bbe0e0a2.jpg
+2025-04-25 10:54:07,007 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5bbe0e0a4.jpg
+2025-04-25 10:54:10,929 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5bc225c25.jpg
+2025-04-25 10:54:10,936 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5bc225c26.jpg
+2025-04-25 10:54:13,607 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5bc4b1548.jpg
+2025-04-25 10:54:13,613 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5bc4b1549.jpg
+2025-04-25 10:54:16,725 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5bc7e5dfc.jpg
+2025-04-25 10:54:16,725 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5bc7e5e02.jpg
+2025-04-25 10:54:30,303 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5bd582c1c.jpg
+2025-04-25 10:54:30,303 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5bd582c1d.jpg
+2025-04-25 10:54:45,532 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5be4e6f37.jpg
+2025-04-25 10:54:45,532 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5be4e6f39.jpg
+2025-04-25 10:55:11,305 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5bfe8c627.jpg
+2025-04-25 10:55:11,305 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5bfe8c628.jpg
+2025-04-25 10:55:25,075 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5c0c6133c.jpg
+2025-04-25 10:55:25,081 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5c0c6133d.jpg
+2025-04-25 10:55:32,280 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5c13a6ef7.jpg
+2025-04-25 10:55:32,280 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5c13a6ef9.jpg
+2025-04-25 10:55:42,179 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5c1d8aac5.jpg
+2025-04-25 10:55:42,179 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5c1d8aac6.jpg
+2025-04-25 10:55:48,099 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5c236614e.jpg
+2025-04-25 10:55:48,113 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5c236614f.jpg
+2025-04-25 10:56:04,132 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5c337cffb.jpg
+2025-04-25 10:56:04,132 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5c337cffc.jpg
+2025-04-25 10:56:11,852 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5c3b38d51.jpg
+2025-04-25 10:56:11,852 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5c3b38d53.jpg
+2025-04-25 10:56:36,550 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5c53bf77b.jpg
+2025-04-25 10:56:36,557 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5c53bf77c.jpg
+2025-04-25 10:56:39,938 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5c571c75b.jpg
+2025-04-25 10:56:39,952 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5c571c75d.jpg
+2025-04-25 10:56:44,431 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5c5bb5830.jpg
+2025-04-25 10:56:44,437 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5c5bb5832.jpg
+2025-04-25 10:56:52,854 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5c642c44b.jpg
+2025-04-25 10:56:52,859 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5c642c44d.jpg
+2025-04-25 10:56:55,978 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5c674ce1e.jpg
+2025-04-25 10:56:55,978 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5c674ce20.jpg
+2025-04-25 10:56:59,130 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5c6a59cc7.jpg
+2025-04-25 10:56:59,130 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5c6a59cc9.jpg
+2025-04-25 10:57:01,580 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5c6d051b1.jpg
+2025-04-25 10:57:01,580 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5c6d051b2.jpg
+2025-04-25 10:57:04,231 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5c6f88ecb.jpg
+2025-04-25 10:57:04,243 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5c6f88ecc.jpg
+2025-04-25 11:02:22,242 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5dad3c881.jpg
+2025-04-25 11:02:22,251 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5dad3c882.jpg
+2025-04-25 11:03:33,574 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5df462e35.jpg
+2025-04-25 11:03:33,575 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5df462e36.jpg
+2025-04-25 11:05:47,370 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5e7a4e2a4.jpg
+2025-04-25 11:05:47,381 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5e7a4e2a5.jpg
+2025-04-25 11:07:11,237 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5ece5bb98.jpg
+2025-04-25 11:07:11,244 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5ece5bb99.jpg
+2025-04-25 11:07:18,381 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5ed5742db.jpg
+2025-04-25 11:07:18,385 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5ed5742dd.jpg
+2025-04-25 11:08:48,984 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5f3013450.jpg
+2025-04-25 11:08:49,003 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5f3013451.jpg
+2025-04-25 11:08:57,421 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5f38a4c78.jpg
+2025-04-25 11:08:57,421 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5f38a4c7a.jpg
+2025-04-25 11:09:56,817 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5f7400891.jpg
+2025-04-25 11:09:56,817 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5f7400899.jpg
+2025-04-25 11:10:02,821 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5f7a24457.jpg
+2025-04-25 11:10:02,827 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5f7a24459.jpg
+2025-04-25 11:10:07,136 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5f7e26f5e.jpg
+2025-04-25 11:10:07,138 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5f7e26f5f.jpg
+2025-04-25 11:10:11,435 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5f82837a4.jpg
+2025-04-25 11:10:11,439 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5f82837a6.jpg
+2025-04-25 11:10:16,191 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5f867b52c.jpg
+2025-04-25 11:10:16,203 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5f867b52d.jpg
+2025-04-25 11:10:21,841 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5f8cbe58a.jpg
+2025-04-25 11:10:21,842 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5f8cbe58b.jpg
+2025-04-25 11:11:34,192 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5fd54f1e0.jpg
+2025-04-25 11:11:34,192 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5fd54f1e3.jpg
+2025-04-25 11:11:41,610 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5fdcebddc.jpg
+2025-04-25 11:11:41,610 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5fdcebdde.jpg
+2025-04-25 11:11:54,807 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5fea1208f.jpg
+2025-04-25 11:11:54,814 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5fea12090.jpg
+2025-04-25 11:11:59,107 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5fee443f2.jpg
+2025-04-25 11:11:59,112 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5fee443f3.jpg
+2025-04-25 11:12:05,850 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b5ff51ec09.jpg
+2025-04-25 11:12:05,868 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b5ff51ec0a.jpg
+2025-04-25 11:12:21,554 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b6004c509e.jpg
+2025-04-25 11:12:21,559 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b6004c50a0.jpg
+2025-04-25 11:12:32,132 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b600eeab1a.jpg
+2025-04-25 11:12:32,142 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b600eeab1e.jpg
+2025-04-25 11:12:40,159 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b60177f98b.jpg
+2025-04-25 11:12:40,159 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b60177f98c.jpg
+2025-04-25 11:12:44,941 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b601c1dc6a.jpg
+2025-04-25 11:12:44,949 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b601c1dc6c.jpg
+2025-04-25 11:13:05,146 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b60305426e.jpg
+2025-04-25 11:13:05,154 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b60305426f.jpg
+2025-04-25 11:13:19,353 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b603e8a914.jpg
+2025-04-25 11:13:19,356 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b603e8a916.jpg
+2025-04-25 11:13:25,455 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b60448e938.jpg
+2025-04-25 11:13:25,470 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b60448e939.jpg
+2025-04-25 11:13:29,383 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b60487e8b2.jpg
+2025-04-25 11:13:29,390 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b60487e8b5.jpg
+2025-04-25 11:13:33,005 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b604c38da4.jpg
+2025-04-25 11:13:33,022 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b604c38da6.jpg
+2025-04-25 11:13:36,364 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b604f95c86.jpg
+2025-04-25 11:13:36,373 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b604f95c88.jpg
+2025-04-25 11:13:39,439 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b605288b5a.jpg
+2025-04-25 11:13:39,439 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b605288b5c.jpg
+2025-04-25 11:13:43,905 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b6056ee325.jpg
+2025-04-25 11:13:43,913 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b6056ee327.jpg
+2025-04-25 11:13:47,342 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b605a8e60d.jpg
+2025-04-25 11:13:47,361 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b605a8e611.jpg
+2025-04-25 11:13:50,241 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b605d61ecd.jpg
+2025-04-25 11:13:50,251 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b605d61ecf.jpg
+2025-04-25 11:14:05,763 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b606cf13c3.jpg
+2025-04-25 11:14:05,763 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b606cf13c5.jpg
+2025-04-25 11:14:11,021 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b607252e72.jpg
+2025-04-25 11:14:11,021 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b607252e74.jpg
+2025-04-25 11:15:11,685 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b60af0bf56.jpg
+2025-04-25 11:15:11,689 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b60af0bf57.jpg
+2025-04-25 11:15:17,397 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b60b4a5cb1.jpg
+2025-04-25 11:15:17,397 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b60b4a5cb3.jpg
+2025-04-25 11:15:23,517 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b60ba7ce7b.jpg
+2025-04-25 11:15:23,519 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b60ba7ce7c.jpg
+2025-04-25 11:15:30,801 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b60c2292f5.jpg
+2025-04-25 11:15:30,813 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b60c2292f7.jpg
+2025-04-25 11:15:37,523 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b60c8c0000.jpg
+2025-04-25 11:15:37,528 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b60c8c0002.jpg
+2025-04-25 11:15:44,586 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b60cfb9ddb.jpg
+2025-04-25 11:15:44,592 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b60cfb9ddc.jpg
+2025-04-25 11:15:49,739 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b60d507256.jpg
+2025-04-25 11:15:49,739 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b60d507257.jpg
+2025-04-25 11:15:52,338 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b60d7a2699.jpg
+2025-04-25 11:15:52,344 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b60d7a269a.jpg
+2025-04-25 11:15:55,163 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b60da6e0b4.jpg
+2025-04-25 11:15:55,164 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b60da6e0b6.jpg
+2025-04-25 11:15:57,774 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b60dcc723b.jpg
+2025-04-25 11:15:57,783 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b60dcc723d.jpg
+2025-04-25 11:21:59,264 - ERROR - Initialization error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\facemarkLBF.cpp:487: error: (-5:Bad argument) No valid input file was given, please check the given filename. in function 'cv::face::FacemarkLBFImpl::loadModel'
+
+2025-04-25 11:21:59,264 - CRITICAL - Critical error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\facemarkLBF.cpp:487: error: (-5:Bad argument) No valid input file was given, please check the given filename. in function 'cv::face::FacemarkLBFImpl::loadModel'
+Traceback (most recent call last):
+  File "C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie/compare.py", line 154, in main
+    comparator = FaceComparator()
+                 ^^^^^^^^^^^^^^^^
+  File "C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie/compare.py", line 31, in __init__
+    self.facemark.loadModel('lbfmodel.yaml')  # Modèle à inclure dans le projet
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cv2.error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\facemarkLBF.cpp:487: error: (-5:Bad argument) No valid input file was given, please check the given filename. in function 'cv::face::FacemarkLBFImpl::loadModel'
+
+2025-04-25 11:27:03,072 - ERROR - Initialization error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\facemarkLBF.cpp:487: error: (-5:Bad argument) No valid input file was given, please check the given filename. in function 'cv::face::FacemarkLBFImpl::loadModel'
+
+2025-04-25 11:27:03,072 - CRITICAL - Critical error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\facemarkLBF.cpp:487: error: (-5:Bad argument) No valid input file was given, please check the given filename. in function 'cv::face::FacemarkLBFImpl::loadModel'
+Traceback (most recent call last):
+  File "C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie/compare.py", line 154, in main
+    comparator = FaceComparator()
+                 ^^^^^^^^^^^^^^^^
+  File "C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie/compare.py", line 31, in __init__
+    self.facemark.loadModel('lbfmodel.yaml')  # Modèle à inclure dans le projet
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cv2.error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\facemarkLBF.cpp:487: error: (-5:Bad argument) No valid input file was given, please check the given filename. in function 'cv::face::FacemarkLBFImpl::loadModel'
+
+2025-04-25 11:27:09,058 - ERROR - Initialization error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\facemarkLBF.cpp:487: error: (-5:Bad argument) No valid input file was given, please check the given filename. in function 'cv::face::FacemarkLBFImpl::loadModel'
+
+2025-04-25 11:27:09,058 - CRITICAL - Critical error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\facemarkLBF.cpp:487: error: (-5:Bad argument) No valid input file was given, please check the given filename. in function 'cv::face::FacemarkLBFImpl::loadModel'
+Traceback (most recent call last):
+  File "C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie/compare.py", line 154, in main
+    comparator = FaceComparator()
+                 ^^^^^^^^^^^^^^^^
+  File "C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie/compare.py", line 31, in __init__
+    self.facemark.loadModel('lbfmodel.yaml')  # Modèle à inclure dans le projet
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cv2.error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\facemarkLBF.cpp:487: error: (-5:Bad argument) No valid input file was given, please check the given filename. in function 'cv::face::FacemarkLBFImpl::loadModel'
+
+2025-04-25 11:27:17,879 - ERROR - Initialization error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\facemarkLBF.cpp:487: error: (-5:Bad argument) No valid input file was given, please check the given filename. in function 'cv::face::FacemarkLBFImpl::loadModel'
+
+2025-04-25 11:27:17,879 - CRITICAL - Critical error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\facemarkLBF.cpp:487: error: (-5:Bad argument) No valid input file was given, please check the given filename. in function 'cv::face::FacemarkLBFImpl::loadModel'
+Traceback (most recent call last):
+  File "C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie/compare.py", line 154, in main
+    comparator = FaceComparator()
+                 ^^^^^^^^^^^^^^^^
+  File "C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie/compare.py", line 31, in __init__
+    self.facemark.loadModel('lbfmodel.yaml')  # Modèle à inclure dans le projet
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cv2.error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\facemarkLBF.cpp:487: error: (-5:Bad argument) No valid input file was given, please check the given filename. in function 'cv::face::FacemarkLBFImpl::loadModel'
+
+2025-04-25 11:29:29,693 - ERROR - Initialization error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\facemarkLBF.cpp:487: error: (-5:Bad argument) No valid input file was given, please check the given filename. in function 'cv::face::FacemarkLBFImpl::loadModel'
+
+2025-04-25 11:29:29,693 - CRITICAL - Critical error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\facemarkLBF.cpp:487: error: (-5:Bad argument) No valid input file was given, please check the given filename. in function 'cv::face::FacemarkLBFImpl::loadModel'
+Traceback (most recent call last):
+  File "C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie/compare.py", line 154, in main
+    comparator = FaceComparator()
+                 ^^^^^^^^^^^^^^^^
+  File "C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie/compare.py", line 31, in __init__
+    self.facemark.loadModel('lbfmodel.yaml')  # Modèle à inclure dans le projet
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+cv2.error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv_contrib\modules\face\src\facemarkLBF.cpp:487: error: (-5:Bad argument) No valid input file was given, please check the given filename. in function 'cv::face::FacemarkLBFImpl::loadModel'
+
+2025-04-25 11:29:51,126 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b641e4df9a.jpg
+2025-04-25 11:29:51,130 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b641e4df9b.jpg
+2025-04-25 11:31:43,909 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b648eefba4.jpg
+2025-04-25 11:31:43,909 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b648eefba6.jpg
+2025-04-25 11:31:56,585 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b649bbbccc.jpg
+2025-04-25 11:31:56,596 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b649bbbccd.jpg
+2025-04-25 11:33:15,121 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b64ea45e62.jpg
+2025-04-25 11:33:15,132 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b64ea45e63.jpg
+2025-04-25 11:33:15,458 - ERROR - Comparison error: all the input array dimensions except for the concatenation axis must match exactly, but along dimension 0, the array at index 0 has size 720 and the array at index 1 has size 357
+Traceback (most recent call last):
+  File "C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\compare.py", line 166, in compare_faces
+    comparison = np.hstack((scan1, scan2))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\motez\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\numpy\_core\shape_base.py", line 367, in hstack
+    return _nx.concatenate(arrs, 1, dtype=dtype, casting=casting)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: all the input array dimensions except for the concatenation axis must match exactly, but along dimension 0, the array at index 0 has size 720 and the array at index 1 has size 357
+2025-04-25 11:33:20,977 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b64f026da3.jpg
+2025-04-25 11:33:20,984 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b64f026da4.jpg
+2025-04-25 11:33:21,298 - ERROR - Comparison error: all the input array dimensions except for the concatenation axis must match exactly, but along dimension 0, the array at index 0 has size 720 and the array at index 1 has size 357
+Traceback (most recent call last):
+  File "C:\Users\motez\OneDrive\Bureau\template-master - Copie\template-master - Copie\compare.py", line 166, in compare_faces
+    comparison = np.hstack((scan1, scan2))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\motez\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\numpy\_core\shape_base.py", line 367, in hstack
+    return _nx.concatenate(arrs, 1, dtype=dtype, casting=casting)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: all the input array dimensions except for the concatenation axis must match exactly, but along dimension 0, the array at index 0 has size 720 and the array at index 1 has size 357
+2025-04-25 11:33:33,315 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b64fc90d4a.jpg
+2025-04-25 11:33:33,320 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b64fc90d4b.jpg
+2025-04-25 11:34:39,821 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b653f0f7be.jpg
+2025-04-25 11:34:39,821 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b653f0f7c1.jpg
+2025-04-25 11:50:39,843 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b68ff2cf8d.jpg
+2025-04-25 11:50:39,860 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b68ff2cf8f.jpg
+2025-04-25 11:52:10,827 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b695a1dcc9.jpg
+2025-04-25 11:52:10,830 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b695a1dccc.jpg
+2025-04-25 11:52:24,641 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b6967d0a1a.jpg
+2025-04-25 11:52:24,652 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b6967d0a1d.jpg
+2025-04-25 11:52:43,300 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b697a83425.jpg
+2025-04-25 11:52:43,300 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b697a83426.jpg
+2025-04-25 11:52:48,646 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b697fc77c3.jpg
+2025-04-25 11:52:48,653 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b697fc77c4.jpg
+2025-04-25 11:52:52,898 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b69842fb9b.jpg
+2025-04-25 11:52:52,914 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b69842fb9c.jpg
+2025-04-25 11:53:00,721 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b698c07384.jpg
+2025-04-25 11:53:00,721 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b698c07386.jpg
+2025-04-25 11:53:03,434 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b698eafc60.jpg
+2025-04-25 11:53:03,438 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b698eafc61.jpg
+2025-04-25 11:53:05,879 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b69911bc16.jpg
+2025-04-25 11:53:05,885 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b69911bc18.jpg
+2025-04-25 11:53:08,536 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b69939c735.jpg
+2025-04-25 11:53:08,536 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b69939c736.jpg
+2025-04-25 11:53:14,554 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b69993b237.jpg
+2025-04-25 11:53:14,564 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b69993b238.jpg
+2025-04-25 11:58:55,819 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b6ae491d44.jpg
+2025-04-25 11:58:55,835 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b6ae491d45.jpg
+2025-04-25 12:00:01,404 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b6af4697ae.jpg
+2025-04-25 12:00:01,411 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b6af4697af.jpg
+2025-04-25 12:01:36,049 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b6b4520568.jpg
+2025-04-25 12:01:36,054 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b6b4520569.jpg
+2025-04-25 12:02:11,056 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b6baa8c5a0.jpg
+2025-04-25 12:02:11,063 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b6baa8c5a2.jpg
+2025-04-25 12:02:37,001 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b6bc02ffc7.jpg
+2025-04-25 12:02:37,008 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b6bc02ffca.jpg
+2025-04-25 12:03:14,290 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b6bdfac38d.jpg
+2025-04-25 12:03:14,295 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b6bdfac38f.jpg
+2025-04-25 12:03:45,282 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b6c0dccf5a.jpg
+2025-04-25 12:03:45,298 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b6c0dccf5b.jpg
+2025-04-25 12:04:28,227 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b6c39687cc.jpg
+2025-04-25 12:04:28,243 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b6c39687ce.jpg
+2025-04-25 12:04:57,841 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b6c4898b11.jpg
+2025-04-25 12:04:57,841 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b6c4898b12.jpg
+2025-04-25 12:05:17,873 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b6c6b3effa.jpg
+2025-04-25 12:05:17,873 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b6c6b3effb.jpg
+2025-04-25 12:07:44,377 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b6cfe473b1.jpg
+2025-04-25 12:07:44,383 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b6cfe473b4.jpg
+2025-04-25 12:08:18,839 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b6d1c601b8.jpg
+2025-04-25 12:08:18,851 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b6d1c601ba.jpg
+2025-04-25 12:08:37,202 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b6d33706ac.jpg
+2025-04-25 12:08:37,207 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b6d33706af.jpg
+2025-04-25 12:14:28,754 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b6e92e23c4.jpg
+2025-04-25 12:14:28,764 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b6e92e23c5.jpg
+2025-04-25 12:14:41,552 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b6e9ff1922.jpg
+2025-04-25 12:14:41,552 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b6e9ff1925.jpg
+2025-04-25 12:14:51,791 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b6eaa1b9fb.jpg
+2025-04-25 12:14:51,791 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b6eaa1b9fc.jpg
+2025-04-25 12:15:02,044 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b6eb434f0a.jpg
+2025-04-25 12:15:02,047 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b6eb434f0c.jpg
+2025-04-25 12:15:13,801 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b6ec0a6cd5.jpg
+2025-04-25 12:15:13,804 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b6ec0a6cd6.jpg
+2025-04-25 12:20:52,514 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b7012bdad7.jpg
+2025-04-25 12:20:52,514 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b7012bdad8.jpg
+2025-04-25 13:32:25,762 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b80d865f12.jpg
+2025-04-25 13:32:25,779 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b80d865f14.jpg
+2025-04-25 13:32:36,321 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b80e3797dd.jpg
+2025-04-25 13:32:36,332 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b80e3797df.jpg
+2025-04-25 13:41:24,872 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b82f4264b5.jpg
+2025-04-25 13:41:24,872 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b82f4264b8.jpg
+2025-04-25 13:44:02,891 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b83921d576.jpg
+2025-04-25 13:44:02,897 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b83921d577.jpg
+2025-04-25 13:48:59,031 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b84ba5461c.jpg
+2025-04-25 13:48:59,036 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b84ba54620.jpg
+2025-04-25 13:56:56,484 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b86979cc9a.jpg
+2025-04-25 13:56:56,484 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b86979cc9b.jpg
+2025-04-25 14:02:05,592 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b87ccb1afb.jpg
+2025-04-25 14:02:05,599 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b87ccb1afd.jpg
+2025-04-25 14:10:31,597 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b89c6608ac.jpg
+2025-04-25 14:10:31,605 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b89c6608ad.jpg
+2025-04-25 14:10:37,925 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b89cd2a3fa.jpg
+2025-04-25 14:10:37,932 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b89cd2a3fb.jpg
+2025-04-25 14:12:28,025 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8a3abc728.jpg
+2025-04-25 14:12:28,032 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8a3abc72a.jpg
+2025-04-25 14:12:33,958 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8a4125bc7.jpg
+2025-04-25 14:12:33,965 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8a4125bc8.jpg
+2025-04-25 14:12:38,126 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8a451606f.jpg
+2025-04-25 14:12:38,130 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8a4516071.jpg
+2025-04-25 14:12:52,202 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8a5363968.jpg
+2025-04-25 14:12:52,202 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8a5363969.jpg
+2025-04-25 14:12:58,870 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8a5a3f32c.jpg
+2025-04-25 14:12:58,870 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8a5a3f32d.jpg
+2025-04-25 14:14:10,218 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8aa1823f4.jpg
+2025-04-25 14:14:10,225 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8aa1823f5.jpg
+2025-04-25 14:14:30,614 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8ab5d0e5d.jpg
+2025-04-25 14:14:30,620 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8ab5d0e5e.jpg
+2025-04-25 14:14:44,947 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8ac45af74.jpg
+2025-04-25 14:14:44,951 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8ac45af75.jpg
+2025-04-25 14:14:49,331 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8ac862caa.jpg
+2025-04-25 14:14:49,339 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8ac862cab.jpg
+2025-04-25 14:14:52,515 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8acbccebd.jpg
+2025-04-25 14:14:52,524 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8acbccebe.jpg
+2025-04-25 14:14:59,591 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8ad2e8954.jpg
+2025-04-25 14:14:59,597 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8ad2e8955.jpg
+2025-04-25 14:15:32,601 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8af3d7641.jpg
+2025-04-25 14:15:32,607 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8af3d7643.jpg
+2025-04-25 14:16:39,830 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8b36f2703.jpg
+2025-04-25 14:16:39,833 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8b36f2705.jpg
+2025-04-25 14:17:03,117 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8b4e734e4.jpg
+2025-04-25 14:17:03,118 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8b4e734e6.jpg
+2025-04-25 14:17:56,665 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8b83eef3c.jpg
+2025-04-25 14:17:56,667 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8b83eef3d.jpg
+2025-04-25 14:18:01,571 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8b8901814.jpg
+2025-04-25 14:18:01,575 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8b8901816.jpg
+2025-04-25 14:18:06,871 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8b8e2d4bb.jpg
+2025-04-25 14:18:06,878 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8b8e2d4bd.jpg
+2025-04-25 14:18:38,272 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8badaac91.jpg
+2025-04-25 14:18:38,277 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8badaac93.jpg
+2025-04-25 14:18:43,584 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8bb2dd08c.jpg
+2025-04-25 14:18:43,588 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8bb2dd08e.jpg
+2025-04-25 14:18:48,269 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8bb7b0fdb.jpg
+2025-04-25 14:18:48,273 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8bb7b0fdc.jpg
+2025-04-25 14:18:53,431 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8bbc5e8ae.jpg
+2025-04-25 14:18:53,438 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8bbc5e8b0.jpg
+2025-04-25 14:18:58,240 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8bc173338.jpg
+2025-04-25 14:18:58,246 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8bc173339.jpg
+2025-04-25 14:19:43,393 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8beeb8b6c.jpg
+2025-04-25 14:19:43,395 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8beeb8b6d.jpg
+2025-04-25 14:19:48,128 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8bf37b02d.jpg
+2025-04-25 14:19:48,128 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8bf37b02e.jpg
+2025-04-25 14:19:53,528 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8bf8cf523.jpg
+2025-04-25 14:19:53,529 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8bf8cf526.jpg
+2025-04-25 14:22:06,965 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8c7e52df6.jpg
+2025-04-25 14:22:06,967 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8c7e52df7.jpg
+2025-04-25 14:22:38,655 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8c9de67c2.jpg
+2025-04-25 14:22:38,655 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8c9de67c4.jpg
+2025-04-25 14:22:43,274 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8ca2ae951.jpg
+2025-04-25 14:22:43,277 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8ca2ae952.jpg
+2025-04-25 14:22:48,574 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8ca7e2fc6.jpg
+2025-04-25 14:22:48,580 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8ca7e2fc7.jpg
+2025-04-25 14:22:53,876 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8cad30a94.jpg
+2025-04-25 14:22:53,882 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8cad30a96.jpg
+2025-04-25 14:23:00,530 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8cb3e11be.jpg
+2025-04-25 14:23:00,541 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8cb3e11bf.jpg
+2025-04-25 14:23:07,497 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8cbad1dac.jpg
+2025-04-25 14:23:07,501 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8cbad1daf.jpg
+2025-04-25 14:23:14,518 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8cc1c7a12.jpg
+2025-04-25 14:23:14,533 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8cc1c7a13.jpg
+2025-04-25 14:23:21,738 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8cc918224.jpg
+2025-04-25 14:23:21,753 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8cc918225.jpg
+2025-04-25 14:23:28,535 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8ccfc8e5d.jpg
+2025-04-25 14:23:28,543 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8ccfc8e62.jpg
+2025-04-25 14:24:30,868 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8d0e3f44a.jpg
+2025-04-25 14:24:30,868 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8d0e3f44c.jpg
+2025-04-25 14:24:50,824 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8d223db1b.jpg
+2025-04-25 14:24:50,824 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8d223db1c.jpg
+2025-04-25 14:24:55,943 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8d2759619.jpg
+2025-04-25 14:24:55,943 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8d275961b.jpg
+2025-04-25 14:25:00,528 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8d2bea835.jpg
+2025-04-25 14:25:00,533 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8d2bea837.jpg
+2025-04-25 14:25:05,681 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8d3120ab0.jpg
+2025-04-25 14:25:05,696 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8d3120ab2.jpg
+2025-04-25 14:25:11,068 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8d36127ac.jpg
+2025-04-25 14:25:11,082 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8d36127ae.jpg
+2025-04-25 14:25:16,155 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8d3b58a5d.jpg
+2025-04-25 14:25:16,159 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8d3b58a5f.jpg
+2025-04-25 14:25:21,595 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8d40c7231.jpg
+2025-04-25 14:25:21,597 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8d40c7233.jpg
+2025-04-25 14:25:26,323 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8d45c2cb1.jpg
+2025-04-25 14:25:26,328 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8d45c2cb3.jpg
+2025-04-25 14:25:32,535 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8d4bd31b9.jpg
+2025-04-25 14:25:32,535 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8d4bd31ba.jpg
+2025-04-25 14:25:40,127 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8d5350f32.jpg
+2025-04-25 14:25:40,138 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8d5350f34.jpg
+2025-04-25 14:25:46,642 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8d5a08905.jpg
+2025-04-25 14:25:46,648 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8d5a08907.jpg
+2025-04-25 14:25:51,933 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8d5f49dc0.jpg
+2025-04-25 14:25:51,934 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8d5f49dc1.jpg
+2025-04-25 14:25:57,174 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8d64887c1.jpg
+2025-04-25 14:25:57,180 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8d64887c4.jpg
+2025-04-25 14:26:02,154 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8d6975be7.jpg
+2025-04-25 14:26:02,158 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8d6975be8.jpg
+2025-04-25 14:26:07,524 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8d6ec44fe.jpg
+2025-04-25 14:26:07,528 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8d6ec4500.jpg
+2025-04-25 14:26:12,471 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8d73d6957.jpg
+2025-04-25 14:26:12,475 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8d73d6958.jpg
+2025-04-25 14:26:17,390 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8d78c940a.jpg
+2025-04-25 14:26:17,408 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8d78c940b.jpg
+2025-04-25 14:26:24,226 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8d7ebf527.jpg
+2025-04-25 14:26:24,232 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8d7ebf528.jpg
+2025-04-25 14:26:31,386 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8d85d11c5.jpg
+2025-04-25 14:26:31,386 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8d85d11c6.jpg
+2025-04-25 14:26:37,802 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8d8cc6172.jpg
+2025-04-25 14:26:37,811 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8d8cc6173.jpg
+2025-04-25 14:26:44,816 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8d93e9acb.jpg
+2025-04-25 14:26:44,826 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8d93e9acd.jpg
+2025-04-25 14:26:51,552 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8d9ad0a3a.jpg
+2025-04-25 14:26:51,557 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8d9ad0a3b.jpg
+2025-04-25 14:26:58,667 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8da1e0dc9.jpg
+2025-04-25 14:26:58,667 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8da1e0dca.jpg
+2025-04-25 14:27:04,558 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8da803f35.jpg
+2025-04-25 14:27:04,558 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8da803f36.jpg
+2025-04-25 14:27:10,967 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8dae1f74f.jpg
+2025-04-25 14:27:10,979 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8dae1f751.jpg
+2025-04-25 14:27:30,047 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b8dc15656a.jpg
+2025-04-25 14:27:30,056 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b8dc15656c.jpg
+2025-04-25 14:37:15,861 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b900b31bad.jpg
+2025-04-25 14:37:15,871 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b900b31bb2.jpg
+2025-04-25 14:37:48,929 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b902c4a41f.jpg
+2025-04-25 14:37:48,940 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b902c4a420.jpg
+2025-04-25 14:37:54,020 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b90315385b.jpg
+2025-04-25 14:37:54,023 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b90315385c.jpg
+2025-04-25 14:38:37,482 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b905cd4682.jpg
+2025-04-25 14:38:37,486 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b905cd4683.jpg
+2025-04-25 14:38:42,293 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b90619b2e2.jpg
+2025-04-25 14:38:42,295 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b90619b2e3.jpg
+2025-04-25 14:40:49,766 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b90e128f2f.jpg
+2025-04-25 14:40:49,775 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b90e128f31.jpg
+2025-04-25 14:40:54,994 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b90e65682c.jpg
+2025-04-25 14:40:54,994 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b90e65682d.jpg
+2025-04-25 14:42:52,559 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b915bd0d68.jpg
+2025-04-25 14:42:52,559 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b915bd0d69.jpg
+2025-04-25 14:42:58,192 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b91613da61.jpg
+2025-04-25 14:42:58,198 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b91613da63.jpg
+2025-04-25 14:52:03,907 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b9383247c6.jpg
+2025-04-25 14:52:03,919 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b9383247c9.jpg
+2025-04-25 14:53:03,171 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b93be71fb9.jpg
+2025-04-25 14:53:03,171 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b93be71fba.jpg
+2025-04-25 14:53:30,341 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b93d96782a.jpg
+2025-04-25 14:53:30,347 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b93d96782b.jpg
+2025-04-25 14:56:10,087 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b9479284eb.jpg
+2025-04-25 14:56:10,093 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b9479284ed.jpg
+2025-04-25 14:56:15,205 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b947e392f1.jpg
+2025-04-25 14:56:15,210 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b947e392f4.jpg
+2025-04-25 14:56:19,778 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b948316dd4.jpg
+2025-04-25 14:56:19,782 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b948316dd6.jpg
+2025-04-25 14:56:35,763 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b94927991d.jpg
+2025-04-25 14:56:35,770 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b94927991f.jpg
+2025-04-25 14:56:40,613 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b9497b1ffc.jpg
+2025-04-25 14:56:40,629 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b9497b2000.jpg
+2025-04-25 14:56:57,500 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b94a8b810d.jpg
+2025-04-25 14:56:57,500 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b94a8b810e.jpg
+2025-04-25 15:01:32,400 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b95bb89d3b.jpg
+2025-04-25 15:01:32,409 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b95bb89d3d.jpg
+2025-04-25 15:01:37,072 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b95c057547.jpg
+2025-04-25 15:01:37,072 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b95c05754b.jpg
+2025-04-25 15:06:10,264 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b96d1979b5.jpg
+2025-04-25 15:06:10,269 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b96d1979b6.jpg
+2025-04-25 15:06:15,696 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b96d70c587.jpg
+2025-04-25 15:06:15,700 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b96d70c589.jpg
+2025-04-25 15:07:41,003 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b972c1664f.jpg
+2025-04-25 15:07:41,008 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b972c16650.jpg
+2025-04-25 15:07:46,514 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b9731b6aaa.jpg
+2025-04-25 15:07:46,519 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b9731b6aac.jpg
+2025-04-25 15:08:48,853 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b977018aed.jpg
+2025-04-25 15:08:48,868 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b977018af2.jpg
+2025-04-25 15:08:54,087 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b9775650a0.jpg
+2025-04-25 15:08:54,087 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b9775650a2.jpg
+2025-04-25 15:10:19,360 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b97caa251c.jpg
+2025-04-25 15:10:19,360 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b97caa251d.jpg
+2025-04-25 15:10:24,448 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b97cfbb477.jpg
+2025-04-25 15:10:24,452 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b97cfbb478.jpg
+2025-04-25 15:11:33,367 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b981498bb6.jpg
+2025-04-25 15:11:33,371 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b981498bb7.jpg
+2025-04-25 15:11:38,536 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b9819b1593.jpg
+2025-04-25 15:11:38,540 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b9819b1594.jpg
+2025-04-25 15:12:03,237 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b98328d970.jpg
+2025-04-25 15:12:03,237 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b98328d971.jpg
+2025-04-25 15:12:08,257 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b9837898cc.jpg
+2025-04-25 15:12:08,257 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b9837898cd.jpg
+2025-04-25 15:13:53,966 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b98a0f2379.jpg
+2025-04-25 15:13:53,966 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b98a0f237b.jpg
+2025-04-25 15:14:56,037 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b98df45ef7.jpg
+2025-04-25 15:14:56,042 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b98df45ef9.jpg
+2025-04-25 15:17:06,377 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b9961b4c49.jpg
+2025-04-25 15:17:06,384 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b9961b4c4b.jpg
+2025-04-25 15:17:11,501 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b99669de75.jpg
+2025-04-25 15:17:11,519 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b99669de76.jpg
+2025-04-25 15:17:33,257 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b997ca200d.jpg
+2025-04-25 15:17:33,275 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b997ca200e.jpg
+2025-04-25 15:17:38,309 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b998197047.jpg
+2025-04-25 15:17:38,326 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b998197048.jpg
+2025-04-25 15:18:35,843 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b99b5e3738.jpg
+2025-04-25 15:18:35,843 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b99b5e373a.jpg
+2025-04-25 15:18:40,911 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b99c014f99.jpg
+2025-04-25 15:18:40,916 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b99c014f9a.jpg
+2025-04-25 15:19:30,411 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b99f191a3d.jpg
+2025-04-25 15:19:30,417 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b99f191a3e.jpg
+2025-04-25 15:19:35,437 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b99f6bbff4.jpg
+2025-04-25 15:19:35,437 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b99f6bbff5.jpg
+2025-04-25 15:19:54,177 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b9a0959fdd.jpg
+2025-04-25 15:19:54,177 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b9a0959fde.jpg
+2025-04-25 15:19:59,118 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b9a0e7c3b4.jpg
+2025-04-25 15:19:59,118 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b9a0e7c3b5.jpg
+2025-04-25 15:20:22,216 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b9a250b0eb.jpg
+2025-04-25 15:20:22,219 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b9a250b0ed.jpg
+2025-04-25 15:20:27,396 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b9a2a707f3.jpg
+2025-04-25 15:20:27,404 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b9a2a707f5.jpg
+2025-04-25 15:21:05,415 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b9a50328d5.jpg
+2025-04-25 15:21:05,419 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b9a50328d6.jpg
+2025-04-25 15:21:40,395 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b9a7360f4f.jpg
+2025-04-25 15:21:40,399 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b9a7360f51.jpg
+2025-04-25 15:21:45,693 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b9a78bf400.jpg
+2025-04-25 15:21:45,699 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b9a78bf401.jpg
+2025-04-25 15:22:42,762 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b9ab20201a.jpg
+2025-04-25 15:22:42,766 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b9ab20201e.jpg
+2025-04-25 15:22:47,816 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b9ab71026a.jpg
+2025-04-25 15:22:47,821 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b9ab71026b.jpg
+2025-04-25 15:23:14,354 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b9ad1a7a4f.jpg
+2025-04-25 15:23:14,363 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b9ad1a7a51.jpg
+2025-04-25 15:23:19,509 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b9ad6c182e.jpg
+2025-04-25 15:23:19,515 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b9ad6c182f.jpg
+2025-04-25 15:24:06,720 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b9b05dbafe.jpg
+2025-04-25 15:24:06,724 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b9b05dbaff.jpg
+2025-04-25 15:24:11,729 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b9b0af147a.jpg
+2025-04-25 15:24:11,746 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b9b0af147c.jpg
+2025-04-25 15:24:56,606 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680b9b37d0492.jpg
+2025-04-25 15:24:56,611 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680b9b37d0493.jpg
+2025-04-25 15:54:23,705 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680ba21e394d0.jpg
+2025-04-25 15:54:23,710 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680ba21e394d3.jpg
+2025-04-25 15:54:28,872 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680ba22413295.jpg
+2025-04-25 15:54:28,873 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680ba22413297.jpg
+2025-04-25 16:37:21,415 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680bac3090b67.jpg
+2025-04-25 16:37:21,415 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680bac3090b69.jpg
+2025-04-25 16:37:26,454 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680bac35bde3e.jpg
+2025-04-25 16:37:26,457 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680bac35bde40.jpg
+2025-04-25 16:37:46,523 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680bac49dfb93.jpg
+2025-04-25 16:37:46,534 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680bac49dfb94.jpg
+2025-04-25 16:37:51,293 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680bac4ea3724.jpg
+2025-04-25 16:37:51,297 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680bac4ea3726.jpg
+2025-04-25 16:38:31,206 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680bac76746f7.jpg
+2025-04-25 16:38:31,218 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680bac76746f8.jpg
+2025-04-25 16:38:35,916 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680bac7b5ec2f.jpg
+2025-04-25 16:38:35,921 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680bac7b5ec30.jpg
+2025-04-25 16:38:57,796 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680bac912fd80.jpg
+2025-04-25 16:38:57,802 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680bac912fd81.jpg
+2025-04-25 16:39:35,151 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680bacb66a073.jpg
+2025-04-25 16:39:35,151 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680bacb66a077.jpg
+2025-04-25 16:39:39,858 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680bacbb2d5cf.jpg
+2025-04-25 16:39:39,861 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680bacbb2d5d2.jpg
+2025-04-25 16:40:08,848 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680bacd837adc.jpg
+2025-04-25 16:40:08,853 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680bacd837ade.jpg
+2025-04-25 16:40:13,577 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680bacdce7d26.jpg
+2025-04-25 16:40:13,584 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680bacdce7d27.jpg
+2025-04-25 16:41:38,685 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680bad31d44e7.jpg
+2025-04-25 16:41:38,687 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680bad31d456b.jpg
+2025-04-25 17:14:52,778 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680bb4fbd305f.jpg
+2025-04-25 17:14:52,786 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680bb4fbd3060.jpg
+2025-04-25 17:14:58,404 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680bb5016205c.jpg
+2025-04-25 17:14:58,411 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680bb5016205d.jpg
+2025-04-25 17:15:04,080 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680bb506ee788.jpg
+2025-04-25 17:15:04,088 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680bb506ee78b.jpg
+2025-04-25 17:15:09,292 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680bb50c7db21.jpg
+2025-04-25 17:15:09,292 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680bb50c7db23.jpg
+2025-04-25 17:15:14,641 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680bb5117dfc1.jpg
+2025-04-25 17:15:14,641 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680bb5117dfc2.jpg
+2025-04-25 17:15:54,612 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680bb539c3054.jpg
+2025-04-25 17:15:54,618 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680bb539c3055.jpg
+2025-04-25 17:16:17,603 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680bb5501727a.jpg
+2025-04-25 17:16:17,609 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680bb5501727b.jpg
+2025-04-25 17:16:22,453 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680bb555b665d.jpg
+2025-04-25 17:16:22,457 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680bb555b665e.jpg
+2025-04-25 17:20:00,307 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680bb62d04904.jpg
+2025-04-25 17:20:00,316 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680bb62d04906.jpg
+2025-04-25 17:20:05,409 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680bb6345c8be.jpg
+2025-04-25 17:20:05,411 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680bb6345c8c0.jpg
+2025-04-25 17:22:19,979 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680bb6bb1e951.jpg
+2025-04-25 17:22:19,982 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680bb6bb1e952.jpg
+2025-04-25 17:22:24,872 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680bb6c015feb.jpg
+2025-04-25 17:22:24,877 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680bb6c015fed.jpg
+2025-04-26 16:19:34,876 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680cf983054b3.jpg
+2025-04-26 16:19:34,892 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680cf983054b5.jpg
+2025-04-26 16:19:40,379 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680cf98b3b38d.jpg
+2025-04-26 16:19:40,399 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680cf98b3b38e.jpg
+2025-04-26 16:20:12,466 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680cf9aa7447f.jpg
+2025-04-26 16:20:12,472 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680cf9aa74480.jpg
+2025-04-26 16:20:17,928 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680cf9b080f43.jpg
+2025-04-26 16:20:17,934 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680cf9b080f44.jpg
+2025-04-26 16:21:34,226 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680cf9fd0e019.jpg
+2025-04-26 16:21:34,241 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680cf9fd0e01a.jpg
+2025-04-26 16:21:40,177 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680cfa02717b1.jpg
+2025-04-26 16:21:40,186 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680cfa02717b3.jpg
+2025-04-26 16:21:45,246 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680cfa0858a0d.jpg
+2025-04-26 16:21:45,246 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680cfa0858a0e.jpg
+2025-04-26 16:21:50,963 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680cfa0d4befb.jpg
+2025-04-26 16:21:50,968 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680cfa0d4befc.jpg
+2025-04-26 16:21:58,839 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680cfa13551e7.jpg
+2025-04-26 16:21:58,839 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680cfa13551e9.jpg
+2025-04-26 16:22:04,384 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680cfa1b4ec90.jpg
+2025-04-26 16:22:04,390 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680cfa1b4ec92.jpg
+2025-04-26 16:22:11,901 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680cfa20a20a4.jpg
+2025-04-26 16:22:11,904 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680cfa20a20a6.jpg
+2025-04-26 16:25:17,102 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680cfadc200d3.jpg
+2025-04-26 16:25:17,107 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680cfadc200d5.jpg
+2025-04-26 16:25:21,845 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680cfae11e50f.jpg
+2025-04-26 16:25:21,850 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680cfae11e510.jpg
+2025-04-26 16:25:26,589 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680cfae5de1c0.jpg
+2025-04-26 16:25:26,589 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680cfae5de1c1.jpg
+2025-04-26 16:25:31,325 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680cfaea8a71f.jpg
+2025-04-26 16:25:31,328 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680cfaea8a720.jpg
+2025-04-26 16:25:36,172 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680cfaef6df08.jpg
+2025-04-26 16:25:36,180 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680cfaef6df09.jpg
+2025-04-26 16:25:41,597 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680cfaf40a39c.jpg
+2025-04-26 16:25:41,597 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680cfaf40a39e.jpg
+2025-04-26 16:25:47,492 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680cfaf9b70d0.jpg
+2025-04-26 16:25:47,492 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680cfaf9b70d1.jpg
+2025-04-26 16:25:52,692 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680cfaff9cbd3.jpg
+2025-04-26 16:25:52,698 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680cfaff9cbd4.jpg
+2025-04-26 16:27:34,687 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680cfb65c55a7.jpg
+2025-04-26 16:27:34,687 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680cfb65c55a8.jpg
+2025-04-26 16:27:40,310 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680cfb6b033ec.jpg
+2025-04-26 16:27:40,314 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680cfb6b033ed.jpg
+2025-04-26 16:28:03,479 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680cfb8299ca5.jpg
+2025-04-26 16:28:03,484 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680cfb8299ca7.jpg
+2025-04-26 16:28:12,014 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680cfb87a74a0.jpg
+2025-04-26 16:28:12,014 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680cfb87a74a2.jpg
+2025-04-26 16:28:50,940 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680cfbb2248d4.jpg
+2025-04-26 16:28:50,948 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680cfbb2248d6.jpg
+2025-04-26 16:28:56,442 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680cfbb713a68.jpg
+2025-04-26 16:28:56,442 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680cfbb713a69.jpg
+2025-04-26 16:29:01,468 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680cfbbc8b34d.jpg
+2025-04-26 16:29:01,468 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680cfbbc8b34e.jpg
+2025-04-27 09:49:43,428 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680defa475f13.jpg
+2025-04-27 09:49:43,449 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680defa475f14.jpg
+2025-04-27 09:49:48,595 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680defabc083c.jpg
+2025-04-27 09:49:48,596 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680defabc083d.jpg
+2025-04-27 09:49:53,647 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680defb0ca6f4.jpg
+2025-04-27 09:49:53,647 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680defb0ca6f5.jpg
+2025-04-27 09:49:58,682 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680defb5d8dca.jpg
+2025-04-27 09:49:58,682 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680defb5d8dcc.jpg
+2025-04-27 09:50:03,712 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680defbaa336a.jpg
+2025-04-27 09:50:03,716 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680defbaa336b.jpg
+2025-04-27 09:50:09,126 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680defbfe5e77.jpg
+2025-04-27 09:50:09,134 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680defbfe5e78.jpg
+2025-04-27 09:50:14,645 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680defc5a2e10.jpg
+2025-04-27 09:50:14,650 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680defc5a2e12.jpg
+2025-04-27 09:50:19,903 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680defcb037ac.jpg
+2025-04-27 09:50:19,903 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680defcb037ad.jpg
+2025-04-27 09:50:35,709 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680defda9c2b9.jpg
+2025-04-27 09:50:35,725 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680defda9c2ba.jpg
+2025-04-27 09:50:40,626 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680defdfd97d5.jpg
+2025-04-27 09:50:40,626 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680defdfd97d7.jpg
+2025-04-27 09:50:45,876 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680defe4df32a.jpg
+2025-04-27 09:50:45,883 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680defe4df32b.jpg
+2025-04-27 09:50:50,813 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680defea0d8cf.jpg
+2025-04-27 09:50:50,813 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680defea0d8d2.jpg
+2025-04-27 09:50:56,372 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680defef4b44e.jpg
+2025-04-27 09:50:56,379 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680defef4b44f.jpg
+2025-04-27 09:51:01,632 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\upload_680deff4d91c0.jpg
+2025-04-27 09:51:01,632 - INFO - Loading image from: C:\Users\motez\AppData\Local\Temp\ref_680deff4d91c3.jpg

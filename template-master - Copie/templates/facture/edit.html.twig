@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% set active_page = 'home' %}
+
+{% block title %}Modifier la Facture{% endblock %}
+
+{% block content %}
+    <div class="container-fluid py-5">
+        <div class="container pt-5 pb-3">
+            <h1 class="display-4 text-uppercase text-center mb-5">Modifier la Facture</h1>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h4>Formulaire de modification</h4>
+                        </div>
+                        <div class="card-body">
+                            {{ include('facture/_form.html.twig') }}
+                        </div>
+                        <div class="card-footer">
+                            <a href="{{ path('app_facture_index') }}" class="btn btn-secondary">Retour à la liste</a>
+                            {{ include('facture/_delete_form.html.twig') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

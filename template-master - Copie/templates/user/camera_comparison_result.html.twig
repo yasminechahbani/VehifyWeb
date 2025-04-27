@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h2>Face Comparison Results</h2>
+        
+        {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+        {% endif %}
+
+        {% if result %}
+            <div class="alert {% if result.match %}alert-success{% else %}alert-warning{% endif %}">
+                <h4>{% if result.match %}Match Found!{% else %}No Match{% endif %}</h4>
+                <p>Confidence: {{ (result.confidence * 100)|round(2) }}%</p>
+                {% if result.message %}
+                    <p>{{ result.message }}</p>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        <div class="mt-3">
+            <a href="{{ path('app_home') }}" class="btn btn-secondary">Back to Home</a>
+        </div>
+    </div>
+{% endblock %}

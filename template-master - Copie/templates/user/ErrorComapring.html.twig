@@ -1,0 +1,26 @@
+{% extends 'baseFlogin.html.twig' %}
+
+{% block javascripts %}
+
+{{ parent() }}
+
+{% if show_redirect_popup %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    Swal.fire({
+        icon: 'error',
+        title: 'Essais dépassés',
+        text: 'Nombre d\'essais dépassé. Vous serez redirigé dans 3 secondes.',
+        timer: 3000,
+        timerProgressBar: true,
+        showConfirmButton: false,
+        willClose: () => {
+            window.location.href = "{{ path('app_user_new') }}";
+        }
+    });
+});
+</script>
+{% endif %}
+
+{% endblock %}

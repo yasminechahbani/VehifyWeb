@@ -1,0 +1,11 @@
+{% extends 'baseFlogin.html.twig' %}
+
+{% block title %}Reconnaissance Faciale{% endblock %}
+
+{% block body %}
+    <h1>Reconnaissance faciale via webcam</h1>
+
+    <form method="post" action="{{ path('app_face_camera') }}">
+        <button type="submit" class="btn btn-success">📷 Ouvrir la caméra</button>
+    </form>
+{% endblock %}

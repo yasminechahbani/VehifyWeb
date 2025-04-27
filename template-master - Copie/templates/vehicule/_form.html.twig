@@ -1,0 +1,132 @@
+{{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+<div class="row g-3">
+
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(form.marque) }}
+            {{ form_widget(form.marque, {
+                'attr': {
+                    'class': 'form-control' ~ (form.marque.vars.valid ? '' : ' is-invalid'),
+                    'placeholder': 'Ex: Peugeot'
+                }
+            }) }}
+            {% for error in form.marque.vars.errors %}
+                <div class="invalid-feedback d-block">{{ error.message }}</div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(form.modele) }}
+            {{ form_widget(form.modele, {
+                'attr': {
+                    'class': 'form-control' ~ (form.modele.vars.valid ? '' : ' is-invalid'),
+                    'placeholder': 'Ex: 208'
+                }
+            }) }}
+            {% for error in form.modele.vars.errors %}
+                <div class="invalid-feedback d-block">{{ error.message }}</div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(form.immatriculation) }}
+            {{ form_widget(form.immatriculation, {
+                'attr': {
+                    'class': 'form-control' ~ (form.immatriculation.vars.valid ? '' : ' is-invalid'),
+                    'placeholder': 'Ex: AB-123-CD'
+                }
+            }) }}
+            {% for error in form.immatriculation.vars.errors %}
+                <div class="invalid-feedback d-block">{{ error.message }}</div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(form.type) }}
+            {{ form_widget(form.type, {
+                'attr': {
+                    'class': 'form-control' ~ (form.type.vars.valid ? '' : ' is-invalid'),
+                    'placeholder': 'Ex: SUV, Berline...'
+                }
+            }) }}
+            {% for error in form.type.vars.errors %}
+                <div class="invalid-feedback d-block">{{ error.message }}</div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(form.couleur) }}
+            {{ form_widget(form.couleur, {
+                'attr': {
+                    'class': 'form-control' ~ (form.couleur.vars.valid ? '' : ' is-invalid'),
+                    'placeholder': 'Ex: Rouge'
+                }
+            }) }}
+            {% for error in form.couleur.vars.errors %}
+                <div class="invalid-feedback d-block">{{ error.message }}</div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(form.kilometrage) }}
+            {{ form_widget(form.kilometrage, {
+                'attr': {
+                    'class': 'form-control' ~ (form.kilometrage.vars.valid ? '' : ' is-invalid'),
+                    'placeholder': 'Ex: 45000'
+                }
+            }) }}
+            {% for error in form.kilometrage.vars.errors %}
+                <div class="invalid-feedback d-block">{{ error.message }}</div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(form.statut) }}
+            {{ form_widget(form.statut, {
+                'attr': {
+                    'class': 'form-control' ~ (form.statut.vars.valid ? '' : ' is-invalid'),
+                    'placeholder': 'Visite faite, Visite non faite'
+                }
+            }) }}
+            {% for error in form.statut.vars.errors %}
+                <div class="invalid-feedback d-block">{{ error.message }}</div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(form.carteGrise) }}
+            {{ form_widget(form.carteGrise, {
+                'attr': {
+                    'class': 'form-select' ~ (form.carteGrise.vars.valid ? '' : ' is-invalid')
+                }
+            }) }}
+            {% for error in form.carteGrise.vars.errors %}
+                <div class="invalid-feedback d-block">{{ error.message }}</div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-12 mt-4">
+        <button type="submit" class="btn btn-primary me-2">
+            <i class="fas fa-save me-1"></i> Enregistrer
+        </button>
+        <button type="reset" class="btn btn-outline-secondary">
+            <i class="fas fa-undo me-1"></i> Réinitialiser
+        </button>
+    </div>
+
+</div>
+{{ form_end(form) }}
