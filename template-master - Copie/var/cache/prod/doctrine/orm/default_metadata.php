@@ -5,18 +5,20 @@
 return [[
 
 'App__Entity__Employe__CLASSMETADATA__' => 0,
-'App__Entity__Equipement__CLASSMETADATA__' => 1,
-'App__Entity__User__CLASSMETADATA__' => 2,
-'App__Entity__Carte_grise__CLASSMETADATA__' => 3,
-'App__Entity__Compte__CLASSMETADATA__' => 4,
-'App__Entity__Paiement__CLASSMETADATA__' => 5,
-'App__Entity__Permis__CLASSMETADATA__' => 6,
-'App__Entity__Quiz__CLASSMETADATA__' => 7,
-'App__Entity__Rapport__CLASSMETADATA__' => 8,
-'App__Entity__Reservation__CLASSMETADATA__' => 9,
-'App__Entity__Resultat__CLASSMETADATA__' => 10,
-'App__Entity__Service__CLASSMETADATA__' => 11,
-'App__Entity__Vehicule__CLASSMETADATA__' => 12,
+'App__Entity__Permis__CLASSMETADATA__' => 1,
+'App__Entity__Equipement__CLASSMETADATA__' => 2,
+'App__Entity__Vehicule__CLASSMETADATA__' => 3,
+'App__Entity__CarteGrise__CLASSMETADATA__' => 4,
+'App__Entity__Quiz__CLASSMETADATA__' => 5,
+'App__Entity__User__CLASSMETADATA__' => 6,
+'App__Entity__Carte_grise__CLASSMETADATA__' => 7,
+'App__Entity__Compte__CLASSMETADATA__' => 8,
+'App__Entity__Facture__CLASSMETADATA__' => 9,
+'App__Entity__Paiement__CLASSMETADATA__' => 10,
+'App__Entity__Rapport__CLASSMETADATA__' => 11,
+'App__Entity__Reservation__CLASSMETADATA__' => 12,
+'App__Entity__Resultat__CLASSMETADATA__' => 13,
+'App__Entity__Service__CLASSMETADATA__' => 14,
 
 ], [
 
@@ -37,7 +39,6 @@ return [[
             clone ($p['Doctrine\\ORM\\Mapping\\ManyToOneAssociationMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ManyToOneAssociationMapping')),
             clone ($p['Doctrine\\ORM\\Mapping\\JoinColumnMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\JoinColumnMapping')),
             clone ($p['Doctrine\\ORM\\Mapping\\OneToManyAssociationMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\OneToManyAssociationMapping')),
-            clone $p['Doctrine\\ORM\\Mapping\\OneToManyAssociationMapping'],
             clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
         ],
         null,
@@ -106,13 +107,12 @@ return [[
                 ],
                 'associationMappings' => [
                     [
-                        'id_service' => $o[11],
+                        'idService' => $o[11],
                         'equipements' => $o[13],
-                        'permiss' => $o[14],
                     ],
                 ],
                 'idGenerator' => [
-                    $o[15],
+                    $o[14],
                 ],
                 'name' => [
                     'App\\Entity\\Employe',
@@ -168,12 +168,10 @@ return [[
                 'fetch' => [
                     11 => 2,
                     13 => 2,
-                    2,
                 ],
                 'sourceEntity' => [
                     11 => 'App\\Entity\\Employe',
                     13 => 'App\\Entity\\Employe',
-                    'App\\Entity\\Employe',
                 ],
                 'inversedBy' => [
                     11 => 'employes',
@@ -211,20 +209,17 @@ return [[
                     12 => 'id_service',
                 ],
                 'mappedBy' => [
-                    13 => 'id_employe',
-                    'idEmploye',
+                    13 => 'employe',
                 ],
             ],
             'Doctrine\\ORM\\Mapping\\AssociationMapping' => [
                 'fieldName' => [
-                    11 => 'id_service',
+                    11 => 'idService',
                     13 => 'equipements',
-                    'permiss',
                 ],
                 'targetEntity' => [
                     11 => 'App\\Entity\\Service',
                     13 => 'App\\Entity\\Equipement',
-                    'App\\Entity\\Permis',
                 ],
             ],
         ],
@@ -241,6 +236,247 @@ return [[
             clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
             clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
             clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone ($p['Doctrine\\ORM\\Mapping\\ManyToOneAssociationMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ManyToOneAssociationMapping')),
+            clone ($p['Doctrine\\ORM\\Mapping\\JoinColumnMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\JoinColumnMapping')),
+            clone $p['Doctrine\\ORM\\Mapping\\ManyToOneAssociationMapping'],
+            clone $p['Doctrine\\ORM\\Mapping\\JoinColumnMapping'],
+            clone ($p['Doctrine\\ORM\\Mapping\\OneToManyAssociationMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\OneToManyAssociationMapping')),
+            clone ($p['Doctrine\\ORM\\Mapping\\OneToOneOwningSideMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\OneToOneOwningSideMapping')),
+            clone $p['Doctrine\\ORM\\Mapping\\JoinColumnMapping'],
+            clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+        ],
+        null,
+        [
+            'stdClass' => [
+                'namespace' => [
+                    'App\\Entity',
+                ],
+                'rootEntityName' => [
+                    'App\\Entity\\Permis',
+                ],
+                'customRepositoryClassName' => [
+                    'App\\Repository\\PermisRepository',
+                ],
+                'identifier' => [
+                    [
+                        'id_permis',
+                    ],
+                ],
+                'generatorType' => [
+                    4,
+                ],
+                'fieldMappings' => [
+                    [
+                        'id_permis' => $o[1],
+                        'numero_permis' => $o[2],
+                        'categorie' => $o[3],
+                        'date_delivrance' => $o[4],
+                        'date_expiration' => $o[5],
+                        'etat' => $o[6],
+                        'isRenewal' => $o[7],
+                    ],
+                ],
+                'fieldNames' => [
+                    [
+                        'id_permis' => 'id_permis',
+                        'numero_permis' => 'numero_permis',
+                        'categorie' => 'categorie',
+                        'date_delivrance' => 'date_delivrance',
+                        'date_expiration' => 'date_expiration',
+                        'etat' => 'etat',
+                        'is_renewal' => 'isRenewal',
+                    ],
+                ],
+                'columnNames' => [
+                    [
+                        'id_permis' => 'id_permis',
+                        'numero_permis' => 'numero_permis',
+                        'categorie' => 'categorie',
+                        'date_delivrance' => 'date_delivrance',
+                        'date_expiration' => 'date_expiration',
+                        'etat' => 'etat',
+                        'isRenewal' => 'is_renewal',
+                    ],
+                ],
+                'table' => [
+                    [
+                        'name' => 'permis',
+                    ],
+                ],
+                'associationMappings' => [
+                    [
+                        'id_service' => $o[8],
+                        'id_employe' => $o[10],
+                        'reservations' => $o[12],
+                        'idQuiz' => $o[13],
+                    ],
+                ],
+                'idGenerator' => [
+                    $o[15],
+                ],
+                'name' => [
+                    'App\\Entity\\Permis',
+                    9 => 'id_service',
+                    11 => 'id_employe',
+                    14 => 'idQuiz',
+                ],
+                'id' => [
+                    1 => true,
+                ],
+                'type' => [
+                    1 => 'integer',
+                    'string',
+                    'string',
+                    'date',
+                    'date',
+                    'string',
+                    'integer',
+                ],
+                'fieldName' => [
+                    1 => 'id_permis',
+                    'numero_permis',
+                    'categorie',
+                    'date_delivrance',
+                    'date_expiration',
+                    'etat',
+                    'isRenewal',
+                ],
+                'columnName' => [
+                    1 => 'id_permis',
+                    'numero_permis',
+                    'categorie',
+                    'date_delivrance',
+                    'date_expiration',
+                    'etat',
+                    'is_renewal',
+                ],
+                'length' => [
+                    2 => 50,
+                    20,
+                    6 => 20,
+                ],
+                'fetch' => [
+                    8 => 2,
+                    10 => 2,
+                    12 => 2,
+                    2,
+                ],
+                'sourceEntity' => [
+                    8 => 'App\\Entity\\Permis',
+                    10 => 'App\\Entity\\Permis',
+                    12 => 'App\\Entity\\Permis',
+                    'App\\Entity\\Permis',
+                ],
+                'inversedBy' => [
+                    8 => 'permis',
+                    10 => 'permis',
+                    13 => 'permis',
+                ],
+                'sourceToTargetKeyColumns' => [
+                    8 => [
+                        'id_service' => 'id_service',
+                    ],
+                    10 => [
+                        'id_employe' => 'id_employe',
+                    ],
+                    13 => [
+                        'idQuiz' => 'id',
+                    ],
+                ],
+                'targetToSourceKeyColumns' => [
+                    8 => [
+                        'id_service' => 'id_service',
+                    ],
+                    10 => [
+                        'id_employe' => 'id_employe',
+                    ],
+                    13 => [
+                        'id' => 'idQuiz',
+                    ],
+                ],
+                'joinColumns' => [
+                    8 => [
+                        $o[9],
+                    ],
+                    10 => [
+                        $o[11],
+                    ],
+                    13 => [
+                        $o[14],
+                    ],
+                ],
+                'joinColumnFieldNames' => [
+                    8 => [
+                        'id_service' => 'id_service',
+                    ],
+                    10 => [
+                        'id_employe' => 'id_employe',
+                    ],
+                    13 => [
+                        'idQuiz' => 'idQuiz',
+                    ],
+                ],
+                'unique' => [
+                    9 => false,
+                    11 => false,
+                    14 => true,
+                ],
+                'onDelete' => [
+                    9 => 'CASCADE',
+                    11 => 'CASCADE',
+                ],
+                'nullable' => [
+                    9 => true,
+                    11 => true,
+                    14 => true,
+                ],
+                'referencedColumnName' => [
+                    9 => 'id_service',
+                    11 => 'id_employe',
+                    14 => 'id',
+                ],
+                'mappedBy' => [
+                    12 => 'id_permis',
+                ],
+                'cascade' => [
+                    13 => [
+                        'persist',
+                        'remove',
+                    ],
+                ],
+            ],
+            'Doctrine\\ORM\\Mapping\\AssociationMapping' => [
+                'fieldName' => [
+                    8 => 'id_service',
+                    10 => 'id_employe',
+                    12 => 'reservations',
+                    'idQuiz',
+                ],
+                'targetEntity' => [
+                    8 => 'App\\Entity\\Service',
+                    10 => 'App\\Entity\\Employe',
+                    12 => 'App\\Entity\\Reservation',
+                    'App\\Entity\\Quiz',
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+},
+2 => static function () {
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+            clone ($p['Doctrine\\ORM\\Mapping\\FieldMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\FieldMapping')),
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone ($p['Doctrine\\ORM\\Mapping\\ManyToOneAssociationMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ManyToOneAssociationMapping')),
+            clone ($p['Doctrine\\ORM\\Mapping\\JoinColumnMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\JoinColumnMapping')),
             clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
         ],
         null,
@@ -292,11 +528,17 @@ return [[
                         'name' => 'equipement',
                     ],
                 ],
+                'associationMappings' => [
+                    [
+                        'employe' => $o[6],
+                    ],
+                ],
                 'idGenerator' => [
-                    $o[6],
+                    $o[8],
                 ],
                 'name' => [
                     'App\\Entity\\Equipement',
+                    7 => 'id_employe',
                 ],
                 'id' => [
                     1 => true,
@@ -327,13 +569,568 @@ return [[
                     4 => 50,
                     20,
                 ],
+                'fetch' => [
+                    6 => 2,
+                ],
+                'sourceEntity' => [
+                    6 => 'App\\Entity\\Equipement',
+                ],
+                'inversedBy' => [
+                    6 => 'equipements',
+                ],
+                'sourceToTargetKeyColumns' => [
+                    6 => [
+                        'id_employe' => 'id_employe',
+                    ],
+                ],
+                'targetToSourceKeyColumns' => [
+                    6 => [
+                        'id_employe' => 'id_employe',
+                    ],
+                ],
+                'joinColumns' => [
+                    6 => [
+                        $o[7],
+                    ],
+                ],
+                'joinColumnFieldNames' => [
+                    6 => [
+                        'id_employe' => 'id_employe',
+                    ],
+                ],
+                'unique' => [
+                    7 => false,
+                ],
+                'onDelete' => [
+                    7 => 'CASCADE',
+                ],
+                'nullable' => [
+                    7 => true,
+                ],
+                'referencedColumnName' => [
+                    7 => 'id_employe',
+                ],
+            ],
+            'Doctrine\\ORM\\Mapping\\AssociationMapping' => [
+                'fieldName' => [
+                    6 => 'employe',
+                ],
+                'targetEntity' => [
+                    6 => 'App\\Entity\\Employe',
+                ],
             ],
         ],
         $o[0],
         []
     );
 },
-2 => static function () {
+3 => static function () {
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+            clone ($p['Doctrine\\ORM\\Mapping\\FieldMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\FieldMapping')),
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone ($p['Doctrine\\ORM\\Mapping\\ManyToOneAssociationMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ManyToOneAssociationMapping')),
+            clone ($p['Doctrine\\ORM\\Mapping\\JoinColumnMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\JoinColumnMapping')),
+            clone ($p['Doctrine\\ORM\\Mapping\\OneToManyAssociationMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\OneToManyAssociationMapping')),
+            clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+        ],
+        null,
+        [
+            'stdClass' => [
+                'namespace' => [
+                    'App\\Entity',
+                ],
+                'rootEntityName' => [
+                    'App\\Entity\\Vehicule',
+                ],
+                'identifier' => [
+                    [
+                        'idVehicule',
+                    ],
+                ],
+                'generatorType' => [
+                    4,
+                ],
+                'fieldMappings' => [
+                    [
+                        'idVehicule' => $o[1],
+                        'marque' => $o[2],
+                        'modele' => $o[3],
+                        'immatriculation' => $o[4],
+                        'type' => $o[5],
+                        'couleur' => $o[6],
+                        'kilometrage' => $o[7],
+                        'statut' => $o[8],
+                    ],
+                ],
+                'fieldNames' => [
+                    [
+                        'id_vehicule' => 'idVehicule',
+                        'marque' => 'marque',
+                        'modele' => 'modele',
+                        'immatriculation' => 'immatriculation',
+                        'type' => 'type',
+                        'couleur' => 'couleur',
+                        'kilometrage' => 'kilometrage',
+                        'statut' => 'statut',
+                    ],
+                ],
+                'columnNames' => [
+                    [
+                        'idVehicule' => 'id_vehicule',
+                        'marque' => 'marque',
+                        'modele' => 'modele',
+                        'immatriculation' => 'immatriculation',
+                        'type' => 'type',
+                        'couleur' => 'couleur',
+                        'kilometrage' => 'kilometrage',
+                        'statut' => 'statut',
+                    ],
+                ],
+                'table' => [
+                    [
+                        'name' => 'vehicule',
+                    ],
+                ],
+                'associationMappings' => [
+                    [
+                        'carteGrise' => $o[9],
+                        'reservations' => $o[11],
+                    ],
+                ],
+                'idGenerator' => [
+                    $o[12],
+                ],
+                'name' => [
+                    'App\\Entity\\Vehicule',
+                    10 => 'id_carte_grise',
+                ],
+                'id' => [
+                    1 => true,
+                ],
+                'type' => [
+                    1 => 'integer',
+                    'string',
+                    'string',
+                    'string',
+                    'string',
+                    'string',
+                    'integer',
+                    'string',
+                ],
+                'fieldName' => [
+                    1 => 'idVehicule',
+                    'marque',
+                    'modele',
+                    'immatriculation',
+                    'type',
+                    'couleur',
+                    'kilometrage',
+                    'statut',
+                ],
+                'columnName' => [
+                    1 => 'id_vehicule',
+                    'marque',
+                    'modele',
+                    'immatriculation',
+                    'type',
+                    'couleur',
+                    'kilometrage',
+                    'statut',
+                ],
+                'length' => [
+                    2 => 50,
+                    50,
+                    20,
+                    50,
+                    30,
+                    8 => 100,
+                ],
+                'fetch' => [
+                    9 => 2,
+                    11 => 2,
+                ],
+                'sourceEntity' => [
+                    9 => 'App\\Entity\\Vehicule',
+                    11 => 'App\\Entity\\Vehicule',
+                ],
+                'inversedBy' => [
+                    9 => 'vehicules',
+                ],
+                'sourceToTargetKeyColumns' => [
+                    9 => [
+                        'id_carte_grise' => 'id_carte_grise',
+                    ],
+                ],
+                'targetToSourceKeyColumns' => [
+                    9 => [
+                        'id_carte_grise' => 'id_carte_grise',
+                    ],
+                ],
+                'joinColumns' => [
+                    9 => [
+                        $o[10],
+                    ],
+                ],
+                'joinColumnFieldNames' => [
+                    9 => [
+                        'id_carte_grise' => 'id_carte_grise',
+                    ],
+                ],
+                'unique' => [
+                    10 => false,
+                ],
+                'onDelete' => [
+                    10 => 'CASCADE',
+                ],
+                'nullable' => [
+                    10 => true,
+                ],
+                'referencedColumnName' => [
+                    10 => 'id_carte_grise',
+                ],
+                'mappedBy' => [
+                    11 => 'id_vehicule',
+                ],
+            ],
+            'Doctrine\\ORM\\Mapping\\AssociationMapping' => [
+                'fieldName' => [
+                    9 => 'carteGrise',
+                    11 => 'reservations',
+                ],
+                'targetEntity' => [
+                    9 => 'App\\Entity\\CarteGrise',
+                    11 => 'App\\Entity\\Reservation',
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+},
+4 => static function () {
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+            clone ($p['Doctrine\\ORM\\Mapping\\FieldMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\FieldMapping')),
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone ($p['Doctrine\\ORM\\Mapping\\ManyToOneAssociationMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ManyToOneAssociationMapping')),
+            clone ($p['Doctrine\\ORM\\Mapping\\JoinColumnMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\JoinColumnMapping')),
+            clone ($p['Doctrine\\ORM\\Mapping\\OneToManyAssociationMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\OneToManyAssociationMapping')),
+            clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+        ],
+        null,
+        [
+            'stdClass' => [
+                'namespace' => [
+                    'App\\Entity',
+                ],
+                'rootEntityName' => [
+                    'App\\Entity\\CarteGrise',
+                ],
+                'identifier' => [
+                    [
+                        'idCarteGrise',
+                    ],
+                ],
+                'generatorType' => [
+                    4,
+                ],
+                'fieldMappings' => [
+                    [
+                        'idCarteGrise' => $o[1],
+                        'numeroCarteGrise' => $o[2],
+                        'proprietaire' => $o[3],
+                        'adresseProprietaire' => $o[4],
+                        'dateEmission' => $o[5],
+                        'dateExpiration' => $o[6],
+                    ],
+                ],
+                'fieldNames' => [
+                    [
+                        'id_carte_grise' => 'idCarteGrise',
+                        'numero_carte_grise' => 'numeroCarteGrise',
+                        'proprietaire' => 'proprietaire',
+                        'adresse_proprietaire' => 'adresseProprietaire',
+                        'date_emission' => 'dateEmission',
+                        'date_expiration' => 'dateExpiration',
+                    ],
+                ],
+                'columnNames' => [
+                    [
+                        'idCarteGrise' => 'id_carte_grise',
+                        'numeroCarteGrise' => 'numero_carte_grise',
+                        'proprietaire' => 'proprietaire',
+                        'adresseProprietaire' => 'adresse_proprietaire',
+                        'dateEmission' => 'date_emission',
+                        'dateExpiration' => 'date_expiration',
+                    ],
+                ],
+                'table' => [
+                    [
+                        'name' => 'carte_grise',
+                    ],
+                ],
+                'associationMappings' => [
+                    [
+                        'user' => $o[7],
+                        'vehicules' => $o[9],
+                    ],
+                ],
+                'idGenerator' => [
+                    $o[10],
+                ],
+                'name' => [
+                    'App\\Entity\\CarteGrise',
+                    8 => 'id_user',
+                ],
+                'id' => [
+                    1 => true,
+                ],
+                'type' => [
+                    1 => 'integer',
+                    'string',
+                    'string',
+                    'string',
+                    'date',
+                    'date',
+                ],
+                'fieldName' => [
+                    1 => 'idCarteGrise',
+                    'numeroCarteGrise',
+                    'proprietaire',
+                    'adresseProprietaire',
+                    'dateEmission',
+                    'dateExpiration',
+                ],
+                'columnName' => [
+                    1 => 'id_carte_grise',
+                    'numero_carte_grise',
+                    'proprietaire',
+                    'adresse_proprietaire',
+                    'date_emission',
+                    'date_expiration',
+                ],
+                'length' => [
+                    2 => 50,
+                    100,
+                    255,
+                ],
+                'fetch' => [
+                    7 => 2,
+                    9 => 2,
+                ],
+                'sourceEntity' => [
+                    7 => 'App\\Entity\\CarteGrise',
+                    9 => 'App\\Entity\\CarteGrise',
+                ],
+                'inversedBy' => [
+                    7 => 'cartesGrises',
+                ],
+                'sourceToTargetKeyColumns' => [
+                    7 => [
+                        'id_user' => 'id',
+                    ],
+                ],
+                'targetToSourceKeyColumns' => [
+                    7 => [
+                        'id' => 'id_user',
+                    ],
+                ],
+                'joinColumns' => [
+                    7 => [
+                        $o[8],
+                    ],
+                ],
+                'joinColumnFieldNames' => [
+                    7 => [
+                        'id_user' => 'id_user',
+                    ],
+                ],
+                'unique' => [
+                    8 => false,
+                ],
+                'onDelete' => [
+                    8 => 'CASCADE',
+                ],
+                'nullable' => [
+                    8 => true,
+                ],
+                'referencedColumnName' => [
+                    8 => 'id',
+                ],
+                'cascade' => [
+                    9 => [
+                        'persist',
+                        'remove',
+                    ],
+                ],
+                'mappedBy' => [
+                    9 => 'carteGrise',
+                ],
+            ],
+            'Doctrine\\ORM\\Mapping\\AssociationMapping' => [
+                'fieldName' => [
+                    7 => 'user',
+                    9 => 'vehicules',
+                ],
+                'targetEntity' => [
+                    7 => 'App\\Entity\\User',
+                    9 => 'App\\Entity\\Vehicule',
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+},
+5 => static function () {
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+            clone ($p['Doctrine\\ORM\\Mapping\\FieldMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\FieldMapping')),
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone ($p['Doctrine\\ORM\\Mapping\\OneToOneInverseSideMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\OneToOneInverseSideMapping')),
+            clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+        ],
+        null,
+        [
+            'stdClass' => [
+                'namespace' => [
+                    'App\\Entity',
+                ],
+                'rootEntityName' => [
+                    'App\\Entity\\Quiz',
+                ],
+                'customRepositoryClassName' => [
+                    'App\\Repository\\QuizRepository',
+                ],
+                'identifier' => [
+                    [
+                        'id',
+                    ],
+                ],
+                'generatorType' => [
+                    4,
+                ],
+                'fieldMappings' => [
+                    [
+                        'id' => $o[1],
+                        'score' => $o[2],
+                        'statut' => $o[3],
+                        'dateTest' => $o[4],
+                        'idUser' => $o[5],
+                        'rating' => $o[6],
+                    ],
+                ],
+                'fieldNames' => [
+                    [
+                        'id' => 'id',
+                        'score' => 'score',
+                        'statut' => 'statut',
+                        'date_test' => 'dateTest',
+                        'id_user' => 'idUser',
+                        'rating' => 'rating',
+                    ],
+                ],
+                'columnNames' => [
+                    [
+                        'id' => 'id',
+                        'score' => 'score',
+                        'statut' => 'statut',
+                        'dateTest' => 'date_test',
+                        'idUser' => 'id_user',
+                        'rating' => 'rating',
+                    ],
+                ],
+                'table' => [
+                    [
+                        'name' => 'quiz',
+                    ],
+                ],
+                'associationMappings' => [
+                    [
+                        'permis' => $o[7],
+                    ],
+                ],
+                'idGenerator' => [
+                    $o[8],
+                ],
+                'name' => [
+                    'App\\Entity\\Quiz',
+                ],
+                'id' => [
+                    1 => true,
+                ],
+                'type' => [
+                    1 => 'integer',
+                    'integer',
+                    'string',
+                    'date',
+                    'integer',
+                    'integer',
+                ],
+                'fieldName' => [
+                    1 => 'id',
+                    'score',
+                    'statut',
+                    'dateTest',
+                    'idUser',
+                    'rating',
+                ],
+                'columnName' => [
+                    1 => 'id',
+                    'score',
+                    'statut',
+                    'date_test',
+                    'id_user',
+                    'rating',
+                ],
+                'length' => [
+                    3 => 255,
+                ],
+                'nullable' => [
+                    6 => true,
+                ],
+                'fetch' => [
+                    7 => 2,
+                ],
+                'sourceEntity' => [
+                    7 => 'App\\Entity\\Quiz',
+                ],
+                'mappedBy' => [
+                    7 => 'idQuiz',
+                ],
+            ],
+            'Doctrine\\ORM\\Mapping\\AssociationMapping' => [
+                'fieldName' => [
+                    7 => 'permis',
+                ],
+                'targetEntity' => [
+                    7 => 'App\\Entity\\Permis',
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+},
+6 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
@@ -508,7 +1305,7 @@ return [[
         []
     );
 },
-3 => static function () {
+7 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
@@ -679,7 +1476,7 @@ return [[
         []
     );
 },
-4 => static function () {
+8 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
@@ -827,7 +1624,200 @@ return [[
         []
     );
 },
-5 => static function () {
+9 => static function () {
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+            clone ($p['Doctrine\\ORM\\Mapping\\FieldMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\FieldMapping')),
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone ($p['Doctrine\\ORM\\Mapping\\OneToOneOwningSideMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\OneToOneOwningSideMapping')),
+            clone ($p['Doctrine\\ORM\\Mapping\\JoinColumnMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\JoinColumnMapping')),
+            clone ($p['Doctrine\\ORM\\Mapping\\ManyToOneAssociationMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ManyToOneAssociationMapping')),
+            clone $p['Doctrine\\ORM\\Mapping\\JoinColumnMapping'],
+            clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+        ],
+        null,
+        [
+            'stdClass' => [
+                'namespace' => [
+                    'App\\Entity',
+                ],
+                'rootEntityName' => [
+                    'App\\Entity\\Facture',
+                ],
+                'identifier' => [
+                    [
+                        'id',
+                    ],
+                ],
+                'generatorType' => [
+                    4,
+                ],
+                'fieldMappings' => [
+                    [
+                        'id' => $o[1],
+                        'numeroFacture' => $o[2],
+                        'dateFacturation' => $o[3],
+                        'montant' => $o[4],
+                        'description' => $o[5],
+                        'statut' => $o[6],
+                        'stripeChargeId' => $o[7],
+                    ],
+                ],
+                'fieldNames' => [
+                    [
+                        'id' => 'id',
+                        'numero_facture' => 'numeroFacture',
+                        'date_facturation' => 'dateFacturation',
+                        'montant' => 'montant',
+                        'description' => 'description',
+                        'statut' => 'statut',
+                        'stripe_charge_id' => 'stripeChargeId',
+                    ],
+                ],
+                'columnNames' => [
+                    [
+                        'id' => 'id',
+                        'numeroFacture' => 'numero_facture',
+                        'dateFacturation' => 'date_facturation',
+                        'montant' => 'montant',
+                        'description' => 'description',
+                        'statut' => 'statut',
+                        'stripeChargeId' => 'stripe_charge_id',
+                    ],
+                ],
+                'table' => [
+                    [
+                        'name' => 'facture',
+                    ],
+                ],
+                'associationMappings' => [
+                    [
+                        'paiement' => $o[8],
+                        'reservation' => $o[10],
+                    ],
+                ],
+                'idGenerator' => [
+                    $o[12],
+                ],
+                'name' => [
+                    'App\\Entity\\Facture',
+                    9 => 'paiement_id',
+                    11 => 'reservation_id',
+                ],
+                'id' => [
+                    1 => true,
+                ],
+                'type' => [
+                    1 => 'integer',
+                    'string',
+                    'datetime',
+                    'float',
+                    'string',
+                    'string',
+                    'string',
+                ],
+                'fieldName' => [
+                    1 => 'id',
+                    'numeroFacture',
+                    'dateFacturation',
+                    'montant',
+                    'description',
+                    'statut',
+                    'stripeChargeId',
+                ],
+                'columnName' => [
+                    1 => 'id',
+                    'numero_facture',
+                    'date_facturation',
+                    'montant',
+                    'description',
+                    'statut',
+                    'stripe_charge_id',
+                ],
+                'length' => [
+                    2 => 50,
+                    5 => 255,
+                    20,
+                    255,
+                ],
+                'unique' => [
+                    2 => true,
+                    9 => true,
+                    11 => false,
+                ],
+                'nullable' => [
+                    5 => true,
+                    7 => true,
+                    9 => true,
+                    11 => false,
+                ],
+                'fetch' => [
+                    8 => 2,
+                    10 => 2,
+                ],
+                'sourceEntity' => [
+                    8 => 'App\\Entity\\Facture',
+                    10 => 'App\\Entity\\Facture',
+                ],
+                'sourceToTargetKeyColumns' => [
+                    8 => [
+                        'paiement_id' => 'id_paiement',
+                    ],
+                    10 => [
+                        'reservation_id' => 'id_reservation',
+                    ],
+                ],
+                'targetToSourceKeyColumns' => [
+                    8 => [
+                        'id_paiement' => 'paiement_id',
+                    ],
+                    10 => [
+                        'id_reservation' => 'reservation_id',
+                    ],
+                ],
+                'joinColumns' => [
+                    8 => [
+                        $o[9],
+                    ],
+                    10 => [
+                        $o[11],
+                    ],
+                ],
+                'joinColumnFieldNames' => [
+                    8 => [
+                        'paiement_id' => 'paiement_id',
+                    ],
+                    10 => [
+                        'reservation_id' => 'reservation_id',
+                    ],
+                ],
+                'referencedColumnName' => [
+                    9 => 'id_paiement',
+                    11 => 'id_reservation',
+                ],
+            ],
+            'Doctrine\\ORM\\Mapping\\AssociationMapping' => [
+                'fieldName' => [
+                    8 => 'paiement',
+                    10 => 'reservation',
+                ],
+                'targetEntity' => [
+                    8 => 'App\\Entity\\Paiement',
+                    10 => 'App\\Entity\\Reservation',
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+},
+10 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
@@ -842,8 +1832,7 @@ return [[
             clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
             clone ($p['Doctrine\\ORM\\Mapping\\ManyToOneAssociationMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ManyToOneAssociationMapping')),
             clone ($p['Doctrine\\ORM\\Mapping\\JoinColumnMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\JoinColumnMapping')),
-            clone ($p['Doctrine\\ORM\\Mapping\\OneToManyAssociationMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\OneToManyAssociationMapping')),
-            clone ($p['Doctrine\\ORM\\Id\\AssignedGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\AssignedGenerator')),
+            clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
         ],
         null,
         [
@@ -859,43 +1848,46 @@ return [[
                         'id_paiement',
                     ],
                 ],
+                'generatorType' => [
+                    4,
+                ],
                 'fieldMappings' => [
                     [
                         'id_paiement' => $o[1],
                         'numeroCarte' => $o[2],
-                        'date_paiement' => $o[3],
+                        'datePaiement' => $o[3],
                         'prix' => $o[4],
                         'statut' => $o[5],
                         'telephone' => $o[6],
-                        'date_expiration' => $o[7],
+                        'dateExpiration' => $o[7],
                         'cvc' => $o[8],
-                        'nom_titulaire_carte' => $o[9],
+                        'nomTitulaireCarte' => $o[9],
                     ],
                 ],
                 'fieldNames' => [
                     [
                         'id_paiement' => 'id_paiement',
-                        'numero_carte' => 'numeroCarte',
-                        'date_paiement' => 'date_paiement',
+                        'numeroCarte' => 'numeroCarte',
+                        'date_paiement' => 'datePaiement',
                         'prix' => 'prix',
                         'statut' => 'statut',
                         'telephone' => 'telephone',
-                        'date_expiration' => 'date_expiration',
+                        'date_expiration' => 'dateExpiration',
                         'cvc' => 'cvc',
-                        'nom_titulaire_carte' => 'nom_titulaire_carte',
+                        'nom_titulaire_carte' => 'nomTitulaireCarte',
                     ],
                 ],
                 'columnNames' => [
                     [
                         'id_paiement' => 'id_paiement',
-                        'numeroCarte' => 'numero_carte',
-                        'date_paiement' => 'date_paiement',
+                        'numeroCarte' => 'numeroCarte',
+                        'datePaiement' => 'date_paiement',
                         'prix' => 'prix',
                         'statut' => 'statut',
                         'telephone' => 'telephone',
-                        'date_expiration' => 'date_expiration',
+                        'dateExpiration' => 'date_expiration',
                         'cvc' => 'cvc',
-                        'nom_titulaire_carte' => 'nom_titulaire_carte',
+                        'nomTitulaireCarte' => 'nom_titulaire_carte',
                     ],
                 ],
                 'table' => [
@@ -905,12 +1897,11 @@ return [[
                 ],
                 'associationMappings' => [
                     [
-                        'id_reservation' => $o[10],
-                        'resultats' => $o[12],
+                        'reservation' => $o[10],
                     ],
                 ],
                 'idGenerator' => [
-                    $o[13],
+                    $o[12],
                 ],
                 'name' => [
                     'App\\Entity\\Paiement',
@@ -923,7 +1914,7 @@ return [[
                     1 => 'integer',
                     'string',
                     'datetime',
-                    'float',
+                    'decimal',
                     'string',
                     'string',
                     'string',
@@ -933,17 +1924,17 @@ return [[
                 'fieldName' => [
                     1 => 'id_paiement',
                     'numeroCarte',
-                    'date_paiement',
+                    'datePaiement',
                     'prix',
                     'statut',
                     'telephone',
-                    'date_expiration',
+                    'dateExpiration',
                     'cvc',
-                    'nom_titulaire_carte',
+                    'nomTitulaireCarte',
                 ],
                 'columnName' => [
                     1 => 'id_paiement',
-                    'numero_carte',
+                    'numeroCarte',
                     'date_paiement',
                     'prix',
                     'statut',
@@ -960,16 +1951,17 @@ return [[
                     5,
                     100,
                 ],
+                'precision' => [
+                    4 => 10,
+                ],
+                'scale' => [
+                    4 => 0,
+                ],
                 'fetch' => [
                     10 => 2,
-                    12 => 2,
                 ],
                 'sourceEntity' => [
                     10 => 'App\\Entity\\Paiement',
-                    12 => 'App\\Entity\\Paiement',
-                ],
-                'inversedBy' => [
-                    10 => 'paiements',
                 ],
                 'sourceToTargetKeyColumns' => [
                     10 => [
@@ -1003,18 +1995,13 @@ return [[
                 'referencedColumnName' => [
                     11 => 'id_reservation',
                 ],
-                'mappedBy' => [
-                    12 => 'id_paiement',
-                ],
             ],
             'Doctrine\\ORM\\Mapping\\AssociationMapping' => [
                 'fieldName' => [
-                    10 => 'id_reservation',
-                    12 => 'resultats',
+                    10 => 'reservation',
                 ],
                 'targetEntity' => [
                     10 => 'App\\Entity\\Reservation',
-                    12 => 'App\\Entity\\Resultat',
                 ],
             ],
         ],
@@ -1022,324 +2009,7 @@ return [[
         []
     );
 },
-6 => static function () {
-    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
-        $o = [
-            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
-            clone ($p['Doctrine\\ORM\\Mapping\\FieldMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\FieldMapping')),
-            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
-            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
-            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
-            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
-            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
-            clone ($p['Doctrine\\ORM\\Mapping\\ManyToOneAssociationMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ManyToOneAssociationMapping')),
-            clone ($p['Doctrine\\ORM\\Mapping\\JoinColumnMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\JoinColumnMapping')),
-            clone ($p['Doctrine\\ORM\\Mapping\\OneToManyAssociationMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\OneToManyAssociationMapping')),
-            clone ($p['Doctrine\\ORM\\Id\\AssignedGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\AssignedGenerator')),
-        ],
-        null,
-        [
-            'stdClass' => [
-                'namespace' => [
-                    'App\\Entity',
-                ],
-                'rootEntityName' => [
-                    'App\\Entity\\Permis',
-                ],
-                'identifier' => [
-                    [
-                        'id_permis',
-                    ],
-                ],
-                'fieldMappings' => [
-                    [
-                        'id_permis' => $o[1],
-                        'numero_permis' => $o[2],
-                        'categorie' => $o[3],
-                        'date_delivrance' => $o[4],
-                        'date_expiration' => $o[5],
-                        'etat' => $o[6],
-                    ],
-                ],
-                'fieldNames' => [
-                    [
-                        'id_permis' => 'id_permis',
-                        'numero_permis' => 'numero_permis',
-                        'categorie' => 'categorie',
-                        'date_delivrance' => 'date_delivrance',
-                        'date_expiration' => 'date_expiration',
-                        'etat' => 'etat',
-                    ],
-                ],
-                'columnNames' => [
-                    [
-                        'id_permis' => 'id_permis',
-                        'numero_permis' => 'numero_permis',
-                        'categorie' => 'categorie',
-                        'date_delivrance' => 'date_delivrance',
-                        'date_expiration' => 'date_expiration',
-                        'etat' => 'etat',
-                    ],
-                ],
-                'table' => [
-                    [
-                        'name' => 'permis',
-                    ],
-                ],
-                'associationMappings' => [
-                    [
-                        'id_employe' => $o[7],
-                        'quizs' => $o[9],
-                    ],
-                ],
-                'idGenerator' => [
-                    $o[10],
-                ],
-                'name' => [
-                    'App\\Entity\\Permis',
-                    8 => 'id_employe',
-                ],
-                'id' => [
-                    1 => true,
-                ],
-                'type' => [
-                    1 => 'integer',
-                    'string',
-                    'string',
-                    'date',
-                    'date',
-                    'string',
-                ],
-                'fieldName' => [
-                    1 => 'id_permis',
-                    'numero_permis',
-                    'categorie',
-                    'date_delivrance',
-                    'date_expiration',
-                    'etat',
-                ],
-                'columnName' => [
-                    1 => 'id_permis',
-                    'numero_permis',
-                    'categorie',
-                    'date_delivrance',
-                    'date_expiration',
-                    'etat',
-                ],
-                'length' => [
-                    2 => 50,
-                    20,
-                    6 => 20,
-                ],
-                'fetch' => [
-                    7 => 2,
-                    9 => 2,
-                ],
-                'sourceEntity' => [
-                    7 => 'App\\Entity\\Permis',
-                    9 => 'App\\Entity\\Permis',
-                ],
-                'inversedBy' => [
-                    7 => 'permiss',
-                ],
-                'sourceToTargetKeyColumns' => [
-                    7 => [
-                        'id_employe' => 'id_employe',
-                    ],
-                ],
-                'targetToSourceKeyColumns' => [
-                    7 => [
-                        'id_employe' => 'id_employe',
-                    ],
-                ],
-                'joinColumns' => [
-                    7 => [
-                        $o[8],
-                    ],
-                ],
-                'joinColumnFieldNames' => [
-                    7 => [
-                        'id_employe' => 'id_employe',
-                    ],
-                ],
-                'unique' => [
-                    8 => false,
-                ],
-                'onDelete' => [
-                    8 => 'CASCADE',
-                ],
-                'nullable' => [
-                    8 => true,
-                ],
-                'referencedColumnName' => [
-                    8 => 'id_employe',
-                ],
-                'mappedBy' => [
-                    9 => 'id_permis',
-                ],
-            ],
-            'Doctrine\\ORM\\Mapping\\AssociationMapping' => [
-                'fieldName' => [
-                    7 => 'id_employe',
-                    9 => 'quizs',
-                ],
-                'targetEntity' => [
-                    7 => 'App\\Entity\\Employe',
-                    9 => 'App\\Entity\\Quiz',
-                ],
-            ],
-        ],
-        $o[0],
-        []
-    );
-},
-7 => static function () {
-    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
-        $o = [
-            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
-            clone ($p['Doctrine\\ORM\\Mapping\\FieldMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\FieldMapping')),
-            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
-            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
-            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
-            clone ($p['Doctrine\\ORM\\Mapping\\ManyToOneAssociationMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ManyToOneAssociationMapping')),
-            clone ($p['Doctrine\\ORM\\Mapping\\JoinColumnMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\JoinColumnMapping')),
-            clone ($p['Doctrine\\ORM\\Id\\AssignedGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\AssignedGenerator')),
-        ],
-        null,
-        [
-            'stdClass' => [
-                'namespace' => [
-                    'App\\Entity',
-                ],
-                'rootEntityName' => [
-                    'App\\Entity\\Quiz',
-                ],
-                'identifier' => [
-                    [
-                        'id',
-                    ],
-                ],
-                'fieldMappings' => [
-                    [
-                        'id' => $o[1],
-                        'score' => $o[2],
-                        'statut' => $o[3],
-                        'date_test' => $o[4],
-                    ],
-                ],
-                'fieldNames' => [
-                    [
-                        'id' => 'id',
-                        'score' => 'score',
-                        'statut' => 'statut',
-                        'date_test' => 'date_test',
-                    ],
-                ],
-                'columnNames' => [
-                    [
-                        'id' => 'id',
-                        'score' => 'score',
-                        'statut' => 'statut',
-                        'date_test' => 'date_test',
-                    ],
-                ],
-                'table' => [
-                    [
-                        'name' => 'quiz',
-                    ],
-                ],
-                'associationMappings' => [
-                    [
-                        'id_permis' => $o[5],
-                    ],
-                ],
-                'idGenerator' => [
-                    $o[7],
-                ],
-                'name' => [
-                    'App\\Entity\\Quiz',
-                    6 => 'id_permis',
-                ],
-                'id' => [
-                    1 => true,
-                ],
-                'type' => [
-                    1 => 'integer',
-                    'integer',
-                    'string',
-                    'date',
-                ],
-                'fieldName' => [
-                    1 => 'id',
-                    'score',
-                    'statut',
-                    'date_test',
-                ],
-                'columnName' => [
-                    1 => 'id',
-                    'score',
-                    'statut',
-                    'date_test',
-                ],
-                'length' => [
-                    3 => 20,
-                ],
-                'fetch' => [
-                    5 => 2,
-                ],
-                'sourceEntity' => [
-                    5 => 'App\\Entity\\Quiz',
-                ],
-                'inversedBy' => [
-                    5 => 'quizs',
-                ],
-                'sourceToTargetKeyColumns' => [
-                    5 => [
-                        'id_permis' => 'id_permis',
-                    ],
-                ],
-                'targetToSourceKeyColumns' => [
-                    5 => [
-                        'id_permis' => 'id_permis',
-                    ],
-                ],
-                'joinColumns' => [
-                    5 => [
-                        $o[6],
-                    ],
-                ],
-                'joinColumnFieldNames' => [
-                    5 => [
-                        'id_permis' => 'id_permis',
-                    ],
-                ],
-                'unique' => [
-                    6 => false,
-                ],
-                'onDelete' => [
-                    6 => 'CASCADE',
-                ],
-                'nullable' => [
-                    6 => true,
-                ],
-                'referencedColumnName' => [
-                    6 => 'id_permis',
-                ],
-            ],
-            'Doctrine\\ORM\\Mapping\\AssociationMapping' => [
-                'fieldName' => [
-                    5 => 'id_permis',
-                ],
-                'targetEntity' => [
-                    5 => 'App\\Entity\\Permis',
-                ],
-            ],
-        ],
-        $o[0],
-        []
-    );
-},
-8 => static function () {
+11 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
@@ -1355,7 +2025,7 @@ return [[
             clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
             clone ($p['Doctrine\\ORM\\Mapping\\ManyToOneAssociationMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ManyToOneAssociationMapping')),
             clone ($p['Doctrine\\ORM\\Mapping\\JoinColumnMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\JoinColumnMapping')),
-            clone ($p['Doctrine\\ORM\\Id\\AssignedGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\AssignedGenerator')),
+            clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
         ],
         null,
         [
@@ -1370,6 +2040,9 @@ return [[
                     [
                         'id_rapport',
                     ],
+                ],
+                'generatorType' => [
+                    4,
                 ],
                 'fieldMappings' => [
                     [
@@ -1390,7 +2063,7 @@ return [[
                         'id_rapport' => 'id_rapport',
                         'direction' => 'direction',
                         'visibilite' => 'visibilite',
-                        'huile_default' => 'huileDefault',
+                        'huileDefault' => 'huileDefault',
                         'pneaumatique' => 'pneaumatique',
                         'echappement' => 'echappement',
                         'carrosorie' => 'carrosorie',
@@ -1404,7 +2077,7 @@ return [[
                         'id_rapport' => 'id_rapport',
                         'direction' => 'direction',
                         'visibilite' => 'visibilite',
-                        'huileDefault' => 'huile_default',
+                        'huileDefault' => 'huileDefault',
                         'pneaumatique' => 'pneaumatique',
                         'echappement' => 'echappement',
                         'carrosorie' => 'carrosorie',
@@ -1461,7 +2134,7 @@ return [[
                     1 => 'id_rapport',
                     'direction',
                     'visibilite',
-                    'huile_default',
+                    'huileDefault',
                     'pneaumatique',
                     'echappement',
                     'carrosorie',
@@ -1534,21 +2207,22 @@ return [[
         []
     );
 },
-9 => static function () {
+12 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
             clone ($p['Doctrine\\ORM\\Mapping\\FieldMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\FieldMapping')),
             clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
             clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
+            clone ($p['Doctrine\\ORM\\Mapping\\OneToManyAssociationMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\OneToManyAssociationMapping')),
+            clone $p['Doctrine\\ORM\\Mapping\\OneToManyAssociationMapping'],
             clone ($p['Doctrine\\ORM\\Mapping\\ManyToOneAssociationMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ManyToOneAssociationMapping')),
             clone ($p['Doctrine\\ORM\\Mapping\\JoinColumnMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\JoinColumnMapping')),
             clone $p['Doctrine\\ORM\\Mapping\\ManyToOneAssociationMapping'],
             clone $p['Doctrine\\ORM\\Mapping\\JoinColumnMapping'],
             clone $p['Doctrine\\ORM\\Mapping\\ManyToOneAssociationMapping'],
             clone $p['Doctrine\\ORM\\Mapping\\JoinColumnMapping'],
-            clone ($p['Doctrine\\ORM\\Mapping\\OneToManyAssociationMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\OneToManyAssociationMapping')),
-            clone ($p['Doctrine\\ORM\\Id\\AssignedGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\AssignedGenerator')),
+            clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
         ],
         null,
         [
@@ -1559,30 +2233,36 @@ return [[
                 'rootEntityName' => [
                     'App\\Entity\\Reservation',
                 ],
+                'customRepositoryClassName' => [
+                    'App\\Repository\\ReservationRepository',
+                ],
                 'identifier' => [
                     [
-                        'id_reservation',
+                        'id',
                     ],
+                ],
+                'generatorType' => [
+                    4,
                 ],
                 'fieldMappings' => [
                     [
-                        'id_reservation' => $o[1],
-                        'date_reservation' => $o[2],
+                        'id' => $o[1],
+                        'dateReservation' => $o[2],
                         'heureReservation' => $o[3],
                     ],
                 ],
                 'fieldNames' => [
                     [
-                        'id_reservation' => 'id_reservation',
-                        'date_reservation' => 'date_reservation',
-                        'heure_reservation' => 'heureReservation',
+                        'id_reservation' => 'id',
+                        'date_reservation' => 'dateReservation',
+                        'heureReservation' => 'heureReservation',
                     ],
                 ],
                 'columnNames' => [
                     [
-                        'id_reservation' => 'id_reservation',
-                        'date_reservation' => 'date_reservation',
-                        'heureReservation' => 'heure_reservation',
+                        'id' => 'id_reservation',
+                        'dateReservation' => 'date_reservation',
+                        'heureReservation' => 'heureReservation',
                     ],
                 ],
                 'table' => [
@@ -1592,20 +2272,21 @@ return [[
                 ],
                 'associationMappings' => [
                     [
-                        'user_id' => $o[4],
-                        'service_id' => $o[6],
-                        'idVehicule' => $o[8],
-                        'paiements' => $o[10],
+                        'paiements' => $o[4],
+                        'factures' => $o[5],
+                        'userId' => $o[6],
+                        'serviceId' => $o[8],
+                        'vehiculeId' => $o[10],
                     ],
                 ],
                 'idGenerator' => [
-                    $o[11],
+                    $o[12],
                 ],
                 'name' => [
                     'App\\Entity\\Reservation',
-                    5 => 'user_id',
-                    7 => 'service_id',
-                    9 => 'idVehicule',
+                    7 => 'user_id',
+                    9 => 'service_id',
+                    11 => 'idVehicule',
                 ],
                 'id' => [
                     1 => true,
@@ -1616,115 +2297,127 @@ return [[
                     'string',
                 ],
                 'fieldName' => [
-                    1 => 'id_reservation',
-                    'date_reservation',
+                    1 => 'id',
+                    'dateReservation',
                     'heureReservation',
                 ],
                 'columnName' => [
                     1 => 'id_reservation',
                     'date_reservation',
-                    'heure_reservation',
+                    'heureReservation',
                 ],
                 'length' => [
                     3 => 255,
                 ],
+                'cascade' => [
+                    4 => [
+                        'remove',
+                    ],
+                    [
+                        'remove',
+                    ],
+                ],
                 'fetch' => [
                     4 => 2,
-                    6 => 2,
+                    2,
+                    2,
                     8 => 2,
                     10 => 2,
                 ],
+                'orphanRemoval' => [
+                    4 => true,
+                    true,
+                ],
                 'sourceEntity' => [
                     4 => 'App\\Entity\\Reservation',
-                    6 => 'App\\Entity\\Reservation',
+                    'App\\Entity\\Reservation',
+                    'App\\Entity\\Reservation',
                     8 => 'App\\Entity\\Reservation',
                     10 => 'App\\Entity\\Reservation',
                 ],
+                'mappedBy' => [
+                    4 => 'reservation',
+                    'reservation',
+                ],
                 'inversedBy' => [
-                    4 => 'reservations',
                     6 => 'reservations',
                     8 => 'reservations',
+                    10 => 'reservations',
                 ],
                 'sourceToTargetKeyColumns' => [
-                    4 => [
+                    6 => [
                         'user_id' => 'id',
                     ],
-                    6 => [
+                    8 => [
                         'service_id' => 'id_service',
                     ],
-                    8 => [
+                    10 => [
                         'idVehicule' => 'id_vehicule',
                     ],
                 ],
                 'targetToSourceKeyColumns' => [
-                    4 => [
+                    6 => [
                         'id' => 'user_id',
                     ],
-                    6 => [
+                    8 => [
                         'id_service' => 'service_id',
                     ],
-                    8 => [
+                    10 => [
                         'id_vehicule' => 'idVehicule',
                     ],
                 ],
                 'joinColumns' => [
-                    4 => [
-                        $o[5],
-                    ],
                     6 => [
                         $o[7],
                     ],
                     8 => [
                         $o[9],
                     ],
+                    10 => [
+                        $o[11],
+                    ],
                 ],
                 'joinColumnFieldNames' => [
-                    4 => [
+                    6 => [
                         'user_id' => 'user_id',
                     ],
-                    6 => [
+                    8 => [
                         'service_id' => 'service_id',
                     ],
-                    8 => [
+                    10 => [
                         'idVehicule' => 'idVehicule',
                     ],
                 ],
                 'unique' => [
-                    5 => false,
                     7 => false,
                     9 => false,
-                ],
-                'onDelete' => [
-                    5 => 'CASCADE',
-                    7 => 'CASCADE',
-                    9 => 'CASCADE',
+                    11 => false,
                 ],
                 'nullable' => [
-                    5 => true,
-                    7 => true,
-                    9 => true,
+                    7 => false,
+                    9 => false,
+                    11 => false,
                 ],
                 'referencedColumnName' => [
-                    5 => 'id',
-                    7 => 'id_service',
-                    9 => 'id_vehicule',
-                ],
-                'mappedBy' => [
-                    10 => 'id_reservation',
+                    7 => 'id',
+                    9 => 'id_service',
+                    11 => 'id_vehicule',
                 ],
             ],
             'Doctrine\\ORM\\Mapping\\AssociationMapping' => [
                 'fieldName' => [
-                    4 => 'user_id',
-                    6 => 'service_id',
-                    8 => 'idVehicule',
-                    10 => 'paiements',
+                    4 => 'paiements',
+                    'factures',
+                    'userId',
+                    8 => 'serviceId',
+                    10 => 'vehiculeId',
                 ],
                 'targetEntity' => [
-                    4 => 'App\\Entity\\User',
-                    6 => 'App\\Entity\\Service',
-                    8 => 'App\\Entity\\Vehicule',
-                    10 => 'App\\Entity\\Paiement',
+                    4 => 'App\\Entity\\Paiement',
+                    'App\\Entity\\Facture',
+                    'App\\Entity\\User',
+                    8 => 'App\\Entity\\Service',
+                    10 => 'App\\Entity\\Vehicule',
                 ],
             ],
         ],
@@ -1732,7 +2425,7 @@ return [[
         []
     );
 },
-10 => static function () {
+13 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
@@ -1752,7 +2445,7 @@ return [[
             clone $p['Doctrine\\ORM\\Mapping\\ManyToOneAssociationMapping'],
             clone $p['Doctrine\\ORM\\Mapping\\JoinColumnMapping'],
             clone ($p['Doctrine\\ORM\\Mapping\\OneToManyAssociationMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\OneToManyAssociationMapping')),
-            clone ($p['Doctrine\\ORM\\Id\\AssignedGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\AssignedGenerator')),
+            clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
         ],
         null,
         [
@@ -1767,6 +2460,9 @@ return [[
                     [
                         'id_resultat',
                     ],
+                ],
+                'generatorType' => [
+                    4,
                 ],
                 'fieldMappings' => [
                     [
@@ -1788,13 +2484,13 @@ return [[
                         'id_resultat' => 'id_resultat',
                         'direction' => 'direction',
                         'visibilite' => 'visibilite',
-                        'huile_default' => 'huileDefault',
+                        'huileDefault' => 'huileDefault',
                         'pneaumatique' => 'pneaumatique',
                         'echappement' => 'echappement',
                         'carrosorie' => 'carrosorie',
                         'eclairage' => 'eclairage',
                         'freinage' => 'freinage',
-                        'vin_saisie' => 'vinSaisie',
+                        'vinSaisie' => 'vinSaisie',
                         'status' => 'status',
                     ],
                 ],
@@ -1803,13 +2499,13 @@ return [[
                         'id_resultat' => 'id_resultat',
                         'direction' => 'direction',
                         'visibilite' => 'visibilite',
-                        'huileDefault' => 'huile_default',
+                        'huileDefault' => 'huileDefault',
                         'pneaumatique' => 'pneaumatique',
                         'echappement' => 'echappement',
                         'carrosorie' => 'carrosorie',
                         'eclairage' => 'eclairage',
                         'freinage' => 'freinage',
-                        'vinSaisie' => 'vin_saisie',
+                        'vinSaisie' => 'vinSaisie',
                         'status' => 'status',
                     ],
                 ],
@@ -1866,13 +2562,13 @@ return [[
                     1 => 'id_resultat',
                     'direction',
                     'visibilite',
-                    'huile_default',
+                    'huileDefault',
                     'pneaumatique',
                     'echappement',
                     'carrosorie',
                     'eclairage',
                     'freinage',
-                    'vin_saisie',
+                    'vinSaisie',
                     'status',
                 ],
                 'length' => [
@@ -1961,7 +2657,7 @@ return [[
         []
     );
 },
-11 => static function () {
+14 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
@@ -1980,7 +2676,7 @@ return [[
             clone ($p['Doctrine\\ORM\\Mapping\\OneToManyAssociationMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\OneToManyAssociationMapping')),
             clone $p['Doctrine\\ORM\\Mapping\\OneToManyAssociationMapping'],
             clone $p['Doctrine\\ORM\\Mapping\\OneToManyAssociationMapping'],
-            clone ($p['Doctrine\\ORM\\Id\\AssignedGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\AssignedGenerator')),
+            clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
         ],
         null,
         [
@@ -1991,18 +2687,24 @@ return [[
                 'rootEntityName' => [
                     'App\\Entity\\Service',
                 ],
+                'customRepositoryClassName' => [
+                    'App\\Repository\\ServiceRepository',
+                ],
                 'identifier' => [
                     [
-                        'id_service',
+                        'idService',
                     ],
+                ],
+                'generatorType' => [
+                    4,
                 ],
                 'fieldMappings' => [
                     [
-                        'id_service' => $o[1],
+                        'idService' => $o[1],
                         'nom' => $o[2],
                         'type' => $o[3],
-                        'heure_ouverture' => $o[4],
-                        'heure_fermeture' => $o[5],
+                        'heureOuverture' => $o[4],
+                        'heureFermeture' => $o[5],
                         'prix' => $o[6],
                         'gouvernerat' => $o[7],
                         'numero' => $o[8],
@@ -2014,11 +2716,11 @@ return [[
                 ],
                 'fieldNames' => [
                     [
-                        'id_service' => 'id_service',
+                        'id_service' => 'idService',
                         'nom' => 'nom',
                         'type' => 'type',
-                        'heure_ouverture' => 'heure_ouverture',
-                        'heure_fermeture' => 'heure_fermeture',
+                        'heure_ouverture' => 'heureOuverture',
+                        'heure_fermeture' => 'heureFermeture',
                         'prix' => 'prix',
                         'gouvernerat' => 'gouvernerat',
                         'numero' => 'numero',
@@ -2030,11 +2732,11 @@ return [[
                 ],
                 'columnNames' => [
                     [
-                        'id_service' => 'id_service',
+                        'idService' => 'id_service',
                         'nom' => 'nom',
                         'type' => 'type',
-                        'heure_ouverture' => 'heure_ouverture',
-                        'heure_fermeture' => 'heure_fermeture',
+                        'heureOuverture' => 'heure_ouverture',
+                        'heureFermeture' => 'heure_fermeture',
                         'prix' => 'prix',
                         'gouvernerat' => 'gouvernerat',
                         'numero' => 'numero',
@@ -2080,11 +2782,11 @@ return [[
                     'float',
                 ],
                 'fieldName' => [
-                    1 => 'id_service',
+                    1 => 'idService',
                     'nom',
                     'type',
-                    'heure_ouverture',
-                    'heure_fermeture',
+                    'heureOuverture',
+                    'heureFermeture',
                     'prix',
                     'gouvernerat',
                     'numero',
@@ -2129,7 +2831,7 @@ return [[
                 'mappedBy' => [
                     13 => 'id_service',
                     'id_service',
-                    'service_id',
+                    'serviceId',
                 ],
             ],
             'Doctrine\\ORM\\Mapping\\AssociationMapping' => [
@@ -2142,194 +2844,6 @@ return [[
                     13 => 'App\\Entity\\Employe',
                     'App\\Entity\\Resultat',
                     'App\\Entity\\Reservation',
-                ],
-            ],
-        ],
-        $o[0],
-        []
-    );
-},
-12 => static function () {
-    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
-        $o = [
-            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
-            clone ($p['Doctrine\\ORM\\Mapping\\FieldMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\FieldMapping')),
-            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
-            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
-            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
-            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
-            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
-            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
-            clone $p['Doctrine\\ORM\\Mapping\\FieldMapping'],
-            clone ($p['Doctrine\\ORM\\Mapping\\ManyToOneAssociationMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ManyToOneAssociationMapping')),
-            clone ($p['Doctrine\\ORM\\Mapping\\JoinColumnMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\JoinColumnMapping')),
-            clone ($p['Doctrine\\ORM\\Mapping\\OneToManyAssociationMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\OneToManyAssociationMapping')),
-            clone ($p['Doctrine\\ORM\\Id\\AssignedGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\AssignedGenerator')),
-        ],
-        null,
-        [
-            'stdClass' => [
-                'namespace' => [
-                    'App\\Entity',
-                ],
-                'rootEntityName' => [
-                    'App\\Entity\\Vehicule',
-                ],
-                'identifier' => [
-                    [
-                        'id_vehicule',
-                    ],
-                ],
-                'fieldMappings' => [
-                    [
-                        'id_vehicule' => $o[1],
-                        'marque' => $o[2],
-                        'modele' => $o[3],
-                        'immatriculation' => $o[4],
-                        'type' => $o[5],
-                        'couleur' => $o[6],
-                        'kilometrage' => $o[7],
-                        'statut' => $o[8],
-                    ],
-                ],
-                'fieldNames' => [
-                    [
-                        'id_vehicule' => 'id_vehicule',
-                        'marque' => 'marque',
-                        'modele' => 'modele',
-                        'immatriculation' => 'immatriculation',
-                        'type' => 'type',
-                        'couleur' => 'couleur',
-                        'kilometrage' => 'kilometrage',
-                        'statut' => 'statut',
-                    ],
-                ],
-                'columnNames' => [
-                    [
-                        'id_vehicule' => 'id_vehicule',
-                        'marque' => 'marque',
-                        'modele' => 'modele',
-                        'immatriculation' => 'immatriculation',
-                        'type' => 'type',
-                        'couleur' => 'couleur',
-                        'kilometrage' => 'kilometrage',
-                        'statut' => 'statut',
-                    ],
-                ],
-                'table' => [
-                    [
-                        'name' => 'vehicule',
-                    ],
-                ],
-                'associationMappings' => [
-                    [
-                        'id_carte_grise' => $o[9],
-                        'reservations' => $o[11],
-                    ],
-                ],
-                'idGenerator' => [
-                    $o[12],
-                ],
-                'name' => [
-                    'App\\Entity\\Vehicule',
-                    10 => 'id_carte_grise',
-                ],
-                'id' => [
-                    1 => true,
-                ],
-                'type' => [
-                    1 => 'integer',
-                    'string',
-                    'string',
-                    'string',
-                    'string',
-                    'string',
-                    'integer',
-                    'string',
-                ],
-                'fieldName' => [
-                    1 => 'id_vehicule',
-                    'marque',
-                    'modele',
-                    'immatriculation',
-                    'type',
-                    'couleur',
-                    'kilometrage',
-                    'statut',
-                ],
-                'columnName' => [
-                    1 => 'id_vehicule',
-                    'marque',
-                    'modele',
-                    'immatriculation',
-                    'type',
-                    'couleur',
-                    'kilometrage',
-                    'statut',
-                ],
-                'length' => [
-                    2 => 50,
-                    50,
-                    20,
-                    50,
-                    30,
-                    8 => 100,
-                ],
-                'fetch' => [
-                    9 => 2,
-                    11 => 2,
-                ],
-                'sourceEntity' => [
-                    9 => 'App\\Entity\\Vehicule',
-                    11 => 'App\\Entity\\Vehicule',
-                ],
-                'inversedBy' => [
-                    9 => 'vehicules',
-                ],
-                'sourceToTargetKeyColumns' => [
-                    9 => [
-                        'id_carte_grise' => 'id_carte_grise',
-                    ],
-                ],
-                'targetToSourceKeyColumns' => [
-                    9 => [
-                        'id_carte_grise' => 'id_carte_grise',
-                    ],
-                ],
-                'joinColumns' => [
-                    9 => [
-                        $o[10],
-                    ],
-                ],
-                'joinColumnFieldNames' => [
-                    9 => [
-                        'id_carte_grise' => 'id_carte_grise',
-                    ],
-                ],
-                'unique' => [
-                    10 => false,
-                ],
-                'onDelete' => [
-                    10 => 'CASCADE',
-                ],
-                'nullable' => [
-                    10 => true,
-                ],
-                'referencedColumnName' => [
-                    10 => 'id_carte_grise',
-                ],
-                'mappedBy' => [
-                    11 => 'idVehicule',
-                ],
-            ],
-            'Doctrine\\ORM\\Mapping\\AssociationMapping' => [
-                'fieldName' => [
-                    9 => 'id_carte_grise',
-                    11 => 'reservations',
-                ],
-                'targetEntity' => [
-                    9 => 'App\\Entity\\Carte_grise',
-                    11 => 'App\\Entity\\Reservation',
                 ],
             ],
         ],

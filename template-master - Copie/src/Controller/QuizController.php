@@ -22,11 +22,20 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Form\RatingType;
 use App\Repository\PermisRepository;
+use App\Repository\UserRepository;
+
+use App\Service\TwilioWhatsappService;
 
 #[Route('/Quiz')]
 
 class QuizController extends AbstractController
 {
+    private $twilioWhatsappService;
+
+    public function __construct(TwilioWhatsappService $twilioWhatsappService)
+    {
+        $this->twilioWhatsappService = $twilioWhatsappService;
+    }
 
 /*
 #[Route('/showAllPermis', name: 'app_about_permisAll', methods: ['GET'])]
@@ -65,10 +74,12 @@ public function new(Request $request, EntityManagerInterface $entityManager, Ses
 
     // Fetch the quiz using the QuizRepository
     $quiz = $quizRepository->findQuizIdByUserId($userId);  // Use your repository method
-
     if ($quiz) {
-        $permis->setIdQuiz($quiz);  // Set the fetched quiz on the permis
+        $permis->setIdQuiz($quiz->getId());
+        dump($permis->setIdQuiz());
+        exit;
     }
+
 
     $form = $this->createForm(PermisType::class, $permis);
     $form->handleRequest($request);
@@ -218,38 +229,46 @@ public function generate(QuizApiClient $quizApiClient): Response
 }
 
 #[Route('/quiz/submit', name: 'app_quiz_submit')]
-public function submit(Request $request, EntityManagerInterface $entityManager,SessionInterface $session): Response
-{
-    $userAnswers = $request->request->all('answers');
-    $correctAnswers = $request->request->all('correct_answers');
-    $totalQuestions = count($correctAnswers);
+// Controller method updated to include the userRepository argument
+    public function submit(Request $request, EntityManagerInterface $entityManager, UserRepository $userRepository, SessionInterface $session): Response
+    {
+        $userAnswers = $request->request->all('answers');
+        $correctAnswers = $request->request->all('correct_answers');
+        $totalQuestions = count($correctAnswers);
 
-    // Calculate score
-    $score = 0;
-    foreach ($userAnswers as $index => $answer) {
-        if (isset($correctAnswers[$index]) && $answer === $correctAnswers[$index]) {
-            $score++;
+        // Calculate score
+        $score = 0;
+        foreach ($userAnswers as $index => $answer) {
+            if (isset($correctAnswers[$index]) && $answer === $correctAnswers[$index]) {
+                $score++;
+            }
         }
+
+        // Create new quiz entity
+        $quiz = new Quiz();
+        $quiz->setScore($score);
+        $quiz->setStatut($score > 6 ? 'Passed' : 'Failed');
+        $quiz->setDateTest(new \DateTime());
+        $quiz->setIdUser($session->get('id')); // Using static user ID for testing purposes
+
+        // Save to database
+        $entityManager->persist($quiz);
+        $entityManager->flush();
+
+        // Fetch the user and set the quiz
+        $user = $userRepository->find($session->get('id'));
+       /* if ($user) {
+            $user->setIdQuiz($quiz);
+            $entityManager->flush();
+        }*/
+
+        // Redirect to results page with quiz ID
+        return $this->redirectToRoute('app_quiz_result', [
+            'id' => $quiz->getId(),
+            'score' => $score,
+            'total' => $totalQuestions
+        ]);
     }
-
-    // Create new quiz entity
-    $quiz = new Quiz();
-    $quiz->setScore($score);
-    $quiz->setStatut($score > 6 ? 'Passed' : 'Failed');
-    $quiz->setDateTest(new \DateTime());
-    $quiz->setIdUser($session->get('id')); // Using static user ID for testing purposes
-
-    // Save to database
-    $entityManager->persist($quiz);
-    $entityManager->flush();
-
-    // Redirect to results page with quiz ID
-    return $this->redirectToRoute('app_quiz_result', [
-        'id' => $quiz->getId(),
-        'score' => $score,
-        'total' => $totalQuestions
-    ]);
-}
 
 #[Route('/quiz/result/{id}', name: 'app_quiz_result')]
 public function result(Quiz $quiz, Request $request): Response
@@ -358,8 +377,87 @@ public function downloadResult(Quiz $quiz, Request $request): Response
         'Content-Disposition' => 'inline; filename="quiz_result.pdf"' // change 'inline' to 'attachment' for download
     ]);
 }
+    #[Route('/check-expired-permis', name: 'check_expired_permis')]
+    public function checkExpiredPermis(
+        EntityManagerInterface $entityManager,
+        PermisRepository $permisRepository,
+        TwilioWhatsappService $twilioWhatsappService
+    ): Response
+    {
+        $today = new \DateTime();
+        $allPermis = $permisRepository->findAll();
+        $messagesSent = 0;
 
+        foreach ($allPermis as $permis) {
+            // Check if expiry date is today
+            if ($permis->getDateExpiration() && $permis->getDateExpiration()->format('Y-m-d') === $today->format('Y-m-d')) {
+                // Get owner's phone number
+                $phoneNumber = $permis->getTelephone(); // Or wherever the phone number is stored
+                if ($phoneNumber) {
+                    $message = "Your driver's license has expired today. Please renew it as soon as possible.";
+                    // Send WhatsApp
+                    $twilioWhatsappService->sendMessage('+216' . $phoneNumber, $message);
+                    $messagesSent++;
+                }
+            }
+        }
 
+        return new Response("Checked expirations. WhatsApp messages sent: " . $messagesSent);
+}
+
+    #[Route('/check-expired-permits-manual', name: 'app_check_expired_permits_manual')]
+    public function checkExpiredPermitsManual(PermisRepository $permisRepository, TwilioWhatsappService $twilioService): Response
+    {
+        // Get today's date
+        $today = new \DateTime();
+
+        // Find expired permits
+        $expiredPermis = $permisRepository->findExpiredPermis($today);
+
+        $sentCount = 0;
+        $failedCount = 0;
+
+        foreach ($expiredPermis as $permis) {
+            $phoneNumber = $permis->getIdEmploye()->getTelephone();
+
+            if (!$phoneNumber) {
+                continue;
+            }
+
+            try {
+                // Format the expiration date
+                $expirationDate = $permis->getDateExpiration()->format('d/m/Y');
+
+                // Create a personalized message
+                $message = sprintf(
+                    "Hello %s, your permit #%s has expired on %s. Please contact your administrator to renew it as soon as possible.",
+                    $permis->getIdEmploye()->getNom(),
+                    $permis->getNumeroPermis(),
+                    $expirationDate
+                );
+
+                // Send WhatsApp message
+                $twilioService->sendMessage('+216' . $phoneNumber, $message);
+
+                // Update permit status
+                if ($permis->getEtat() !== 'Expired') {
+                    $permis->setEtat('Expired');
+                    $permisRepository->save($permis, true);
+                }
+
+                $sentCount++;
+
+            } catch (\Exception $e) {
+                $failedCount++;
+            }
+        }
+
+        return $this->json([
+            'success' => true,
+            'message' => sprintf('Checked %d expired permits. Sent %d notifications, %d failed.',
+                count($expiredPermis), $sentCount, $failedCount)
+        ]);
+    }
 
 
 #[Route('/services', name: 'app_services')]

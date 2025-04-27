@@ -1,8 +1,23 @@
+# Upgrade to 3.4
+
+Using the same class several times in a discriminator map is deprecated.
+In 4.0, this will be an error.
+
 # Upgrade to 3.3
 
 ## Deprecate `DatabaseDriver`
 
 The class `Doctrine\ORM\Mapping\Driver\DatabaseDriver` is deprecated without replacement.
+
+## Add `Doctrine\ORM\Query\OutputWalker` interface, deprecate `Doctrine\ORM\Query\SqlWalker::getExecutor()`
+
+Output walkers should implement the new `\Doctrine\ORM\Query\OutputWalker` interface and create
+`Doctrine\ORM\Query\Exec\SqlFinalizer` instances instead of `Doctrine\ORM\Query\Exec\AbstractSqlExecutor`s.
+The output walker must not base its workings on the query `firstResult`/`maxResult` values, so that the 
+`SqlFinalizer` can be kept in the query cache and used regardless of the actual `firstResult`/`maxResult` values.
+Any operation dependent on `firstResult`/`maxResult` should take place within the `SqlFinalizer::createExecutor()`
+method. Details can be found at https://github.com/doctrine/orm/pull/11188.
+
 
 # Upgrade to 3.2
 
@@ -108,6 +123,36 @@ WARNING: This was relaxed in ORM 3.2 when partial was re-allowed for array-hydra
 - `Doctrine\ORM\Query\SqlWalker::HINT_PARTIAL` (reintroduced in ORM 3.2) and
   `Doctrine\ORM\Query::HINT_FORCE_PARTIAL_LOAD` are removed.
 - `Doctrine\ORM\EntityManager*::getPartialReference()` is removed.
+
+## BC BREAK: Enforce ArrayCollection Type on `\Doctrine\ORM\QueryBuilder::setParameters(ArrayCollection $parameters)` 
+
+The argument $parameters can no longer be a key=>value array. Only ArrayCollection types are allowed.
+
+### Before
+
+```php
+$qb = $em->createQueryBuilder()
+    ->select('u')
+    ->from('User', 'u')
+    ->where('u.id = :user_id1 OR u.id = :user_id2')
+    ->setParameter(array(
+        'user_id1' => 1,
+        'user_id2' => 2
+    ));
+```
+
+### After
+
+```php
+$qb = $em->createQueryBuilder()
+    ->select('u')
+    ->from('User', 'u')
+    ->where('u.id = :user_id1 OR u.id = :user_id2')
+    ->setParameter(new ArrayCollection(array(
+        new Parameter('user_id1', 1),
+        new Parameter('user_id2', 2)
+    )));
+```
 
 ## BC BREAK: `Doctrine\ORM\Persister\Entity\EntityPersister::executeInserts()` return type changed to `void`
 
@@ -737,7 +782,7 @@ Use `toIterable()` instead.
 
 Output walkers should implement the new `\Doctrine\ORM\Query\OutputWalker` interface and create
 `Doctrine\ORM\Query\Exec\SqlFinalizer` instances instead of `Doctrine\ORM\Query\Exec\AbstractSqlExecutor`s.
-The output walker must not base its workings on the query `firstResult`/`maxResult` values, so that the 
+The output walker must not base its workings on the query `firstResult`/`maxResult` values, so that the
 `SqlFinalizer` can be kept in the query cache and used regardless of the actual `firstResult`/`maxResult` values.
 Any operation dependent on `firstResult`/`maxResult` should take place within the `SqlFinalizer::createExecutor()`
 method. Details can be found at https://github.com/doctrine/orm/pull/11188.
@@ -750,7 +795,7 @@ change in behavior.
 
 Progress on this is tracked at https://github.com/doctrine/orm/issues/11624 .
 
-## PARTIAL DQL syntax is undeprecated 
+## PARTIAL DQL syntax is undeprecated
 
 Use of the PARTIAL keyword is not deprecated anymore in DQL, because we will be
 able to support PARTIAL objects with PHP 8.4 Lazy Objects and

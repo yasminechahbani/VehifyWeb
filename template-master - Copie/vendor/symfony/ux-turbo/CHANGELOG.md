@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 2.24.0
+
+-   Add Twig Extensions for `meta` tags
+-   Add support for authentication to the EventSource via `turbo_stream_listen`
+
+## 2.22.0
+
+-   Add `<twig:Turbo:Stream>` component
+-   Add `<twig:Turbo:Frame>` component
+-   Add support for custom actions in `TurboStream` and `TurboStreamResponse`
+-   Add support for providing multiple mercure topics to `turbo_stream_listen`
+
 ## 2.21.0
 
 -   Add `Helper/TurboStream::append()` et al. methods

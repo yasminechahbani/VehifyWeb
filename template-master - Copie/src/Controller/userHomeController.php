@@ -21,40 +21,41 @@ class userHomeController extends AbstractController
 {
  // In the userHomeController
 
-#[Route('/home', name: 'app_home')]
-public function index(SessionInterface $session, EntityManagerInterface $entityManager): Response
-{
-    $userId = $session->get('id');
-
-    // Retrieve the Quiz associated with the user
-    $quiz = $entityManager->getRepository(Quiz::class)->findOneBy(['idUser' => $userId]);
-
-    if (!$quiz) {
-        $this->addFlash('warning', 'No quiz found for the current user.');
-        return $this->redirectToRoute('app_home');
-    }
-
-    // Retrieve the Permis associated with the found Quiz
-    $permis = $entityManager->getRepository(Permis::class)->findOneBy(['idQuiz' => $quiz->getId()]);
-
-    if (!$permis) {
-        $this->addFlash('warning', 'You do not have a Permis yet.');
-        return $this->redirectToRoute('app_home');
-    }
-
-    // Set the active page (for example, on the home page)
-    $activePage = 'home';
-
-    return $this->render('home/index.html.twig', [
-        'controller_name' => 'HomeController',
-        'nom' => $session->get('nom'),
-        'prenom' => $session->get('prenom'),
-        'permis' => $permis,
-        'active_page' => $activePage,  // Pass the active page to the template
-    ]);
-}
-
-
+ #[Route('/home', name: 'app_home')]
+ public function index(SessionInterface $session, EntityManagerInterface $entityManager): Response
+ {
+     $userId = $session->get('id');
+ 
+     if (!$userId) {
+         return $this->render('home/index.html.twig', [
+             'controller_name' => 'HomeController',
+             'active_page' => 'home',
+         ]);
+     }
+ 
+     $quiz = $entityManager->getRepository(Quiz::class)->findOneBy(['idUser' => $userId]);
+ 
+     $permis = null;
+ 
+     if ($quiz && $quiz->getStatut() === 'Passed') {
+         $permis = $entityManager->getRepository(Permis::class)->findOneBy(['idQuiz' => $quiz->getId()]);
+     }
+ 
+     // Remove the exit and dump when you're ready
+     dump($userId);
+     dump($quiz);
+     dump($permis);
+ 
+     return $this->render('home/index.html.twig', [
+         'controller_name' => 'HomeController',
+         'nom' => $session->get('nom'),
+         'prenom' => $session->get('prenom'),
+         'permis' => $permis,
+         'quiz' => $quiz,
+         'active_page' => 'home',
+     ]);
+ }
+ 
     
 #[Route('/about', name: 'app_about')]
     public function about(): Response

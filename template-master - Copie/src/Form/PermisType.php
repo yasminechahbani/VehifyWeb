@@ -34,7 +34,6 @@ class PermisType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        // If it's NOT an edit operation and is NOT a renewal, add user_id
         if (!$options['is_edit'] && !$options['is_renewal']) { 
             $builder
                 ->add('user_id', EntityType::class, [
@@ -55,10 +54,7 @@ class PermisType extends AbstractType
                     'data' => 'false'
                 ]);
         }
-    
-        // Check if it's a renewal scenario
-        if ($options['is_renewal']) {
-            // For renewal, make numero_permis read-only, and auto-set 'etat' to Active
+            if ($options['is_renewal']) {
             $builder
                 ->add('numero_permis', TextType::class, [
                     'label' => 'Numéro de permis',
@@ -85,16 +81,16 @@ class PermisType extends AbstractType
                         //'Expired' => 'Expired',
                         //'Revoked' => 'Revoked'
                     ],
-                    'data' => 'Active', // Automatically set to Active
+                    'data' => 'Active', 
                     'attr' => ['class' => 'form-select'],
-                    'disabled' => true, // Make it read-only
+                    'disabled' => true, 
 
                 ])
                 ->add('date_delivrance', DateType::class, [
                     'label' => 'Date de délivrance',
                     'widget' => 'single_text',
                     'attr' => ['class' => 'form-control'],
-                    'data' => new \DateTime(), // Automatically set to today's date
+                    'data' => new \DateTime(),
 
 
                     

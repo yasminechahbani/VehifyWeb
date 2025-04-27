@@ -22,16 +22,20 @@ class Quiz extends \App\Entity\Quiz implements \Doctrine\ORM\Proxy\InternalProxy
     
 
     private const LAZY_OBJECT_PROPERTY_SCOPES = [
-        "\0".parent::class."\0".'date_test' => [parent::class, 'date_test', null],
-        "\0".parent::class."\0".'id' => [parent::class, 'id', null],
-        "\0".parent::class."\0".'id_permis' => [parent::class, 'id_permis', null],
-        "\0".parent::class."\0".'score' => [parent::class, 'score', null],
-        "\0".parent::class."\0".'statut' => [parent::class, 'statut', null],
-        'date_test' => [parent::class, 'date_test', null],
-        'id' => [parent::class, 'id', null],
-        'id_permis' => [parent::class, 'id_permis', null],
-        'score' => [parent::class, 'score', null],
-        'statut' => [parent::class, 'statut', null],
+        "\0".parent::class."\0".'dateTest' => [parent::class, 'dateTest', null, 16],
+        "\0".parent::class."\0".'id' => [parent::class, 'id', null, 16],
+        "\0".parent::class."\0".'idUser' => [parent::class, 'idUser', null, 16],
+        "\0".parent::class."\0".'permis' => [parent::class, 'permis', null, 16],
+        "\0".parent::class."\0".'rating' => [parent::class, 'rating', null, 16],
+        "\0".parent::class."\0".'score' => [parent::class, 'score', null, 16],
+        "\0".parent::class."\0".'statut' => [parent::class, 'statut', null, 16],
+        'dateTest' => [parent::class, 'dateTest', null, 16],
+        'id' => [parent::class, 'id', null, 16],
+        'idUser' => [parent::class, 'idUser', null, 16],
+        'permis' => [parent::class, 'permis', null, 16],
+        'rating' => [parent::class, 'rating', null, 16],
+        'score' => [parent::class, 'score', null, 16],
+        'statut' => [parent::class, 'statut', null, 16],
     ];
 
     public function __isInitialized(): bool

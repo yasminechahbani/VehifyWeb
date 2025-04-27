@@ -2,6 +2,7 @@
 
 namespace Doctrine\Bundle\DoctrineBundle\Command;
 
+use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Mapping\Driver\DatabaseDriver;
 use Doctrine\ORM\Tools\Console\MetadataFilter;
 use Doctrine\ORM\Tools\DisconnectedClassMetadataFactory;
@@ -13,6 +14,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+use function assert;
 use function chmod;
 use function dirname;
 use function file_put_contents;
@@ -30,15 +32,12 @@ use function str_replace;
  */
 class ImportMappingDoctrineCommand extends DoctrineCommand
 {
-    /** @var string[] */
-    private array $bundles;
-
     /** @param string[] $bundles */
-    public function __construct(ManagerRegistry $doctrine, array $bundles)
-    {
+    public function __construct(
+        ManagerRegistry $doctrine,
+        private readonly array $bundles,
+    ) {
         parent::__construct($doctrine);
-
-        $this->bundles = $bundles;
     }
 
     protected function configure(): void
@@ -91,6 +90,7 @@ EOT);
 
         $namespaceOrBundle = $input->getArgument('name');
         if (isset($this->bundles[$namespaceOrBundle])) {
+            /** @phpstan-ignore method.notFound */
             $bundle    = $this->getApplication()->getKernel()->getBundle($namespaceOrBundle);
             $namespace = $bundle->getNamespace() . '\Entity';
 
@@ -109,6 +109,7 @@ EOT);
             }
         }
 
+        /* @phpstan-ignore class.notFound */
         $cme      = new ClassMetadataExporter();
         $exporter = $cme->getExporter($type);
         $exporter->setOverwriteExistingFiles($input->getOption('force'));
@@ -120,6 +121,7 @@ EOT);
 
         $em = $this->getEntityManager($input->getOption('em'));
 
+        /* @phpstan-ignore method.notFound (Available in DBAL < 4) */
         $databaseDriver = new DatabaseDriver($em->getConnection()->getSchemaManager());
         $em->getConfiguration()->setMetadataDriverImpl($databaseDriver);
 
@@ -133,6 +135,7 @@ EOT);
         if ($metadata) {
             $output->writeln(sprintf('Importing mapping information from "<info>%s</info>" entity manager', $emName));
             foreach ($metadata as $class) {
+                assert($class instanceof ClassMetadata);
                 $className   = $class->name;
                 $class->name = $namespace . '\\' . $className;
                 if ($type === 'annotation') {

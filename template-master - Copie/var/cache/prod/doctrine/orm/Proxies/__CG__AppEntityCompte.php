@@ -22,16 +22,16 @@ class Compte extends \App\Entity\Compte implements \Doctrine\ORM\Proxy\InternalP
     
 
     private const LAZY_OBJECT_PROPERTY_SCOPES = [
-        "\0".parent::class."\0".'email' => [parent::class, 'email', null],
-        "\0".parent::class."\0".'id' => [parent::class, 'id', null],
-        "\0".parent::class."\0".'id_user' => [parent::class, 'id_user', null],
-        "\0".parent::class."\0".'image' => [parent::class, 'image', null],
-        "\0".parent::class."\0".'mot_de_passe' => [parent::class, 'mot_de_passe', null],
-        'email' => [parent::class, 'email', null],
-        'id' => [parent::class, 'id', null],
-        'id_user' => [parent::class, 'id_user', null],
-        'image' => [parent::class, 'image', null],
-        'mot_de_passe' => [parent::class, 'mot_de_passe', null],
+        "\0".parent::class."\0".'email' => [parent::class, 'email', null, 16],
+        "\0".parent::class."\0".'id' => [parent::class, 'id', null, 16],
+        "\0".parent::class."\0".'id_user' => [parent::class, 'id_user', null, 16],
+        "\0".parent::class."\0".'image' => [parent::class, 'image', null, 16],
+        "\0".parent::class."\0".'mot_de_passe' => [parent::class, 'mot_de_passe', null, 16],
+        'email' => [parent::class, 'email', null, 16],
+        'id' => [parent::class, 'id', null, 16],
+        'id_user' => [parent::class, 'id_user', null, 16],
+        'image' => [parent::class, 'image', null, 16],
+        'mot_de_passe' => [parent::class, 'mot_de_passe', null, 16],
     ];
 
     public function __isInitialized(): bool

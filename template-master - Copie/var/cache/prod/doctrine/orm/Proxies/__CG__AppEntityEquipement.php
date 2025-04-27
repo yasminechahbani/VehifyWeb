@@ -22,16 +22,18 @@ class Equipement extends \App\Entity\Equipement implements \Doctrine\ORM\Proxy\I
     
 
     private const LAZY_OBJECT_PROPERTY_SCOPES = [
-        "\0".parent::class."\0".'categorie' => [parent::class, 'categorie', null],
-        "\0".parent::class."\0".'description' => [parent::class, 'description', null],
-        "\0".parent::class."\0".'etat' => [parent::class, 'etat', null],
-        "\0".parent::class."\0".'idEquipement' => [parent::class, 'idEquipement', null],
-        "\0".parent::class."\0".'nom' => [parent::class, 'nom', null],
-        'categorie' => [parent::class, 'categorie', null],
-        'description' => [parent::class, 'description', null],
-        'etat' => [parent::class, 'etat', null],
-        'idEquipement' => [parent::class, 'idEquipement', null],
-        'nom' => [parent::class, 'nom', null],
+        "\0".parent::class."\0".'categorie' => [parent::class, 'categorie', null, 16],
+        "\0".parent::class."\0".'description' => [parent::class, 'description', null, 16],
+        "\0".parent::class."\0".'employe' => [parent::class, 'employe', null, 16],
+        "\0".parent::class."\0".'etat' => [parent::class, 'etat', null, 16],
+        "\0".parent::class."\0".'idEquipement' => [parent::class, 'idEquipement', null, 16],
+        "\0".parent::class."\0".'nom' => [parent::class, 'nom', null, 16],
+        'categorie' => [parent::class, 'categorie', null, 16],
+        'description' => [parent::class, 'description', null, 16],
+        'employe' => [parent::class, 'employe', null, 16],
+        'etat' => [parent::class, 'etat', null, 16],
+        'idEquipement' => [parent::class, 'idEquipement', null, 16],
+        'nom' => [parent::class, 'nom', null, 16],
     ];
 
     public function __isInitialized(): bool

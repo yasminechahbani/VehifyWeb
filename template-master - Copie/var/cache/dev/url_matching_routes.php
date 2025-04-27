@@ -151,38 +151,44 @@ return [
                         .')'
                         .'|ate/([^/]++)(*:858)'
                     .')'
-                    .'|check\\-user\\-quiz/([^/]++)(*:893)'
+                    .'|check\\-(?'
+                        .'|user\\-quiz/([^/]++)(*:896)'
+                        .'|expired\\-permi(?'
+                            .'|s(*:922)'
+                            .'|ts\\-manual(*:940)'
+                        .')'
+                    .')'
                 .')'
                 .'|/res(?'
                     .'|ervation/(?'
-                        .'|new(?:/([^/]++))?(*:938)'
+                        .'|new(?:/([^/]++))?(*:987)'
                         .'|([^/]++)(?'
-                            .'|(*:957)'
-                            .'|/edit(*:970)'
-                            .'|(*:978)'
+                            .'|(*:1006)'
+                            .'|/edit(*:1020)'
+                            .'|(*:1029)'
                         .')'
                     .')'
-                    .'|ultat/([^/]++)(*:1002)'
+                    .'|ultat/([^/]++)(*:1054)'
                 .')'
                 .'|/s(?'
                     .'|erve/([^/]++)(?'
-                        .'|(*:1033)'
-                        .'|/edit(*:1047)'
-                        .'|(*:1056)'
+                        .'|(*:1085)'
+                        .'|/edit(*:1099)'
+                        .'|(*:1108)'
                     .')'
-                    .'|tripe/payment/([^/]++)(*:1088)'
+                    .'|tripe/payment/([^/]++)(*:1140)'
                 .')'
                 .'|/user/([^/]++)(?'
-                    .'|(*:1115)'
+                    .'|(*:1167)'
                     .'|/edit(?'
-                        .'|(*:1132)'
-                        .'|Profile(*:1148)'
+                        .'|(*:1184)'
+                        .'|Profile(*:1200)'
                     .')'
                 .')'
                 .'|/vehicule/([^/]++)(?'
-                    .'|(*:1180)'
-                    .'|/edit(*:1194)'
-                    .'|(*:1203)'
+                    .'|(*:1232)'
+                    .'|/edit(*:1246)'
+                    .'|(*:1255)'
                 .')'
             .')/?$}sDu',
     ],
@@ -226,22 +232,24 @@ return [
         820 => [[['_route' => 'app_quiz_result', '_controller' => 'App\\Controller\\QuizController::result'], ['id'], null, null, false, true, null]],
         837 => [[['_route' => 'app_quiz_result_download', '_controller' => 'App\\Controller\\QuizController::downloadResult'], ['id'], ['GET' => 0], null, false, false, null]],
         858 => [[['_route' => 'app_quiz_rate', '_controller' => 'App\\Controller\\QuizController::rate'], ['id'], ['POST' => 0], null, false, true, null]],
-        893 => [[['_route' => 'app_quiz_check_status', '_controller' => 'App\\Controller\\QuizController::checkQuizStatus'], ['userId'], ['GET' => 0], null, false, true, null]],
-        938 => [[['_route' => 'app_reservation_new', 'service_id' => null, '_controller' => 'App\\Controller\\ReservationController::new'], ['service_id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
-        957 => [[['_route' => 'app_reservation_show', '_controller' => 'App\\Controller\\ReservationController::show'], ['id_reservation'], ['GET' => 0], null, false, true, null]],
-        970 => [[['_route' => 'app_reservation_edit', '_controller' => 'App\\Controller\\ReservationController::edit'], ['id_reservation'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        978 => [[['_route' => 'app_reservation_delete', '_controller' => 'App\\Controller\\ReservationController::delete'], ['id_reservation'], ['POST' => 0], null, false, true, null]],
-        1002 => [[['_route' => 'app_resultat_show', '_controller' => 'App\\Controller\\ResultatController::show'], ['id_resultat'], null, null, false, true, null]],
-        1033 => [[['_route' => 'app_serve_show', '_controller' => 'App\\Controller\\ServiceController::show'], ['id_service'], ['GET' => 0], null, false, true, null]],
-        1047 => [[['_route' => 'app_serve_edit', '_controller' => 'App\\Controller\\ServiceController::edit'], ['id_service'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        1056 => [[['_route' => 'app_serve_delete', '_controller' => 'App\\Controller\\ServiceController::delete'], ['id_service'], ['POST' => 0], null, false, true, null]],
-        1088 => [[['_route' => 'app_stripe_payment', '_controller' => 'App\\Controller\\StripeController::payment'], ['reservation_id'], null, null, false, true, null]],
-        1115 => [[['_route' => 'app_user_show', '_controller' => 'App\\Controller\\UserController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        1132 => [[['_route' => 'app_user_edit', '_controller' => 'App\\Controller\\UserController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        1148 => [[['_route' => 'app_user_editProfile', '_controller' => 'App\\Controller\\UserController::editProfile'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        1180 => [[['_route' => 'app_vehicule_show', '_controller' => 'App\\Controller\\VehiculeController::show'], ['idVehicule'], ['GET' => 0], null, false, true, null]],
-        1194 => [[['_route' => 'app_vehicule_edit', '_controller' => 'App\\Controller\\VehiculeController::edit'], ['idVehicule'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        1203 => [
+        896 => [[['_route' => 'app_quiz_check_status', '_controller' => 'App\\Controller\\QuizController::checkQuizStatus'], ['userId'], ['GET' => 0], null, false, true, null]],
+        922 => [[['_route' => 'check_expired_permis', '_controller' => 'App\\Controller\\QuizController::checkExpiredPermis'], [], null, null, false, false, null]],
+        940 => [[['_route' => 'app_check_expired_permits_manual', '_controller' => 'App\\Controller\\QuizController::checkExpiredPermitsManual'], [], null, null, false, false, null]],
+        987 => [[['_route' => 'app_reservation_new', 'service_id' => null, '_controller' => 'App\\Controller\\ReservationController::new'], ['service_id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
+        1006 => [[['_route' => 'app_reservation_show', '_controller' => 'App\\Controller\\ReservationController::show'], ['id_reservation'], ['GET' => 0], null, false, true, null]],
+        1020 => [[['_route' => 'app_reservation_edit', '_controller' => 'App\\Controller\\ReservationController::edit'], ['id_reservation'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        1029 => [[['_route' => 'app_reservation_delete', '_controller' => 'App\\Controller\\ReservationController::delete'], ['id_reservation'], ['POST' => 0], null, false, true, null]],
+        1054 => [[['_route' => 'app_resultat_show', '_controller' => 'App\\Controller\\ResultatController::show'], ['id_resultat'], null, null, false, true, null]],
+        1085 => [[['_route' => 'app_serve_show', '_controller' => 'App\\Controller\\ServiceController::show'], ['id_service'], ['GET' => 0], null, false, true, null]],
+        1099 => [[['_route' => 'app_serve_edit', '_controller' => 'App\\Controller\\ServiceController::edit'], ['id_service'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        1108 => [[['_route' => 'app_serve_delete', '_controller' => 'App\\Controller\\ServiceController::delete'], ['id_service'], ['POST' => 0], null, false, true, null]],
+        1140 => [[['_route' => 'app_stripe_payment', '_controller' => 'App\\Controller\\StripeController::payment'], ['reservation_id'], null, null, false, true, null]],
+        1167 => [[['_route' => 'app_user_show', '_controller' => 'App\\Controller\\UserController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        1184 => [[['_route' => 'app_user_edit', '_controller' => 'App\\Controller\\UserController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        1200 => [[['_route' => 'app_user_editProfile', '_controller' => 'App\\Controller\\UserController::editProfile'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        1232 => [[['_route' => 'app_vehicule_show', '_controller' => 'App\\Controller\\VehiculeController::show'], ['idVehicule'], ['GET' => 0], null, false, true, null]],
+        1246 => [[['_route' => 'app_vehicule_edit', '_controller' => 'App\\Controller\\VehiculeController::edit'], ['idVehicule'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        1255 => [
             [['_route' => 'app_vehicule_delete', '_controller' => 'App\\Controller\\VehiculeController::delete'], ['idVehicule'], ['POST' => 0], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

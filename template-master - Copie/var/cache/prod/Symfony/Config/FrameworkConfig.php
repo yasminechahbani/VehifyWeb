@@ -866,23 +866,12 @@ class FrameworkConfig implements \Symfony\Component\Config\Builder\ConfigBuilder
     }
 
     /**
-     * @template TValue
-     * @param TValue $value
      * Scheduler configuration
-     * @default {"enabled":false}
-     * @return \Symfony\Config\Framework\SchedulerConfig|$this
-     * @psalm-return (TValue is array ? \Symfony\Config\Framework\SchedulerConfig : static)
-     */
-    public function scheduler(array $value = []): \Symfony\Config\Framework\SchedulerConfig|static
+     * @default {"enabled":true}
+    */
+    public function scheduler(array $value = []): \Symfony\Config\Framework\SchedulerConfig
     {
-        if (!\is_array($value)) {
-            $this->_usedProperties['scheduler'] = true;
-            $this->scheduler = $value;
-
-            return $this;
-        }
-
-        if (!$this->scheduler instanceof \Symfony\Config\Framework\SchedulerConfig) {
+        if (null === $this->scheduler) {
             $this->_usedProperties['scheduler'] = true;
             $this->scheduler = new \Symfony\Config\Framework\SchedulerConfig($value);
         } elseif (0 < \func_num_args()) {
@@ -1364,7 +1353,7 @@ class FrameworkConfig implements \Symfony\Component\Config\Builder\ConfigBuilder
 
         if (array_key_exists('scheduler', $value)) {
             $this->_usedProperties['scheduler'] = true;
-            $this->scheduler = \is_array($value['scheduler']) ? new \Symfony\Config\Framework\SchedulerConfig($value['scheduler']) : $value['scheduler'];
+            $this->scheduler = new \Symfony\Config\Framework\SchedulerConfig($value['scheduler']);
             unset($value['scheduler']);
         }
 
@@ -1557,7 +1546,7 @@ class FrameworkConfig implements \Symfony\Component\Config\Builder\ConfigBuilder
             $output['messenger'] = $this->messenger->toArray();
         }
         if (isset($this->_usedProperties['scheduler'])) {
-            $output['scheduler'] = $this->scheduler instanceof \Symfony\Config\Framework\SchedulerConfig ? $this->scheduler->toArray() : $this->scheduler;
+            $output['scheduler'] = $this->scheduler->toArray();
         }
         if (isset($this->_usedProperties['disallowSearchEngineIndex'])) {
             $output['disallow_search_engine_index'] = $this->disallowSearchEngineIndex;

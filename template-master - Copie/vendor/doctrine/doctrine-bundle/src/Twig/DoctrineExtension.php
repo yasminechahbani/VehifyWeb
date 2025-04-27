@@ -5,19 +5,21 @@ namespace Doctrine\Bundle\DoctrineBundle\Twig;
 use Doctrine\SqlFormatter\HtmlHighlighter;
 use Doctrine\SqlFormatter\NullHighlighter;
 use Doctrine\SqlFormatter\SqlFormatter;
+use Stringable;
 use Symfony\Component\VarDumper\Cloner\Data;
+use Twig\DeprecatedCallableInfo;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
 use function addslashes;
 use function array_key_exists;
+use function array_merge;
 use function bin2hex;
+use function class_exists;
 use function implode;
 use function is_array;
 use function is_bool;
-use function is_object;
 use function is_string;
-use function method_exists;
 use function preg_match;
 use function preg_replace_callback;
 use function sprintf;
@@ -41,12 +43,20 @@ class DoctrineExtension extends AbstractExtension
      */
     public function getFilters()
     {
-        return [
-            new TwigFilter('doctrine_pretty_query', [$this, 'formatQuery'], ['is_safe' => ['html'], 'deprecated' => true]),
+        $out     = [
             new TwigFilter('doctrine_prettify_sql', [$this, 'prettifySql'], ['is_safe' => ['html']]),
             new TwigFilter('doctrine_format_sql', [$this, 'formatSql'], ['is_safe' => ['html']]),
             new TwigFilter('doctrine_replace_query_parameters', [$this, 'replaceQueryParameters']),
         ];
+        $options = ['deprecated' => true];
+        // exists since twig/twig 3.15
+        if (class_exists(DeprecatedCallableInfo::class)) {
+            $options = ['deprecation_info' => new DeprecatedCallableInfo('doctrine/doctrine-bundle', '2.1')];
+        }
+
+        return array_merge($out, [
+            new TwigFilter('doctrine_pretty_query', [$this, 'formatQuery'], ['is_safe' => ['html']] + $options),
+        ]);
     }
 
     /**
@@ -55,11 +65,9 @@ class DoctrineExtension extends AbstractExtension
      *
      * @internal
      *
-     * @param mixed $parameter
-     *
      * @return string
      */
-    public static function escapeFunction($parameter)
+    public static function escapeFunction(mixed $parameter)
     {
         $result = $parameter;
 
@@ -81,8 +89,8 @@ class DoctrineExtension extends AbstractExtension
                 $result = implode(', ', $result) ?: 'NULL';
                 break;
 
-            case is_object($result) && method_exists($result, '__toString'):
-                $result = addslashes($result->__toString());
+            case $result instanceof Stringable:
+                $result = addslashes((string) $result);
                 break;
 
             case $result === null:
@@ -100,8 +108,8 @@ class DoctrineExtension extends AbstractExtension
     /**
      * Return a query with the parameters replaced
      *
-     * @param string       $query
-     * @param mixed[]|Data $parameters
+     * @param string                       $query
+     * @param array<array-key, mixed>|Data $parameters
      *
      * @return string
      */
@@ -122,7 +130,7 @@ class DoctrineExtension extends AbstractExtension
             static function ($matches) use ($parameters, &$i) {
                 $key = substr($matches[0], 1);
 
-                if (! array_key_exists($i, $parameters) && ($key === false || ! array_key_exists($key, $parameters))) {
+                if (! array_key_exists($i, $parameters) && ! array_key_exists($key, $parameters)) {
                     return $matches[0];
                 }
 

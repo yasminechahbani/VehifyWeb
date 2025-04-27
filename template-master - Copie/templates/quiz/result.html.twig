@@ -48,7 +48,7 @@
                         </div>
                     {% endfor %}
 
-                    {{ form_start(ratingForm, {'attr': {'id': 'ratingForm', 'class': 'rating-form') }}}}
+{{ form_start(ratingForm, {'attr': {'id': 'ratingForm', 'class': 'rating-form'}}) }}
                         <div class="rating-stars mb-4">
                             {% for child in ratingForm.rating %}
                                 <div class="star-option">

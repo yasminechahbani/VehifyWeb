@@ -22,22 +22,22 @@ class Carte_grise extends \App\Entity\Carte_grise implements \Doctrine\ORM\Proxy
     
 
     private const LAZY_OBJECT_PROPERTY_SCOPES = [
-        "\0".parent::class."\0".'adresse_proprietaire' => [parent::class, 'adresse_proprietaire', null],
-        "\0".parent::class."\0".'date_emission' => [parent::class, 'date_emission', null],
-        "\0".parent::class."\0".'date_expiration' => [parent::class, 'date_expiration', null],
-        "\0".parent::class."\0".'id_carte_grise' => [parent::class, 'id_carte_grise', null],
-        "\0".parent::class."\0".'id_user' => [parent::class, 'id_user', null],
-        "\0".parent::class."\0".'numero_carte_grise' => [parent::class, 'numero_carte_grise', null],
-        "\0".parent::class."\0".'proprietaire' => [parent::class, 'proprietaire', null],
-        "\0".parent::class."\0".'vehicules' => [parent::class, 'vehicules', null],
-        'adresse_proprietaire' => [parent::class, 'adresse_proprietaire', null],
-        'date_emission' => [parent::class, 'date_emission', null],
-        'date_expiration' => [parent::class, 'date_expiration', null],
-        'id_carte_grise' => [parent::class, 'id_carte_grise', null],
-        'id_user' => [parent::class, 'id_user', null],
-        'numero_carte_grise' => [parent::class, 'numero_carte_grise', null],
-        'proprietaire' => [parent::class, 'proprietaire', null],
-        'vehicules' => [parent::class, 'vehicules', null],
+        "\0".parent::class."\0".'adresse_proprietaire' => [parent::class, 'adresse_proprietaire', null, 16],
+        "\0".parent::class."\0".'date_emission' => [parent::class, 'date_emission', null, 16],
+        "\0".parent::class."\0".'date_expiration' => [parent::class, 'date_expiration', null, 16],
+        "\0".parent::class."\0".'id_carte_grise' => [parent::class, 'id_carte_grise', null, 16],
+        "\0".parent::class."\0".'id_user' => [parent::class, 'id_user', null, 16],
+        "\0".parent::class."\0".'numero_carte_grise' => [parent::class, 'numero_carte_grise', null, 16],
+        "\0".parent::class."\0".'proprietaire' => [parent::class, 'proprietaire', null, 16],
+        "\0".parent::class."\0".'vehicules' => [parent::class, 'vehicules', null, 16],
+        'adresse_proprietaire' => [parent::class, 'adresse_proprietaire', null, 16],
+        'date_emission' => [parent::class, 'date_emission', null, 16],
+        'date_expiration' => [parent::class, 'date_expiration', null, 16],
+        'id_carte_grise' => [parent::class, 'id_carte_grise', null, 16],
+        'id_user' => [parent::class, 'id_user', null, 16],
+        'numero_carte_grise' => [parent::class, 'numero_carte_grise', null, 16],
+        'proprietaire' => [parent::class, 'proprietaire', null, 16],
+        'vehicules' => [parent::class, 'vehicules', null, 16],
     ];
 
     public function __isInitialized(): bool

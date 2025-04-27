@@ -22,20 +22,22 @@ class Reservation extends \App\Entity\Reservation implements \Doctrine\ORM\Proxy
     
 
     private const LAZY_OBJECT_PROPERTY_SCOPES = [
-        "\0".parent::class."\0".'date_reservation' => [parent::class, 'date_reservation', null],
-        "\0".parent::class."\0".'heureReservation' => [parent::class, 'heureReservation', null],
-        "\0".parent::class."\0".'idVehicule' => [parent::class, 'idVehicule', null],
-        "\0".parent::class."\0".'id_reservation' => [parent::class, 'id_reservation', null],
-        "\0".parent::class."\0".'paiements' => [parent::class, 'paiements', null],
-        "\0".parent::class."\0".'service_id' => [parent::class, 'service_id', null],
-        "\0".parent::class."\0".'user_id' => [parent::class, 'user_id', null],
-        'date_reservation' => [parent::class, 'date_reservation', null],
-        'heureReservation' => [parent::class, 'heureReservation', null],
-        'idVehicule' => [parent::class, 'idVehicule', null],
-        'id_reservation' => [parent::class, 'id_reservation', null],
-        'paiements' => [parent::class, 'paiements', null],
-        'service_id' => [parent::class, 'service_id', null],
-        'user_id' => [parent::class, 'user_id', null],
+        "\0".parent::class."\0".'dateReservation' => [parent::class, 'dateReservation', null, 16],
+        "\0".parent::class."\0".'factures' => [parent::class, 'factures', null, 16],
+        "\0".parent::class."\0".'heureReservation' => [parent::class, 'heureReservation', null, 16],
+        "\0".parent::class."\0".'id' => [parent::class, 'id', null, 16],
+        "\0".parent::class."\0".'paiements' => [parent::class, 'paiements', null, 16],
+        "\0".parent::class."\0".'serviceId' => [parent::class, 'serviceId', null, 16],
+        "\0".parent::class."\0".'userId' => [parent::class, 'userId', null, 16],
+        "\0".parent::class."\0".'vehiculeId' => [parent::class, 'vehiculeId', null, 16],
+        'dateReservation' => [parent::class, 'dateReservation', null, 16],
+        'factures' => [parent::class, 'factures', null, 16],
+        'heureReservation' => [parent::class, 'heureReservation', null, 16],
+        'id' => [parent::class, 'id', null, 16],
+        'paiements' => [parent::class, 'paiements', null, 16],
+        'serviceId' => [parent::class, 'serviceId', null, 16],
+        'userId' => [parent::class, 'userId', null, 16],
+        'vehiculeId' => [parent::class, 'vehiculeId', null, 16],
     ];
 
     public function __isInitialized(): bool

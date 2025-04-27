@@ -74,7 +74,7 @@
         <parameter key="namespace">Symfony\Bundle\MonologBundle</parameter>
       </parameter>
       <parameter key="MakerBundle" type="collection">
-        <parameter key="path">C:\Users\user\Videos\template-master - Copie\vendor\symfony\maker-bundle\src</parameter>
+        <parameter key="path">C:\Users\user\Videos\template-master - Copie\vendor\symfony\maker-bundle</parameter>
         <parameter key="namespace">Symfony\Bundle\MakerBundle</parameter>
       </parameter>
       <parameter key="RecaptchaBundle" type="collection">
@@ -375,6 +375,18 @@
     <service id="App\Entity" class="App\Entity" abstract="true">
       <tag name="container.excluded" source="in &quot;config/services.yaml&quot;"/>
     </service>
+    <service id="App\Command\CheckExpiredPermisCommand" class="App\Command\CheckExpiredPermisCommand" autowire="true" autoconfigure="true">
+      <tag name="console.command"/>
+      <tag name="container.no_preload"/>
+      <argument type="service" id="App\Repository\PermisRepository"/>
+      <argument type="service" id="App\Service\TwilioWhatsappService"/>
+      <call method="setName">
+        <argument>app:check-expired-permis</argument>
+      </call>
+      <call method="setDescription">
+        <argument>Checks for expired permits and sends WhatsApp notifications</argument>
+      </call>
+    </service>
     <service id="App\Command\GenerateEntitiesCommand" class="App\Command\GenerateEntitiesCommand" autowire="true" autoconfigure="true">
       <tag name="console.command"/>
       <tag name="container.no_preload"/>
@@ -450,9 +462,6 @@
         <argument type="service" id=".service_locator.O2p6Lk7.App\Controller\HomeController"/>
       </call>
     </service>
-    <service id="App\Controller\HomepageEmploye" class="App\Controller\HomepageEmploye" autowire="true" autoconfigure="true">
-      <tag name="container.error" message="The autoloader expected class &quot;App\Controller\HomepageEmploye&quot; to be defined in file &quot;C:\Users\user\Videos\template-master - Copie\vendor\composer/../../src\Controller\HomepageEmploye.php&quot;. The file was found but the class was not in it, the class name or namespace probably has a typo."/>
-    </service>
     <service id="App\Controller\PaiementController" class="App\Controller\PaiementController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -463,6 +472,7 @@
     <service id="App\Controller\QuizController" class="App\Controller\QuizController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
+      <argument type="service" id="App\Service\TwilioWhatsappService"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.O2p6Lk7.App\Controller\QuizController"/>
       </call>
@@ -638,6 +648,7 @@
     <service id="App\Service\PermisGenerationService" class="App\Service\PermisGenerationService" autowire="true" autoconfigure="true">
       <argument type="service" id="doctrine.orm.default_entity_manager"/>
     </service>
+    <service id="App\Service\TwilioWhatsappService" class="App\Service\TwilioWhatsappService" autowire="true" autoconfigure="true"/>
     <service id="argument_metadata_factory" class="Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadataFactory"/>
     <service id="argument_resolver.backed_enum_resolver" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\BackedEnumValueResolver">
       <tag priority="100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\BackedEnumValueResolver">controller.argument_value_resolver</tag>
@@ -665,7 +676,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.1IYRutN"/>
+      <argument type="service" id=".service_locator.48SEng0"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -735,7 +746,9 @@
       <argument type="service" id="debug.argument_resolver"/>
       <argument>true</argument>
     </service>
-    <service id="request_stack" class="Symfony\Component\HttpFoundation\RequestStack" public="true"/>
+    <service id="request_stack" class="Symfony\Component\HttpFoundation\RequestStack" public="true">
+      <tag name="kernel.reset" method="resetRequestFormats" on_invalid="ignore"/>
+    </service>
     <service id="http_cache" class="Symfony\Bundle\FrameworkBundle\HttpCache\HttpCache">
       <tag name="container.hot_path"/>
       <argument type="service" id="kernel"/>
@@ -780,6 +793,7 @@
     </service>
     <service id="services_resetter" class="Symfony\Component\HttpKernel\DependencyInjection\ServicesResetter" public="true">
       <argument type="iterator">
+        <argument key="request_stack" type="service" id="request_stack" on-invalid="ignore_uninitialized"/>
         <argument key="cache.app" type="service" id="cache.app" on-invalid="ignore_uninitialized"/>
         <argument key="cache.system" type="service" id="cache.system" on-invalid="ignore_uninitialized"/>
         <argument key="cache.validator" type="service" id="cache.validator" on-invalid="ignore_uninitialized"/>
@@ -788,7 +802,9 @@
         <argument key="cache.property_info" type="service" id="cache.property_info" on-invalid="ignore_uninitialized"/>
         <argument key="cache.asset_mapper" type="service" id="cache.asset_mapper" on-invalid="ignore_uninitialized"/>
         <argument key="cache.messenger.restart_workers_signal" type="service" id="cache.messenger.restart_workers_signal" on-invalid="ignore_uninitialized"/>
+        <argument key="cache.scheduler" type="service" id="cache.scheduler" on-invalid="ignore_uninitialized"/>
         <argument key="http_client.transport" type="service" id="http_client.transport" on-invalid="ignore_uninitialized"/>
+        <argument key="http_client" type="service" id=".debug.http_client" on-invalid="ignore_uninitialized"/>
         <argument key="mailer.message_logger_listener" type="service" id="mailer.message_logger_listener" on-invalid="ignore_uninitialized"/>
         <argument key="translation.locale_switcher" type="service" id="translation.locale_switcher" on-invalid="ignore_uninitialized"/>
         <argument key="debug.stopwatch" type="service" id="debug.stopwatch" on-invalid="ignore_uninitialized"/>
@@ -815,6 +831,9 @@
         <argument key=".debug.http_client" type="service" id=".debug.http_client" on-invalid="ignore_uninitialized"/>
       </argument>
       <argument type="collection">
+        <argument key="request_stack" type="collection">
+          <argument>?resetRequestFormats</argument>
+        </argument>
         <argument key="cache.app" type="collection">
           <argument>reset</argument>
         </argument>
@@ -839,7 +858,13 @@
         <argument key="cache.messenger.restart_workers_signal" type="collection">
           <argument>reset</argument>
         </argument>
+        <argument key="cache.scheduler" type="collection">
+          <argument>reset</argument>
+        </argument>
         <argument key="http_client.transport" type="collection">
+          <argument>?reset</argument>
+        </argument>
+        <argument key="http_client" type="collection">
           <argument>?reset</argument>
         </argument>
         <argument key="mailer.message_logger_listener" type="collection">
@@ -1075,6 +1100,7 @@
         <argument>cache.property_info</argument>
         <argument>cache.asset_mapper</argument>
         <argument>cache.messenger.restart_workers_signal</argument>
+        <argument>cache.scheduler</argument>
         <argument>cache.validator_expression_language</argument>
         <argument>cache.doctrine.orm.default.result</argument>
         <argument>cache.doctrine.orm.default.query</argument>
@@ -1123,6 +1149,7 @@
         <argument>cache.property_info</argument>
         <argument>cache.asset_mapper</argument>
         <argument>cache.messenger.restart_workers_signal</argument>
+        <argument>cache.scheduler</argument>
         <argument>cache.validator_expression_language</argument>
         <argument>cache.doctrine.orm.default.result</argument>
         <argument>cache.doctrine.orm.default.query</argument>
@@ -1148,6 +1175,7 @@
         <argument>cache.property_info</argument>
         <argument>cache.asset_mapper</argument>
         <argument>cache.messenger.restart_workers_signal</argument>
+        <argument>cache.scheduler</argument>
         <argument>cache.validator_expression_language</argument>
         <argument>cache.doctrine.orm.default.result</argument>
         <argument>cache.doctrine.orm.default.query</argument>
@@ -1316,6 +1344,12 @@
               <argument type="collection"/>
             </argument>
           </argument>
+          <argument key="Symfony\Component\Scheduler\Messenger\ServiceCallMessage" type="collection">
+            <argument type="collection">
+              <argument>scheduler.messenger.service_call_message_handler</argument>
+              <argument type="collection"/>
+            </argument>
+          </argument>
           <argument key="Symfony\Component\Messenger\Message\RedispatchMessage" type="collection">
             <argument type="collection">
               <argument>messenger.redispatch_message_handler</argument>
@@ -1417,6 +1451,17 @@
       </call>
       <call method="setDescription">
         <argument>Show the message count for one or more transports</argument>
+      </call>
+    </service>
+    <service id="console.command.scheduler_debug" class="Symfony\Component\Scheduler\Command\DebugCommand">
+      <tag name="console.command"/>
+      <tag name="container.no_preload"/>
+      <argument type="service" id=".service_locator.Xbsa8iG"/>
+      <call method="setName">
+        <argument>debug:scheduler</argument>
+      </call>
+      <call method="setDescription">
+        <argument>List schedules and their recurring messages</argument>
       </call>
     </service>
     <service id="console.command.router_debug" class="Symfony\Bundle\FrameworkBundle\Command\RouterDebugCommand">
@@ -1754,6 +1799,11 @@
       <tag name="kernel.reset" method="reset"/>
       <argument type="service" id="cache.messenger.restart_workers_signal.recorder_inner"/>
     </service>
+    <service id="cache.scheduler" class="Symfony\Component\Cache\Adapter\TraceableAdapter">
+      <tag name="cache.pool"/>
+      <tag name="kernel.reset" method="reset"/>
+      <argument type="service" id="cache.scheduler.recorder_inner"/>
+    </service>
     <service id="cache.adapter.system" class="Symfony\Component\Cache\Adapter\AdapterInterface" abstract="true">
       <tag name="cache.pool" clearer="cache.system_clearer" reset="reset"/>
       <tag name="monolog.logger" channel="cache"/>
@@ -1865,11 +1915,11 @@
       <argument type="collection">
         <argument key="cache.app" type="service" id="cache.app" on-invalid="ignore_uninitialized"/>
         <argument key="cache.messenger.restart_workers_signal" type="service" id="cache.messenger.restart_workers_signal" on-invalid="ignore_uninitialized"/>
+        <argument key="cache.scheduler" type="service" id="cache.scheduler" on-invalid="ignore_uninitialized"/>
       </argument>
     </service>
     <service id="cache.system_clearer" class="Symfony\Component\HttpKernel\CacheClearer\Psr6CacheClearer" public="true">
       <tag name="cache.pool.clearer"/>
-      <tag name="kernel.cache_clearer"/>
       <argument type="collection">
         <argument key="cache.system" type="service" id="cache.system" on-invalid="ignore_uninitialized"/>
         <argument key="cache.validator" type="service" id="cache.validator" on-invalid="ignore_uninitialized"/>
@@ -1893,6 +1943,7 @@
         <argument key="cache.property_info" type="service" id="cache.property_info" on-invalid="ignore_uninitialized"/>
         <argument key="cache.asset_mapper" type="service" id="cache.asset_mapper" on-invalid="ignore_uninitialized"/>
         <argument key="cache.messenger.restart_workers_signal" type="service" id="cache.messenger.restart_workers_signal" on-invalid="ignore_uninitialized"/>
+        <argument key="cache.scheduler" type="service" id="cache.scheduler" on-invalid="ignore_uninitialized"/>
         <argument key="cache.validator_expression_language" type="service" id="cache.validator_expression_language" on-invalid="ignore_uninitialized"/>
         <argument key="cache.doctrine.orm.default.result" type="service" id="cache.doctrine.orm.default.result" on-invalid="ignore_uninitialized"/>
         <argument key="cache.doctrine.orm.default.query" type="service" id="cache.doctrine.orm.default.query" on-invalid="ignore_uninitialized"/>
@@ -2217,10 +2268,6 @@
     </service>
     <service id="mailer.transport_factory" class="Symfony\Component\Mailer\Transport">
       <argument type="tagged_iterator" tag="mailer.transport_factory"/>
-    </service>
-    <service id="mailer.default_transport" class="Symfony\Component\Mailer\Transport\TransportInterface">
-      <argument>%env(MAILER_DSN)%</argument>
-      <factory service="mailer.transport_factory" method="fromString"/>
     </service>
     <service id="mailer.messenger.message_handler" class="Symfony\Component\Mailer\Messenger\MessageHandler">
       <tag name="messenger.message_handler"/>
@@ -2633,7 +2680,7 @@
           <argument>C:\Users\user\Videos\template-master - Copie\vendor\twig\extra-bundle/translations</argument>
           <argument>C:\Users\user\Videos\template-master - Copie\vendor\symfony\security-bundle/translations</argument>
           <argument>C:\Users\user\Videos\template-master - Copie\vendor\symfony\monolog-bundle/translations</argument>
-          <argument>C:\Users\user\Videos\template-master - Copie\vendor\symfony\maker-bundle\src/translations</argument>
+          <argument>C:\Users\user\Videos\template-master - Copie\vendor\symfony\maker-bundle/translations</argument>
           <argument>C:\Users\user\Videos\template-master - Copie\vendor\lexik\jwt-authentication-bundle/translations</argument>
         </argument>
         <argument key="cache_vary" type="collection">
@@ -2654,7 +2701,7 @@
             <argument>C:\Users\user\Videos\template-master - Copie\vendor\twig\extra-bundle/translations</argument>
             <argument>C:\Users\user\Videos\template-master - Copie\vendor\symfony\security-bundle/translations</argument>
             <argument>C:\Users\user\Videos\template-master - Copie\vendor\symfony\monolog-bundle/translations</argument>
-            <argument>C:\Users\user\Videos\template-master - Copie\vendor\symfony\maker-bundle\src/translations</argument>
+            <argument>C:\Users\user\Videos\template-master - Copie\vendor\symfony\maker-bundle/translations</argument>
             <argument>C:\Users\user\Videos\template-master - Copie\vendor\lexik\jwt-authentication-bundle/translations</argument>
           </argument>
         </argument>
@@ -3013,6 +3060,22 @@
         <argument>0</argument>
       </call>
       <call method="addListener">
+        <argument>console.command</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="doctrine_migrations.schema_filter_listener"/>
+          <argument>onConsoleCommand</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>kernel.request</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="turbo.kernel.request_listener"/>
+          <argument>__invoke</argument>
+        </argument>
+        <argument>256</argument>
+      </call>
+      <call method="addListener">
         <argument>Symfony\Component\Security\Http\Event\CheckPassportEvent</argument>
         <argument type="collection">
           <argument type="service_closure" id="security.listener.user_provider"/>
@@ -3275,6 +3338,30 @@
           <argument>onKernelResponse</argument>
         </argument>
         <argument>-1000</argument>
+      </call>
+      <call method="addListener">
+        <argument>Symfony\Component\Messenger\Event\WorkerMessageReceivedEvent</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="scheduler.event_listener"/>
+          <argument>onMessageReceived</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>Symfony\Component\Messenger\Event\WorkerMessageHandledEvent</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="scheduler.event_listener"/>
+          <argument>onMessageHandled</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>Symfony\Component\Messenger\Event\WorkerMessageFailedEvent</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="scheduler.event_listener"/>
+          <argument>onMessageFailed</argument>
+        </argument>
+        <argument>0</argument>
       </call>
       <call method="addListener">
         <argument>Symfony\Component\Messenger\Event\WorkerMessageFailedEvent</argument>
@@ -3570,7 +3657,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.1IYRutN"/>
+      <argument type="service" id=".service_locator.48SEng0"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -4494,6 +4581,20 @@
       <argument type="service" id="property_info"/>
       <argument>null</argument>
     </service>
+    <service id="scheduler.messenger.service_call_message_handler" class="Symfony\Component\Scheduler\Messenger\ServiceCallMessageHandler">
+      <tag name="messenger.message_handler"/>
+      <argument type="service" id=".service_locator.Xbsa8iG"/>
+    </service>
+    <service id="scheduler.messenger_transport_factory" class="Symfony\Component\Scheduler\Messenger\SchedulerTransportFactory">
+      <tag name="messenger.transport_factory"/>
+      <argument type="service" id=".service_locator.Xbsa8iG"/>
+      <argument type="service" id="clock"/>
+    </service>
+    <service id="scheduler.event_listener" class="Symfony\Component\Scheduler\EventListener\DispatchSchedulerEventListener">
+      <tag name="kernel.event_subscriber"/>
+      <argument type="service" id=".service_locator.Xbsa8iG"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+    </service>
     <service id="messenger.senders_locator" class="Symfony\Component\Messenger\Transport\Sender\SendersLocator">
       <argument type="collection">
         <argument key="Symfony\Component\Mailer\Messenger\SendEmailMessage" type="collection">
@@ -4730,7 +4831,7 @@
     <service id="notifier.channel.push" class="Symfony\Component\Notifier\Channel\PushChannel">
       <tag name="notifier.channel" channel="push"/>
       <argument>null</argument>
-      <argument type="service" id="debug.traced.messenger.bus.default" on-invalid="ignore"/>
+      <argument type="service" id="debug.traced.messenger.bus.default" on-invalid="null"/>
     </service>
     <service id="notifier.monolog_handler" class="Symfony\Bridge\Monolog\Handler\NotifierHandler">
       <argument type="service" id="notifier"/>
@@ -4874,11 +4975,17 @@
     <service id="console_profiler_listener" class="Symfony\Bundle\FrameworkBundle\EventListener\ConsoleProfilerListener">
       <tag name="kernel.event_subscriber"/>
       <tag name="container.no_preload"/>
-      <argument type="service" id="profiler"/>
+      <argument type="service" id=".lazy_profiler"/>
       <argument type="service" id=".virtual_request_stack"/>
       <argument type="service" id="debug.stopwatch"/>
       <argument>%env(not:default:kernel.runtime_mode.web:)%</argument>
       <argument type="service" id="router.default" on-invalid="null"/>
+    </service>
+    <service id=".lazy_profiler" class="Symfony\Component\HttpKernel\Profiler\Profiler" lazy="true">
+      <argument type="collection">
+        <argument type="service" id="profiler"/>
+      </argument>
+      <factory function="current"/>
     </service>
     <service id=".virtual_request_stack" class="Symfony\Component\HttpKernel\Debug\VirtualRequestStack" public="true">
       <argument type="service" id="request_stack"/>
@@ -4970,6 +5077,10 @@
       <call method="addInstance">
         <argument>cache.messenger.restart_workers_signal</argument>
         <argument type="service" id="cache.messenger.restart_workers_signal"/>
+      </call>
+      <call method="addInstance">
+        <argument>cache.scheduler</argument>
+        <argument type="service" id="cache.scheduler"/>
       </call>
       <call method="addInstance">
         <argument>cache.validator_expression_language</argument>
@@ -5148,6 +5259,9 @@
     <service id="doctrine.dbal.default_connection.configuration" class="Doctrine\DBAL\Configuration">
       <call method="setSchemaManagerFactory">
         <argument type="service" id="doctrine.dbal.legacy_schema_manager_factory"/>
+      </call>
+      <call method="setSchemaAssetsFilter">
+        <argument type="service" id="doctrine.dbal.default_schema_asset_filter_manager"/>
       </call>
       <call method="setMiddlewares">
         <argument type="collection">
@@ -5768,6 +5882,12 @@
         <argument>Manually add and delete migration versions from the version table.</argument>
       </call>
     </service>
+    <service id="doctrine_migrations.schema_filter_listener" class="Doctrine\Bundle\MigrationsBundle\EventListener\SchemaFilterListener">
+      <tag name="doctrine.dbal.schema_filter"/>
+      <tag name="kernel.event_listener" event="console.command" method="onConsoleCommand"/>
+      <tag name="container.no_preload"/>
+      <argument>doctrine_migration_versions</argument>
+    </service>
     <service id="doctrine.migrations.storage.table_storage" class="Doctrine\Migrations\Metadata\Storage\TableMetadataStorageConfiguration"/>
     <service id="twig.extension.dump" class="Symfony\Bridge\Twig\Extension\DumpExtension">
       <tag name="twig.extension"/>
@@ -6050,11 +6170,11 @@
         <argument>!Doctrine</argument>
       </call>
       <call method="addPath">
-        <argument>C:\Users\user\Videos\template-master - Copie\vendor\doctrine\doctrine-migrations-bundle/Resources/views</argument>
+        <argument>C:\Users\user\Videos\template-master - Copie\vendor\doctrine\doctrine-migrations-bundle/templates</argument>
         <argument>DoctrineMigrations</argument>
       </call>
       <call method="addPath">
-        <argument>C:\Users\user\Videos\template-master - Copie\vendor\doctrine\doctrine-migrations-bundle/Resources/views</argument>
+        <argument>C:\Users\user\Videos\template-master - Copie\vendor\doctrine\doctrine-migrations-bundle/templates</argument>
         <argument>!DoctrineMigrations</argument>
       </call>
       <call method="addPath">
@@ -6088,6 +6208,14 @@
       <call method="addPath">
         <argument>C:\Users\user\Videos\template-master - Copie\vendor\symfony\security-bundle/Resources/views</argument>
         <argument>!Security</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\user\Videos\template-master - Copie\vendor\symfony\maker-bundle/templates</argument>
+        <argument>Maker</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\user\Videos\template-master - Copie\vendor\symfony\maker-bundle/templates</argument>
+        <argument>!Maker</argument>
       </call>
       <call method="addPath">
         <argument>C:\Users\user\Videos\template-master - Copie\vendor\victor-prdh\recaptcha-bundle\src/Resources/views</argument>
@@ -6186,7 +6314,7 @@
       <argument>,</argument>
     </service>
     <service id="twig.runtime_loader" class="Twig\RuntimeLoader\ContainerRuntimeLoader">
-      <argument type="service" id=".service_locator.krRXjA9"/>
+      <argument type="service" id=".service_locator.i0..Ry2"/>
     </service>
     <service id="twig.error_renderer.html" class="Symfony\Bridge\Twig\ErrorRenderer\TwigErrorRenderer">
       <argument type="service" id="twig"/>
@@ -6379,6 +6507,9 @@
     </service>
     <service id="turbo.twig.extension" class="Symfony\UX\Turbo\Twig\TwigExtension">
       <tag name="twig.extension"/>
+    </service>
+    <service id="turbo.twig.runtime" class="Symfony\UX\Turbo\Twig\TurboRuntime">
+      <tag name="twig.runtime"/>
       <argument type="service" id=".service_locator.Xbsa8iG"/>
       <argument>default</argument>
     </service>
@@ -6387,6 +6518,10 @@
       <tag name="doctrine.event_listener" event="postFlush"/>
       <argument type="service" id="turbo.broadcaster.action_renderer"/>
       <argument>null</argument>
+    </service>
+    <service id="turbo.kernel.request_listener" class="Symfony\UX\Turbo\Request\RequestListener">
+      <tag name="kernel.event_listener" event="kernel.request" priority="256"/>
+      <tag name="container.hot_path"/>
     </service>
     <service id="twig.missing_extension_suggestor" class="Twig\Extra\TwigExtraBundle\MissingExtensionSuggestor"/>
     <service id="security.authorization_checker" class="Symfony\Component\Security\Core\Authorization\AuthorizationChecker">
@@ -7465,6 +7600,8 @@
         <argument>Generate public/private keys for use in your application.</argument>
       </call>
     </service>
+    <service id=".instanceof.Symfony\Component\Console\Command\Command.0.App\Command\CheckExpiredPermisCommand" class="App\Command\CheckExpiredPermisCommand" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Command\CheckExpiredPermisCommand" class="App\Command\CheckExpiredPermisCommand" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Console\Command\Command.0.App\Command\GenerateEntitiesCommand" class="App\Command\GenerateEntitiesCommand" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Command\GenerateEntitiesCommand" class="App\Command\GenerateEntitiesCommand" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\CalendrierController" class="App\Controller\CalendrierController" autowire="true" abstract="true"/>
@@ -8149,6 +8286,13 @@
         <argument key="quizApiClient" type="service_closure" id="App\Service\QuizApiClient"/>
       </argument>
     </service>
+    <service id=".service_locator.8IbU9zc" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="userRepository" type="service_closure" id="App\Repository\UserRepository"/>
+      </argument>
+    </service>
     <service id=".service_locator.90uTyKf" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -8166,6 +8310,21 @@
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="quizRepository" type="service_closure" id="App\Repository\QuizRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.4YvR2Kn" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="permisRepository" type="service_closure" id="App\Repository\PermisRepository"/>
+        <argument key="twilioWhatsappService" type="service_closure" id="App\Service\TwilioWhatsappService"/>
+      </argument>
+    </service>
+    <service id=".service_locator.oz1C83W" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="permisRepository" type="service_closure" id="App\Repository\PermisRepository"/>
+        <argument key="twilioService" type="service_closure" id="App\Service\TwilioWhatsappService"/>
       </argument>
     </service>
     <service id=".service_locator.XL.Qmnp" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -8209,7 +8368,7 @@
         <argument key="connection" type="service_closure" id="doctrine.dbal.default_connection"/>
       </argument>
     </service>
-    <service id=".service_locator.1IYRutN" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.48SEng0" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\CalendrierController::getEvents" type="service_closure" id=".service_locator.CsMkqUa"/>
@@ -8256,6 +8415,8 @@
         <argument key="App\Controller\PaiementController::index" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\PaiementController::new" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\PaiementController::show" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\QuizController::checkExpiredPermis" type="service_closure" id=".service_locator.4YvR2Kn"/>
+        <argument key="App\Controller\QuizController::checkExpiredPermitsManual" type="service_closure" id=".service_locator.oz1C83W"/>
         <argument key="App\Controller\QuizController::checkQuizStatus" type="service_closure" id=".service_locator.Cj4aUBQ"/>
         <argument key="App\Controller\QuizController::delete" type="service_closure" id=".service_locator.jRCrJ6N"/>
         <argument key="App\Controller\QuizController::downloadResult" type="service_closure" id=".service_locator.90uTyKf"/>
@@ -8266,7 +8427,7 @@
         <argument key="App\Controller\QuizController::requestRenewal" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\QuizController::result" type="service_closure" id=".service_locator.90uTyKf"/>
         <argument key="App\Controller\QuizController::show" type="service_closure" id=".service_locator.y2RT8vn"/>
-        <argument key="App\Controller\QuizController::submit" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\QuizController::submit" type="service_closure" id=".service_locator.8IbU9zc"/>
         <argument key="App\Controller\ReservationController::delete" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\ReservationController::edit" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\ReservationController::index" type="service_closure" id=".service_locator.CsMkqUa"/>
@@ -8345,6 +8506,8 @@
         <argument key="App\Controller\PaiementController:index" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\PaiementController:new" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\PaiementController:show" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\QuizController:checkExpiredPermis" type="service_closure" id=".service_locator.4YvR2Kn"/>
+        <argument key="App\Controller\QuizController:checkExpiredPermitsManual" type="service_closure" id=".service_locator.oz1C83W"/>
         <argument key="App\Controller\QuizController:checkQuizStatus" type="service_closure" id=".service_locator.Cj4aUBQ"/>
         <argument key="App\Controller\QuizController:delete" type="service_closure" id=".service_locator.jRCrJ6N"/>
         <argument key="App\Controller\QuizController:downloadResult" type="service_closure" id=".service_locator.90uTyKf"/>
@@ -8355,7 +8518,7 @@
         <argument key="App\Controller\QuizController:requestRenewal" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\QuizController:result" type="service_closure" id=".service_locator.90uTyKf"/>
         <argument key="App\Controller\QuizController:show" type="service_closure" id=".service_locator.y2RT8vn"/>
-        <argument key="App\Controller\QuizController:submit" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\QuizController:submit" type="service_closure" id=".service_locator.8IbU9zc"/>
         <argument key="App\Controller\ReservationController:delete" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\ReservationController:edit" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\ReservationController:index" type="service_closure" id=".service_locator.CsMkqUa"/>
@@ -8632,6 +8795,10 @@
       <argument type="service" id="mailer.messenger.message_handler"/>
       <argument type="collection"/>
     </service>
+    <service id=".messenger.handler_descriptor.FWSClS0" class="Symfony\Component\Messenger\Handler\HandlerDescriptor">
+      <argument type="service" id="scheduler.messenger.service_call_message_handler"/>
+      <argument type="collection"/>
+    </service>
     <service id=".messenger.handler_descriptor.p4Qvabm" class="Symfony\Component\Messenger\Handler\HandlerDescriptor">
       <argument type="service" id="messenger.redispatch_message_handler"/>
       <argument type="collection"/>
@@ -8661,6 +8828,9 @@
         </argument>
         <argument key="Symfony\Component\Mailer\Messenger\SendEmailMessage" type="iterator">
           <argument type="service" id=".messenger.handler_descriptor.tGvt0LH"/>
+        </argument>
+        <argument key="Symfony\Component\Scheduler\Messenger\ServiceCallMessage" type="iterator">
+          <argument type="service" id=".messenger.handler_descriptor.FWSClS0"/>
         </argument>
         <argument key="Symfony\Component\Messenger\Message\RedispatchMessage" type="iterator">
           <argument type="service" id=".messenger.handler_descriptor.p4Qvabm"/>
@@ -8722,6 +8892,11 @@
       <tag name="container.decorator" id="doctrine.orm.default_metadata_driver" inner=".doctrine.orm.default_metadata_driver.inner"/>
       <argument type="service" id=".doctrine.orm.default_metadata_driver.inner"/>
       <argument type="service" id=".service_locator.KLVvNIq"/>
+    </service>
+    <service id="doctrine.dbal.default_schema_asset_filter_manager" class="Doctrine\Bundle\DoctrineBundle\Dbal\SchemaAssetsFilterManager">
+      <argument type="collection">
+        <argument type="service" id="doctrine_migrations.schema_filter_listener"/>
+      </argument>
     </service>
     <service id="doctrine.dbal.logging_middleware.default" class="Doctrine\DBAL\Logging\Middleware">
       <tag name="monolog.logger" channel="doctrine"/>
@@ -9475,6 +9650,7 @@
           </service>
         </argument>
       </argument>
+      <argument type="collection"/>
     </service>
     <service id="doctrine.migrations.container_aware_migrations_factory.inner" class="Doctrine\Migrations\Version\MigrationFactory">
       <factory service="doctrine.migrations.dependency_factory" method="getMigrationFactory"/>
@@ -9572,6 +9748,13 @@
     </service>
     <service id=".errored..service_locator.pbtqkCT.App\Entity\User" class="App\Entity\User">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.pbtqkCT&quot;: it needs an instance of &quot;App\Entity\User&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
+    </service>
+    <service id=".App\Command\CheckExpiredPermisCommand.lazy" class="Symfony\Component\Console\Command\LazyCommand">
+      <argument>app:check-expired-permis</argument>
+      <argument type="collection"/>
+      <argument>Checks for expired permits and sends WhatsApp notifications</argument>
+      <argument>false</argument>
+      <argument type="service_closure" id="App\Command\CheckExpiredPermisCommand"/>
     </service>
     <service id=".App\Command\GenerateEntitiesCommand.lazy" class="Symfony\Component\Console\Command\LazyCommand">
       <argument>app:generate:entities</argument>
@@ -9747,6 +9930,13 @@
       <argument>Show the message count for one or more transports</argument>
       <argument>false</argument>
       <argument type="service_closure" id="console.command.messenger_stats"/>
+    </service>
+    <service id=".console.command.scheduler_debug.lazy" class="Symfony\Component\Console\Command\LazyCommand">
+      <argument>debug:scheduler</argument>
+      <argument type="collection"/>
+      <argument>List schedules and their recurring messages</argument>
+      <argument>false</argument>
+      <argument type="service_closure" id="console.command.scheduler_debug"/>
     </service>
     <service id=".console.command.router_debug.lazy" class="Symfony\Component\Console\Command\LazyCommand">
       <argument>debug:router</argument>
@@ -10280,8 +10470,9 @@
     </service>
     <service id="console.command_loader" class="Symfony\Component\Console\CommandLoader\ContainerCommandLoader" public="true">
       <tag name="container.no_preload"/>
-      <argument type="service" id=".service_locator.F8Gl5ug"/>
+      <argument type="service" id=".service_locator.rL1MUib"/>
       <argument type="collection">
+        <argument key="app:check-expired-permis">App\Command\CheckExpiredPermisCommand</argument>
         <argument key="app:generate:entities">App\Command\GenerateEntitiesCommand</argument>
         <argument key="about">console.command.about</argument>
         <argument key="assets:install">console.command.assets_install</argument>
@@ -10307,6 +10498,7 @@
         <argument key="messenger:failed:show">console.command.messenger_failed_messages_show</argument>
         <argument key="messenger:failed:remove">console.command.messenger_failed_messages_remove</argument>
         <argument key="messenger:stats">console.command.messenger_stats</argument>
+        <argument key="debug:scheduler">console.command.scheduler_debug</argument>
         <argument key="debug:router">console.command.router_debug</argument>
         <argument key="router:match">console.command.router_match</argument>
         <argument key="debug:serializer">console.command.serializer_debug</argument>
@@ -10403,9 +10595,10 @@
         <argument key="make:webhook">maker.auto_command.make_webhook</argument>
       </argument>
     </service>
-    <service id=".service_locator.F8Gl5ug" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.rL1MUib" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Command\CheckExpiredPermisCommand" type="service_closure" id=".App\Command\CheckExpiredPermisCommand.lazy"/>
         <argument key="App\Command\GenerateEntitiesCommand" type="service_closure" id=".App\Command\GenerateEntitiesCommand.lazy"/>
         <argument key="console.command.about" type="service_closure" id=".console.command.about.lazy"/>
         <argument key="console.command.assets_install" type="service_closure" id=".console.command.assets_install.lazy"/>
@@ -10431,6 +10624,7 @@
         <argument key="console.command.messenger_failed_messages_show" type="service_closure" id=".console.command.messenger_failed_messages_show.lazy"/>
         <argument key="console.command.messenger_failed_messages_remove" type="service_closure" id=".console.command.messenger_failed_messages_remove.lazy"/>
         <argument key="console.command.messenger_stats" type="service_closure" id=".console.command.messenger_stats.lazy"/>
+        <argument key="console.command.scheduler_debug" type="service_closure" id=".console.command.scheduler_debug.lazy"/>
         <argument key="console.command.router_debug" type="service_closure" id=".console.command.router_debug.lazy"/>
         <argument key="console.command.router_match" type="service_closure" id=".console.command.router_match.lazy"/>
         <argument key="console.command.serializer_debug" type="service_closure" id=".console.command.serializer_debug.lazy"/>
@@ -10590,6 +10784,15 @@
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       </call>
     </service>
+    <service id="cache.scheduler.recorder_inner" class="Symfony\Component\Cache\Adapter\FilesystemAdapter">
+      <argument>e+MAfpDD-W</argument>
+      <argument>0</argument>
+      <argument>C:\Users\user\Videos\template-master - Copie\var\cache\dev/pools/app</argument>
+      <argument type="service" id="cache.default_marshaller" on-invalid="ignore"/>
+      <call method="setLogger">
+        <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
+      </call>
+    </service>
     <service id="cache.validator_expression_language.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface">
       <argument>NAjH14FQ0N</argument>
       <argument>0</argument>
@@ -10616,7 +10819,7 @@
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
-    <service id=".service_locator.krRXjA9" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.i0..Ry2" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="Symfony\Bridge\Twig\Extension\CsrfRuntime" type="service_closure" id="twig.runtime.security_csrf"/>
@@ -10625,6 +10828,7 @@
         <argument key="Symfony\Component\Form\FormRenderer" type="service_closure" id="twig.form.renderer"/>
         <argument key="Symfony\Bridge\Twig\Extension\ImportMapRuntime" type="service_closure" id="twig.runtime.importmap"/>
         <argument key="Symfony\UX\StimulusBundle\Twig\UxControllersTwigRuntime" type="service_closure" id="stimulus.ux_controllers_twig_runtime"/>
+        <argument key="Symfony\UX\Turbo\Twig\TurboRuntime" type="service_closure" id="turbo.twig.runtime"/>
       </argument>
     </service>
     <service id="App\Kernel" alias="kernel" public="true"/>
@@ -10666,7 +10870,8 @@
     <service id="Psr\Http\Client\ClientInterface" alias="psr18.http_client"/>
     <service id="mailer" alias="mailer.mailer"/>
     <service id="Symfony\Component\Mailer\MailerInterface" alias="mailer.mailer"/>
-    <service id="Symfony\Component\Mailer\Transport\TransportInterface" alias="mailer.default_transport"/>
+    <service id="mailer.default_transport" alias="mailer.transports"/>
+    <service id="Symfony\Component\Mailer\Transport\TransportInterface" alias="mailer.transports"/>
     <service id="Symfony\Component\Translation\Reader\TranslationReaderInterface" alias="translation.reader"/>
     <service id="Symfony\Component\Translation\Extractor\ExtractorInterface" alias="translation.extractor"/>
     <service id="Symfony\Component\Translation\Writer\TranslationWriterInterface" alias="translation.writer"/>
@@ -10804,7 +11009,7 @@
     <service id="lexik_jwt_authentication.key_loader" alias="lexik_jwt_authentication.key_loader.raw" public="true"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.w7.f4fT" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.1IYRutN"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.48SEng0"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -10838,7 +11043,7 @@
     <service id=".service_locator.vNuzrtg" alias=".service_locator.XL.Qmnp"/>
     <service id=".service_locator.R0Sb2kd" alias=".service_locator.rvMNZGh"/>
     <service id=".service_locator.gjt7tHW" alias=".service_locator.pbtqkCT"/>
-    <service id=".service_locator.cE5fAJJ" alias=".service_locator.1IYRutN"/>
+    <service id=".service_locator.LzPllcF" alias=".service_locator.48SEng0"/>
     <service id=".service_locator.pkU9kLN" alias=".service_locator.rDvbfD1"/>
     <service id=".service_locator.u9Z3wQq" alias=".service_locator.I4RRILp"/>
     <service id=".service_locator.XtmiKbi" alias=".service_locator.MfxSDRP"/>
@@ -10884,9 +11089,12 @@
     <service id=".service_locator.2MiTH2V" alias=".service_locator.PsHsJTl"/>
     <service id=".service_locator.NFE_7UK" alias=".service_locator.jRCrJ6N"/>
     <service id=".service_locator.jfz76lt" alias=".service_locator.3oB9lRW"/>
+    <service id=".service_locator.SPFAmCQ" alias=".service_locator.8IbU9zc"/>
     <service id=".service_locator.o68bRaq" alias=".service_locator.90uTyKf"/>
     <service id=".service_locator..Prm4Ua" alias=".service_locator.59sDmZo"/>
     <service id=".service_locator.x97CcwG" alias=".service_locator.Cj4aUBQ"/>
+    <service id=".service_locator.4LWDRzI" alias=".service_locator.4YvR2Kn"/>
+    <service id=".service_locator.rc2ypTK" alias=".service_locator.oz1C83W"/>
     <service id=".service_locator.ZFqd.rN" alias=".service_locator.XL.Qmnp"/>
     <service id=".service_locator.EmZ4cZI" alias=".service_locator.Hz5btge"/>
     <service id=".service_locator.ICTRhpx" alias=".service_locator.rvMNZGh"/>

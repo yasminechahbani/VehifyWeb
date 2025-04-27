@@ -48,4 +48,27 @@ public function countPendingRenewals(): int
         ->getSingleScalarResult();
 }
 
+// src/Repository/PermisRepository.php
+// Add this method to your existing PermisRepository class
+
+    public function findExpiredPermis(\DateTimeInterface $today): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.dateExpiration <= :today')
+            ->andWhere('p.etat != :expired_status OR p.etat IS NULL')
+            ->setParameter('today', $today->format('Y-m-d'))
+            ->setParameter('expired_status', 'Expired')
+            ->orderBy('p.dateExpiration', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function save($entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
 }
