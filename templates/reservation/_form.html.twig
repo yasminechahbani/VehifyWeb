@@ -1,0 +1,60 @@
+
+<div class="container">
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'needs-validation'}}) }}
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <div class="form-group">
+                {{ form_label(form.dateReservation, "Date de réservation", {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.dateReservation, {'attr': {'class': 'form-control datepicker', 'readonly': 'readonly'}}) }}
+                {{ form_errors(form.dateReservation, {'attr': {'class': 'invalid-feedback'}}) }}
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="form-group">
+                {{ form_label(form.heureReservation, "Heure de réservation", {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.heureReservation, {'attr': {'class': 'form-control timepicker', 'readonly': 'readonly'}}) }}
+                {{ form_errors(form.heureReservation, {'attr': {'class': 'invalid-feedback'}}) }}
+            </div>
+        </div>
+    </div>
+
+   
+        <div class="col-md-6 mb-3">
+            <div class="form-group">
+                {{ form_label(form.vehiculeId, "Véhicule", {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.vehiculeId, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.vehiculeId, {'attr': {'class': 'invalid-feedback'}}) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <button class="btn btn-primary me-2 {{ btn_class|default('') }}">{{ button_label|default('Enregistrer') }}</button>
+    </div>
+{{ form_end(form) }}
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Récupérer les paramètres de l'URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const dateParam = urlParams.get('date');
+        const heureParam = urlParams.get('heure');
+        
+        // Si une date est passée en paramètre, la définir dans le champ de date
+        if (dateParam) {
+            const dateField = document.querySelector('input[name*="dateReservation"]');
+            if (dateField) {
+                dateField.value = dateParam;
+            }
+        }
+        
+        // Si une heure est passée en paramètre, la définir dans le champ d'heure
+        if (heureParam) {
+            const heureField = document.querySelector('input[name*="heureReservation"]');
+            if (heureField) {
+                heureField.value = heureParam;
+            }
+        }
+    });
+</script>

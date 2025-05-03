@@ -1,0 +1,175 @@
+{{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+    <div class="row g-3">
+        <!-- Add OCR upload section -->
+        <div class="col-12 mb-4">
+            <div class="form-group bg-light p-3 rounded">
+                <label for="imageUpload" class="form-label">Scanner la carte grise</label>
+                <input type="file" class="form-control" id="imageUpload" accept="image/*">
+                <button type="button" class="btn btn-info mt-2" id="extractButton">
+                    <i class="fas fa-magic me-1"></i> Extraire les informations
+                </button>
+            </div>
+        </div>
+
+        <!-- Existing form fields remain unchanged -->
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ form_label(form.numeroCarteGrise) }}
+                {{ form_widget(form.numeroCarteGrise, {
+                    'attr': {
+                        'class': 'form-control' ~ (form.numeroCarteGrise.vars.valid ? '' : ' is-invalid'),
+                        'placeholder': 'Entrez le numéro'
+                    }
+                }) }}
+                {% if form.numeroCarteGrise.vars.errors|length > 0 %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.numeroCarteGrise.vars.errors %}
+                            {{ error.message }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ form_label(form.proprietaire) }}
+                {{ form_widget(form.proprietaire, {
+                    'attr': {
+                        'class': 'form-control' ~ (form.proprietaire.vars.valid ? '' : ' is-invalid'),
+                        'placeholder': 'Nom du propriétaire'
+                    }
+                }) }}
+                {% if form.proprietaire.vars.errors|length > 0 %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.proprietaire.vars.errors %}
+                            {{ error.message }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="form-group">
+                {{ form_label(form.adresseProprietaire) }}
+                {{ form_widget(form.adresseProprietaire, {
+                    'attr': {
+                        'class': 'form-control' ~ (form.adresseProprietaire.vars.valid ? '' : ' is-invalid'),
+                        'placeholder': 'Adresse complète'
+                    }
+                }) }}
+                {% if form.adresseProprietaire.vars.errors|length > 0 %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.adresseProprietaire.vars.errors %}
+                            {{ error.message }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ form_label(form.dateEmission) }}
+                {{ form_widget(form.dateEmission, {
+                    'attr': {
+                        'class': 'form-control datepicker' ~ (form.dateEmission.vars.valid ? '' : ' is-invalid'),
+                        'placeholder': 'JJ/MM/AAAA'
+                    }
+                }) }}
+                {% if form.dateEmission.vars.errors|length > 0 %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.dateEmission.vars.errors %}
+                            {{ error.message }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Remove dateExpiration field block -->
+
+        <div class="col-12 mt-4">
+            <button type="submit" class="btn btn-primary me-2">
+                <i class="fas fa-save me-1"></i> Enregistrer
+            </button>
+            <button type="reset" class="btn btn-outline-secondary">
+                <i class="fas fa-undo me-1"></i> Réinitialiser
+            </button>
+        </div>
+    </div>
+<script>
+document.getElementById('extractButton').addEventListener('click', function() {
+    const imageFile = document.getElementById('imageUpload').files[0];
+    if (!imageFile) {
+        alert('Veuillez sélectionner une image');
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('file', imageFile);
+    formData.append('language', 'eng'); // Changed to English since the text is in English
+    formData.append('isOverlayRequired', 'false');
+    formData.append('OCREngine', '2');
+    formData.append('scale', 'true');
+    formData.append('detectOrientation', 'true');
+
+    this.disabled = true;
+    this.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i> Extraction en cours...';
+
+    fetch('https://api.ocr.space/parse/image', {
+        method: 'POST',
+        headers: {
+            'apikey': 'K82542374388957'
+        },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Full API Response:', data);
+
+        if (data.ParsedResults && data.ParsedResults[0]) {
+            const text = data.ParsedResults[0].ParsedText;
+            console.log('Extracted Text:', text);
+
+            const lines = text.split('\n')
+                .map(line => line.trim())
+                .filter(line => line.length > 0);
+           
+            lines.forEach(line => {
+                // Match N° Serie du type (works for both 17-char and 6-digit formats)
+                if (/[A-Z0-9]{17}|^\d{6}$/.test(line)) {
+                    document.querySelector('[name$="[numeroCarteGrise]"]').value = line.trim();
+                }
+               
+                // Match date (supports multiple date formats)
+                const dateMatch = line.match(/(\d{4})[/-](\d{2})[/-](\d{2})|(\d{2})[/-](\d{2})[/-](\d{4})/);
+                if (dateMatch) {
+                    let year, month, day;
+                    if (dateMatch[1]) { // YYYY-MM-DD format
+                        [_, year, month, day] = dateMatch;
+                    } else { // DD-MM-YYYY format
+                        [_, , , , day, month, year] = dateMatch;
+                    }
+                    document.querySelector('[name$="[dateEmission]"]').value = `${year}-${month}-${day}`;
+                }
+            });
+
+            console.log('Extraction réussie');
+        } else {
+            console.error('OCR Error:', data.ErrorMessage || 'Unknown error');
+            alert('Échec de l\'extraction. Veuillez vérifier l\'image.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Erreur lors de l\'extraction: ' + error.message);
+    })
+    .finally(() => {
+        this.disabled = false;
+        this.innerHTML = '<i class="fas fa-magic me-1"></i> Extraire les informations';
+    });
+});
+</script>
+{{ form_end(form) }}

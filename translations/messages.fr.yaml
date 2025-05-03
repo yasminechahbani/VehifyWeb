@@ -1,0 +1,95 @@
+# Common
+common:
+  back: 'Retour'
+  save: 'Enregistrer'
+  edit: 'Modifier'
+  delete: 'Supprimer'
+  view: 'Voir'
+  search: 'Rechercher'
+  reset: 'Réinitialiser'
+  actions: 'Actions'
+  confirm: 'Confirmer'
+  cancel: 'Annuler'
+
+# Navigation
+nav:
+  home: 'Accueil'
+  dashboard: 'Tableau de bord'
+  reservation: 'Réservation'
+  technical_service: 'Service Technique'
+  reservation_list: 'Liste des Réservations'
+  quiz: 'Quiz'
+  take_quiz: 'Passer le Quiz'
+  car_center: 'Centre Auto'
+  add_grey_card: 'Ajouter Carte Grise'
+  add_vehicle: 'Ajouter Véhicule'
+  contact: 'Contact'
+  about: 'À propos'
+
+# User Management
+user:
+  management: 'Gestion des Utilisateurs'
+  new: 'Nouvel Utilisateur'
+  edit: 'Modifier Utilisateur'
+  profile: 'Mon Profil'
+  settings: 'Paramètres'
+  logout: 'Déconnexion'
+  search_placeholder: 'Rechercher par nom, email ou rôle...'
+
+# Employee Management
+employee:
+  management: 'Gestion des Employés'
+  new: 'Nouvel Employé'
+  list: 'Liste des Employés'
+  contract: 'Contrat'
+  add_contract: 'Ajouter un Contrat'
+  search_placeholder: 'Rechercher par nom ou prénom...'
+
+# Reservation
+reservation:
+  title: 'Gestion des Réservations'
+  new: 'Nouvelle Réservation'
+  date: 'Date de réservation'
+  time: 'Heure de réservation'
+  service: 'Service'
+  vehicle: 'Véhicule'
+  client: 'Client'
+  status: 'Statut'
+  invoices: 'Liste des Factures'
+
+# Dashboard
+dashboard:
+  title: 'Tableau de Bord'
+  vehicles: 'Véhicules'
+  total_vehicles: 'Total des Véhicules'
+  statistics: 'Statistiques'
+  recent_activity: 'Activité Récente'
+
+# About
+about:
+  title: 'À Propos de Nous'
+  quality_service: 'Service de Qualité'
+  expert_workers: 'Experts Qualifiés'
+  modern_equipment: 'Équipement Moderne'
+  read_more: 'En savoir plus'
+
+# Footer
+footer:
+  address: 'Adresse'
+  services:
+    title: 'Nos Services'
+    search_placeholder: 'Rechercher un service...'
+    sort_by_distance: 'Tri par distance'
+    currency: 'DT'
+    opening_hours: 'Heures d''ouverture'
+    location: 'Localisation'
+    contact: 'Contact'
+    book_now: 'Réserver maintenant'
+    qr_code: 'Code QR'
+    scan_location: 'Scanner pour voir la localisation'
+    scan_instructions: 'Scannez pour voir la localisation sur Google Maps'
+    ai_diagnostic: 'Diagnostic IA'
+  newsletter: 'Newsletter'
+  subscribe: 'S''abonner'
+  contact: 'Contact'
+  rights: 'Tous droits réservés'

@@ -1,0 +1,95 @@
+# Common
+common:
+  back: 'Back'
+  save: 'Save'
+  edit: 'Edit'
+  delete: 'Delete'
+  view: 'View'
+  search: 'Search'
+  reset: 'Reset'
+  actions: 'Actions'
+  confirm: 'Confirm'
+  cancel: 'Cancel'
+
+# Navigation
+nav:
+  home: 'Home'
+  dashboard: 'Dashboard'
+  reservation: 'Reservation'
+  technical_service: 'Technical Service'
+  reservation_list: 'Reservation List'
+  quiz: 'Quiz'
+  take_quiz: 'Take Quiz'
+  car_center: 'Car Center'
+  add_grey_card: 'Add Grey Card'
+  add_vehicle: 'Add Vehicle'
+  contact: 'Contact'
+  about: 'About'
+
+# User Management
+user:
+  management: 'User Management'
+  new: 'New User'
+  edit: 'Edit User'
+  profile: 'My Profile'
+  settings: 'Settings'
+  logout: 'Logout'
+  search_placeholder: 'Search by name, email, or role...'
+
+# Employee Management
+employee:
+  management: 'Employee Management'
+  new: 'New Employee'
+  list: 'Employee List'
+  contract: 'Contract'
+  add_contract: 'Add Contract'
+  search_placeholder: 'Search by name or firstname...'
+
+# Reservation
+reservation:
+  title: 'Reservation Management'
+  new: 'New Reservation'
+  date: 'Reservation Date'
+  time: 'Reservation Time'
+  service: 'Service'
+  vehicle: 'Vehicle'
+  client: 'Client'
+  status: 'Status'
+  invoices: 'Invoices List'
+
+# Dashboard
+dashboard:
+  title: 'Dashboard'
+  vehicles: 'Vehicles'
+  total_vehicles: 'Total Vehicles'
+  statistics: 'Statistics'
+  recent_activity: 'Recent Activity'
+
+# About
+about:
+  title: 'About Us'
+  quality_service: 'Quality Service'
+  expert_workers: 'Expert Workers'
+  modern_equipment: 'Modern Equipment'
+  read_more: 'Read More'
+
+# Footer
+footer:
+  address: 'Address'
+  services:
+    title: 'Our Services'
+    search_placeholder: 'Search for a service...'
+    sort_by_distance: 'Sort by distance'
+    currency: 'DT'
+    opening_hours: 'Opening Hours'
+    location: 'Location'
+    contact: 'Contact'
+    book_now: 'Book Now'
+    qr_code: 'QR Code'
+    scan_location: 'Scan to see location'
+    scan_instructions: 'Scan to see location on Google Maps'
+    ai_diagnostic: 'AI Diagnostic'
+  newsletter: 'Newsletter'
+  subscribe: 'Subscribe'
+  contact: 'Contact'
+  rights: 'All rights reserved'

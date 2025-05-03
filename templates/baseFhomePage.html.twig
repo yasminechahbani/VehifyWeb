@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale|default('fr') }}">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}CarServ - Car Repair{% endblock %}</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="{{ asset('img/favicon.ico') }}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700&family=Ubuntu:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{{ asset('lib/animate/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {% block css %}{% endblock %}
+</head>
+
+<body>
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+        <a href="{{ path('app_home') }}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h2 class="m-0 text-primary"><i class="fas fa-check-circle me-2 text-warning"></i>Vehify</h2>        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <!-- Add language switcher -->
+               
+                <a href="{{ path('app_home') }}" class="nav-item nav-link {% if active_page|default('') == 'home' %}active{% endif %}">{{ 'nav.home'|trans }}</a>
+                
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{ 'reservation'|trans }}</a>
+                    <div class="dropdown-menu fade-up m-0">
+                        <a href="{{path('app_serviceFClient')}}" class="dropdown-item">{{ 'technical_service'|trans }}</a>
+                        <a href="{{path('app_reservation_index')}}" class="dropdown-item">{{ 'Reservation List'|trans }}</a>
+                    </div>
+                </div>
+
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{ 'nav.quiz'|trans }}</a>
+                    <div class="dropdown-menu fade-up m-0">
+                        <a href="{{path('app_quiz_generate')}}" class="dropdown-item">{{ 'nav.take_quiz'|trans }}</a>
+                    </div>
+                </div>
+
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{ 'nav.car_center'|trans }}</a>
+                    <div class="dropdown-menu fade-up m-0">
+                        <a href="{{path('app_carte_grise_index')}}" class="dropdown-item">{{ 'nav.add_grey_card'|trans }}</a>
+                        <a href="{{path('app_vehicule_index')}}" class="dropdown-item">{{ 'nav.add_vehicle'|trans }}</a>
+                    </div>
+                </div>
+                <a href="{{ path('app_contact') }}" class="nav-item nav-link">{{ 'nav.contact'|trans }}</a>
+            </div>
+        </div>
+
+        <!-- User dropdown -->
+        <div class="dropdown me-4">
+            <a href="#" class="dropdown-toggle d-flex align-items-center text-decoration-none" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
+                    {% if app.session.get('image') %}
+                        <img src="{{ app.session.get('image') }}" alt="User" width="32" height="32" class="rounded-circle me-2">
+                    {% else %}
+                        <img src="{{ asset('img/user-profile.jpg') }}" alt="User" width="32" height="32" class="rounded-circle me-2">
+                    {% endif %}
+                    <span class="d-none d-lg-inline">
+                        {% if app.session.get('nom') and app.session.get('prenom') %}
+                            {{ app.session.get('nom') }} {{ app.session.get('prenom') }}
+                        {% else %}
+                            Mon Profil
+                        {% endif %}
+                    </span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="dropdownUser">
+                    <li><a class="dropdown-item" href="">{{ app.session.get('email') }}</a></li>
+                    <li><a class="dropdown-item" href="{{ path('app_user_editProfile', {'id': app.session.get('id')}) }}">{{ 'nav.settings'|trans }}</a></li>
+                    <li>
+                        <a class="dropdown-item text-danger" href="{{path('app_user_logout')}}" onclick="return confirm('{{ 'nav.logout_confirm'|trans }}')">
+                            <i class="fas fa-sign-out-alt me-2"></i>{{ 'nav.logout'|trans }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% block content %}{% endblock %}
+
+    <!-- Footer -->
+    <div class="container-fluid bg-dark text-light footer pt-5 mt-5">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">{{ 'footer.address'|trans }}</h4>
+                    <p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
+                    <p><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
+                    <p><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">{{ 'footer.opening_hours'|trans }}</h4>
+                    <p>Monday - Friday: 09.00 AM - 09.00 PM</p>
+                    <p>Saturday - Sunday: 09.00 AM - 12.00 PM</p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">{{ 'footer.services'|trans }}</h4>
+                    <a class="btn btn-link" href="#">Diagnostic Test</a>
+                    <a class="btn btn-link" href="#">Engine Servicing</a>
+                    <a class="btn btn-link" href="#">Tires Replacement</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">{{ 'footer.newsletter'|trans }}</h4>
+                    <p>Subscribe to our newsletter for updates.</p>
+                    <div class="position-relative mx-auto" style="max-width: 400px;">
+                        <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('lib/wow/wow.min.js') }}"></script>
+    <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+
+    {% block scripts %}
+
+   {% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,189 @@
+{{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+<div class="row g-3">
+    {% if show_image_upload is defined and show_image_upload %}
+    <div class="col-12 mb-4">
+        <div class="form-group bg-light p-3 rounded">
+            <label for="vehiclePhoto" class="form-label">Photo du véhicule</label>
+            <input type="file" class="form-control" id="vehiclePhoto" accept="image/*">
+            <button type="button" class="btn btn-info mt-2" id="analyzeButton">
+                <i class="fas fa-search me-1"></i> Analyser l'état du véhicule
+            </button>
+            <div id="analysisResult" class="mt-3 d-none">
+                <div class="alert alert-info">
+                    <h5>Résultat de l'analyse :</h5>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                    </div>
+                    <p class="mt-2 mb-0" id="analysisText"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Champs classiques -->
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(form.marque) }}
+            {{ form_widget(form.marque, {'attr': {'class': 'form-control', 'placeholder': 'Ex: Peugeot'}}) }}
+            {% for error in form.marque.vars.errors %}
+                <div class="invalid-feedback d-block">{{ error.message }}</div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(form.modele) }}
+            {{ form_widget(form.modele, {'attr': {'class': 'form-control', 'placeholder': 'Ex: 208'}}) }}
+            {% for error in form.modele.vars.errors %}
+                <div class="invalid-feedback d-block">{{ error.message }}</div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(form.immatriculation) }}
+            {{ form_widget(form.immatriculation, {'attr': {'class': 'form-control', 'placeholder': 'Ex: AB-123-CD'}}) }}
+            {% for error in form.immatriculation.vars.errors %}
+                <div class="invalid-feedback d-block">{{ error.message }}</div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(form.type) }}
+            {{ form_widget(form.type, {'attr': {'class': 'form-control', 'placeholder': 'Ex: SUV, Berline...'}}) }}
+            {% for error in form.type.vars.errors %}
+                <div class="invalid-feedback d-block">{{ error.message }}</div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(form.couleur) }}
+            {{ form_widget(form.couleur, {'attr': {'class': 'form-control', 'placeholder': 'Ex: Rouge'}}) }}
+            {% for error in form.couleur.vars.errors %}
+                <div class="invalid-feedback d-block">{{ error.message }}</div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(form.kilometrage) }}
+            {{ form_widget(form.kilometrage, {'attr': {'class': 'form-control', 'placeholder': 'Ex: 45000'}}) }}
+            {% for error in form.kilometrage.vars.errors %}
+                <div class="invalid-feedback d-block">{{ error.message }}</div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(form.statut) }}
+            {{ form_widget(form.statut, {
+                'attr': {
+                    'class': 'form-control',
+                    'placeholder': 'Visite faite, Visite non faite'
+                }
+            }) }}
+            {% for error in form.statut.vars.errors %}
+                <div class="invalid-feedback d-block">{{ error.message }}</div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(form.carteGrise) }}
+            {{ form_widget(form.carteGrise, {'attr': {'class': 'form-select'}}) }}
+            {% for error in form.carteGrise.vars.errors %}
+                <div class="invalid-feedback d-block">{{ error.message }}</div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="col-12 mt-4">
+        <button type="submit" class="btn btn-primary me-2">
+            <i class="fas fa-save me-1"></i> Enregistrer
+        </button>
+        <button type="reset" class="btn btn-outline-secondary">
+            <i class="fas fa-undo me-1"></i> Réinitialiser
+        </button>
+    </div>
+</div>
+
+<script>
+document.getElementById('analyzeButton').addEventListener('click', async function () {
+    const imageFile = document.getElementById('vehiclePhoto').files[0];
+    if (!imageFile) {
+        alert('Veuillez sélectionner une photo du véhicule');
+        return;
+    }
+
+    if (imageFile.size > 4 * 1024 * 1024) {
+        alert('La taille de l\'image ne doit pas dépasser 4MB');
+        return;
+    }
+
+    if (!imageFile.type.startsWith('image/')) {
+        alert('Veuillez sélectionner un fichier image valide');
+        return;
+    }
+
+    this.disabled = true;
+    this.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i> Analyse en cours...';
+
+    try {
+        const base64Image = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result.split(',')[1]);
+            reader.readAsDataURL(imageFile);
+        });
+
+        const response = await fetch('/api/analyze-vehicle', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({ image: base64Image, mime_type: imageFile.type })
+        });
+
+        const responseText = await response.text();
+        const data = JSON.parse(responseText);
+
+        const resultDiv = document.getElementById('analysisResult');
+        const analysisText = document.getElementById('analysisText');
+        resultDiv.classList.remove('d-none');
+
+        let recommendationText = data.recommendation || 'Aucune recommandation disponible';
+
+        // Si l'état est mauvais → remplir statut + rendre non modifiable
+        if (recommendationText.includes('Des réparations importantes sont recommandées') || recommendationText.includes('mauvais état') || recommendationText.includes('non conforme')) {
+            recommendationText += ' Veuillez réparer votre véhicule avant la visite pour qu\'elle soit acceptée.';
+
+            const statutField = document.querySelector('[name="vehicule[statut]"]');
+            if (statutField) {
+                statutField.value = 'Visite non faite';
+                statutField.setAttribute('readonly', true); // ou 'disabled', selon ton besoin
+            }
+        }
+
+        analysisText.textContent = `Analyse du véhicule : ${recommendationText}`;
+
+    } catch (error) {
+        console.error('Erreur analyse API:', error);
+        const resultDiv = document.getElementById('analysisResult');
+        const analysisText = document.getElementById('analysisText');
+        resultDiv.classList.remove('d-none');
+        analysisText.textContent = `Erreur lors de l'analyse: ${error.message}. Veuillez réessayer.`;
+    } finally {
+        this.disabled = false;
+        this.innerHTML = '<i class="fas fa-search me-1"></i> Analyser l\'état du véhicule';
+    }
+});
+</script>
+
+{{ form_end(form) }}

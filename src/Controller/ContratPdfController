@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Controller;
+
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use App\Entity\Employe;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+class ContratPdfController extends AbstractController
+{
+    #[Route('/contrat-pdf/{idEmploye}', name: 'contrat_pdf')]
+    public function generatePdf(Employe $employe): Response
+    {
+        // Options PDF
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+
+        // Initialisation Dompdf
+        $dompdf = new Dompdf($pdfOptions);
+
+        // Rendu HTML avec Twig
+        $html = $this->renderView('contrat/employe.html.twig', [
+            'employe' => $employe,
+        ]);
+
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+
+        // Retour PDF en réponse
+        return new Response(
+            $dompdf->output(),
+            200,
+            [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'inline; filename="contrat_'. $employe->getNom() .'.pdf"',
+            ]
+        );
+    }
+}

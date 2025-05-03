@@ -1,0 +1,96 @@
+# Common
+common:
+  back: 'رجوع'
+  save: 'حفظ'
+  edit: 'تعديل'
+  delete: 'حذف'
+  view: 'عرض'
+  search: 'بحث'
+  reset: 'إعادة تعيين'
+  actions: 'إجراءات'
+  confirm: 'تأكيد'
+  cancel: 'إلغاء'
+
+# Navigation
+nav:
+  home: 'الرئيسية'
+  dashboard: 'لوحة التحكم'
+  reservation: 'الحجز'
+  technical_service: 'الخدمة الفنية'
+  reservation_list: 'قائمة الحجوزات'
+  quiz: 'اختبار'
+  take_quiz: 'إجراء الاختبار'
+  car_center: 'مركز السيارات'
+  add_grey_card: 'إضافة البطاقة الرمادية'
+  add_vehicle: 'إضافة مركبة'
+  contact: 'اتصل بنا'
+  about: 'من نحن'
+
+# User Management
+user:
+  management: 'إدارة المستخدمين'
+  new: 'مستخدم جديد'
+  edit: 'تعديل المستخدم'
+  profile: 'الملف الشخصي'
+  settings: 'الإعدادات'
+  logout: 'تسجيل الخروج'
+  search_placeholder: 'البحث بالاسم أو البريد الإلكتروني أو الدور...'
+
+# Employee Management
+employee:
+  management: 'إدارة الموظفين'
+  new: 'موظف جديد'
+  list: 'قائمة الموظفين'
+  contract: 'العقد'
+  add_contract: 'إضافة عقد'
+  search_placeholder: 'البحث بالاسم أو اللقب...'
+
+# Reservation
+reservation:
+  title: 'إدارة الحجوزات'
+  new: 'حجز جديد'
+  date: 'تاريخ الحجز'
+  time: 'وقت الحجز'
+  service: 'الخدمة'
+  vehicle: 'المركبة'
+  client: 'العميل'
+  status: 'الحالة'
+  invoices: 'قائمة الفواتير'
+
+# Dashboard
+dashboard:
+  title: 'لوحة التحكم'
+  vehicles: 'المركبات'
+  total_vehicles: 'إجمالي المركبات'
+  statistics: 'الإحصائيات'
+  recent_activity: 'النشاط الأخير'
+
+# About
+about:
+  title: 'من نحن'
+  quality_service: 'خدمة عالية الجودة'
+  expert_workers: 'خبراء متخصصون'
+  modern_equipment: 'معدات حديثة'
+  read_more: 'اقرأ المزيد'
+
+# Footer
+footer:
+  address: 'العنوان'
+  opening_hours: 'ساعات العمل'
+  services:
+    title: 'خدماتنا'
+    search_placeholder: 'البحث عن خدمة...'
+    sort_by_distance: 'ترتيب حسب المسافة'
+    currency: 'د.ت'
+    opening_hours: 'ساعات العمل'
+    location: 'الموقع'
+    contact: 'اتصل بنا'
+    book_now: 'احجز الآن'
+    qr_code: 'رمز QR'
+    scan_location: 'امسح للاطلاع على الموقع'
+    scan_instructions: 'امسح الرمز لرؤية الموقع على خرائط Google'
+    ai_diagnostic: 'التشخيص الذكي'
+  newsletter: 'النشرة الإخبارية'
+  subscribe: 'اشتراك'
+  contact: 'اتصل بنا'
+  rights: 'جميع الحقوق محفوظة'

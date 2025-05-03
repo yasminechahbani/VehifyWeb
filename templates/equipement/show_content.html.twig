@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Guide d'utilisation - {{ equipement.nom }}{% endblock %}
+
+{% block body %}
+    <h1>Guide d'utilisation - {{ equipement.nom }}</h1>
+
+    <div class="guide-content">
+        {{ guideContent|raw }}
+    </div>
+
+    <a href="{{ path('app_equipement_guide', {'idEquipement': equipement.idEquipement}) }}" class="btn btn-primary mt-3" target="_blank">
+        <i class="fas fa-file-pdf me-2"></i>Télécharger en PDF
+    </a>
+{% endblock %}

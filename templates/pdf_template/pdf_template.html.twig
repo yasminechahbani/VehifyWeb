@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Résultat Contrôle Technique</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            background-color: #f4f4f9; 
+        }
+        .header { 
+            text-align: center; 
+            margin-bottom: 30px; 
+            padding: 10px; 
+            background-color: #007bff; 
+            color: white; 
+            border-radius: 8px; 
+        }
+        .result-table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 20px 0; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+        }
+        .result-table th, .result-table td { 
+            border: 1px solid #ddd; 
+            padding: 12px; 
+            text-align: left; 
+        }
+        .result-table th { 
+            background-color: #007bff; 
+            color: white; 
+        }
+        .status { 
+            margin-top: 20px; 
+            padding: 10px; 
+            background-color: #e9ecef; 
+            border-radius: 8px; 
+            text-align: center; 
+        }
+        .check-result { 
+            padding: 5px; 
+            margin: 5px 0; 
+        }
+        .passed { 
+            color: green; 
+            font-weight: bold; 
+        }
+        .failed { 
+            color: red; 
+            font-weight: bold; 
+        }
+        .details-section { 
+            margin-top: 20px; 
+            padding: 10px; 
+            background-color: #f8f9fa; 
+            border-radius: 8px; 
+        }
+        .details-section p { 
+            margin: 5px 0; 
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Rapport de Contrôle Technique</h1>
+        <p>Date: {{ date|date('d/m/Y H:i') }}</p>
+        <p>N° VIN: {{ resultat.vinSaisie }}</p>
+    </div>
+
+    <table class="result-table">
+        <tr>
+            <th>Point de contrôle</th>
+            <th>État</th>
+        </tr>
+        <tr>
+            <td>Direction et Tableau de bord</td>
+            <td>{% if resultat.direction %}<span class="passed">VALIDÉ</span>{% else %}<span class="failed">NON VALIDÉ</span>{% endif %}</td>
+        </tr>
+        <tr>
+            <td>Visibilité</td>
+            <td>{% if resultat.visibilite %}<span class="passed">VALIDÉ</span>{% else %}<span class="failed">NON VALIDÉ</span>{% endif %}</td>
+        </tr>
+        <tr>
+            <td>Carrosserie</td>
+            <td>{% if resultat.carrosorie %}<span class="passed">VALIDÉ</span>{% else %}<span class="failed">NON VALIDÉ</span>{% endif %}</td>
+        </tr>
+        <tr>
+            <td>Éclairage</td>
+            <td>{% if resultat.eclairage %}<span class="passed">VALIDÉ</span>{% else %}<span class="failed">NON VALIDÉ</span>{% endif %}</td>
+        </tr>
+        <tr>
+            <td>Huile</td>
+            <td>{% if resultat.huileDefault %}<span class="passed">VALIDÉ</span>{% else %}<span class="failed">NON VALIDÉ</span>{% endif %}</td>
+        </tr>
+        <tr>
+            <td>Échappement</td>
+            <td>{% if resultat.echappement %}<span class="passed">VALIDÉ</span>{% else %}<span class="failed">NON VALIDÉ</span>{% endif %}</td>
+        </tr>
+        <tr>
+            <td>Freinage</td>
+            <td>{% if resultat.freinage %}<span class="passed">VALIDÉ</span>{% else %}<span class="failed">NON VALIDÉ</span>{% endif %}</td>
+        </tr>
+        <tr>
+            <td>Pneumatique</td>
+            <td>{% if resultat.pneaumatique %}<span class="passed">VALIDÉ</span>{% else %}<span class="failed">NON VALIDÉ</span>{% endif %}</td>
+        </tr>
+    </table>
+
+    <div class="status">
+        <h3>Statut final: {{ resultat.status ? '<span class="passed">VALIDÉ</span>' : '<span class="failed">NON VALIDÉ</span>' }}</h3>
+    </div>
+    <div class="details-section">
+    {% if rapport.direction %}
+        <p><strong>Direction :</strong> {{ rapport.direction }}</p>
+    {% endif %}
+    {% if rapport.visibilite %}
+        <p><strong>Visibilité :</strong> {{ rapport.visibilite }}</p>
+    {% endif %}
+    {% if rapport.carrosorie %}
+        <p><strong>Carrosserie :</strong> {{ rapport.carrosorie }}</p>
+    {% endif %}
+    {% if rapport.eclairage %}
+        <p><strong>Éclairage :</strong> {{ rapport.eclairage }}</p>
+    {% endif %}
+    {% if rapport.huileDefault %}
+        <p><strong>Huile :</strong> {{ rapport.huileDefault }}</p>
+    {% endif %}
+    {% if rapport.echappement %}
+        <p><strong>Échappement :</strong> {{ rapport.echappement }}</p>
+    {% endif %}
+    {% if rapport.freinage %}
+        <p><strong>Freins :</strong> {{ rapport.freinage }}</p>
+    {% endif %}
+    {% if rapport.pneaumatique %}
+        <p><strong>Pneumatiques :</strong> {{ rapport.pneaumatique }}</p>
+    {% endif %}
+</div>
+</body>
+</html>

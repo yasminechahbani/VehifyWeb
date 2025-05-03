@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+{% block title %}Créer un contrat{% endblock %}
+{% block body %}
+
+    <h1>Créer un nouveau contrat</h1>
+
+    {{ form_start(form, {'action': path('app_contrat_new'), 'method': 'POST'}) }}
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            {{ form_label(form.employe) }}
+            {{ form_widget(form.employe, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.employe) }}
+        </div>
+        <div class="col-md-6 mb-3">
+            {{ form_label(form.dateDebut) }}
+            {{ form_widget(form.dateDebut, {'attr': {'class': 'form-control', 'type': 'date'}}) }}
+            {{ form_errors(form.dateDebut) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            {{ form_label(form.typeContrat) }}
+            {{ form_widget(form.typeContrat, {'attr': {'class': 'form-control', 'placeholder': 'CDI, CDD, etc.'}}) }}
+            {{ form_errors(form.typeContrat) }}
+        </div>
+        <div class="col-md-6 mb-3">
+            {{ form_label(form.salaireContrat) }}
+            <div class="input-group">
+                {{ form_widget(form.salaireContrat, {'attr': {'class': 'form-control', 'placeholder': 'Montant en TND'}}) }}
+                <span class="input-group-text">TND</span>
+            </div>
+            {{ form_errors(form.salaireContrat) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            {{ form_label(form.dateFin) }}
+            {{ form_widget(form.dateFin, {'attr': {'class': 'form-control', 'type': 'date'}}) }}
+            {{ form_errors(form.dateFin) }}
+        </div>
+        <div class="col-md-6 mb-3">
+            {{ form_label(form.periodeEssai) }}
+            {{ form_widget(form.periodeEssai, {'attr': {'class': 'form-control', 'placeholder': 'Ex: 3 mois'}}) }}
+            {{ form_errors(form.periodeEssai) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            {{ form_label(form.preavis) }}
+            {{ form_widget(form.preavis, {'attr': {'class': 'form-control', 'placeholder': 'Ex: 1 mois'}}) }}
+            {{ form_errors(form.preavis) }}
+        </div>
+        <div class="col-md-6 mb-3">
+            {{ form_label(form.statutContrat) }}
+            {{ form_widget(form.statutContrat, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.statutContrat) }}
+        </div>
+    </div>
+
+    <div class="mb-3 form-check">
+        {{ form_widget(form.confidentialite, {'attr': {'class': 'form-check-input'}}) }}
+        {{ form_label(form.confidentialite, null, {'label_attr': {'class': 'form-check-label'}}) }}
+        {{ form_errors(form.confidentialite) }}
+    </div>
+
+    <div class="mt-4">
+        <button type="submit" class="btn btn-primary">💾 Enregistrer</button>
+        <a href="{{ path('app_contrat_index') }}" class="btn btn-secondary">← Retour à la liste</a>
+    </div>
+
+    {{ form_end(form) }}
+
+{% endblock %}

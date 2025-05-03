@@ -1,0 +1,112 @@
+{% extends 'baseEmployeFront.html.twig' %}
+
+{% block title %}Modifier le Permis{% endblock %}
+
+{% block body %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col">
+            <!-- Add flash messages -->
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+
+            <nav aria-label="breadcrumb" class="d-flex justify-content-between align-items-center">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="{{ path('app_employe_front') }}">Accueil</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Modifier le permis #{{ permi.numeroPermis }}</li>
+                    
+                </ol>
+                <button type="submit" form="permis_form" class="btn btn-primary btn-sm">
+                    <i class="fas fa-save me-1"></i>Enregistrer
+                </button>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-header bg-white py-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">
+                            <i class="fas fa-edit text-primary me-2"></i>Modifier le Permis
+                        </h5>
+                        <a href="{{ path('app_show_permisOne', {'numeroPermis': permi.idPermis}) }}" class="btn btn-secondary btn-sm">
+                            <i class="fas fa-arrow-left me-1"></i>Retour
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    {{ include('permis/_form.html.twig', {
+                        'button_label': 'Enregistrer les modifications',
+                        'form': form,
+                        'form_id': 'permis_form'
+                    }) }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <!-- Add warning about date_delivrance -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0">
+                        <i class="fas fa-info-circle text-primary me-2"></i>Informations importantes
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle me-2"></i>La date d'expiration sera mise à jour automatiquement si vous modifiez la date de délivrance.
+                    </div>
+                    <div class="alert alert-info">
+                        <i class="fas fa-lightbulb me-2"></i>Vous modifiez les informations du permis n° {{ permi.numeroPermis }}
+                    </div>
+                    <p>Veuillez vous assurer que toutes les informations saisies sont correctes avant d'enregistrer les modifications.</p>
+                    <p class="mb-0">Les champs marqués d'un astérisque (*) sont obligatoires.</p>
+                </div>
+            </div>
+            
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0">
+                        <i class="fas fa-trash-alt text-danger me-2"></i>Supprimer
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="text-danger mb-3">Attention : La suppression d'un permis est définitive et ne peut pas être annulée.</p>
+                    {{ include('permis/_delete_form.html.twig', {'button_class': 'btn-danger w-100'}) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+    /* Form styling */
+    .form-label {
+        font-weight: 500;
+    }
+    
+    .required:after {
+        content: " *";
+        color: #dc3545;
+    }
+    
+    /* Custom button styling */
+    .btn-primary {
+        background-color: #4361ee;
+        border-color: #4361ee;
+    }
+    
+    .btn-primary:hover {
+        background-color: #3a56d4;
+        border-color: #3a56d4;
+    }
+</style>
+{% endblock %}

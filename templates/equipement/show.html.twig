@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Équipement{% endblock %}
+
+{% block body %}
+    <h1>{{ equipement.nom }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdEquipement</th>
+                <td>{{ equipement.idEquipement }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ equipement.nom }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ equipement.description }}</td>
+            </tr>
+            <tr>
+                <th>Catégorie</th>
+                <td>{{ equipement.categorie }}</td>
+            </tr>
+            <tr>
+                <th>État</th>
+                <td>{{ equipement.etat }}</td>
+            </tr>
+            <tr>
+                <th>Guide d'utilisation</th>
+                <td>
+                    {% if equipement.guideUtilisation %}
+                        <a href="{{ path('app_equipement_generate_pdf_guide', {'idEquipement': equipement.idEquipement}) }}" class="btn btn-primary mt-2" target="_blank">
+                            <i class="fas fa-file-pdf me-2"></i>Afficher le PDF
+                        </a>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Employé</th>
+                <td>{{ equipement.employe ? equipement.employe.prenom ~ ' ' ~ equipement.employe.nom : 'Non assigné' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_equipement_index') }}" class="btn btn-secondary">Retour à la liste</a>
+    <a href="{{ path('app_equipement_edit', {'idEquipement': equipement.idEquipement}) }}" class="btn btn-warning">Modifier</a>
+
+    {{ include('equipement/_delete_form.html.twig') }}
+{% endblock %}
