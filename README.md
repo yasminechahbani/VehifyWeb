@@ -29,10 +29,12 @@ Le projet vise à digitaliser les processus administratifs liés au transport te
 
 1. Clonez le projet :
 git clone https://github.com/yasminechahbani/VehifyWeb.git
+
 cd VehifyWeb
 
 2. Installez les dépendances :
 composer install
+
 npm install  # si applicable
 
 
