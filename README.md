@@ -63,4 +63,5 @@ symfony server:start
 
 
 👤 Auteur
+
 Projet développé par Motez Selmi, Ashref Sehli, Yasmine Chahbani, Emna Azzouz, Mohamed Chamseddine Bejaoui, Mohamed Karim Kebaili, encadrés dans le cadre du module PIDEV – 2025.
