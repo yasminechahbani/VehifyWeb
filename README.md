@@ -51,6 +51,11 @@ php bin/console doctrine:migrations:migrate
 symfony server:start
 
 
+🏷️ Topics et Mots-clés
+
+Symfony, transport terrestre, gestion véhicules, OCR, API, carte grise, dashboard, employés, PHP, MySQL, visite technique, mines, automatisation
+
+
 
 🛠 Technologies utilisées
 .Symfony 6 (PHP 8.1+)
