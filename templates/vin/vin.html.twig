@@ -1,0 +1,60 @@
+{# templates/verification/check.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Vérification Carte Grise{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/vin.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="vin-form-container">
+                <h2 class="vin-form-title text-center">Vérification Carte Grise</h2>
+
+                <form method="post" action="{{ path('app_vin_verify') }}" class="vin-form">
+                    <div class="mb-4">
+                        <label for="numeroCarteGrise" class="form-label">Numéro de Carte Grise</label>
+                        <input type="text" 
+                               name="numeroCarteGrise" 
+                               id="numeroCarteGrise" 
+                               class="form-control" 
+                               placeholder="Entrez le numéro de carte grise"
+                               required>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary vin-submit-btn">
+                            Vérifier
+                        </button>
+                    </div>
+                </form>
+
+                {% if carteGrise is defined and carteGrise %}
+                    <div class="mt-4">
+                        <h3 class="text-center mb-3">Détails de la Carte Grise</h3>
+                        <div class="card">
+                            <div class="card-body">
+                                <p><strong>Numéro:</strong> {{ carteGrise.numeroCarteGrise }}</p>
+                                <p><strong>Propriétaire:</strong> {{ carteGrise.proprietaire }}</p>
+                                <p><strong>Adresse:</strong> {{ carteGrise.adresseProprietaire }}</p>
+                                <p><strong>Date d'émission:</strong> {{ carteGrise.dateEmission|date('d/m/Y') }}</p>
+                                <p><strong>Date d'expiration:</strong> {{ carteGrise.dateExpiration|date('d/m/Y') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if error is defined and error %}
+                    <div class="alert alert-danger mt-3">
+                        {{ error }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

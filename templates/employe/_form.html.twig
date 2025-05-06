@@ -1,0 +1,94 @@
+{% for message in app.flashes('error') %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+{% endfor %}
+
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+{% endfor %}
+
+<div class="card shadow-sm border-0 p-4">
+    <h4 class="mb-4 text-primary"><i class="fa fa-user-circle"></i> Informations de l'employé</h4>
+
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="form-floating">
+                {{ form_widget(form.nom, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+                {{ form_label(form.nom) }}
+                {{ form_errors(form.nom) }}
+            </div>
+
+            <div class="form-floating mt-3">
+                {{ form_widget(form.prenom, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }}
+                {{ form_label(form.prenom) }}
+                {{ form_errors(form.prenom) }}
+            </div>
+
+            <div class="form-floating mt-3">
+                {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Email'}}) }}
+                {{ form_label(form.email) }}
+                {{ form_errors(form.email) }}
+            </div>
+
+            <div class="form-floating mt-3">
+                {{ form_widget(form.age, {'attr': {'class': 'form-control', 'min': '18', 'max': '99', 'placeholder': 'Âge'}}) }}
+                {{ form_label(form.age) }}
+                {{ form_errors(form.age) }}
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-floating">
+                {{ form_widget(form.dateEmbauche, {
+                    'attr': {
+                        'class': 'form-control',
+                        'min': "now"|date("Y-m-d"),
+                        'placeholder': 'Date d\'embauche'
+                    }
+                }) }}
+                {{ form_label(form.dateEmbauche) }}
+                {{ form_errors(form.dateEmbauche) }}
+            </div>
+
+            <div class="form-floating mt-3">
+                {{ form_widget(form.poste, {'attr': {'class': 'form-control', 'placeholder': 'Poste'}}) }}
+                {{ form_label(form.poste) }}
+                {{ form_errors(form.poste) }}
+            </div>
+
+            <div class="form-floating mt-3">
+                {{ form_widget(form.tel, {'attr': {'class': 'form-control', 'placeholder': 'Téléphone'}}) }}
+                {{ form_label(form.tel) }}
+                {{ form_errors(form.tel) }}
+            </div>
+
+            <div class="form-floating mt-3">
+                {{ form_widget(form.salaire, {'attr': {'class': 'form-control', 'step': '0.01', 'placeholder': 'Salaire'}}) }}
+                {{ form_label(form.salaire) }}
+                {{ form_errors(form.salaire) }}
+            </div>
+
+            <div class="form-floating mt-3">
+                {{ form_widget(form.statut, {'attr': {'class': 'form-control', 'placeholder': 'Statut'}}) }}
+                {{ form_label(form.statut) }}
+                {{ form_errors(form.statut) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4 text-end">
+        <button type="submit" class="btn btn-success me-2">
+            <i class="fa fa-save"></i> {{ button_label|default('Enregistrer') }}
+        </button>
+        <a href="{{ path('app_employe_index') }}" class="btn btn-secondary">
+            <i class="fa fa-times"></i> Annuler
+        </a>
+    </div>
+    {{ form_end(form) }}
+</div>

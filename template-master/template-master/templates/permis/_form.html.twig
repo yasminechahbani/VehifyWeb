@@ -1,0 +1,44 @@
+{{ form_start(form, {'attr': {'id': 'permis-form', 'class': 'needs-validation'}}) }}
+    <div class="mb-3">
+        {{ form_label(form.user_id, 'Select User', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.user_id, {'attr': {'class': 'form-select user-selector'}}) }}
+        {{ form_errors(form.user_id) }}
+        <div id="quiz-message-container"></div>
+    </div>
+
+    {{ form_widget(form.has_passed_quiz) }}
+
+    <div id="permis-fields-container">
+        {% if form.idQuiz is defined %}
+            <div class="mb-3 permis-field-container">
+                {{ form_label(form.idQuiz, 'Quiz Reference', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.idQuiz, {'attr': {'class': 'form-control permis-field'}}) }}
+                {{ form_errors(form.idQuiz) }}
+            </div>
+        {% endif %}
+
+        <div class="mb-3 permis-field-container">
+            {{ form_label(form.numero_permis, 'License Number', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.numero_permis, {'attr': {'class': 'form-control permis-field', 'placeholder': 'Enter license number'}}) }}
+            {{ form_errors(form.numero_permis) }}
+        </div>
+
+        <div class="mb-3 permis-field-container">
+            {{ form_label(form.categorie, 'License Category', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.categorie, {'attr': {'class': 'form-select permis-field'}}) }}
+            {{ form_errors(form.categorie) }}
+        </div>
+
+        <div class="mb-3 permis-field-container">
+            {{ form_label(form.etat, 'License Status', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.etat, {'attr': {'class': 'form-select permis-field'}}) }}
+            {{ form_errors(form.etat) }}
+        </div>
+
+        <div class="mb-3 permis-field-container">
+            {{ form_label(form.date_delivrance, 'Issue Date', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.date_delivrance, {'attr': {'class': 'form-control permis-field'}}) }}
+            {{ form_errors(form.date_delivrance) }}
+        </div>
+    </div>
+{{ form_end(form) }}

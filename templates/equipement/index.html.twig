@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Equipement index{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Liste des Équipements</h1>
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {% for equipement in equipements %}
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ equipement.nom }}</h5>
+                            <p class="card-text"><strong>ID :</strong> {{ equipement.idEquipement }}</p>
+                            <p class="card-text"><strong>Description :</strong> {{ equipement.description }}</p>
+                            <p class="card-text"><strong>Catégorie :</strong> {{ equipement.categorie }}</p>
+                            <p class="card-text"><strong>État :</strong> {{ equipement.etat }}</p>
+<p class="card-text">
+    <strong>Employee :</strong>
+    {% if equipement.employe %}
+        {{ equipement.employe.prenom }} {{ equipement.employe.nom }}
+    {% else %}
+        Aucun employé associé
+    {% endif %}
+</p>
+
+                        </div>
+                        <div class="card-footer bg-transparent d-flex justify-content-between">
+                            <a href="{{ path('app_equipement_show', {'idEquipement': equipement.idEquipement}) }}" class="btn btn-sm btn-outline-info">👁️ Voir</a>
+                            <a href="{{ path('app_equipement_edit', {'idEquipement': equipement.idEquipement}) }}" class="btn btn-sm btn-outline-primary">✏️ Modifier</a>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <p>Aucun équipement trouvé.</p>
+            {% endfor %}
+        </div>
+
+        <div class="mt-4">
+            <a href="{{ path('app_equipement_new') }}" class="btn btn-success">➕ Ajouter un équipement</a>
+        </div>
+    </div>
+{% endblock %}
